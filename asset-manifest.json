@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/gcg-report-viewer/static/css/main.9c088d7b.chunk.css",
+    "main.js": "/gcg-report-viewer/static/js/main.770313f8.chunk.js",
+    "main.js.map": "/gcg-report-viewer/static/js/main.770313f8.chunk.js.map",
+    "runtime-main.js": "/gcg-report-viewer/static/js/runtime-main.60de8969.js",
+    "runtime-main.js.map": "/gcg-report-viewer/static/js/runtime-main.60de8969.js.map",
+    "static/js/2.2141c387.chunk.js": "/gcg-report-viewer/static/js/2.2141c387.chunk.js",
+    "static/js/2.2141c387.chunk.js.map": "/gcg-report-viewer/static/js/2.2141c387.chunk.js.map",
+    "index.html": "/gcg-report-viewer/index.html",
+    "precache-manifest.c958c557a5c85a6555599db27918d8c6.js": "/gcg-report-viewer/precache-manifest.c958c557a5c85a6555599db27918d8c6.js",
+    "service-worker.js": "/gcg-report-viewer/service-worker.js",
+    "static/css/main.9c088d7b.chunk.css.map": "/gcg-report-viewer/static/css/main.9c088d7b.chunk.css.map",
+    "static/js/2.2141c387.chunk.js.LICENSE.txt": "/gcg-report-viewer/static/js/2.2141c387.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.60de8969.js",
+    "static/js/2.2141c387.chunk.js",
+    "static/css/main.9c088d7b.chunk.css",
+    "static/js/main.770313f8.chunk.js"
+  ]
+}
