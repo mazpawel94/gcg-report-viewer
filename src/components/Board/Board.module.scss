@@ -6,7 +6,7 @@ canvas {
   margin: 7px 17px;
 }
 
-.board-wrapper {
+.boardWrapper {
   margin-top: 20px;
   min-width: 650px;
   height: 650px;
@@ -30,7 +30,7 @@ canvas {
   -ms-transform: perspective(0) rotateX(0) rotateZ(0);
   -o-transform: perspective(0) rotateX(0) rotateZ(0);
 } */
-.up-coordinates {
+.upCoordinates {
   position: absolute;
   color: white;
   line-height: 30px;
@@ -40,11 +40,11 @@ canvas {
   font-size: 11px;
   display: flex;
 }
-.coordinate-x {
+.coordinateX {
   width: calc(100% / 15);
   text-align: center;
 }
-.left-coordinates {
+.leftCoordinates {
   position: absolute;
   color: white;
   height: 100%;
@@ -54,7 +54,7 @@ canvas {
   display: flex;
   flex-direction: column;
 }
-.coordinate-y {
+.coordinateY {
   height: calc(100% / 15);
   display: flex;
   align-items: center;
