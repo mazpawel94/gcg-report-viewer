@@ -46,10 +46,9 @@ class GcgReader {
     showPossibilities(movesArray) {
         console.log(movesArray);
     }
-    readReport = (e) => {
+    readReport = (e, callback) => {
         const movesArray = [];
         const game = e.target.files[0];
-        console.log(e.target.files[0]);
         if (!game) return 0;
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -57,8 +56,8 @@ class GcgReader {
             lines.forEach((line) =>
                 this.pushMoveByLineToArray(line, movesArray)
             )
-            this.showPossibilities(movesArray);
-        };
+            callback(movesArray);
+        }
         reader.readAsText(game);
     };
 }
