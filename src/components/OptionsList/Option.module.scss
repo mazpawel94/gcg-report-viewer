@@ -1,0 +1,30 @@
+.li {
+  list-style: none;
+  min-width: 500px;
+  display: flex;
+  background-color: #fff;
+
+  text-align: center;
+  span {
+    margin-right: 25px;
+  }
+}
+.coordinates {
+  width: 5%;
+}
+
+.word {
+  width: 40%;
+}
+.movePoints {
+  width: 5%;
+}
+.evaluate {
+  width: 10%;
+}
+.percent {
+  width: 10%;
+}
+.freeLetters {
+  width: 30%;
+}

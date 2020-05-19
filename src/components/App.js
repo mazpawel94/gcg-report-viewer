@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import Board from './Board/Board';
 import FileInput from './FileInput/FileInput';
+import OptionsList from './OptionsList/OptionsList'
 
+import styles from './App.module.scss';
 
 class App extends Component {
 
@@ -11,17 +13,20 @@ class App extends Component {
         actualMove: undefined
     }
 
-    fillMovesList = list => {
-        console.log(list);
-        this.setState({ moves: [...list] });
-    }
-
+    fillMovesList = list =>
+        this.setState({ moves: [...list], actualMove: 0 });
 
     render() {
+        const { actualMove, moves } = this.state;
         return (
             <>
-                <FileInput fillMovesFn={this.fillMovesList} />
-                <Board />
+                <header className={styles.header}>
+                    <FileInput fillMovesFn={this.fillMovesList} />
+                </header>
+                <main className={styles.main}>
+                    <Board />
+                    {actualMove !== undefined && <OptionsList move={moves[actualMove]} />}
+                </main>
             </>
         );
     }
