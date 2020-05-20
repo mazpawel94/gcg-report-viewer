@@ -14,16 +14,3 @@ const Option = ({ params }) => {
 }
 
 export default Option;
-
-
-// coordinates
-// "*8C"
-// evaluate
-// "best"
-// freeLetters
-// ""
-// movePoints
-// "78"
-// percent
-// "100.0%"
-// word

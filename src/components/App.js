@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Board from './Board/Board';
 import FileInput from './FileInput/FileInput';
 import OptionsList from './OptionsList/OptionsList'
-
+import Rack from './Rack/Rack';
 import styles from './App.module.scss';
 
 class App extends Component {
@@ -25,7 +25,12 @@ class App extends Component {
                 </header>
                 <main className={styles.main}>
                     <Board />
-                    {actualMove !== undefined && <OptionsList move={moves[actualMove]} />}
+                    {actualMove !== undefined && (
+                        <>
+                            <OptionsList move={moves[actualMove]} />
+                            <Rack move={moves[actualMove]} actualOption={0} />
+                        </>
+                    )}
                 </main>
             </>
         );
