@@ -1,4 +1,6 @@
-.tile {
+import styled, { css } from 'styled-components';
+
+const TileSquare = styled.div`
     background-color: #f8e8c7;
     display: inline-block;
     box-sizing: border-box;
@@ -8,18 +10,24 @@
     width: 65px;
     border-radius: 10%;
     text-align: center;
-    // cursor: pointer;
+    cursor: pointer;
     user-select: none;
-    // z-index: 1;
+    /* z-index: 1; */
     margin-left: 10px;
     font-family: Arial;
     font-weight: bold;
-    &Played {
-        @extend .tile;
-        background-color: #8b8b8b;
-    }
-}
 
-.points {
-    font-size: 15px;
-}
+    ${({ played }) => played && css`
+        background-color: #8b8b8b;
+    `
+    }
+
+    ${({ small }) => small && css`
+            font-size: 10px;
+            height: 15px;
+            width: 15px;
+    `
+    }
+`
+
+export default TileSquare;

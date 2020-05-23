@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './Tile.module.scss'
 
-import { POINTS } from '../globalVariables'
+import TileSquare from './TileSquare';
+import TilePoints from './TilePoints';
+import { POINTS } from '../globalVariables';
 
 const Tile = ({ letter, played }) => {
     return (
-        <div className={played ? styles.tilePlayed : styles.tile}>
+        <TileSquare played={played}>
             {letter}
-            <sub className={styles.points}>{POINTS[letter]}</sub>
-        </div>
+            <TilePoints>{POINTS[letter]}</TilePoints>
+        </TileSquare>
     );
 }
 

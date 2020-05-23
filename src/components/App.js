@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Board from './Board/Board';
 import FileInput from './FileInput/FileInput';
-import OptionsList from './OptionsList/OptionsList'
+import OptionsList from './OptionsList/OptionsList';
 import Rack from './Rack/Rack';
 import styles from './App.module.scss';
 
