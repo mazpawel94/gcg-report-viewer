@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NavigationButton from './NavigationButton';
+import NavigationButton from '../atoms/NavigationButton';
 
 const GameNavigation = ({ nextMoveFn, prevMoveFn }) => {
     return (

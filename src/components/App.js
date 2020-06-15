@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import Board from './Board/Board';
 import FileInput from './FileInput/FileInput';
-import OptionsList from './OptionsList/OptionsList';
-import Rack from './Rack/Rack';
+import OptionsList from './organisms/OptionsList';
+import Rack from './organisms/Rack';
 import styles from './App.module.scss';
-import GameNavigation from './GameNavigation/GameNavigation';
+import GameNavigation from '../components/molecules/GameNavigation';
 class App extends Component {
 
     state = {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Option from './Option';
+import Option from '../molecules/Option';
 
 const OptionsList = ({ move }) => {
     const optionsElements = move.choiceOptions.map(el => (
