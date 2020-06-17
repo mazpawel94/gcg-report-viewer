@@ -1,8 +1,10 @@
 import React from 'react';
+import WithContext from '../../hoc/withContext';
 import Tile from '../molecules/Tile';
 
-const Rack = ({ move, actualOption }) => {
+const Rack = ({ context: { moves, actualMove, actualOption } }) => {
 
+    const move = moves[actualMove];
     const freeLetters = move.choiceOptions[actualOption].freeLetters.split('');
 
     const checkAndRemoveLetter = el => {
@@ -25,4 +27,4 @@ const Rack = ({ move, actualOption }) => {
     );
 }
 
-export default Rack;
+export default WithContext(Rack);

@@ -6,6 +6,8 @@ import OptionsList from './organisms/OptionsList';
 import Rack from './organisms/Rack';
 import styles from './App.module.scss';
 import GameNavigation from '../components/molecules/GameNavigation';
+import AppContext from '../context';
+
 class App extends Component {
 
     state = {
@@ -54,9 +56,9 @@ class App extends Component {
         document.addEventListener("keydown", this.handleKeyDown);
     }
     render() {
-        const { actualMove, moves, actualOption } = this.state;
+        const { actualMove } = this.state;
         return (
-            <>
+            <AppContext.Provider value={this.state}>
                 <header className={styles.header}>
                     <FileInput fillMovesFn={this.fillMovesList} />
                 </header>
@@ -68,12 +70,13 @@ class App extends Component {
                     />
                     {actualMove !== undefined && (
                         <>
-                            <OptionsList move={moves[actualMove]} />
-                            <Rack move={moves[actualMove]} actualOption={actualOption} />
+                            <OptionsList />
+                            <Rack />
+                            {/* <Rack move={moves[actualMove]} actualOption={actualOption} /> */}
                         </>
                     )}
                 </main>
-            </>
+            </AppContext.Provider>
         );
     }
 }

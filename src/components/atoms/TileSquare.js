@@ -22,10 +22,12 @@ const TileSquare = styled.div`
     `
     }
 
-    ${({ small }) => small && css`
-            font-size: 10px;
-            height: 15px;
-            width: 15px;
+    ${({ onBoard }) => onBoard && css`
+            font-size: 30px;
+            width: 37px;
+            height: 37px;
+            margin-left: 0;
+            margin-right: 1px;
     `
     }
 `

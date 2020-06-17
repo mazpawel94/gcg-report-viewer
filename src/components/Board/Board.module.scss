@@ -7,6 +7,7 @@ canvas {
 }
 
 .boardWrapper {
+  position: relative;
   margin-top: 20px;
   min-width: 650px;
   height: 650px;
@@ -112,8 +113,8 @@ canvas {
   width: calc(100% - 2px);
   height: calc(100% - 2px);
   background-color: #c02929;
-  box-shadow: inset -4px -4px 4px 0px rgba(0, 0, 0, 0.472),
-    inset 2px 2px 4px 0px rgba(255, 255, 255, 0.842), 0px 0px 1px 2px #badce9;
+  box-shadow: inset -4px -4px 4px 0px rgba(0, 0, 0, 0.472), inset 2px 2px 4px 0px rgba(255, 255, 255, 0.842),
+    0px 0px 1px 2px #badce9;
 }
 
 .w3::before,

@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './Board.module.scss'
+import WithContext from '../../hoc/withContext';
+import Word from '../organisms/Word';
 
 const boardFields = () => (
   <div className={styles.board}>
@@ -265,18 +267,17 @@ const boardFields = () => (
   </div >
 )
 
-class Board extends Component {
-  render() {
-    return (
-      <>
-        <div className={styles.boardWrapper}>
-          <canvas> </canvas>
-          {boardFields()}
-        </div>
-      </>
-    );
-  }
+const Board = ({ context: { moves, actualMove, actualOption } }) => {
+  return (
+    <>
+      <div className={styles.boardWrapper}>
+        <canvas> </canvas>
+        {boardFields()}
+        {actualMove && <Word letters={moves[actualMove].choiceOptions[actualOption].word} />}
+      </div>
+    </>
+  );
 }
 
 
-export default Board;
+export default WithContext(Board);

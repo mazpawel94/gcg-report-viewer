@@ -1,8 +1,10 @@
 import React from 'react';
+import WithContext from '../../hoc/withContext';
 
 import Option from '../molecules/Option';
 
-const OptionsList = ({ move }) => {
+const OptionsList = ({ context: { moves, actualMove } }) => {
+    const move = moves[actualMove];
     const optionsElements = move.choiceOptions.map(el => (
         <Option params={el} />
     ))
@@ -16,4 +18,4 @@ const OptionsList = ({ move }) => {
     );
 }
 
-export default OptionsList;
+export default WithContext(OptionsList);
