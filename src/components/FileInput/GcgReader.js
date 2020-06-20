@@ -44,7 +44,6 @@ class GcgReader {
         }
     }
     showPossibilities(movesArray) {
-        console.log(movesArray);
     }
     readReport = (e, callback) => {
         const movesArray = [];

@@ -281,6 +281,20 @@ const Board = ({ context: { moves, actualMove, actualOption } }) => {
 
   const getParamForMove = param =>
     moves[actualMove].choiceOptions[actualOption][param];
+
+  const findPlayedMove = move =>
+    move.choiceOptions.find(opt => opt.coordinates.includes('*'));
+
+  const words = moves.slice(0, actualMove).map((move, index) => {
+    const { word, coordinates } = findPlayedMove(move);
+    return (
+      <Word
+        key={index}
+        letters={word}
+        coordinates={coordinates}
+      />)
+  }
+  );
   return (
     <>
       <div className={styles.boardWrapper}>
@@ -288,10 +302,15 @@ const Board = ({ context: { moves, actualMove, actualOption } }) => {
         {boardFields()}
         <GameArea>
           {(actualMove || actualMove === 0) &&
-            <Word
-              letters={getParamForMove('word')}
-              coordinates={getParamForMove('coordinates')}
-            />}
+            <>
+              {words}
+              <Word
+                letters={getParamForMove('word')}
+                coordinates={getParamForMove('coordinates')}
+                actualMove
+              />
+            </>
+          }
         </GameArea>
       </div>
     </>

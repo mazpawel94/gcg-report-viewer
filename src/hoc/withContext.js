@@ -7,7 +7,6 @@ const WithContext = Component => {
         return (
             <AppContext.Consumer>
                 {(context) => {
-                    console.log(context);
                     return <Component {...props} context={context} />
                 }
                 }

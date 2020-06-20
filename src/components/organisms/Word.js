@@ -32,7 +32,7 @@ const Word = ({ actualMove, letters, coordinates }) => {
         })
     };
     const lettersDivs = letters.split('').map(el => (
-        <Tile letter={el} onBoard />
+        <Tile letter={el} onBoard played={actualMove} />
     ))
 
     const { x, y, verticle } = setPosition();

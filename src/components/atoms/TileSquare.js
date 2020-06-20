@@ -17,7 +17,7 @@ const TileSquare = styled.div`
     position: relative;
 
     ${({ played }) => played && css`
-        background-color: #8b8b8b;
+        background-color: #1ae825;
     `
     }
     ${({ blank }) => blank && css`
