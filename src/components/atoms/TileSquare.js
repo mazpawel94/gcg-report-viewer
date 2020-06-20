@@ -12,22 +12,25 @@ const TileSquare = styled.div`
     text-align: center;
     cursor: pointer;
     user-select: none;
-    /* z-index: 1; */
-    margin-left: 10px;
-    font-family: Arial;
+    font-family: GothicA1;
     font-weight: bold;
+    position: relative;
 
     ${({ played }) => played && css`
         background-color: #8b8b8b;
     `
     }
+    ${({ blank }) => blank && css`
+        color: #015b5266;
+    `
+    }
 
     ${({ onBoard }) => onBoard && css`
-            font-size: 30px;
-            width: 37px;
-            height: 37px;
-            margin-left: 0;
-            margin-right: 1px;
+        font-size: 23px;
+        width: 36px;
+        height: 36px;
+        margin: 1px 1px 0 1px;
+        line-height: 38px;
     `
     }
 `

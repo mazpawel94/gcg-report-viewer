@@ -5,11 +5,16 @@ import TilePoints from '../atoms/TilePoints';
 import { POINTS } from '../globalVariables';
 
 const Tile = ({ letter, played, onBoard }) => {
+    const blank = (letter === letter.toLowerCase());
     return (
-        <TileSquare played={played} onBoard={onBoard}>
-            {letter}
-            <TilePoints>{POINTS[letter]}</TilePoints>
-        </TileSquare>
+        <>
+            {!['(', ')'].includes(letter) &&
+                <TileSquare played={played} onBoard={onBoard} blank={blank} >
+                    {letter.toUpperCase()}
+                    <TilePoints onBoard={onBoard}>{!blank && POINTS[letter]}</TilePoints>
+                </TileSquare>
+            }
+        </>
     );
 }
 

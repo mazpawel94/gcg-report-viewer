@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import styles from './Board.module.scss'
 import WithContext from '../../hoc/withContext';
 import Word from '../organisms/Word';
@@ -267,13 +268,24 @@ const boardFields = () => (
   </div >
 )
 
+const GameArea = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  height: calc(100% - 80px);
+  width: calc(100% - 80px);
+  z-index: 10;
+`
+
 const Board = ({ context: { moves, actualMove, actualOption } }) => {
   return (
     <>
       <div className={styles.boardWrapper}>
         <canvas> </canvas>
         {boardFields()}
-        {actualMove && <Word letters={moves[actualMove].choiceOptions[actualOption].word} />}
+        <GameArea>
+          {(actualMove || actualMove === 0) && <Word letters={moves[actualMove].choiceOptions[actualOption].word} />}
+        </GameArea>
       </div>
     </>
   );

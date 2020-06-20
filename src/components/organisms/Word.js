@@ -5,9 +5,8 @@ import Tile from '../molecules/Tile';
 
 const StyledWrapper = styled.div`
     position: absolute;
-        top: 30px; 
-        left: 117px;
-    z-index: 10;
+    top: 0; 
+    left: 0;
 
 `
 const Word = ({ actualMove, letters }) => {
