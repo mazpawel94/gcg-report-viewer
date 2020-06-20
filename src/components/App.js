@@ -21,12 +21,18 @@ class App extends Component {
 
     setNextMove = () => {
         if (this.state.actualMove + 1 < this.state.moves.length)
-            this.setState({ actualMove: this.state.actualMove + 1 });
+            this.setState({
+                actualMove: this.state.actualMove + 1,
+                actualOption: 0
+            });
     };
 
     setPreviousMove = () => {
         if (this.state.actualMove !== 0)
-            this.setState({ actualMove: this.state.actualMove - 1 });
+            this.setState({
+                actualMove: this.state.actualMove - 1,
+                actualOption: 0
+            });
     };
 
     setNextOption = () => {

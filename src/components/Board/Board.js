@@ -278,13 +278,20 @@ const GameArea = styled.div`
 `
 
 const Board = ({ context: { moves, actualMove, actualOption } }) => {
+
+  const getParamForMove = param =>
+    moves[actualMove].choiceOptions[actualOption][param];
   return (
     <>
       <div className={styles.boardWrapper}>
         <canvas> </canvas>
         {boardFields()}
         <GameArea>
-          {(actualMove || actualMove === 0) && <Word letters={moves[actualMove].choiceOptions[actualOption].word} />}
+          {(actualMove || actualMove === 0) &&
+            <Word
+              letters={getParamForMove('word')}
+              coordinates={getParamForMove('coordinates')}
+            />}
         </GameArea>
       </div>
     </>

@@ -29,7 +29,7 @@ const TileSquare = styled.div`
         font-size: 23px;
         width: 36px;
         height: 36px;
-        margin: 1px 1px 0 1px;
+        margin: 1px 1px 1px 1px;
         line-height: 38px;
     `
     }
