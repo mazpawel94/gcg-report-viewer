@@ -14,28 +14,28 @@ const StyledWrapper = styled.div`
     `}
 
 `
+const setPosition = (coordinates) => {
+    const coord = coordinates.split('').filter(el => el !== '*').join('');
+    if (coord.slice(-1) !== coord.slice(-1).toLowerCase()) //horizontal
+        return ({
+            x: coord.slice(-1).charCodeAt() - 65,
+            y: coord.slice(0, -1) - 1,
+            verticle: false
+        })
+    else return ({
+        x: coord[0].charCodeAt() - 65,
+        y: coord.slice(1) - 1,
+        verticle: true
+    })
+};
 
 const Word = ({ actualMove, letters, coordinates }) => {
 
-    const setPosition = () => {
-        const coord = coordinates.split('').filter(el => el !== '*').join('');
-        if (coord.slice(-1) !== coord.slice(-1).toLowerCase()) //horizontal
-            return ({
-                x: coord.slice(-1).charCodeAt() - 65,
-                y: coord.slice(0, -1) - 1,
-                verticle: false
-            })
-        else return ({
-            x: coord[0].charCodeAt() - 65,
-            y: coord.slice(1) - 1,
-            verticle: true
-        })
-    };
-    const lettersDivs = letters.split('').map(el => (
-        <Tile letter={el} onBoard played={actualMove} />
+    const lettersDivs = letters.split('').map((el, i) => (
+        <Tile key={i} letter={el} onBoard played={actualMove} />
     ))
 
-    const { x, y, verticle } = setPosition();
+    const { x, y, verticle } = setPosition(coordinates);
 
     return (
         <StyledWrapper x={x} y={y} verticle={verticle}>

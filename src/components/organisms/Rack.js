@@ -2,6 +2,8 @@ import React from 'react';
 import WithContext from '../../hoc/withContext';
 import Tile from '../molecules/Tile';
 
+
+
 const Rack = ({ context: { moves, actualMove, actualOption } }) => {
 
     const move = moves[actualMove];
@@ -16,14 +18,18 @@ const Rack = ({ context: { moves, actualMove, actualOption } }) => {
         return true
     }
 
-    const lettersDivs = move.letters.split('').map(el => (
-        <Tile letter={el} played={checkAndRemoveLetter(el)} />
+    const tiles = move.letters.split('').map((el, i) => (
+        <Tile
+            key={i}
+            letter={el}
+            played={checkAndRemoveLetter(el)}
+        />
     ))
 
     return (
-        <div>
-            {lettersDivs}
-        </div>
+        <>
+            {tiles}
+        </>
     );
 }
 

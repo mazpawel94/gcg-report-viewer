@@ -16,22 +16,31 @@ class App extends Component {
         actualOption: 0
     }
 
+    findPlayedOption = (moveIndex, moves = this.state.moves) =>
+        moves[moveIndex].choiceOptions.findIndex(opt => opt.coordinates.includes('*'))
+
     fillMovesList = list =>
-        this.setState({ moves: [...list], actualMove: 0 });
+        this.setState({
+            moves: [...list],
+            actualMove: 0,
+            actualOption: this.findPlayedOption(0, [...list])
+        });
 
     setNextMove = () => {
-        if (this.state.actualMove + 1 < this.state.moves.length)
+        const { actualMove, moves } = this.state;
+        if (actualMove + 1 < moves.length)
             this.setState({
-                actualMove: this.state.actualMove + 1,
-                actualOption: 0
+                actualMove: actualMove + 1,
+                actualOption: this.findPlayedOption(actualMove + 1)
             });
     };
 
     setPreviousMove = () => {
-        if (this.state.actualMove !== 0)
+        const { actualMove } = this.state;
+        if (actualMove !== 0)
             this.setState({
-                actualMove: this.state.actualMove - 1,
-                actualOption: 0
+                actualMove: actualMove - 1,
+                actualOption: this.findPlayedOption(actualMove - 1)
             });
     };
 
@@ -78,7 +87,6 @@ class App extends Component {
                         <>
                             <OptionsList />
                             <Rack />
-                            {/* <Rack move={moves[actualMove]} actualOption={actualOption} /> */}
                         </>
                     )}
                 </main>

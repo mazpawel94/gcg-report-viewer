@@ -5,8 +5,8 @@ import Option from '../molecules/Option';
 
 const OptionsList = ({ context: { moves, actualMove } }) => {
     const move = moves[actualMove];
-    const optionsElements = move.choiceOptions.map(el => (
-        <Option params={el} />
+    const optionsElements = move.choiceOptions.map((el, i) => (
+        <Option key={i} params={el} />
     ))
     return (
         <>
