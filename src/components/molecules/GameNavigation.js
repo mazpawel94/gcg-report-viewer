@@ -6,7 +6,7 @@ const GameNavigation = ({ nextMoveFn, prevMoveFn }) => {
     return (
         <div>
             <NavigationButton onClick={prevMoveFn}> {'<<<'} </NavigationButton>
-            <NavigationButton onClick={nextMoveFn}> >>> </NavigationButton>
+            <NavigationButton onClick={nextMoveFn}> {'>>>'} </NavigationButton>
         </div>
     );
 }

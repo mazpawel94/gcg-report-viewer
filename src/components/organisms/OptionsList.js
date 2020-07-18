@@ -3,10 +3,10 @@ import WithContext from '../../hoc/withContext';
 
 import Option from '../molecules/Option';
 
-const OptionsList = ({ context: { moves, actualMove } }) => {
+const OptionsList = ({ context: { moves, actualMove, actualOption } }) => {
     const move = moves[actualMove];
     const optionsElements = move.choiceOptions.map((el, i) => (
-        <Option key={i} params={el} />
+        <Option key={i} params={el} selected={i === actualOption} />
     ))
     return (
         <>

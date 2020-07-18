@@ -24,6 +24,10 @@ const TileSquare = styled.div`
         color: #015b5266;
     `
     }
+    ${({ transparent }) => transparent && css`
+        opacity: 0;
+    `
+    }
 
     ${({ onBoard }) => onBoard && css`
         font-size: 23px;

@@ -29,13 +29,37 @@ const setPosition = (coordinates) => {
     })
 };
 
+const betweenBracketsValidator = letters => {
+    const bracketsPairs = [];
+    const findPair = i => {
+        const start = letters.indexOf('(', i);
+        const end = letters.indexOf(')', i + 1);
+        if (end !== -1) {
+            bracketsPairs.push({ start, end });
+            findPair(end);
+        }
+    }
+    findPair(0);
+    return ((index) =>
+        bracketsPairs.some(pair => pair.start < index && pair.end > index)
+    )
+}
+
 const Word = ({ actualMove, letters, coordinates }) => {
 
-    const lettersDivs = letters.split('').map((el, i) => (
-        <Tile key={i} letter={el} onBoard played={actualMove} />
+    const { x, y, verticle } = setPosition(coordinates);
+    const isBetweenBrackets = betweenBracketsValidator(letters);
+    const lettersDivs = letters.split('').map((el, index) => (
+        <Tile
+            key={index}
+            letter={el}
+            onBoard
+            played={actualMove}
+            transparent={isBetweenBrackets(index)}
+
+        />
     ))
 
-    const { x, y, verticle } = setPosition(coordinates);
 
     return (
         <StyledWrapper x={x} y={y} verticle={verticle}>

@@ -6,18 +6,18 @@ const StyledWrapper = styled.div`
   min-width: 500px;
   max-width: 500px;
   display: flex;
-  background-color: #D5FADC;
+  background-color: ${({ selected }) => selected ? 'green' : '#D5FADC'};
   text-align: center;
   padding: 6px;
   :nth-child(2n) {
-    background-color: transparent;
+    background-color: ${({ selected }) => selected ? 'green' : 'transparent'};
     }
 `;
 
-const Option = ({ params }) => {
+const Option = ({ params, selected }) => {
     const { evaluate, coordinates, word, movePoints, percent, freeLetters } = params;
     return (
-        <StyledWrapper>
+        <StyledWrapper selected={selected}>
             <OptionParam width={10}>{evaluate}</OptionParam>
             <OptionParam width={5}>{coordinates}</OptionParam>
             <OptionParam width={40}>{word}</OptionParam>
