@@ -279,6 +279,9 @@ const GameArea = styled.div`
 
 const Board = ({ context: { moves, actualMove, actualOption } }) => {
 
+  const exceptCoordinates = ["*xch", "xch"];
+
+
   const getParamForMove = param =>
     moves[actualMove].choiceOptions[actualOption][param];
 
@@ -287,12 +290,13 @@ const Board = ({ context: { moves, actualMove, actualOption } }) => {
 
   const words = moves.slice(0, actualMove).map((move, index) => {
     const { word, coordinates } = findPlayedMove(move);
-    return (
-      <Word
-        key={index}
-        letters={word}
-        coordinates={coordinates}
-      />)
+    if (!exceptCoordinates.some(el => el === coordinates))
+      return (
+        <Word
+          key={index}
+          letters={word}
+          coordinates={coordinates}
+        />)
   }
   );
   return (
@@ -304,11 +308,12 @@ const Board = ({ context: { moves, actualMove, actualOption } }) => {
           {(actualMove || actualMove === 0) &&
             <>
               {words}
-              <Word
-                letters={getParamForMove('word')}
-                coordinates={getParamForMove('coordinates')}
-                actualMove
-              />
+              {!exceptCoordinates.some(el => el === getParamForMove('coordinates')) &&
+                <Word
+                  letters={getParamForMove('word')}
+                  coordinates={getParamForMove('coordinates')}
+                  actualMove
+                />}
             </>
           }
         </GameArea>

@@ -1,8 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import WithContext from '../../hoc/withContext';
 import Tile from '../molecules/Tile';
 
-
+const StyledWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+width: 500px;
+`;
 
 const Rack = ({ context: { moves, actualMove, actualOption } }) => {
 
@@ -27,9 +33,9 @@ const Rack = ({ context: { moves, actualMove, actualOption } }) => {
     ))
 
     return (
-        <>
+        <StyledWrapper>
             {tiles}
-        </>
+        </StyledWrapper>
     );
 }
 

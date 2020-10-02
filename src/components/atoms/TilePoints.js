@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 const TilePoints = styled.sub`
     font-size: 15px;
     position: absolute;
+    bottom: -23px;
+    right: 5px;
 
     ${({ onBoard }) => onBoard && css`
         position: absolute;

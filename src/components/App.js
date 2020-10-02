@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import Board from './Board/Board';
 import FileInput from './FileInput/FileInput';
 import OptionsList from './organisms/OptionsList';
 import Rack from './organisms/Rack';
-import styles from './App.module.scss';
 import GameNavigation from '../components/molecules/GameNavigation';
 import AppContext from '../context';
+
+const StyledWrapper = styled.div`
+display: flex;
+flex-wrap: wrap;
+`;
+const StyledHeader = styled.div`
+width: 100vw;
+`;
+
+const BoardWrapper = styled.div`
+display: flex;
+flex-direction: column;
+`;
+const MoveContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+`;
 
 class App extends Component {
 
@@ -74,22 +94,24 @@ class App extends Component {
         const { actualMove } = this.state;
         return (
             <AppContext.Provider value={this.state}>
-                <header className={styles.header}>
-                    <FileInput fillMovesFn={this.fillMovesList} />
-                </header>
-                <main className={styles.main}>
-                    <Board />
-                    <GameNavigation
-                        nextMoveFn={this.setNextMove}
-                        prevMoveFn={this.setPreviousMove}
-                    />
+                <StyledWrapper>
+                    <StyledHeader>
+                        <FileInput fillMovesFn={this.fillMovesList} />
+                    </StyledHeader>
+                    <BoardWrapper>
+                        <Board />
+                        <GameNavigation
+                            nextMoveFn={this.setNextMove}
+                            prevMoveFn={this.setPreviousMove}
+                        />
+                    </BoardWrapper>
                     {actualMove !== undefined && (
-                        <>
+                        <MoveContent>
                             <OptionsList />
                             <Rack />
-                        </>
+                        </MoveContent>
                     )}
-                </main>
+                </StyledWrapper>
             </AppContext.Provider>
         );
     }

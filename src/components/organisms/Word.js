@@ -14,6 +14,7 @@ const StyledWrapper = styled.div`
     `}
 
 `
+
 const setPosition = (coordinates) => {
     const coord = coordinates.split('').filter(el => el !== '*').join('');
     if (coord.slice(-1) !== coord.slice(-1).toLowerCase()) //horizontal
@@ -46,8 +47,8 @@ const betweenBracketsValidator = letters => {
 }
 
 const Word = ({ actualMove, letters, coordinates }) => {
-
     const { x, y, verticle } = setPosition(coordinates);
+
     const isBetweenBrackets = betweenBracketsValidator(letters);
     const lettersDivs = letters.split('').map((el, index) => (
         <Tile

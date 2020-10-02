@@ -5,9 +5,10 @@ const TileSquare = styled.div`
     display: inline-block;
     box-sizing: border-box;
     color: #015b52;
-    font-size: 50px;
+    font-size: 40px;
     height: 65px;
     width: 65px;
+    line-height: 65px;
     border-radius: 10%;
     text-align: center;
     cursor: pointer;
