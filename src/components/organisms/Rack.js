@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import WithContext from '../../hoc/withContext';
 import Tile from '../molecules/Tile';
+import AppContext from '../../context';
 
 const StyledWrapper = styled.div`
 display: flex;
@@ -10,10 +10,11 @@ justify-content: space-between;
 width: 500px;
 `;
 
-const Rack = ({ context: { moves, actualMove, actualOption } }) => {
-
-    const move = moves[actualMove];
-    const freeLetters = move.choiceOptions[actualOption].freeLetters.split('');
+const Rack = () => {
+    const { moves, actualMoveIndex, actualOptionIndex } = useContext(AppContext);
+    const move = moves[actualMoveIndex];
+    if (!move.choiceOptions[actualOptionIndex]) return null;
+    const freeLetters = move.choiceOptions[actualOptionIndex].freeLetters.split('');
 
     const checkAndRemoveLetter = el => {
         const index = freeLetters.indexOf(el);
@@ -39,4 +40,4 @@ const Rack = ({ context: { moves, actualMove, actualOption } }) => {
     );
 }
 
-export default WithContext(Rack);
+export default Rack;

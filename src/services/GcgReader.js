@@ -34,6 +34,7 @@ class GcgReader {
         else {
             const actualIndex = movesArray.length - 1;
             movesArray[actualIndex].choiceOptions.push({
+                index: movesArray[actualIndex].choiceOptions.length,
                 evaluate: atoms[0],
                 coordinates: atoms[1],
                 word: atoms[2],

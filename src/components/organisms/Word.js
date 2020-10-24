@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import WithContext from '../../hoc/withContext';
 import Tile from '../molecules/Tile';
 
 const StyledWrapper = styled.div`
@@ -46,7 +45,7 @@ const betweenBracketsValidator = letters => {
     )
 }
 
-const Word = ({ actualMove, letters, coordinates }) => {
+const Word = ({ actualMoveIndex, letters, coordinates }) => {
     const { x, y, verticle } = setPosition(coordinates);
 
     const isBetweenBrackets = betweenBracketsValidator(letters);
@@ -55,7 +54,7 @@ const Word = ({ actualMove, letters, coordinates }) => {
             key={index}
             letter={el}
             onBoard
-            played={actualMove}
+            played={actualMoveIndex}
             transparent={isBetweenBrackets(index)}
 
         />
@@ -69,4 +68,4 @@ const Word = ({ actualMove, letters, coordinates }) => {
     );
 }
 
-export default WithContext(Word);
+export default Word;

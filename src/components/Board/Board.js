@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import styles from './Board.module.scss'
-import WithContext from '../../hoc/withContext';
 import Word from '../organisms/Word';
+
+import context from '../../context';
+import { getWords, isMoveWithWord } from '../../services/gameService';
 
 const boardFields = () => (
   <div className={styles.board}>
@@ -277,50 +279,26 @@ const GameArea = styled.div`
   z-index: 10;
 `
 
-const Board = ({ context: { moves, actualMove, actualOption } }) => {
+const Board = () => {
+  const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
+  const actualOption = moves.length && actualMoveIndex !== undefined && moves[actualMoveIndex].choiceOptions[actualOptionIndex];
 
-  const exceptCoordinates = ["*xch", "xch"];
-
-
-  const getParamForMove = param =>
-    moves[actualMove].choiceOptions[actualOption][param];
-
-  const findPlayedMove = move =>
-    move.choiceOptions.find(opt => opt.coordinates.includes('*'));
-
-  const words = moves.slice(0, actualMove).map((move, index) => {
-    const { word, coordinates } = findPlayedMove(move);
-    if (!exceptCoordinates.some(el => el === coordinates))
-      return (
-        <Word
-          key={index}
-          letters={word}
-          coordinates={coordinates}
-        />)
-  }
-  );
   return (
-    <>
-      <div className={styles.boardWrapper}>
-        <canvas> </canvas>
-        {boardFields()}
-        <GameArea>
-          {(actualMove || actualMove === 0) &&
-            <>
-              {words}
-              {!exceptCoordinates.some(el => el === getParamForMove('coordinates')) &&
-                <Word
-                  letters={getParamForMove('word')}
-                  coordinates={getParamForMove('coordinates')}
-                  actualMove
-                />}
-            </>
-          }
-        </GameArea>
-      </div>
-    </>
+    <div className={styles.boardWrapper}>
+      {boardFields()}
+      {actualOption &&
+        (<GameArea>
+          {getWords(moves, actualMoveIndex)}
+          {isMoveWithWord(actualOption) &&
+            <Word
+              letters={actualOption.word}
+              coordinates={actualOption.coordinates}
+              actualMoveIndex
+            />}
+        </GameArea>)}
+    </div>
   );
 }
 
 
-export default WithContext(Board);
+export default Board;
