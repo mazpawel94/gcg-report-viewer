@@ -1,10 +1,59 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import styles from './Board.module.scss'
-import Word from '../organisms/Word';
+import React, { useContext, useState, useEffect } from "react";
+import styled from "styled-components";
+import { Stage, Layer, Rect, Text } from "react-konva";
+import styles from "./Board.module.scss";
+import Word from "../organisms/Word";
 
-import context from '../../context';
-import { getWords, isMoveWithWord } from '../../services/gameService';
+import context from "../../context";
+import { getWords, isMoveWithWord } from "../../services/gameService";
+
+const Field = ({ x, y, type }) => {
+  const size = 570 / 15;
+  return (
+    <>
+      <Rect
+        x={x * size}
+        y={y * size}
+        width={size}
+        height={size}
+        fill="#08763b"
+        stroke="#badce9"
+      />
+      {type === "word2" && (
+        <>
+          <Rect
+            x={x * size + size / 2}
+            y={y * size - size / 4}
+            width={size}
+            height={size}
+            fill=" #e8b442"
+            rotation={45}
+          />
+          <Rect
+            x={x * size}
+            y={y * size}
+            width={size}
+            height={size}
+            fill=" #e8b442"
+            stroke="#badce9"
+          />
+          <Text
+            x={x * size}
+            y={y * size + 8}
+            width={size}
+            height={size}
+            text="PODWÓJNA PREMIA SŁOWNA"
+            align="center"
+            fontSize={7}
+            verticalAlign="center"
+            fontFamily="Calibri"
+            padding={1}
+          />
+        </>
+      )}
+    </>
+  )
+};
 
 const boardFields = () => (
   <div className={styles.board}>
@@ -42,115 +91,176 @@ const boardFields = () => (
       <div className={styles.coordinateY}>N</div>
       <div className={styles.coordinateY}>O</div>
     </div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}> <span>POTRÓJNA PREMIA LITEROWA</span></div >
+    <div className={`${styles.field} ${styles.l3}`}>
+      {" "}
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
@@ -158,117 +268,187 @@ const boardFields = () => (
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l3}`}><span>POTRÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l3}`}>
+      <span>POTRÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w2}`}><span>PODWÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w2}`}>
+      <span>PODWÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
     <div className={styles.field}></div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
-    <div className={`${styles.field} ${styles.down}`}></div >
-    <div className={`${styles.field} ${styles.down}`}></div >
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
     <div className={`${styles.field} ${styles.down}`}></div>
-    <div className={`${styles.field} ${styles.l2}`}><span>PODWÓJNA PREMIA LITEROWA</span></div>
     <div className={`${styles.field} ${styles.down}`}></div>
     <div className={`${styles.field} ${styles.down}`}></div>
-    <div className={`${styles.field} ${styles.w3}`}><span>POTRÓJNA PREMIA SŁOWNA</span></div>
-  </div >
-)
+    <div className={`${styles.field} ${styles.l2}`}>
+      <span>PODWÓJNA PREMIA LITEROWA</span>
+    </div>
+    <div className={`${styles.field} ${styles.down}`}></div>
+    <div className={`${styles.field} ${styles.down}`}></div>
+    <div className={`${styles.field} ${styles.w3}`}>
+      <span>POTRÓJNA PREMIA SŁOWNA</span>
+    </div>
+  </div>
+);
+
+const StyledWrapper = styled.div`
+  position: absolute;
+  margin-top: 20px;
+  min-width: 650px;
+  height: 650px;
+  width: 650px;
+  background-color: #08763b;
+  border: 3px solid rgb(34, 51, 51);
+`;
 
 const GameArea = styled.div`
   position: absolute;
@@ -277,28 +457,69 @@ const GameArea = styled.div`
   height: calc(100% - 80px);
   width: calc(100% - 80px);
   z-index: 10;
-`
+`;
 
 const Board = () => {
   const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
-  const actualOption = moves.length && actualMoveIndex !== undefined && moves[actualMoveIndex].choiceOptions[actualOptionIndex];
+  const actualOption =
+    moves.length &&
+    actualMoveIndex !== undefined &&
+    moves[actualMoveIndex].choiceOptions[actualOptionIndex];
+  const [isVisible, setIsVisible] = useState(true);
+
+  const drawFields = () => {
+    return [...Array(15).keys()]
+      .map((el) => [...Array(15).keys()].map((el2) => <Field x={el} y={el2} />))
+      .flat();
+  };
+  const drawWord2Fields = () =>
+    [
+      [1, 1],
+      [2, 2],
+      [3, 3],
+      [4, 4],
+      [10, 10],
+      [11, 11],
+      [12, 12],
+      [13, 13],
+      [1, 13],
+      [2, 12],
+      [3, 11],
+      [4, 10],
+      [10, 4],
+      [11, 3],
+      [12, 2],
+      [13, 1],
+    ].map((el) => <Field x={el[0]} y={el[1]} type={"word2"} />);
 
   return (
-    <div className={styles.boardWrapper}>
-      {boardFields()}
-      {actualOption &&
-        (<GameArea>
-          {getWords(moves, actualMoveIndex)}
-          {isMoveWithWord(actualOption) &&
-            <Word
-              letters={actualOption.word}
-              coordinates={actualOption.coordinates}
-              actualMoveIndex
-            />}
-        </GameArea>)}
-    </div>
+    <>
+      <StyledWrapper>
+        <GameArea>
+          <Stage width={570} height={570}>
+            <Layer>
+              <Rect width={570} height={570} fill="#08763b" opacity={0.75} />
+              {drawFields()}
+              {drawWord2Fields()}
+            </Layer>
+          </Stage>
+        </GameArea>
+      </StyledWrapper>
+      {/* <StyledWrapper>
+        {boardFields()}
+        {actualOption &&
+          (<GameArea>
+            {getWords(moves, actualMoveIndex)}
+            {isMoveWithWord(actualOption) &&
+              <Word
+                letters={actualOption.word}
+                coordinates={actualOption.coordinates}
+                actualMoveIndex
+              />}
+          </GameArea>)}
+      </StyledWrapper> */}
+    </>
   );
-}
-
+};
 
 export default Board;
