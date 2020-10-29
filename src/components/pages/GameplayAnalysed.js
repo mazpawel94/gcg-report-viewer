@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import styled from 'styled-components';
 
-import Board from '../Board/Board';
+import Board from '../organisms/Board';
 import FileInput from '../atoms/FileInput';
 import OptionsList from '../organisms/OptionsList';
 import Rack from '../organisms/Rack';
