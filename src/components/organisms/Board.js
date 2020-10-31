@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Stage, Layer, Rect } from "react-konva";
 import Word from "./Word";
 import BoardFile from "../atoms/BoardFile";
+import Rack3d from '../molecules/Rack3d';
 import context from "../../context";
 import { getWords, isMoveWithWord } from "../../services/gameService";
 import {
@@ -25,6 +26,7 @@ const StyledWrapper = styled.div`
   perspective: 1000px;
   transition: 1s linear;
   -webkit-transition: 1s linear;
+  left: calc(50% - 325px);
 `;
 
 const GameArea = styled.div`
@@ -56,6 +58,8 @@ const Board = () => {
 
   return (
     <>
+      <Rack3d />
+      <Rack3d top />
       <StyledWrapper>
         <GameArea>
           <Stage width={570} height={570}>
