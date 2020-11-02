@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { FIELDS_PARAMS } from '../globalVariables';
 
-const BoardFile = ({ x, y, type }) => {
+const BoardField = ({ x, y, type }) => {
     const size = 570 / 15;
     return (
         <>
@@ -21,14 +21,10 @@ const BoardFile = ({ x, y, type }) => {
                     <Rect
                         x={x * size + size / 2}
                         y={y * size - size / 4 + 1}
-                        // x={x * size + size / 2}
-                        // y={y * size - size / 4}
                         width={size}
                         height={size}
                         fill={FIELDS_PARAMS[type].color}
                         rotation={45}
-                    // offsetX={size / 2}
-                    // offsetY={size / 2}
                     />
                     <Rect
                         x={x * size}
@@ -68,9 +64,9 @@ const BoardFile = ({ x, y, type }) => {
 };
 
 
-BoardFile.propTypes = {
+BoardField.propTypes = {
 
 };
 
 
-export default BoardFile;
+export default BoardField;

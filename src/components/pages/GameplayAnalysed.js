@@ -16,11 +16,13 @@ flex-wrap: wrap;
 `;
 const StyledHeader = styled.div`
 width: 100vw;
+z-index: 2;
 `;
 
 const BoardWrapper = styled.div`
 display: flex;
 flex-direction: column;
+min-width: 650px;
 `;
 const MoveContent = styled.div`
     display: flex;
