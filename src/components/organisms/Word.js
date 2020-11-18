@@ -1,71 +1,63 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import Tile from '../molecules/Tile';
+import React from "react";
+import styled, { css } from "styled-components";
+import Tile from "../molecules/Tile";
 
+import { betweenBracketsValidator } from '../../services/gameService';
 const StyledWrapper = styled.div`
-    position: absolute;
-    top: ${({ y }) => `calc(${y} * 100% / 15)`}; 
-    left: ${({ x }) => `calc(${x} * 100% / 15)`}; 
-    display: flex;
+  position: absolute;
+  top: ${({ y }) => `calc(${y} * 100% / 15)`};
+  left: ${({ x }) => `calc(${x} * 100% / 15)`};
+  display: flex;
 
-    ${({ verticle }) => verticle && css`
-        flex-direction: column;
+  ${({ verticle }) =>
+        verticle &&
+        css`
+      flex-direction: column;
     `}
-
-`
+`;
 
 const setPosition = (coordinates) => {
-    const coord = coordinates.split('').filter(el => el !== '*').join('');
-    if (coord.slice(-1) !== coord.slice(-1).toLowerCase()) //horizontal
-        return ({
+    const coord = coordinates
+        .split("")
+        .filter((el) => el !== "*")
+        .join("");
+    if (coord.slice(-1) !== coord.slice(-1).toLowerCase())
+        //horizontal
+        return {
             x: coord.slice(-1).charCodeAt() - 65,
             y: coord.slice(0, -1) - 1,
-            verticle: false
-        })
-    else return ({
-        x: coord[0].charCodeAt() - 65,
-        y: coord.slice(1) - 1,
-        verticle: true
-    })
+            verticle: false,
+        };
+    else
+        return {
+            x: coord[0].charCodeAt() - 65,
+            y: coord.slice(1) - 1,
+            verticle: true,
+        };
 };
 
-const betweenBracketsValidator = letters => {
-    const bracketsPairs = [];
-    const findPair = i => {
-        const start = letters.indexOf('(', i);
-        const end = letters.indexOf(')', i + 1);
-        if (end !== -1) {
-            bracketsPairs.push({ start, end });
-            findPair(end);
-        }
-    }
-    findPair(0);
-    return ((index) =>
-        bracketsPairs.some(pair => pair.start < index && pair.end > index)
-    )
-}
+const lettersDivs = (letters, isNewMove, isBetweenBrackets) =>
+    letters
+        .split("")
+        .map((el, index) => (
+            <Tile
+                key={index}
+                letter={el}
+                onBoard
+                played={isNewMove}
+                transparent={isBetweenBrackets(index)}
+            />
+        ));
 
-const Word = ({ actualMoveIndex, letters, coordinates }) => {
+const Word = ({ isNewMove, letters, coordinates }) => {
     const { x, y, verticle } = setPosition(coordinates);
-
     const isBetweenBrackets = betweenBracketsValidator(letters);
-    const lettersDivs = letters.split('').map((el, index) => (
-        <Tile
-            key={index}
-            letter={el}
-            onBoard
-            played={actualMoveIndex}
-            transparent={isBetweenBrackets(index)}
-
-        />
-    ))
-
 
     return (
         <StyledWrapper x={x} y={y} verticle={verticle}>
-            {lettersDivs}
+            {lettersDivs(letters, isNewMove, isBetweenBrackets)}
         </StyledWrapper>
     );
-}
+};
 
 export default Word;

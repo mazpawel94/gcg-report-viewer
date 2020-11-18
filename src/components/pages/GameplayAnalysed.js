@@ -52,7 +52,7 @@ const GameplayAnalysed = () => {
             {actualMoveIndex !== undefined && (
                 <MoveContent>
                     <OptionsList />
-                    <Rack />
+                    {/* <Rack /> */}
                 </MoveContent>
             )}
         </StyledWrapper>

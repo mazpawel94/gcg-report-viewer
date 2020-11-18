@@ -65,7 +65,9 @@ const BoardField = ({ x, y, type }) => {
 
 
 BoardField.propTypes = {
-
+    x: PropTypes.number,
+    y: PropTypes.number,
+    type: PropTypes.string,
 };
 
 

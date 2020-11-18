@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled, { css } from "styled-components";
-import { Stage, Layer, Rect } from "react-konva";
+import { Stage, Layer, Rect, Text } from "react-konva";
 import Word from "./Word";
 import BoardField from "../atoms/BoardField";
 import Rack3d from "../molecules/Rack3d";
@@ -11,7 +11,57 @@ import {
   word3Fields,
   letter2Fields,
   letter3Fields,
+  POINTS
 } from "../globalVariables";
+
+const size = 570 / 15;
+
+const drawWord = () => {
+  const word = "ZAŻÓŁĆMYŻ".split('');
+  const y = 10;
+  return (
+    <>
+      {word.map((letter, index) => (
+        <>
+          <Rect
+            x={index * size + 1}
+            y={y * size + 1}
+            width={size - 2}
+            height={size - 2}
+            fill={"#f8e8c7"}
+            cornerRadius={4}
+          />
+          <Text
+            x={index * size}
+            y={y * size + 8}
+            width={size}
+            height={size}
+            fill={"#015b52"}
+            text={letter}
+            align="center"
+            fontSize={25}
+            verticalAlign="center"
+            fontFamily="Arial"
+            fontStyle="bold"
+          />
+          <Text
+            x={(index + 1) * size - 10}
+            y={(y + 1) * size - 10}
+            width={10}
+            height={10}
+            fill={"#015b52"}
+            text={POINTS[letter]}
+            align="center"
+            fontSize={9}
+            verticalAlign="center"
+            fontFamily="Arial"
+            fontStyle="bold"
+          />
+        </>)
+      )}
+    </>
+  )
+}
 
 const StyledWrapper = styled.div`
   margin-top: 20px;
@@ -116,9 +166,7 @@ const Fields = () => {
 const Board = () => {
   const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
   const actualOption =
-    moves.length &&
-    actualMoveIndex !== undefined &&
-    moves[actualMoveIndex].choiceOptions[actualOptionIndex];
+    moves[actualMoveIndex]?.choiceOptions[actualOptionIndex];
 
   return (
     <>
@@ -148,6 +196,7 @@ const Board = () => {
                 [letter3Fields, "letter3"],
                 [[[7, 7]], "middle"],
               ].map((el) => BonusFields(el[0], el[1]))}
+              {drawWord()}
             </Layer>
           </Stage>
           {actualOption && getWords(moves, actualMoveIndex)}
@@ -155,7 +204,7 @@ const Board = () => {
             <Word
               letters={actualOption.word}
               coordinates={actualOption.coordinates}
-              actualMoveIndex
+              isNewMove
             />
           )}
         </GameArea>

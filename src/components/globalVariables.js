@@ -1,3 +1,5 @@
+export const BOARD_SIZE = 650;
+
 export const POINTS = {
     A: 1,
     Ą: 5,
