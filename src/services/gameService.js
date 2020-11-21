@@ -12,6 +12,26 @@ const isExchange = coordinates => exceptCoordinates.some((el) => el === coordina
 export const findPlayedMove = (move) =>
     move.choiceOptions.find((opt) => opt.coordinates.includes("*"));
 
+export const setPosition = (coordinates) => {
+    const coord = coordinates
+        .split("")
+        .filter((el) => el !== "*")
+        .join("");
+    if (coord.slice(-1) !== coord.slice(-1).toLowerCase())
+        //horizontal
+        return {
+            x: coord.slice(-1).charCodeAt() - 65,
+            y: coord.slice(0, -1) - 1,
+            verticle: false,
+        };
+    else
+        return {
+            x: coord[0].charCodeAt() - 65,
+            y: coord.slice(1) - 1,
+            verticle: true,
+        };
+};
+
 export const getWords = (moves, actualMoveIndex) => {
     return moves.slice(0, actualMoveIndex).map((move, index) => {
         const { word, coordinates } = findPlayedMove(move);

@@ -1,67 +1,13 @@
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
-import { Stage, Layer, Rect, Text } from "react-konva";
+import { Stage, Layer, Rect } from "react-konva";
+
 import Word from "./Word";
-import BoardField from "../atoms/BoardField";
+import BoardCoordinates from '../molecules/BoardCoordinates';
+import BoardFields from '../molecules/BoardFields';
 import Rack3d from "../molecules/Rack3d";
 import context from "../../context";
 import { getWords, isMoveWithWord } from "../../services/gameService";
-import {
-  word2Fields,
-  word3Fields,
-  letter2Fields,
-  letter3Fields,
-  POINTS
-} from "../globalVariables";
-
-const size = 570 / 15;
-
-const drawWord = () => {
-  const word = "ZAŻÓŁĆMYŻ".split('');
-  const y = 10;
-  return (
-    <>
-      {word.map((letter, index) => (
-        <>
-          <Rect
-            x={index * size + 1}
-            y={y * size + 1}
-            width={size - 2}
-            height={size - 2}
-            fill={"#f8e8c7"}
-            cornerRadius={4}
-          />
-          <Text
-            x={index * size}
-            y={y * size + 8}
-            width={size}
-            height={size}
-            fill={"#015b52"}
-            text={letter}
-            align="center"
-            fontSize={25}
-            verticalAlign="center"
-            fontFamily="Arial"
-            fontStyle="bold"
-          />
-          <Text
-            x={(index + 1) * size - 10}
-            y={(y + 1) * size - 10}
-            width={10}
-            height={10}
-            fill={"#015b52"}
-            text={POINTS[letter]}
-            align="center"
-            fontSize={9}
-            verticalAlign="center"
-            fontFamily="Arial"
-            fontStyle="bold"
-          />
-        </>)
-      )}
-    </>
-  )
-}
 
 const StyledWrapper = styled.div`
   margin-top: 20px;
@@ -82,40 +28,6 @@ const StyledWrapper = styled.div`
     `}
 `;
 
-const UpCoordinates = styled.div`
-  position: absolute;
-  color: white;
-  line-height: 30px;
-  left: 40px;
-  height: 30px;
-  width: calc(100% - 80px);
-  font-size: 11px;
-  display: flex;
-`;
-
-const LeftCoordinates = styled.div`
-  position: absolute;
-  color: white;
-  top: 30px;
-  left: 10px;
-  height: calc(100% - 80px);
-  width: 30px;
-  font-size: 11px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const CoordinateX = styled.div`
-  width: calc(100% / 15);
-  text-align: center;
-`;
-
-const CoordinateY = styled.div`
-  height: calc(100% / 15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const GameArea = styled.div`
   position: absolute;
@@ -152,17 +64,6 @@ const GameArea = styled.div`
   }
 `;
 
-const BonusFields = (coords, type) =>
-  coords.map((el) => <BoardField x={el[0]} y={el[1]} type={type} />);
-
-const Fields = () => {
-  return [...Array(15).keys()]
-    .map((el) =>
-      [...Array(15).keys()].map((el2) => <BoardField x={el} y={el2} />)
-    )
-    .flat();
-};
-
 const Board = () => {
   const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
   const actualOption =
@@ -174,39 +75,22 @@ const Board = () => {
       <Rack3d top />
       <StyledWrapper perspective={!!actualOption}>
         {/* <StyledWrapper perspective={true}> */}
-        <UpCoordinates>
-          {[...Array(15).keys()].map((el) => (
-            <CoordinateX>{el + 1}</CoordinateX>
-          ))}
-        </UpCoordinates>
-        <LeftCoordinates>
-          {"ABCDEFGHIJKLMNO".split("").map((el) => (
-            <CoordinateY>{el}</CoordinateY>
-          ))}
-        </LeftCoordinates>
+        <BoardCoordinates />
         <GameArea>
           <Stage width={570} height={570}>
             <Layer>
               <Rect width={570} height={570} fill="#08763b" />
-              {Fields()}
-              {[
-                [word2Fields, "word2"],
-                [word3Fields, "word3"],
-                [letter2Fields, "letter2"],
-                [letter3Fields, "letter3"],
-                [[[7, 7]], "middle"],
-              ].map((el) => BonusFields(el[0], el[1]))}
-              {drawWord()}
+              <BoardFields />
+              {actualOption && getWords(moves, actualMoveIndex)}
+              {actualOption && isMoveWithWord(actualOption) && (
+                <Word
+                  letters={actualOption.word}
+                  coordinates={actualOption.coordinates}
+                  isNewMove
+                />
+              )}
             </Layer>
           </Stage>
-          {actualOption && getWords(moves, actualMoveIndex)}
-          {actualOption && isMoveWithWord(actualOption) && (
-            <Word
-              letters={actualOption.word}
-              coordinates={actualOption.coordinates}
-              isNewMove
-            />
-          )}
         </GameArea>
       </StyledWrapper>
     </>
