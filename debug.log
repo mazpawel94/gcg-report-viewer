@@ -16,3 +16,4 @@
 [1031/124706.698:ERROR:crash_report_database_win.cc(457)] unexpected header
 [1102/194211.524:ERROR:crash_report_database_win.cc(457)] unexpected header
 [1102/205056.774:ERROR:crash_report_database_win.cc(457)] unexpected header
+[1121/132604.002:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)

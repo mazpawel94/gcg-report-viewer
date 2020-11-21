@@ -14,6 +14,7 @@ const StyledWrapper = styled.div`
   min-width: 650px;
   height: 650px;
   width: 650px;
+  box-sizing: content-box;
   background-color: #08763b;
   border: 3px solid rgb(34, 51, 51);
   transform: translateX(65%) perspective(1000px) rotateX(70deg) rotateZ(-45deg);

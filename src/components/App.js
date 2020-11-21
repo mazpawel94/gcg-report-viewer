@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import 'semantic-ui-css/semantic.min.css'
 import AppContext from '../context';
 import GameplayAnalysed from '../components/pages/GameplayAnalysed';
-
 
 const App = () => {
     const [moves, setMoves] = useState([]);

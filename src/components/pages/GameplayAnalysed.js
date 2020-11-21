@@ -7,6 +7,8 @@ import FileInput from '../atoms/FileInput';
 import OptionsList from '../organisms/OptionsList';
 import Rack from '../organisms/Rack';
 import GameNavigation from '../molecules/GameNavigation';
+import Result from '../organisms/Result';
+
 import AppContext from '../../context';
 import useHandleKeyDown from '../../hooks/useHandleKeyDown';
 
@@ -41,6 +43,7 @@ const GameplayAnalysed = () => {
         <StyledWrapper>
             <StyledHeader>
                 <FileInput />
+                {actualMoveIndex !== undefined && <Result />}
             </StyledHeader>
             <BoardWrapper>
                 <Board />
