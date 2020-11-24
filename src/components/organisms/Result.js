@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Divider, Grid, Segment, Item } from 'semantic-ui-react'
+import { Divider, Grid, Segment, Item, ItemExtra } from 'semantic-ui-react'
 
 import context from '../../context';
 
@@ -9,36 +9,41 @@ const ItemHeader = styled(Item.Header)`
     width: 200px;
 `;
 
-const Result = () => {
-    const [players, setPlayers] = useState([]);
+const PlayerResult = ({ order }) => {
+
     const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
+    const [playerPoints, setPlayerPoints] = useState(0);
+    const nick = moves[order].nick.replace('_', ' ');
 
     useEffect(() => {
-        setPlayers([moves[0].nick.replace('_', ' '), moves[1].nick.replace('_', ' ')])
-    }, []);
+        if (order === actualMoveIndex % 2) setPlayerPoints(moves[actualMoveIndex].pointsBefore);
+        else setPlayerPoints(moves[actualMoveIndex + 1]?.pointsBefore);
+    }, [actualMoveIndex]);
 
+
+    return (
+        <Grid.Column>
+            <Item>
+                <Item.Content>
+                    <ItemHeader as='h3'>{nick}</ItemHeader>
+                    <Item.Meta>{playerPoints}</Item.Meta>
+                    {order === actualMoveIndex % 2 ?
+                        <Item.Extra>+{moves[actualMoveIndex].choiceOptions[actualOptionIndex].movePoints}</Item.Extra>
+                        :
+                        <ItemExtra />
+                    }
+                </Item.Content>
+            </Item>
+        </Grid.Column>
+    )
+}
+
+const Result = () => {
     return (
         <Segment compact >
             <Grid columns={2} relaxed='very' stackable textAlign='center' >
-                <Grid.Column>
-                    <Item>
-                        <Item.Content>
-                            <ItemHeader as='h3'>{players[0]}</ItemHeader>
-                            <Item.Meta>10</Item.Meta>
-                            <Item.Extra>+25</Item.Extra>
-                        </Item.Content>
-                    </Item>
-                </Grid.Column>
-
-                <Grid.Column>
-                    <Item>
-                        <Item.Content>
-                            <ItemHeader as='h3'>{players[1]}</ItemHeader>
-                            <Item.Meta>10</Item.Meta>
-                            <Item.Extra>+25</Item.Extra>
-                        </Item.Content>
-                    </Item>
-                </Grid.Column>
+                <PlayerResult order={0} />
+                <PlayerResult order={1} />
             </Grid>
 
             <Divider vertical>Vs</Divider>

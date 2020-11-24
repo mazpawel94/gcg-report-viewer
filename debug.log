@@ -17,3 +17,4 @@
 [1102/194211.524:ERROR:crash_report_database_win.cc(457)] unexpected header
 [1102/205056.774:ERROR:crash_report_database_win.cc(457)] unexpected header
 [1121/132604.002:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[1121/205223.866:ERROR:process_memory_win.cc(73)] ReadMemory at 0x7fc082420ec of 512 bytes failed: Ukoñczono tylko czêœæ ¿¹dania ReadProcessMemory lub WriteProcessMemory. (0x12B)

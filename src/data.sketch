@@ -1,0 +1,33 @@
+moves
+:
+[{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, …]
+
+0:
+index:0
+nick:"Marcin_Rogala"
+letters:"HAZENY"
+pointsBefore:"0"
+move:"-> Marcin_Rogala            HAZENY    0   "
+choiceOptions:[{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+                
+        index
+        :
+        0
+        evaluate
+        :
+        "best"
+        coordinates
+        :
+        "*8D"
+        word
+        :
+        "HAZENY"
+        movePoints
+        :
+        "24"
+        percent
+        :
+        "52.74%"
+        freeLetters
+        :
+        ""
