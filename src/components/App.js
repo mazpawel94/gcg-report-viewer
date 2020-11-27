@@ -8,13 +8,18 @@ const App = () => {
     const [actualMoveIndex, setActualMoveIndex] = useState(undefined);
     const [actualOptionIndex, setActualOptionIndex] = useState(0);
 
+    const getActualMove = () => moves[actualMoveIndex];
+    const getActualOption = () => moves[actualMoveIndex][actualOptionIndex];
+
     const context = {
         moves,
         setMoves,
         actualMoveIndex,
         setActualMoveIndex,
         actualOptionIndex,
-        setActualOptionIndex
+        setActualOptionIndex,
+        getActualMove,
+        getActualOption
     }
     return (
         <AppContext.Provider value={context}>

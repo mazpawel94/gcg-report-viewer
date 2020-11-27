@@ -7,7 +7,7 @@ import BoardCoordinates from '../molecules/BoardCoordinates';
 import BoardFields from '../molecules/BoardFields';
 import Rack3d from "../molecules/Rack3d";
 import context from "../../context";
-import { getWords, isMoveWithWord } from "../../services/gameService";
+import { getCurrentWords, isMoveWithWord } from "../../services/gameService";
 
 const StyledWrapper = styled.div`
   margin-top: 20px;
@@ -82,7 +82,7 @@ const Board = () => {
             <Layer>
               <Rect width={570} height={570} fill="#08763b" />
               <BoardFields />
-              {actualOption && getWords(moves, actualMoveIndex)}
+              {actualOption && getCurrentWords(moves, actualMoveIndex)}
               {actualOption && isMoveWithWord(actualOption) && (
                 <Word
                   letters={actualOption.word}

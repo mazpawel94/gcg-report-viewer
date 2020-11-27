@@ -5,9 +5,10 @@ import Word from "../components/organisms/Word";
 const exceptCoordinates = ["*xch", "xch"];
 
 const isLossMove = (moves, moveIndex) =>
-    moves[moveIndex].pointsBefore === moves[moveIndex + 2].pointsBefore
+    moves[moveIndex].pointsBefore === moves[moveIndex + 2].pointsBefore;
 
-const isExchange = coordinates => exceptCoordinates.some((el) => el === coordinates)
+const isExchange = (coordinates) =>
+    exceptCoordinates.some((el) => el === coordinates);
 
 export const findPlayedMove = (move) =>
     move.choiceOptions.find((opt) => opt.coordinates.includes("*"));
@@ -31,15 +32,26 @@ export const setPosition = (coordinates) => {
             verticle: true,
         };
 };
+export const getCurrentMoves = (moves, actualMoveIndex) =>
+    moves.slice(0, actualMoveIndex);
 
-export const getWords = (moves, actualMoveIndex) => {
-    return moves.slice(0, actualMoveIndex).map((move, index) => {
+export const getCurrentWords = (moves, actualMoveIndex) =>
+    getCurrentMoves(moves, actualMoveIndex).map((move, index) => {
         const { word, coordinates } = findPlayedMove(move);
-        if (isExchange(coordinates) || isLossMove(moves, index))
-            return null;
+        if (isExchange(coordinates) || isLossMove(moves, index)) return null;
         return <Word key={index} letters={word} coordinates={coordinates} />;
     });
-};
+
+export const getCurrentUsedTiles = (moves, actualMoveIndex) =>
+    getCurrentMoves(moves, actualMoveIndex)
+        .map((move) => findPlayedMove(move))
+        .reduce(
+            (acc, { word }) => [
+                ...acc,
+                ...word.replaceAll(/\([^\)]+\)/g, "").split(""),
+            ],
+            ""
+        );
 
 export const isMoveWithWord = (move) =>
     !exceptCoordinates.some((el) => el === move.coordinates);

@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { Divider, Grid, Segment, Item, ItemExtra } from 'semantic-ui-react'
 
 import context from '../../context';
-import FullResult from '../organisms/FullResult';
-
+import Deletion from '../molecules/Deletion';
 const Header = styled(Item.Header)`
     width: 200px;
 `;
@@ -19,11 +18,6 @@ const NewPoints = styled.div`
     font-size: 11px;
 `;
 
-const StyledFullResult = styled(FullResult)`
-    position: absolute;
-    width: 435px;;
-
-`;
 const PlayerResult = ({ order }) => {
 
     const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
@@ -64,8 +58,7 @@ const Result = () => {
 
                 <Divider vertical>Vs</Divider>
             </Segment>
-            <StyledFullResult />
-
+            <Deletion />
         </>
     );
 };
