@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styled, { css } from "styled-components";
 import { Stage, Layer, Rect } from "react-konva";
 
 import Word from "./Word";
-import BoardCoordinates from '../molecules/BoardCoordinates';
-import BoardFields from '../molecules/BoardFields';
+import BoardCoordinates from "../molecules/BoardCoordinates";
+import BoardFields from "../molecules/BoardFields";
 import Rack3d from "../molecules/Rack3d";
 import context from "../../context";
 import { getCurrentWords, isMoveWithWord } from "../../services/gameService";
+import useExportAsImage from "../../hooks/useExportAsImage";
 
 const StyledWrapper = styled.div`
   margin-top: 20px;
@@ -28,7 +29,6 @@ const StyledWrapper = styled.div`
       transform: rotateX(0);
     `}
 `;
-
 
 const GameArea = styled.div`
   position: absolute;
@@ -67,23 +67,25 @@ const GameArea = styled.div`
 
 const Board = () => {
   const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
-  const actualOption =
-    moves[actualMoveIndex]?.choiceOptions[actualOptionIndex];
+  const [toDownload, setToDownload] = useState(false);
+  const stageRef = useRef(null);
+  useExportAsImage(toDownload, stageRef, setToDownload);
+  const actualOption = moves[actualMoveIndex]?.choiceOptions[actualOptionIndex];
 
   return (
     <>
       <Rack3d />
       <Rack3d top />
+      <button onClick={() => setToDownload(true)}>Pobierz jako obrazek</button>
       <StyledWrapper perspective={!!actualOption}>
-        {/* <StyledWrapper perspective={true}> */}
         <BoardCoordinates />
         <GameArea>
-          <Stage width={570} height={570}>
-            <Layer>
+          <Stage width={570} height={570} ref={stageRef}>
+            <Layer fill="#08763b">
               <Rect width={570} height={570} fill="#08763b" />
               <BoardFields />
               {actualOption && getCurrentWords(moves, actualMoveIndex)}
-              {actualOption && isMoveWithWord(actualOption) && (
+              {!toDownload && actualOption && isMoveWithWord(actualOption) && (
                 <Word
                   letters={actualOption.word}
                   coordinates={actualOption.coordinates}

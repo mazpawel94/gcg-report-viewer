@@ -48,7 +48,7 @@ export const getCurrentUsedTiles = (moves, actualMoveIndex) =>
         .reduce(
             (acc, { word }) => [
                 ...acc,
-                ...word.replaceAll(/\([^\)]+\)/g, "").split(""),
+                ...word.replaceAll(/\([^)]+\)/g, "").split(""),
             ],
             ""
         );
