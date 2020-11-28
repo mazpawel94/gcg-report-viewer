@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { Button } from 'semantic-ui-react';
 
-import NavigationButton from '../atoms/NavigationButton';
+import context from '../../context';
+import useHandleKeyDown from '../../hooks/useHandleKeyDown';
 
-const GameNavigation = ({ nextMoveFn, prevMoveFn }) => {
+const StyledWrapper = styled.div`
+    margin: auto;
+`;
+
+const StyledButton = styled(Button)`
+    min-width: 80px;
+    margin-left: 20px;
+`;
+const GameNavigation = () => {
+    const { setActualMoveIndex, moves } = useContext(context);
+    const { setNextMove, setPreviousMove } = useHandleKeyDown();
+
     return (
-        <div>
-            <NavigationButton onClick={prevMoveFn}> {'<<<'} </NavigationButton>
-            <NavigationButton onClick={nextMoveFn}> {'>>>'} </NavigationButton>
-        </div>
+        <StyledWrapper>
+            <StyledButton color='teal' icon='fast backward' onClick={() => setActualMoveIndex(0)} />
+            <StyledButton color='teal' icon='backward' onClick={setPreviousMove} />
+            <StyledButton color='teal' icon='forward' onClick={setNextMove} />
+            <StyledButton color='teal' icon='fast forward' onClick={() => setActualMoveIndex(moves.length - 2)} />
+        </StyledWrapper>
     );
 }
 

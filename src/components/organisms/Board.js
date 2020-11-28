@@ -6,12 +6,14 @@ import Word from "./Word";
 import BoardCoordinates from "../molecules/BoardCoordinates";
 import BoardFields from "../molecules/BoardFields";
 import Rack3d from "../molecules/Rack3d";
+import ToolButtons from '../organisms/ToolButtons';
 import context from "../../context";
 import { getCurrentWords, isMoveWithWord } from "../../services/gameService";
 import useExportAsImage from "../../hooks/useExportAsImage";
 
 const StyledWrapper = styled.div`
-  margin-top: 20px;
+      margin-top: 5px;
+      margin-bottom: 5px;
   min-width: 650px;
   height: 650px;
   width: 650px;
@@ -76,7 +78,7 @@ const Board = () => {
     <>
       <Rack3d />
       <Rack3d top />
-      <button onClick={() => setToDownload(true)}>Pobierz jako obrazek</button>
+      <ToolButtons saveImageBefore={setToDownload} />
       <StyledWrapper perspective={!!actualOption}>
         <BoardCoordinates />
         <GameArea>

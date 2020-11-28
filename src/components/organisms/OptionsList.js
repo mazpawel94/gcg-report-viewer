@@ -1,8 +1,13 @@
 import React, { useContext } from 'react';
+import styled from "styled-components";
 import { Table } from 'semantic-ui-react'
 
-// import Option from '../molecules/Option';
 import AppContext from '../../context';
+
+const StyledWrapper = styled.div`
+    flex-grow: 1;
+    width: 80%;
+`;
 
 const Option = ({ params, selected }) => {
     const { evaluate, coordinates, word, movePoints, percent, freeLetters } = params;
@@ -24,11 +29,7 @@ const OptionsList = () => {
         <Option key={i} params={el} selected={i === actualOptionIndex} />
     ))
     return (
-        <>
-            {/* <h2>{move.letters}</h2>
-            <ul>
-                {optionsElements}
-            </ul> */}
+        <StyledWrapper>
             <Table basic='very' striped>
                 <Table.Header>
                     <Table.Row>
@@ -38,7 +39,7 @@ const OptionsList = () => {
                     {optionsElements}
                 </Table.Body>
             </Table>
-        </>
+        </StyledWrapper>
     );
 }
 

@@ -1,8 +1,17 @@
 import React, { useContext } from "react";
+import styled, { css } from "styled-components";
 import { Table } from "semantic-ui-react";
 
 import { findPlayedMove } from "../../services/gameService";
 import context from "../../context";
+
+const StyledWrapper = styled.div`
+    position: absolute;
+    width: 500px;
+    top: 40px;
+    left: 10px;
+    z-index: 2;
+`;
 
 const fillRow = (moves) => {
     const pointPlayer1 = parseInt(findPlayedMove(moves[0])?.movePoints) || 0;
@@ -31,20 +40,22 @@ const FullResult = () => {
     const { moves } = useContext(context);
 
     return (
-        <Table celled structured>
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell colSpan="2" textAlign="center">
-                        {moves[0].nick.replace("_", " ")}
-                    </Table.HeaderCell>
-                    <Table.HeaderCell colSpan="2" textAlign="center">
-                        {moves[1].nick.replace("_", " ")}
-                    </Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
+        <StyledWrapper>
+            <Table celled structured>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell colSpan="2" textAlign="center">
+                            {moves[0].nick.replace("_", " ")}
+                        </Table.HeaderCell>
+                        <Table.HeaderCell colSpan="2" textAlign="center">
+                            {moves[1].nick.replace("_", " ")}
+                        </Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-            <Table.Body>{rows(moves)}</Table.Body>
-        </Table>
+                <Table.Body>{rows(moves)}</Table.Body>
+            </Table>
+        </StyledWrapper>
     );
 };
 

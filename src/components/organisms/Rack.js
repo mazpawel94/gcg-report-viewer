@@ -6,7 +6,7 @@ import AppContext from '../../context';
 
 const StyledWrapper = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content: center;
 width: 500px;
 `;
 

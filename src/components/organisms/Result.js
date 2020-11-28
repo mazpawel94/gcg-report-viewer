@@ -1,10 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Divider, Grid, Segment, Item, ItemExtra } from 'semantic-ui-react'
+import { Divider, Grid, Segment, Item } from 'semantic-ui-react'
 
 import context from '../../context';
-import Deletion from '../molecules/Deletion';
 const Header = styled(Item.Header)`
     width: 200px;
 `;
@@ -58,7 +57,6 @@ const Result = () => {
 
                 <Divider vertical>Vs</Divider>
             </Segment>
-            <Deletion />
         </>
     );
 };

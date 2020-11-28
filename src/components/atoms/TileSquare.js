@@ -7,15 +7,17 @@ const TileSquare = styled.div`
     color: #015b52;
     font-size: 40px;
     height: 65px;
-    width: 65px;
+    min-width: 65px;
+    max-width: 65px;
     line-height: 65px;
     border-radius: 10%;
     text-align: center;
     cursor: pointer;
     user-select: none;
-    font-family: GothicA1;
+    font-family: Arial;
     font-weight: bold;
     position: relative;
+    margin: 6px;
 
     ${({ played }) => played && css`
         background-color: #1ae825;
@@ -27,15 +29,6 @@ const TileSquare = styled.div`
     }
     ${({ transparent }) => transparent && css`
         opacity: 0;
-    `
-    }
-
-    ${({ onBoard }) => onBoard && css`
-        font-size: 23px;
-        width: 36px;
-        height: 36px;
-        margin: 1px 1px 1px 1px;
-        line-height: 38px;
     `
     }
 `

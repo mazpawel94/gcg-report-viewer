@@ -10,8 +10,6 @@ import GameNavigation from '../molecules/GameNavigation';
 import Result from '../organisms/Result';
 
 import AppContext from '../../context';
-import useHandleKeyDown from '../../hooks/useHandleKeyDown';
-
 const StyledWrapper = styled.div`
 display: flex;
 flex-wrap: wrap;
@@ -25,6 +23,7 @@ const BoardWrapper = styled.div`
 display: flex;
 flex-direction: column;
 min-width: 650px;
+position: relative;
 `;
 const MoveContent = styled.div`
     display: flex;
@@ -37,23 +36,18 @@ const MoveContent = styled.div`
 const GameplayAnalysed = () => {
     const { actualMoveIndex } = useContext(AppContext);
 
-    const { setNextMove, setPreviousMove } = useHandleKeyDown();
-
     return (
         <StyledWrapper>
             <StyledHeader>
                 <FileInput />
-                {actualMoveIndex !== undefined && <Result />}
             </StyledHeader>
             <BoardWrapper>
                 <Board />
-                <GameNavigation
-                    nextMoveFn={setNextMove}
-                    prevMoveFn={setPreviousMove}
-                />
+                <GameNavigation />
             </BoardWrapper>
             {actualMoveIndex !== undefined && (
                 <MoveContent>
+                    <Result />
                     <OptionsList />
                     <Rack />
                 </MoveContent>
