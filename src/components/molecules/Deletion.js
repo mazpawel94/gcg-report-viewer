@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import context from "../../context";
-import { getCurrentUsedTiles } from "../../services/gameService";
+import useFillDeletion from '../../hooks/useFillDeletion';
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -47,15 +47,15 @@ const DeletionLetters = (usedTiles) => {
 };
 
 const Deletion = () => {
-    const { moves, getActualMove, actualMoveIndex } = useContext(context);
+    const { getActualMove } = useContext(context);
     const [usedTiles, setUsedTiles] = useState([]);
-
+    const { usedLetters } = useFillDeletion();
     useEffect(() => {
         setUsedTiles([
-            ...getCurrentUsedTiles(moves, actualMoveIndex),
+            ...usedLetters,
             ...getActualMove().letters,
         ]);
-    }, [actualMoveIndex, moves, getActualMove]);
+    }, [usedLetters, getActualMove]);
     return <StyledWrapper>{DeletionLetters(usedTiles)}</StyledWrapper>;
 };
 

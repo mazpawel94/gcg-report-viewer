@@ -9,7 +9,7 @@ const useHandleKeyDown = () => {
     const setNextMove = () => {
         if (actualMoveIndex + 1 < moves.length) {
             const prevIndex = actualMoveIndex;
-            setActualOptionIndex(findPlayedMove(moves[prevIndex + 1]).index);
+            setActualOptionIndex(findPlayedMove(moves[prevIndex + 1])?.index);
             setActualMoveIndex(prevIndex + 1);
         }
     };

@@ -9,24 +9,31 @@ const StyledWrapper = styled.div`
     width: 80%;
 `;
 
-const Option = ({ params, selected }) => {
+const StyledRow = styled(Table.Row)`
+    cursor: pointer;
+`;
+
+
+const Option = ({ params, selected, index }) => {
+    const { setActualOptionIndex } = useContext(AppContext);
     const { evaluate, coordinates, word, movePoints, percent, freeLetters } = params;
     return (
-        <Table.Row active={selected}>
+        <StyledRow active={selected} onClick={() => setActualOptionIndex(index)}>
             <Table.Cell>{evaluate}</Table.Cell>
             <Table.Cell>{coordinates}</Table.Cell>
             <Table.Cell>{word}</Table.Cell>
             <Table.Cell>{movePoints}</Table.Cell>
             <Table.Cell>{percent}</Table.Cell>
             <Table.Cell>{freeLetters}</Table.Cell>
-        </Table.Row>
+        </StyledRow>
     )
 }
 const OptionsList = () => {
+
     const { moves, actualMoveIndex, actualOptionIndex } = useContext(AppContext);
     const move = moves[actualMoveIndex];
     const optionsElements = move.choiceOptions.map((el, i) => (
-        <Option key={i} params={el} selected={i === actualOptionIndex} />
+        <Option key={i} index={i} params={el} selected={i === actualOptionIndex} />
     ))
     return (
         <StyledWrapper>

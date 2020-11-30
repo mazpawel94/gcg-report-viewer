@@ -4,14 +4,16 @@ import Word from "../components/organisms/Word";
 
 const exceptCoordinates = ["*xch", "xch"];
 
-const isLossMove = (moves, moveIndex) =>
+export const isLossMove = (moves, moveIndex) =>
     moves[moveIndex].pointsBefore === moves[moveIndex + 2].pointsBefore;
 
 const isExchange = (coordinates) =>
     exceptCoordinates.some((el) => el === coordinates);
 
-export const findPlayedMove = (move) =>
-    move.choiceOptions.find((opt) => opt.coordinates.includes("*"));
+export const findPlayedMove = (move) => {
+    console.log(move);
+    return move?.choiceOptions?.find((opt) => opt.coordinates.includes("*"));
+}
 
 export const setPosition = (coordinates) => {
     const coord = coordinates
@@ -42,16 +44,6 @@ export const getCurrentWords = (moves, actualMoveIndex) =>
         return <Word key={index} letters={word} coordinates={coordinates} />;
     });
 
-export const getCurrentUsedTiles = (moves, actualMoveIndex) =>
-    getCurrentMoves(moves, actualMoveIndex)
-        .map((move) => findPlayedMove(move))
-        .reduce(
-            (acc, { word }) => [
-                ...acc,
-                ...word.replaceAll(/\([^)]+\)/g, "").split(""),
-            ],
-            ""
-        );
 
 export const isMoveWithWord = (move) =>
     !exceptCoordinates.some((el) => el === move.coordinates);
