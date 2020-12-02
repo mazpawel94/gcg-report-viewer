@@ -76,10 +76,13 @@ const Board = () => {
 
   return (
     <>
-      <Rack3d />
-      <Rack3d top />
-      <ToolButtons saveImageBefore={setToDownload} />
+
+      {moves.length && <ToolButtons saveImageBefore={setToDownload} />}
       <StyledWrapper perspective={!!actualOption}>
+        {!moves.length && <>
+          <Rack3d />
+          <Rack3d top />
+        </>}
         <BoardCoordinates />
         <GameArea>
           <Stage width={570} height={570} ref={stageRef}>

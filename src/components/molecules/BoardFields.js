@@ -9,12 +9,12 @@ import {
 } from "../globalVariables";
 
 const BonusFields = (coords, type) =>
-    coords.map((el) => <BoardField x={el[0]} y={el[1]} type={type} />);
+    coords.map((el) => <BoardField key={el} x={el[0]} y={el[1]} type={type} />);
 
 const Fields = () => {
     return [...Array(15).keys()]
         .map((el) =>
-            [...Array(15).keys()].map((el2) => <BoardField x={el} y={el2} />)
+            [...Array(15).keys()].map((el2) => <BoardField key={`${el}${el}${el2}`} x={el} y={el2} />)
         )
         .flat();
 };

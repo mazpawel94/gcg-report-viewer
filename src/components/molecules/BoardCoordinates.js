@@ -37,20 +37,20 @@ const CoordinateY = styled.div`
 `;
 
 const BoardCoordinates = () => {
-    return (
-        <>
-            <UpCoordinates>
-                {[...Array(15).keys()].map((el) => (
-                    <CoordinateX>{el + 1}</CoordinateX>
-                ))}
-            </UpCoordinates>
-            <LeftCoordinates>
-                {"ABCDEFGHIJKLMNO".split("").map((el) => (
-                    <CoordinateY>{el}</CoordinateY>
-                ))}
-            </LeftCoordinates>
-        </>
-    );
+  return (
+    <>
+      <UpCoordinates>
+        {[...Array(15).keys()].map((el) => (
+          <CoordinateX key={el}>{el + 1}</CoordinateX>
+        ))}
+      </UpCoordinates>
+      <LeftCoordinates>
+        {"ABCDEFGHIJKLMNO".split("").map((el) => (
+          <CoordinateY key={el}>{el}</CoordinateY>
+        ))}
+      </LeftCoordinates>
+    </>
+  );
 }
 
 export default BoardCoordinates;

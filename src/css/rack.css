@@ -6,8 +6,8 @@
     height: 100%;
     background: transparent;
     font-size: 262.5%;
-    transform: rotateY(-180deg) rotateX(-3deg) rotateZ(-1deg) translate(-17%, -120px) scale(0.35);
-    /* transform-style: preserve-3d; */
+    transform: rotateX(-70deg) rotateY(-243deg) rotateZ(4deg) translate(-395px, 330px) scale(0.35);
+    transform-style: preserve-3d;
 
 }
 .scene,
@@ -20,14 +20,11 @@
 }
 .scene {
     width: 80em;
-    height: 80em;
+    height: 60em;
     top: 50%;
     left: 50%;
     margin: -40em 0 0 -40em;
-    -webkit-transform: rotateX(-13deg) rotateY(403deg);
-    -moz-transform: rotateX(-13deg) rotateY(403deg);
-    -ms-transform: rotateX(-13deg) rotateY(403deg);
-    transform: rotateX(-13deg) rotateY(403deg);
+   transform: rotateX(-11deg) rotateY(403deg);
 }
 .shape {
     top: 50%;
@@ -192,6 +189,5 @@
 }
 
 .top {
-    transform: rotateX(-3deg) rotateY(737deg) translate(-328px, -111px) scale(0.35);
-
+     transform: rotateX(-79deg) rotateY(-30deg) rotateZ(19deg) translate(-380px, 106px) scale(0.35);
 }

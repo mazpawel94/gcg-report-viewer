@@ -15,7 +15,7 @@ const Tile = ({ letter, played, onBoard, transparent }) => {
                     transparent={transparent}
                     blank={blank} >
                     {letter.toUpperCase()}
-                    <TilePoints onBoard={onBoard}>{!blank && POINTS[letter]}</TilePoints>
+                    <TilePoints>{!blank && POINTS[letter]}</TilePoints>
                 </TileSquare>
             }
         </>
