@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Divider, Grid, Segment, Item } from 'semantic-ui-react'
 
 import context from '../../context';
@@ -26,7 +26,7 @@ const PlayerResult = ({ order }) => {
     useEffect(() => {
         if (order === actualMoveIndex % 2) setPlayerPoints(moves[actualMoveIndex].pointsBefore);
         else setPlayerPoints(moves[actualMoveIndex + 1]?.pointsBefore);
-    }, [actualMoveIndex]);
+    }, [actualMoveIndex, moves, order]);
 
 
     return (

@@ -76,8 +76,7 @@ const Board = () => {
 
   return (
     <>
-
-      {moves.length && <ToolButtons saveImageBefore={setToDownload} />}
+      {moves.length ? <ToolButtons saveImageBefore={setToDownload} /> : null}
       <StyledWrapper perspective={!!actualOption}>
         {!moves.length && <>
           <Rack3d />

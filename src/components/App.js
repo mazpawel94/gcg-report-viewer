@@ -9,6 +9,7 @@ import {
 import AppContext from '../context';
 import Home from '../components/pages/Home';
 import GameplayAnalysed from '../components/pages/GameplayAnalysed';
+import MainTemplate from '../components/templates/MainTemplate';
 
 const App = () => {
     const [moves, setMoves] = useState([]);
@@ -29,22 +30,23 @@ const App = () => {
         getActualOption
     }
     return (
-        <Router>
-            <AppContext.Provider value={context}>
-                <Switch>
-                    <Route exact path='/'>
-                        <Home />
-                    </Route>
-                    <Route path='/zadania'>
-                        <GameplayAnalysed />
-                    </Route>
-                    <Route path='/analiza'>
-                        <GameplayAnalysed />
-                    </Route>
-                </Switch>
-            </AppContext.Provider>
-        </Router>
-
+        <MainTemplate>
+            <Router>
+                <AppContext.Provider value={context}>
+                    <Switch>
+                        <Route exact path='/'>
+                            <Home />
+                        </Route>
+                        <Route path='/zadania'>
+                            <GameplayAnalysed />
+                        </Route>
+                        <Route path='/analiza'>
+                            <GameplayAnalysed />
+                        </Route>
+                    </Switch>
+                </AppContext.Provider>
+            </Router>
+        </MainTemplate>
     );
 }
 
