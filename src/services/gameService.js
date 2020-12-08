@@ -11,7 +11,6 @@ const isExchange = (coordinates) =>
     exceptCoordinates.some((el) => el === coordinates);
 
 export const findPlayedMove = (move) => {
-    console.log(move);
     return move?.choiceOptions?.find((opt) => opt.coordinates.includes("*"));
 }
 
