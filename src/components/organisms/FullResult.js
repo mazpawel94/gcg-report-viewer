@@ -24,7 +24,7 @@ const fillRow = (moves) => {
             </Table.Cell>
             <Table.Cell data-player={1}>+{pointPlayer2}</Table.Cell>
             <Table.Cell data-player={1}>
-                {pointPlayer2 + parseInt(moves[1]?.pointsBefore)}
+                {pointPlayer2 + parseInt(moves[1]?.pointsBefore) || ""}
             </Table.Cell>
         </>
     );
@@ -32,10 +32,23 @@ const fillRow = (moves) => {
 
 const Rows = () => {
     const { moves, setActualMoveIndex } = useContext(context);
-
+    const realMoves = moves.slice(0, moves.length - (moves.length % 2 ? 2 : 1));
+    const deductedPoints =
+        (moves[moves.length - 1].letters -
+            moves[moves.length - 2].pointsBefore -
+            parseInt(findPlayedMove(moves[moves.length - 2]).movePoints)) /
+        2;
+    const endingPlayerPoints =
+        parseInt(moves[moves.length - 3].pointsBefore) +
+        parseInt(findPlayedMove(moves[moves.length - 3]).movePoints) -
+        deductedPoints;
+    const notEndingPlayerPoints =
+        parseInt(moves[moves.length - 2].pointsBefore) +
+        parseInt(findPlayedMove(moves[moves.length - 2]).movePoints) +
+        deductedPoints;
     return (
         <>
-            {moves.map((move, index) => {
+            {realMoves.map((move, index) => {
                 if (!(index % 2)) {
                     return (
                         <Table.Row
@@ -51,6 +64,22 @@ const Rows = () => {
                 }
                 return null;
             })}
+            <Table.Row textAlign="center">
+                <Table.Cell data-player={0}>
+                    {moves.length % 2 ? "-" : "+"}
+                    {deductedPoints}
+                </Table.Cell>
+                <Table.Cell data-player={0}>
+                    {moves.length % 2 ? endingPlayerPoints : notEndingPlayerPoints}
+                </Table.Cell>
+                <Table.Cell data-player={1}>
+                    {moves.length % 2 ? "+" : "-"}
+                    {deductedPoints}
+                </Table.Cell>
+                <Table.Cell data-player={1}>
+                    {moves.length % 2 ? notEndingPlayerPoints : endingPlayerPoints}
+                </Table.Cell>
+            </Table.Row>
         </>
     );
 };
