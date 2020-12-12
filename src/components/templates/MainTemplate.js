@@ -13,7 +13,7 @@ const Background = styled.div`
   z-index: -1;
   width: 100%;
   height: 100%;
-  clip-path: polygon(80% 26%,100% 11%,100% 100%,0 100%,0 41%,19% 32%);
+  clip-path: polygon(81% 23%,100% 10%,100% 100%,0 100%,0 37%,18% 30%);
   background: rgb(129, 246, 166);
   background: linear-gradient(
     103deg,
@@ -25,12 +25,12 @@ const Background = styled.div`
 
 
 const MainTemplate = ({ children }) => {
-    return (
-        <StyledWrapper>
-            <Background />
-            {children}
-        </StyledWrapper>
-    );
+  return (
+    <StyledWrapper>
+      <Background />
+      {children}
+    </StyledWrapper>
+  );
 };
 
 export default MainTemplate;
