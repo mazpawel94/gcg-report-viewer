@@ -26,8 +26,8 @@ const Background = styled.div`
 
 const MainTemplate = ({ children }) => {
   return (
-    <StyledWrapper>
-      <Background />
+    <StyledWrapper data-testid="main-template">
+      <Background data-testid="main-template-background" />
       {children}
     </StyledWrapper>
   );
