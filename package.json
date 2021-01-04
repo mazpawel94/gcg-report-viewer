@@ -9,7 +9,7 @@
     "canvas": "^2.6.1",
     "gh-pages": "^2.2.0",
     "konva": "^7.1.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-konva": "^16.13.0-6",
@@ -17,7 +17,8 @@
     "react-scripts": "^4.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -45,6 +46,7 @@
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
     "jest-canvas-mock": "^2.3.0",
-    "jest-dom": "^4.0.0"
+    "jest-dom": "^4.0.0",
+    "jest-styled-components": "^7.0.3"
   }
 }
