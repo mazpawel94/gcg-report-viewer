@@ -5,11 +5,7 @@ import TilePoints from "../TilePoints";
 
 describe("TilePoints", () => {
   it("renders TilePoints with correct styles", () => {
-    const { getByTestId } = render(
-      <div data-testid="root">
-        <TilePoints />
-      </div>
-    );
-    expect(getByTestId("root").firstChild).toHaveStyle("font-size: 15px");
+    const { container } = render(<TilePoints />);
+    expect(container.firstChild).toHaveStyle("font-size: 15px");
   });
 });

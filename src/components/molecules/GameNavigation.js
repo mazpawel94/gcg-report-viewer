@@ -18,7 +18,7 @@ const GameNavigation = () => {
     const { setNextMove, setPreviousMove } = useHandleKeyDown();
 
     return (
-        <StyledWrapper>
+        <StyledWrapper data-testid="game-navigation">
             <StyledButton color='teal' icon='fast backward' onClick={() => setActualMoveIndex(0)} />
             <StyledButton color='teal' icon='backward' onClick={setPreviousMove} />
             <StyledButton color='teal' icon='forward' onClick={setNextMove} />

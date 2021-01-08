@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import context from "../../context";
-import useFillDeletion from '../../hooks/useFillDeletion';
+import useFillDeletion from "../../hooks/useFillDeletion";
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -31,32 +31,33 @@ const DeletionLetter = styled.div`
   opacity: ${({ onBoard }) => (onBoard ? 0.4 : 1)};
 `;
 const LETTERS =
-    "AAAAAAAAAĄBBCCCĆDDDEEEEEEEĘFGGHHIIIIIIIIJJKKKLLLŁŁMMMNNNNNŃOOOOOOÓPPPRRRRSSSSŚTTTUUWWWWYYYYZZZZZŻŹ??";
+  "AAAAAAAAAĄBBCCCĆDDDEEEEEEEĘFGGHHIIIIIIIIJJKKKLLLŁŁMMMNNNNNŃOOOOOOÓPPPRRRRSSSSŚTTTUUWWWWYYYYZZZZZŻŹ??";
 
 const DeletionLetters = (usedTiles) => {
-    let temporaryDeletion = [...usedTiles];
-    return LETTERS.split("").map((letter, index) => {
-        const onBoard = temporaryDeletion.includes(letter);
-        if (onBoard) temporaryDeletion.splice(temporaryDeletion.indexOf(letter), 1);
-        return (
-            <DeletionLetter key={index} onBoard={onBoard}>
-                {letter}
-            </DeletionLetter>
-        );
-    });
+  let temporaryDeletion = [...usedTiles];
+  return LETTERS.split("").map((letter, index) => {
+    const onBoard = temporaryDeletion.includes(letter);
+    if (onBoard) temporaryDeletion.splice(temporaryDeletion.indexOf(letter), 1);
+    return (
+      <DeletionLetter key={index} onBoard={onBoard}>
+        {letter}
+      </DeletionLetter>
+    );
+  });
 };
 
 const Deletion = () => {
-    const { getActualMove } = useContext(context);
-    const [usedTiles, setUsedTiles] = useState([]);
-    const { usedLetters } = useFillDeletion();
-    useEffect(() => {
-        setUsedTiles([
-            ...usedLetters,
-            ...getActualMove().letters,
-        ]);
-    }, [usedLetters, getActualMove]);
-    return <StyledWrapper>{DeletionLetters(usedTiles)}</StyledWrapper>;
+  const { getActualMove } = useContext(context);
+  const [usedTiles, setUsedTiles] = useState([]);
+  const { usedLetters } = useFillDeletion();
+  useEffect(() => {
+    setUsedTiles([...usedLetters, ...getActualMove().letters]);
+  }, [usedLetters, getActualMove]);
+  return (
+    <StyledWrapper data-testid="deletion">
+      {DeletionLetters(usedTiles)}
+    </StyledWrapper>
+  );
 };
 
 export default Deletion;
