@@ -58,34 +58,39 @@ const Options = styled.a`
     right: -25px;
   }
 `;
-const Hiddenput = styled.input`
+const HiddenInput = styled.input`
   display: none;
 `;
 
 const HomeMenu = () => {
-    const { setMoves, setActualOptionIndex, setActualMoveIndex } = useContext(AppContext);
-    const inputRef = useRef(null);
-    const history = useHistory();
+  const { setMoves, setActualOptionIndex, setActualMoveIndex } = useContext(
+    AppContext
+  );
+  const inputRef = useRef(null);
+  const history = useHistory();
 
-    const handleNewFile = (list) => {
-        setActualOptionIndex(findPlayedMove(list[0]).index);
-        setMoves([...list]);
-        setActualMoveIndex(0);
-        history.push("/analiza");
+  const handleNewFile = (list) => {
+    setActualOptionIndex(findPlayedMove(list[0]).index);
+    setMoves([...list]);
+    setActualMoveIndex(0);
+    history.push("/analiza");
+  };
 
-    };
-
-    return (
-        <StyledWrapper>
-            <Hiddenput
-                ref={inputRef}
-                type="file"
-                onInput={(e) => new GcgReader().readReport(e, handleNewFile)}
-            />
-            <Options href="#" onClick={() => inputRef.current.click()}>Analizuj partię</Options>
-            <Options href="/zadania">Rozwiązuj zadania</Options>
-        </StyledWrapper>
-    );
+  return (
+    <StyledWrapper data-testid="home-menu">
+      <HiddenInput
+        ref={inputRef}
+        type="file"
+        onInput={(e) => new GcgReader().readReport(e, handleNewFile)}
+      />
+      <Options href="#" onClick={() => inputRef.current.click()}>
+        Analizuj partię
+      </Options>
+      <Options onClick={() => history.push("/zadania")}>
+        Rozwiązuj zadania
+      </Options>
+    </StyledWrapper>
+  );
 };
 
 export default HomeMenu;
