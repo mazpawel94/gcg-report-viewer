@@ -6,7 +6,7 @@ import { Router } from "react-router-dom";
 
 import HomeMenu from "../HomeMenu";
 import Context from "../../../context";
-import { contextValues, txtFile } from "./dummyContextValues";
+import { contextValues, txtFile } from "../../../dummyContextValues";
 
 const renderHomeMenu = () => {
   const history = createMemoryHistory();

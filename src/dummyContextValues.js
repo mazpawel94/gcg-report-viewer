@@ -99,6 +99,9 @@ const moves = [
 function setMoves(moves) {
   contextValues.moves = moves;
 }
+function setDefaultMoves() {
+  contextValues.moves = moves;
+}
 export const contextValues = {
   moves,
   actualMoveIndex: 0,
@@ -106,6 +109,7 @@ export const contextValues = {
   setActualMoveIndex,
   setActualOptionIndex,
   setMoves,
+  setDefaultMoves,
   getActualMove: () => ({
     letters: "ABCD",
   }),

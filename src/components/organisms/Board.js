@@ -6,14 +6,14 @@ import Word from "./Word";
 import BoardCoordinates from "../molecules/BoardCoordinates";
 import BoardFields from "../molecules/BoardFields";
 import Rack3d from "../molecules/Rack3d";
-import ToolButtons from '../organisms/ToolButtons';
+import ToolButtons from "../organisms/ToolButtons";
 import context from "../../context";
 import { getCurrentWords, isMoveWithWord } from "../../services/gameService";
 import useExportAsImage from "../../hooks/useExportAsImage";
 
 const StyledWrapper = styled.div`
-      margin-top: 5px;
-      margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   min-width: 650px;
   height: 650px;
   width: 650px;
@@ -25,8 +25,8 @@ const StyledWrapper = styled.div`
   transition: 1s linear;
   -webkit-transition: 1s linear;
 
-  ${({ perspective }) =>
-    perspective &&
+  ${({ plainView }) =>
+    plainView &&
     css`
       transform: rotateX(0);
     `}
@@ -77,11 +77,13 @@ const Board = () => {
   return (
     <>
       {moves.length ? <ToolButtons saveImageBefore={setToDownload} /> : null}
-      <StyledWrapper perspective={!!actualOption}>
-        {!moves.length && <>
-          <Rack3d />
-          <Rack3d top />
-        </>}
+      <StyledWrapper plainView={!!actualOption} data-testid="board">
+        {!moves.length && (
+          <>
+            <Rack3d />
+            <Rack3d top />
+          </>
+        )}
         <BoardCoordinates />
         <GameArea>
           <Stage width={570} height={570} ref={stageRef}>

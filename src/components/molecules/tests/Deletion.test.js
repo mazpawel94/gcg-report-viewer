@@ -5,7 +5,7 @@ import "jest-styled-components";
 
 import Deletion from "../Deletion";
 import Context from "../../../context";
-import { contextValues } from "./dummyContextValues";
+import { contextValues } from "../../../dummyContextValues";
 
 const renderDeletion = () => {
   const utils = render(

@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 
 import GameNavigation from "../GameNavigation";
 import Context from "../../../context";
-import { contextValues } from "./dummyContextValues";
+import { contextValues } from "../../../dummyContextValues";
 
 const renderGameNavigation = () => {
   const utils = render(
