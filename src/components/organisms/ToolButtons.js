@@ -25,7 +25,7 @@ const ToolButtons = ({ saveImageBefore }) => {
     const { addDiagramCallback } = useAddDiagramToBase();
 
     return (
-        <StyledWrapper>
+        <StyledWrapper data-testid="buttons-wrapper">
             <StyledButton color='teal' onClick={() => setDeletionIsVisible(!deletionIsVisible)}>Wykreślanka</StyledButton>
             <StyledButton color='teal' onClick={() => setFullResultIsVisible(!fullResultIsVisible)}>Pełny zapis</StyledButton>
             <StyledButton color='teal' onClick={() => saveImageBefore(true)}>Zapisz obraz (przed)</StyledButton>

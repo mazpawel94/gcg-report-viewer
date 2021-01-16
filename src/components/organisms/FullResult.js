@@ -87,7 +87,7 @@ const FullResult = () => {
   const { moves } = useContext(context);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper data-testid="full-result">
       <Table celled structured>
         <Table.Header>
           <Table.Row>
