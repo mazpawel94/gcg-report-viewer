@@ -1,53 +1,59 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { Table } from 'semantic-ui-react'
+import { Table } from "semantic-ui-react";
 
-import AppContext from '../../context';
+import AppContext from "../../context";
 
 const StyledWrapper = styled.div`
-    flex-grow: 1;
-    width: 80%;
+  flex-grow: 1;
+  width: 80%;
+
+  .ui.basic.striped.table tbody .active {
+    background-color: #d5faddad !important;
+  }
 `;
 
 const StyledRow = styled(Table.Row)`
-    cursor: pointer;
+  cursor: pointer;
 `;
 
-
 const Option = ({ params, selected, index }) => {
-    const { setActualOptionIndex } = useContext(AppContext);
-    const { evaluate, coordinates, word, movePoints, percent, freeLetters } = params;
-    return (
-        <StyledRow active={selected} onClick={() => setActualOptionIndex(index)}>
-            <Table.Cell>{evaluate}</Table.Cell>
-            <Table.Cell>{coordinates}</Table.Cell>
-            <Table.Cell>{word}</Table.Cell>
-            <Table.Cell>{movePoints}</Table.Cell>
-            <Table.Cell>{percent}</Table.Cell>
-            <Table.Cell>{freeLetters}</Table.Cell>
-        </StyledRow>
-    )
-}
+  const { setActualOptionIndex } = useContext(AppContext);
+  const {
+    evaluate,
+    coordinates,
+    word,
+    movePoints,
+    percent,
+    freeLetters,
+  } = params;
+  return (
+    <StyledRow active={selected} onClick={() => setActualOptionIndex(index)}>
+      <Table.Cell>{evaluate}</Table.Cell>
+      <Table.Cell>{coordinates}</Table.Cell>
+      <Table.Cell>{word}</Table.Cell>
+      <Table.Cell>{movePoints}</Table.Cell>
+      <Table.Cell>{percent}</Table.Cell>
+      <Table.Cell>{freeLetters}</Table.Cell>
+    </StyledRow>
+  );
+};
 const OptionsList = () => {
-
-    const { moves, actualMoveIndex, actualOptionIndex } = useContext(AppContext);
-    const move = moves[actualMoveIndex];
-    const optionsElements = move.choiceOptions.map((el, i) => (
-        <Option key={i} index={i} params={el} selected={i === actualOptionIndex} />
-    ))
-    return (
-        <StyledWrapper>
-            <Table basic='very' striped>
-                <Table.Header>
-                    <Table.Row>
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                    {optionsElements}
-                </Table.Body>
-            </Table>
-        </StyledWrapper>
-    );
-}
+  const { moves, actualMoveIndex, actualOptionIndex } = useContext(AppContext);
+  const move = moves[actualMoveIndex];
+  const optionsElements = move.choiceOptions.map((el, i) => (
+    <Option key={i} index={i} params={el} selected={i === actualOptionIndex} />
+  ));
+  return (
+    <StyledWrapper>
+      <Table basic="very" striped>
+        <Table.Header>
+          <Table.Row></Table.Row>
+        </Table.Header>
+        <Table.Body>{optionsElements}</Table.Body>
+      </Table>
+    </StyledWrapper>
+  );
+};
 
 export default OptionsList;

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import styled, { css } from "styled-components";
 import { Stage, Layer, Rect } from "react-konva";
 
@@ -9,7 +9,6 @@ import Rack3d from "../molecules/Rack3d";
 import ToolButtons from "../organisms/ToolButtons";
 import context from "../../context";
 import { getCurrentWords, isMoveWithWord } from "../../services/gameService";
-import useExportAsImage from "../../hooks/useExportAsImage";
 
 const StyledWrapper = styled.div`
   margin-top: 5px;
@@ -68,15 +67,18 @@ const GameArea = styled.div`
 `;
 
 const Board = () => {
-  const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
-  const [toDownload, setToDownload] = useState(false);
+  const {
+    moves,
+    actualMoveIndex,
+    actualOptionIndex,
+    withoutNewMove,
+  } = useContext(context);
   const stageRef = useRef(null);
-  useExportAsImage(toDownload, stageRef, setToDownload);
   const actualOption = moves[actualMoveIndex]?.choiceOptions[actualOptionIndex];
 
   return (
     <>
-      {moves.length ? <ToolButtons saveImageBefore={setToDownload} /> : null}
+      {moves.length ? <ToolButtons stageRef={stageRef} /> : null}
       <StyledWrapper plainView={!!actualOption} data-testid="board">
         {!moves.length && (
           <>
@@ -90,14 +92,16 @@ const Board = () => {
             <Layer fill="#08763b">
               <Rect width={570} height={570} fill="#08763b" />
               <BoardFields />
-              {actualOption && getCurrentWords(moves, actualMoveIndex)}
-              {!toDownload && actualOption && isMoveWithWord(actualOption) && (
+              {actualOption ? getCurrentWords(moves, actualMoveIndex) : null}
+              {!withoutNewMove &&
+              actualOption &&
+              isMoveWithWord(actualOption) ? (
                 <Word
                   letters={actualOption.word}
                   coordinates={actualOption.coordinates}
                   isNewMove
                 />
-              )}
+              ) : null}
             </Layer>
           </Stage>
         </GameArea>
