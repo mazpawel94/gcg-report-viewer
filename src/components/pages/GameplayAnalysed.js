@@ -12,6 +12,7 @@ import AppContext from "../../context";
 const StyledWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const BoardWrapper = styled.div`
@@ -19,6 +20,8 @@ const BoardWrapper = styled.div`
   flex-direction: column;
   min-width: 650px;
   position: relative;
+  margin-left: 15px;
+  margin-top: 15px;
 `;
 const MoveContent = styled.div`
   display: flex;
@@ -26,6 +29,7 @@ const MoveContent = styled.div`
   justify-content: space-around;
   align-items: center;
   flex-grow: 1;
+  margin-top: 15px;
 `;
 
 const GameplayAnalysed = () => {
