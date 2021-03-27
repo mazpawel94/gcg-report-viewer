@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import Tile from "../molecules/Tile";
-import AppContext from "../../context";
-
+import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -11,12 +10,9 @@ const StyledWrapper = styled.div`
 `;
 
 const Rack = () => {
-  const { moves, actualMoveIndex, actualOptionIndex } = useContext(AppContext);
-  const move = moves[actualMoveIndex];
-  if (!move.choiceOptions[actualOptionIndex]) return null;
-  const freeLetters = move.choiceOptions[actualOptionIndex].freeLetters.split(
-    ""
-  );
+  const { actualOption, actualMove } = useGetFromCurrentState();
+  if (!actualOption) return null;
+  const freeLetters = actualOption.freeLetters.split("");
 
   const checkAndRemoveLetter = (el) => {
     const index = freeLetters.indexOf(el);
@@ -27,7 +23,7 @@ const Rack = () => {
     return true;
   };
 
-  const tiles = move.letters
+  const tiles = actualMove.letters
     .split("")
     .map((el, i) => (
       <Tile key={i} letter={el} played={checkAndRemoveLetter(el)} />

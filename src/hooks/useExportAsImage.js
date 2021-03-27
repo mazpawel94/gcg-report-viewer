@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 
 import Context from "../context";
+import { actionTypes } from "../reducers/gameReducer";
 
 const handleExport = (stageRef) => {
   const link = document.createElement("a");
@@ -12,19 +13,19 @@ const handleExport = (stageRef) => {
 };
 
 const useExportAsImage = () => {
-  const { withoutNewMove, setWithoutNewMove } = useContext(Context);
+  const { withoutNewMove, dispatch } = useContext(Context);
   const [called, setCalled] = useState(false);
   const [stageRef, setStageRef] = useState(false);
   useEffect(() => {
     if (called) {
       handleExport(stageRef);
       setCalled(false);
-      setWithoutNewMove(false);
+      dispatch({ type: actionTypes.setWithoutNewMove, payload: false });
     }
   }, [withoutNewMove, called]);
 
   const getImage = (stageRef, option) => {
-    setWithoutNewMove(option);
+    dispatch({ type: actionTypes.setWithoutNewMove, payload: option });
     setCalled(true);
     setStageRef(stageRef);
   };

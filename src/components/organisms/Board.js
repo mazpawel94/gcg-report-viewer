@@ -2,14 +2,16 @@ import React, { useContext, useRef } from "react";
 import styled, { css } from "styled-components";
 import { Stage, Layer, Rect } from "react-konva";
 
+import AppContext from "../../context";
 import Word from "./Word";
+import WordsOnBoard from "./WordsOnBoard";
 import BoardCoordinates from "../molecules/BoardCoordinates";
 import BoardFields from "../molecules/BoardFields";
 import Rack3d from "../molecules/Rack3d";
 import ToolButtons from "../organisms/ToolButtons";
 import context from "../../context";
-import { getCurrentWords, isMoveWithWord } from "../../services/gameService";
-
+import { isMoveWithWord } from "../../services/gameService";
+import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
 const StyledWrapper = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
@@ -67,18 +69,14 @@ const GameArea = styled.div`
 `;
 
 const Board = () => {
-  const {
-    moves,
-    actualMoveIndex,
-    actualOptionIndex,
-    withoutNewMove,
-  } = useContext(context);
-  const stageRef = useRef(null);
-  const actualOption = moves[actualMoveIndex]?.choiceOptions[actualOptionIndex];
+  const contextForBridgeContext = useContext(context);
+  const { moves, withoutNewMove } = useContext(context);
 
+  const stageRef = useRef(null);
+  const { actualOption } = useGetFromCurrentState();
   return (
     <>
-      {moves.length ? <ToolButtons stageRef={stageRef} /> : null}
+      {moves?.length ? <ToolButtons stageRef={stageRef} /> : null}
       <StyledWrapper plainView={!!actualOption} data-testid="board">
         {!moves.length && (
           <>
@@ -89,20 +87,22 @@ const Board = () => {
         <BoardCoordinates />
         <GameArea>
           <Stage width={570} height={570} ref={stageRef}>
-            <Layer fill="#08763b">
-              <Rect width={570} height={570} fill="#08763b" />
-              <BoardFields />
-              {actualOption ? getCurrentWords(moves, actualMoveIndex) : null}
-              {!withoutNewMove &&
-              actualOption &&
-              isMoveWithWord(actualOption) ? (
-                <Word
-                  letters={actualOption.word}
-                  coordinates={actualOption.coordinates}
-                  isNewMove
-                />
-              ) : null}
-            </Layer>
+            <AppContext.Provider value={contextForBridgeContext}>
+              <Layer fill="#08763b">
+                <Rect width={570} height={570} fill="#08763b" />
+                <BoardFields />
+                {actualOption ? <WordsOnBoard /> : null}
+                {!withoutNewMove &&
+                actualOption &&
+                isMoveWithWord(actualOption) ? (
+                  <Word
+                    letters={actualOption.word}
+                    coordinates={actualOption.coordinates}
+                    isNewMove
+                  />
+                ) : null}
+              </Layer>
+            </AppContext.Provider>
           </Stage>
         </GameArea>
       </StyledWrapper>

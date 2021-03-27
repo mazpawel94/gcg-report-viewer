@@ -1,28 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
-import context from "../context";
-import { findPlayedMove, isLossMove } from "../services/gameService";
-
+import { findPlayedMove } from "../services/gameService";
+import useGetFromCurrentState from "./useGetFromCurrentState";
 const useFillDeletion = () => {
-    const { moves, actualMoveIndex } = useContext(context);
-    const [usedLetters, setUsedLetters] = useState([]);
+  const [usedLetters, setUsedLetters] = useState([]);
+  const { currentMoves, isLossMove } = useGetFromCurrentState();
+  useEffect(() => {
+    const letters = currentMoves
+      .filter((el, i) => !isLossMove(i))
+      .map((move) => findPlayedMove(move))
+      .reduce(
+        (acc, { word }) => [
+          ...acc,
+          ...word.replaceAll(/\([^)]+\)/g, "").split(""),
+        ],
+        ""
+      );
+    setUsedLetters([...letters]);
+  }, [currentMoves.length]);
 
-    useEffect(() => {
-        const letters = moves
-            .slice(0, actualMoveIndex)
-            .filter((el, i) => !isLossMove(moves, i))
-            .map((move) => findPlayedMove(move))
-            .reduce(
-                (acc, { word }) => [
-                    ...acc,
-                    ...word.replaceAll(/\([^)]+\)/g, "").split(""),
-                ],
-                ""
-            );
-        setUsedLetters([...letters]);
-    }, [moves, actualMoveIndex]);
-
-    return { usedLetters };
+  return { usedLetters };
 };
 
 export default useFillDeletion;

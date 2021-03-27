@@ -4,6 +4,7 @@ import { Table } from "semantic-ui-react";
 
 import { findPlayedMove } from "../../services/gameService";
 import context from "../../context";
+import { actionTypes } from "../../reducers/gameReducer";
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -31,7 +32,7 @@ const fillRow = (moves) => {
 };
 
 const Rows = () => {
-  const { moves, setActualMoveIndex } = useContext(context);
+  const { moves, dispatch } = useContext(context);
   const realMoves = moves.slice(0, moves.length - (moves.length % 2 ? 2 : 1));
   const deductedPoints =
     (moves[moves.length - 1].letters -
@@ -55,7 +56,10 @@ const Rows = () => {
               key={index}
               textAlign="center"
               onClick={(e) =>
-                setActualMoveIndex(index + parseInt(e.target.dataset.player))
+                dispatch({
+                  type: actionTypes.setMoveIndex,
+                  payload: index + parseInt(e.target.dataset.player),
+                })
               }
             >
               {fillRow(moves.slice(index, index + 2))}

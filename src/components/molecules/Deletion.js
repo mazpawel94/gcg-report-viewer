@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import context from "../../context";
 import useFillDeletion from "../../hooks/useFillDeletion";
+import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -47,12 +47,12 @@ const DeletionLetters = (usedTiles) => {
 };
 
 const Deletion = () => {
-  const { getActualMove } = useContext(context);
+  const { actualMove } = useGetFromCurrentState();
   const [usedTiles, setUsedTiles] = useState([]);
   const { usedLetters } = useFillDeletion();
   useEffect(() => {
-    setUsedTiles([...usedLetters, ...getActualMove().letters]);
-  }, [usedLetters, getActualMove]);
+    setUsedTiles([...usedLetters, ...actualMove.letters]);
+  }, [usedLetters, actualMove]);
   return (
     <StyledWrapper data-testid="deletion">
       {DeletionLetters(usedTiles)}

@@ -1,33 +1,32 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import context from '../context';
-import { getCurrentMoves } from '../services/gameService';
+import context from "../context";
+import useGetFromCurrentState from "./useGetFromCurrentState";
 
 const useAddDiagramToBase = () => {
+  const { actualMoveIndex } = useContext(context);
+  const { currentMoves, actualMove } = useGetFromCurrentState();
+  const addDiagramCallback = async () => {
+    // const id = await fetch('/api/', {
+    //     method: 'POST',
+    //     body: {
+    //         moves,
+    //         index: actualMoveIndex
+    //     }
+    // })
+    const objectToSend = {
+      moves: currentMoves,
+      letters: actualMove.letters,
+      index: actualMoveIndex,
+      solutions: actualMove,
+    };
+    console.log(objectToSend);
+    return new Promise((resolve, reject) => {
+      resolve({ id: "476" });
+    });
+  };
 
-    const { moves, actualMoveIndex } = useContext(context);
-
-    const addDiagramCallback = async () => {
-        // const id = await fetch('/api/', {
-        //     method: 'POST',
-        //     body: {
-        //         moves,
-        //         index: actualMoveIndex
-        //     }
-        // })
-        const objectToSend = {
-            moves: getCurrentMoves(moves, actualMoveIndex),
-            letters: moves[actualMoveIndex].letters,
-            index: actualMoveIndex,
-            solutions: moves[actualMoveIndex]
-        }
-        console.log(objectToSend);
-        return new Promise((resolve, reject) => {
-            resolve({ id: '476' });
-        })
-    }
-
-    return { addDiagramCallback };
-}
+  return { addDiagramCallback };
+};
 
 export default useAddDiagramToBase;

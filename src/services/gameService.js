@@ -1,13 +1,6 @@
-import React from "react";
-
-import Word from "../components/organisms/Word";
-
 const exceptCoordinates = ["*xch", "xch"];
 
-export const isLossMove = (moves, moveIndex) =>
-  moves[moveIndex].pointsBefore === moves[moveIndex + 2].pointsBefore;
-
-const isExchange = (coordinates) =>
+export const isExchange = (coordinates) =>
   exceptCoordinates.some((el) => el === coordinates);
 
 export const findPlayedMove = (move) => {
@@ -33,15 +26,6 @@ export const setPosition = (coordinates) => {
       verticle: true,
     };
 };
-export const getCurrentMoves = (moves, actualMoveIndex) =>
-  moves.slice(0, actualMoveIndex);
-
-export const getCurrentWords = (moves, actualMoveIndex) =>
-  getCurrentMoves(moves, actualMoveIndex).map((move, index) => {
-    const { word, coordinates } = findPlayedMove(move);
-    if (isExchange(coordinates) || isLossMove(moves, index)) return null;
-    return <Word key={index} letters={word} coordinates={coordinates} />;
-  });
 
 export const isMoveWithWord = (move) =>
   !exceptCoordinates.some((el) => el === move.coordinates);

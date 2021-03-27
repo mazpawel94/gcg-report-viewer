@@ -23,9 +23,6 @@ const Background = styled.div`
 `;
 
 const MainTemplate = ({ children }) => {
-  useEffect(() => {
-    console.log(document.body);
-  }, []);
   return (
     <StyledWrapper data-testid="main-template">
       <Background data-testid="main-template-background" />

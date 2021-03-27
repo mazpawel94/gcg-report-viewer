@@ -1,9 +1,10 @@
 import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+
 import GcgReader from "../../services/GcgReader";
 import AppContext from "../../context";
-import { findPlayedMove } from "../../services/gameService";
+import { actionTypes } from "../../reducers/gameReducer";
 
 const StyledWrapper = styled.div`
   width: 100vw;
@@ -63,16 +64,12 @@ const HiddenInput = styled.input`
 `;
 
 const HomeMenu = () => {
-  const { setMoves, setActualOptionIndex, setActualMoveIndex } = useContext(
-    AppContext
-  );
+  const { dispatch } = useContext(AppContext);
   const inputRef = useRef(null);
   const history = useHistory();
 
   const handleNewFile = (list) => {
-    setActualOptionIndex(findPlayedMove(list[0]).index);
-    setMoves([...list]);
-    setActualMoveIndex(0);
+    dispatch({ type: actionTypes.setMovesArray, payload: [...list] });
     history.push("/analiza");
   };
 
