@@ -16,7 +16,7 @@ const App = () => {
       <MainTemplate>
         <Router>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/gcg-report-viewer/">
               <Home />
             </Route>
             <Route path="/zadania">
