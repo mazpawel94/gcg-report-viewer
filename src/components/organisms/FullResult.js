@@ -92,7 +92,7 @@ const FullResult = () => {
 
   return (
     <StyledWrapper data-testid="full-result">
-      <Table celled structured>
+      <Table celled structured unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell colSpan="2" textAlign="center">

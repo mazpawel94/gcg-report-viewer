@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Button } from "semantic-ui-react";
 
 import Deletion from "../molecules/Deletion";
@@ -14,8 +14,19 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  background: #aba2a2 !important;
+  background: #f9e254 !important;
+  color: #03252b !important;
   padding: 12px !important;
+  &:hover {
+    background-color: #779827 !important;
+    color: #f9e254 !important;
+  }
+  ${({ clicked }) =>
+    clicked &&
+    css`
+      background-color: #779827 !important;
+      color: #f9e254 !important;
+    `}
 `;
 
 const ToolButtons = ({ stageRef }) => {
@@ -27,39 +38,29 @@ const ToolButtons = ({ stageRef }) => {
 
   const { addDiagramCallback } = useAddDiagramToBase();
 
+  const toggleDeletion = () => setDeletionIsVisible((prev) => !prev);
+  const toggleFullResult = () => setFullResultIsVisible((prev) => !prev);
+  const addDiagram = () =>
+    addDiagramCallback().then((res) => setDiagramId(res.id));
+  const getImageBefore = () => getImage(stageRef, true);
+  const getImageAfter = () => getImage(stageRef, false);
+  const closeDiagram = () => setDiagramId(null);
+
   return (
     <StyledWrapper data-testid="buttons-wrapper">
-      <StyledButton
-        color="teal"
-        onClick={() => setDeletionIsVisible(!deletionIsVisible)}
-      >
+      <StyledButton onClick={toggleDeletion} clicked={deletionIsVisible}>
         Wykreślanka
       </StyledButton>
-      <StyledButton
-        color="teal"
-        onClick={() => setFullResultIsVisible(!fullResultIsVisible)}
-      >
+      <StyledButton onClick={toggleFullResult} clicked={fullResultIsVisible}>
         Pełny zapis
       </StyledButton>
-      <StyledButton color="teal" onClick={() => getImage(stageRef, true)}>
-        Zapisz obraz (przed)
-      </StyledButton>
-      <StyledButton color="teal" onClick={() => getImage(stageRef, false)}>
-        Zapisz obraz (po)
-      </StyledButton>
-      <StyledButton
-        color="teal"
-        onClick={() => addDiagramCallback().then((res) => setDiagramId(res.id))}
-      >
-        Dodaj jako zadanie
-      </StyledButton>
+      <StyledButton onClick={getImageBefore}>Zapisz obraz (przed)</StyledButton>
+      <StyledButton onClick={getImageAfter}>Zapisz obraz (po)</StyledButton>
+      <StyledButton onClick={addDiagram}>Dodaj jako zadanie</StyledButton>
       {deletionIsVisible ? <Deletion /> : null}
       {fullResultIsVisible ? <FullResult /> : null}
       {diagramId ? (
-        <ModalWithDiagramId
-          id={diagramId}
-          closeCallback={() => setDiagramId(null)}
-        />
+        <ModalWithDiagramId id={diagramId} closeCallback={closeDiagram} />
       ) : null}
     </StyledWrapper>
   );

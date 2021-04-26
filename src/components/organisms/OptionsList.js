@@ -52,7 +52,7 @@ const OptionsList = () => {
   ));
   return (
     <StyledWrapper>
-      <Table basic="very" striped>
+      <Table basic="very" striped unstackable>
         <Table.Header>
           <Table.Row></Table.Row>
         </Table.Header>
