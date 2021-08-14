@@ -1,10 +1,8 @@
-import { useContext } from "react";
-
-import context from "../context";
+import { useAppContext } from "../context";
 import useGetFromCurrentState from "./useGetFromCurrentState";
 
 const useAddDiagramToBase = () => {
-  const { actualMoveIndex } = useContext(context);
+  const { actualMoveIndex } = useAppContext();
   const { currentMoves, actualMove } = useGetFromCurrentState();
   const addDiagramCallback = async () => {
     // const id = await fetch('/api/', {

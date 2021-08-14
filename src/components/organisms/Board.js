@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import styled, { css } from "styled-components";
 import { Stage, Layer, Rect } from "react-konva";
 
-import AppContext from "../../context";
+import AppContext, { useAppContext } from "../../context";
 import Word from "./Word";
 import WordsOnBoard from "./WordsOnBoard";
 import BoardCoordinates from "../molecules/BoardCoordinates";
@@ -70,7 +70,7 @@ const GameArea = styled.div`
 
 const Board = () => {
   const contextForBridgeContext = useContext(context);
-  const { moves, withoutNewMove } = useContext(context);
+  const { moves, withoutNewMove } = useAppContext();
 
   const stageRef = useRef(null);
   const { actualOption } = useGetFromCurrentState();

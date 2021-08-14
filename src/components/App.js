@@ -1,18 +1,15 @@
-import React, { useReducer } from "react";
+import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import AppContext from "../context";
+import { AppContextProvider } from "../context";
 import Home from "../components/pages/Home";
 import GameplayAnalysed from "../components/pages/GameplayAnalysed";
 import MainTemplate from "../components/templates/MainTemplate";
-import { initialState, reducer } from "../reducers/gameReducer";
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
   return (
-    <AppContext.Provider value={{ ...state, dispatch }}>
+    <AppContextProvider>
       <MainTemplate>
         <Router>
           <Switch>
@@ -28,7 +25,7 @@ const App = () => {
           </Switch>
         </Router>
       </MainTemplate>
-    </AppContext.Provider>
+    </AppContextProvider>
   );
 };
 

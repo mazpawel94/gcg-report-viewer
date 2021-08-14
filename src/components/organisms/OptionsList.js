@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Table } from "semantic-ui-react";
 
-import AppContext from "../../context";
+import AppContext, { useAppContext } from "../../context";
 import { actionTypes } from "../../reducers/gameReducer";
 import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
 const StyledWrapper = styled.div`
@@ -19,15 +19,9 @@ const StyledRow = styled(Table.Row)`
 `;
 
 const Option = ({ params, selected, index }) => {
-  const { dispatch } = useContext(AppContext);
-  const {
-    evaluate,
-    coordinates,
-    word,
-    movePoints,
-    percent,
-    freeLetters,
-  } = params;
+  const { dispatch } = useAppContext();
+  const { evaluate, coordinates, word, movePoints, percent, freeLetters } =
+    params;
   return (
     <StyledRow
       active={selected}
@@ -45,7 +39,7 @@ const Option = ({ params, selected, index }) => {
   );
 };
 const OptionsList = () => {
-  const { actualOptionIndex } = useContext(AppContext);
+  const { actualOptionIndex } = useAppContext();
   const { actualMove } = useGetFromCurrentState();
   const optionsElements = actualMove.choiceOptions.map((el, i) => (
     <Option key={i} index={i} params={el} selected={i === actualOptionIndex} />

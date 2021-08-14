@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ import Rack from "../organisms/Rack";
 import GameNavigation from "../molecules/GameNavigation";
 import Result from "../organisms/Result";
 
-import AppContext from "../../context";
+import  { useAppContext } from "../../context";
 const StyledWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -33,7 +33,7 @@ const MoveContent = styled.div`
 `;
 
 const GameplayAnalysed = () => {
-  const { actualMoveIndex } = useContext(AppContext);
+  const { actualMoveIndex } = useAppContext();
 
   return (
     <StyledWrapper>

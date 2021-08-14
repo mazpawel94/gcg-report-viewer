@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button } from "semantic-ui-react";
 
-import context from "../../context";
+import  { useAppContext } from "../../context";
 import useHandleKeyDown from "../../hooks/useHandleKeyDown";
 import { actionTypes } from "../../reducers/gameReducer";
 
@@ -23,7 +23,7 @@ const StyledButton = styled(Button)`
 `;
 
 const GameNavigation = () => {
-  const { dispatch } = useContext(context);
+  const {dispatch } = useAppContext();
   useHandleKeyDown();
 
   const handleFastBackward = () =>

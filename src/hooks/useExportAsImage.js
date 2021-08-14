@@ -1,6 +1,6 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 
-import Context from "../context";
+import { useAppContext } from "../context";
 import { actionTypes } from "../reducers/gameReducer";
 
 const handleExport = (stageRef) => {
@@ -13,7 +13,7 @@ const handleExport = (stageRef) => {
 };
 
 const useExportAsImage = () => {
-  const { withoutNewMove, dispatch } = useContext(Context);
+  const { withoutNewMove, dispatch } = useAppContext();
   const [called, setCalled] = useState(false);
   const [stageRef, setStageRef] = useState(false);
   useEffect(() => {

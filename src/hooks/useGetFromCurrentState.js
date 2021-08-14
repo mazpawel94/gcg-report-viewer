@@ -1,9 +1,7 @@
-import { useContext } from "react";
-
-import context from "../context";
+import { useAppContext } from "../context";
 
 const useGetFromCurrentState = () => {
-  const { moves, actualMoveIndex, actualOptionIndex } = useContext(context);
+  const { moves, actualMoveIndex, actualOptionIndex } = useAppContext();
 
   const actualMove = moves?.[actualMoveIndex];
   const actualOption =

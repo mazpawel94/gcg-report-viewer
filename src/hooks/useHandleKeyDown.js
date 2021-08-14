@@ -1,10 +1,10 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 
-import AppContext from "../context";
+import { useAppContext } from "../context";
 import { actionTypes } from "../reducers/gameReducer";
 
 const useHandleKeyDown = () => {
-  const { dispatch } = useContext(AppContext);
+  const { dispatch } = useAppContext();
 
   const handleKeyDown = (e) => {
     e.preventDefault();

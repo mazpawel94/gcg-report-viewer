@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Table } from "semantic-ui-react";
 
 import { findPlayedMove } from "../../services/gameService";
-import context from "../../context";
-import { actionTypes } from "../../reducers/gameReducer";
+import { useAppContext } from "../../context";
+import UseFullResult from "../../hooks/useFullResult";
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -14,17 +14,22 @@ const StyledWrapper = styled.div`
   z-index: 2;
 `;
 
-const fillRow = (moves) => {
+const Cells = ({ moves }) => {
+  const { actualMoveIndex } = useAppContext();
   const pointPlayer1 = parseInt(findPlayedMove(moves[0])?.movePoints) || 0;
   const pointPlayer2 = parseInt(findPlayedMove(moves[1])?.movePoints) || 0;
   return (
     <>
-      <Table.Cell data-player={0}>+{pointPlayer1}</Table.Cell>
-      <Table.Cell data-player={0}>
+      <Table.Cell active={actualMoveIndex === moves[0]?.index} data-player={0}>
+        +{pointPlayer1}
+      </Table.Cell>
+      <Table.Cell active={actualMoveIndex === moves[0]?.index} data-player={0}>
         {pointPlayer1 + parseInt(moves[0]?.pointsBefore)}
       </Table.Cell>
-      <Table.Cell data-player={1}>+{pointPlayer2}</Table.Cell>
-      <Table.Cell data-player={1}>
+      <Table.Cell active={actualMoveIndex === moves[1]?.index} data-player={1}>
+        +{pointPlayer2}
+      </Table.Cell>
+      <Table.Cell active={actualMoveIndex === moves[1]?.index} data-player={1}>
         {pointPlayer2 + parseInt(moves[1]?.pointsBefore) || ""}
       </Table.Cell>
     </>
@@ -32,21 +37,14 @@ const fillRow = (moves) => {
 };
 
 const Rows = () => {
-  const { moves, dispatch } = useContext(context);
-  const realMoves = moves.slice(0, moves.length - (moves.length % 2 ? 2 : 1));
-  const deductedPoints =
-    (moves[moves.length - 1].letters -
-      moves[moves.length - 2].pointsBefore -
-      parseInt(findPlayedMove(moves[moves.length - 2]).movePoints)) /
-    2;
-  const endingPlayerPoints =
-    parseInt(moves[moves.length - 3].pointsBefore) +
-    parseInt(findPlayedMove(moves[moves.length - 3]).movePoints) -
-    deductedPoints;
-  const notEndingPlayerPoints =
-    parseInt(moves[moves.length - 2].pointsBefore) +
-    parseInt(findPlayedMove(moves[moves.length - 2]).movePoints) +
-    deductedPoints;
+  const {
+    moves,
+    realMoves,
+    deductedPoints,
+    endingPlayerPoints,
+    notEndingPlayerPoints,
+    handleCellClick,
+  } = UseFullResult();
   return (
     <>
       {realMoves.map((move, index) => {
@@ -55,14 +53,10 @@ const Rows = () => {
             <Table.Row
               key={index}
               textAlign="center"
-              onClick={(e) =>
-                dispatch({
-                  type: actionTypes.setMoveIndex,
-                  payload: index + parseInt(e.target.dataset.player),
-                })
-              }
+              onClick={(e) => handleCellClick(e, index)}
+              style={ {cursor: "pointer"} }
             >
-              {fillRow(moves.slice(index, index + 2))}
+              <Cells moves={moves.slice(index, index + 2)} />
             </Table.Row>
           );
         } else return null;
@@ -88,7 +82,7 @@ const Rows = () => {
 };
 
 const FullResult = () => {
-  const { moves } = useContext(context);
+  const { player1, player2 } = useAppContext();
 
   return (
     <StyledWrapper data-testid="full-result">
@@ -96,10 +90,10 @@ const FullResult = () => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell colSpan="2" textAlign="center">
-              {moves[0].nick.replace("_", " ")}
+              {player1}
             </Table.HeaderCell>
             <Table.HeaderCell colSpan="2" textAlign="center">
-              {moves[1].nick.replace("_", " ")}
+              {player2}
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>

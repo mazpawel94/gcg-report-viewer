@@ -1,9 +1,9 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 import GcgReader from "../../services/GcgReader";
-import AppContext from "../../context";
+import { useAppContext } from "../../context";
 import { actionTypes } from "../../reducers/gameReducer";
 
 const StyledWrapper = styled.div`
@@ -64,7 +64,7 @@ const HiddenInput = styled.input`
 `;
 
 const HomeMenu = () => {
-  const { dispatch } = useContext(AppContext);
+  const { dispatch } = useAppContext();
   const inputRef = useRef(null);
   const history = useHistory();
 

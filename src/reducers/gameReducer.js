@@ -5,6 +5,8 @@ export const initialState = {
   actualMoveIndex: undefined,
   actualOptionIndex: 0,
   withoutNewMove: false,
+  player1: "",
+  player2: "",
 };
 
 export const actionTypes = {
@@ -28,6 +30,8 @@ export function reducer(state, action) {
         moves: action.payload,
         actualMoveIndex: 0,
         actualOptionIndex: findPlayedMove(action.payload[0]).index,
+        player1: action.payload[0].nick.replace("_", " "),
+        player2: action.payload[1].nick.replace("_", " "),
       };
 
     case actionTypes.setMoveIndex:
