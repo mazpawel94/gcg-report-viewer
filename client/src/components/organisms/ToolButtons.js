@@ -41,7 +41,7 @@ const ToolButtons = ({ stageRef }) => {
   const toggleDeletion = () => setDeletionIsVisible((prev) => !prev);
   const toggleFullResult = () => setFullResultIsVisible((prev) => !prev);
   const addDiagram = () =>
-    addDiagramCallback().then((res) => setDiagramId(res.id));
+    addDiagramCallback().then((res) => setDiagramId(res));
   const getImageBefore = () => getImage(stageRef, true);
   const getImageAfter = () => getImage(stageRef, false);
   const closeDiagram = () => setDiagramId(null);
