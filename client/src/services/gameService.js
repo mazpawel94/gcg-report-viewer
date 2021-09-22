@@ -7,6 +7,10 @@ export const findPlayedMove = (move) => {
   return move?.choiceOptions?.find((opt) => opt.coordinates.includes("*"));
 };
 
+export const findBestMove = (move) => {
+  return move?.choiceOptions?.find((opt) => opt.evaluate === "best");
+};
+
 export const setPosition = (coordinates) => {
   const coord = coordinates
     .split("")
