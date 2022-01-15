@@ -1,4 +1,3 @@
-import { useAppContext } from "../context";
 import { findPlayedMove, findBestMove } from "../services/gameService";
 import useGetFromCurrentState from "./useGetFromCurrentState";
 
@@ -9,24 +8,19 @@ const compressMovesList = (moves) =>
   }));
 
 const useAddDiagramToBase = () => {
-  const { actualMoveIndex } = useAppContext();
   const { currentMoves, actualMove } = useGetFromCurrentState();
-  const addDiagramCallback = async () => {
-    const objectToSend = {
-      moves: compressMovesList(currentMoves),
-      letters: actualMove.letters,
-      index: actualMoveIndex,
-      solutions: findBestMove(actualMove),
-    };
-
+  const addDiagramCallback = async (diagramIsPublic, tags) => {
     const id = await fetch("/diagram", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        indexMove: actualMoveIndex,
-        words: JSON.stringify(objectToSend),
+        diagramIsPublic,
+        letters: actualMove.letters,
+        words: JSON.stringify(compressMovesList(currentMoves)),
+        solution: JSON.stringify(findBestMove(actualMove)),
+        tags,
       }),
     }).then((res) => res.text());
     return id;

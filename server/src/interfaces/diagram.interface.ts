@@ -1,5 +1,7 @@
 export default interface DiagramInterface {
   words: string;
-  indexMove: number;
+  letters: string;
+  solution: string;
+  isPublic: boolean;
   createdAt: Date;
 }

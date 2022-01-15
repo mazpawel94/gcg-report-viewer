@@ -7,7 +7,6 @@ const useHandleKeyDown = () => {
   const { dispatch } = useAppContext();
 
   const handleKeyDown = (e) => {
-    e.preventDefault();
     if (e.keyCode === 39) dispatch({ type: actionTypes.incrementMoveIndex });
     if (e.keyCode === 37) dispatch({ type: actionTypes.decrementMoveIndex });
     if (e.keyCode === 38) dispatch({ type: actionTypes.decrementOptionIndex });

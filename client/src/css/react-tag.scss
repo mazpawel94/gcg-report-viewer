@@ -1,0 +1,43 @@
+.ReactTags__tagInput {
+  margin: 4px 0 35px;
+  width: 260px;
+}
+
+.ReactTags__selected {
+  min-height: 35px;
+}
+
+.ReactTags__tag {
+  position: relative;
+  color: #03252b;
+  cursor: initial;
+  opacity: 1;
+  background: #f9e254;
+  height: 31px;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 5px 0 5px 12px;
+  margin-right: 6px;
+  margin-top: 4px;
+  border-radius: 2px;
+
+  &::before {
+    content: "#";
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+  }
+}
+
+.ReactTags__remove {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  color: #03252b;
+  transform: translateY(1px);
+}

@@ -1,4 +1,7 @@
 export class CreateDiagramDto {
-  indexMove: number;
   words: string;
+  letters: string;
+  solution: string;
+  diagramIsPublic: boolean;
+  tags: object[];
 }

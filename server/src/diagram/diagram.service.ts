@@ -6,10 +6,14 @@ import { CreateDiagramDto } from './dto/create-diagram.dto';
 @Injectable()
 export class DiagramService {
   async createDiagram(newDiagram: CreateDiagramDto): Promise<number> {
+
     const diagram = new Diagram();
     diagram.words = newDiagram.words;
-    diagram.indexMove = newDiagram.indexMove;
+    diagram.letters = newDiagram.letters;
+    diagram.solution = newDiagram.solution;
+    diagram.isPublic = newDiagram.diagramIsPublic;
     await diagram.save();
+
     return diagram.id;
   }
 
