@@ -22,6 +22,9 @@ const App = () => {
             <Route path="/analiza">
               <GameplayAnalysed />
             </Route>
+            <Route path="/">
+              <Home />
+            </Route>
           </Switch>
         </Router>
       </MainTemplate>

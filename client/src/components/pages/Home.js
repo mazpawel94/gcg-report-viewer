@@ -3,20 +3,40 @@ import styled from "styled-components";
 
 import Board from "../organisms/Board";
 import HomeMenu from "../molecules/HomeMenu";
-import useFetchGreetings from "../../hooks/requests/useFetchGreetings";
+import { useEffect } from "react";
+import { useAppContext } from "../../context";
+import { actionTypes } from "../../reducers/gameReducer";
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
+const DummyNav = styled.div`
+  height: 38px;
+  width: 200px;
+  color: white;
+`;
 
+const BoardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 15px;
+`;
 const Home = () => {
-  const { greetings } = useFetchGreetings();
+  const { dispatch } = useAppContext();
+
+  useEffect(() => {
+    dispatch({ type: actionTypes.clearGame });
+  }, []);
+
   return (
     <StyledWrapper>
-      {greetings ? <p>{greetings}</p> : null}
       <HomeMenu />
-      <Board />
+      <BoardWrapper>
+        <DummyNav />
+        <Board asBackground />
+      </BoardWrapper>
     </StyledWrapper>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { Stage, Layer, Rect } from "react-konva";
 
@@ -12,6 +12,7 @@ import ToolButtons from "../organisms/ToolButtons";
 import context from "../../context";
 import { isMoveWithWord } from "../../services/gameService";
 import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
+
 const StyledWrapper = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
@@ -29,7 +30,7 @@ const StyledWrapper = styled.div`
   ${({ plainView }) =>
     plainView &&
     css`
-      transform: rotateX(0);
+      transform: rotateX(720deg);
     `}
 `;
 
@@ -68,22 +69,28 @@ const GameArea = styled.div`
   }
 `;
 
-const Board = () => {
+const Board = ({ asBackground = false }) => {
   const contextForBridgeContext = useContext(context);
   const { moves, withoutNewMove } = useAppContext();
+  const [boardIsFront, setBoardIsFront] = useState(false);
+  const { actualOption } = useGetFromCurrentState();
 
   const stageRef = useRef(null);
-  const { actualOption } = useGetFromCurrentState();
+
+  useEffect(() => {
+    if (!asBackground) setTimeout(() => setBoardIsFront(true), 1000);
+  }, [asBackground]);
+
   return (
     <>
       {moves?.length ? <ToolButtons stageRef={stageRef} /> : null}
-      <StyledWrapper plainView={!!actualOption} data-testid="board">
-        {!moves.length && (
+      <StyledWrapper plainView={boardIsFront} data-testid="board">
+        {asBackground ? (
           <>
             <Rack3d />
             <Rack3d top />
           </>
-        )}
+        ) : null}
         <BoardCoordinates />
         <GameArea>
           <Stage width={570} height={570} ref={stageRef}>

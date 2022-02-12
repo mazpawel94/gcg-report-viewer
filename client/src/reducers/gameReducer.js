@@ -18,6 +18,7 @@ export const actionTypes = {
   decrementOptionIndex: "DECREMENT_OPTION_INDEX",
   setOptionIndex: "SET_OPTION_INDEX",
   setWithoutNewMove: "SET_WITHOUT_NEW_MOVE",
+  clearGame: "CLEAR_GAME",
 };
 
 export function reducer(state, action) {
@@ -78,5 +79,8 @@ export function reducer(state, action) {
 
     case actionTypes.setWithoutNewMove:
       return { ...state, withoutNewMove: action.payload };
+
+    case actionTypes.clearGame:
+      return { ...initialState };
   }
 }

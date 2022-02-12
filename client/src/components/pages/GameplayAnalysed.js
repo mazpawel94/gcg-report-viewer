@@ -1,5 +1,4 @@
 import React from "react";
-
 import styled from "styled-components";
 
 import Board from "../organisms/Board";
@@ -7,12 +6,11 @@ import OptionsList from "../organisms/OptionsList";
 import Rack from "../organisms/Rack";
 import GameNavigation from "../molecules/GameNavigation";
 import Result from "../organisms/Result";
+import { useAppContext } from "../../context";
 
-import  { useAppContext } from "../../context";
 const StyledWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 
 const BoardWrapper = styled.div`
@@ -30,6 +28,7 @@ const MoveContent = styled.div`
   align-items: center;
   flex-grow: 1;
   margin-top: 15px;
+  z-index: 2;
 `;
 
 const GameplayAnalysed = () => {
@@ -41,13 +40,13 @@ const GameplayAnalysed = () => {
         <Board />
         <GameNavigation />
       </BoardWrapper>
-      {actualMoveIndex !== undefined && (
+      {actualMoveIndex !== undefined ? (
         <MoveContent data-testid="move-content">
           <Result />
           <OptionsList />
           <Rack />
         </MoveContent>
-      )}
+      ) : null}
     </StyledWrapper>
   );
 };
