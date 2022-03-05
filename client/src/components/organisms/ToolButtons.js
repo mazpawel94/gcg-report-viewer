@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { Button } from "semantic-ui-react";
 
 import Deletion from "../molecules/Deletion";
-import FullResult from "../organisms/FullResult";
+import FullResult from "../organisms/FullResult/FullResult";
 import useExportAsImage from "../../hooks/useExportAsImage";
 import ModalWithDiagramId from "../molecules/ModalWithDiagramId";
 import NewDiagramForm from "./NewDiagramForm";

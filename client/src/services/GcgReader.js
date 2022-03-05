@@ -56,7 +56,6 @@ class GcgReader {
       });
     }
   };
-  showPossibilities(movesArray) {}
   readReport = (e, callback) => {
     const movesArray = [];
     const game = e.target.files[0];
