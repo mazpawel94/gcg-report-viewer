@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import GcgReader from "../../services/GcgReader";
 import { useAppContext } from "../../context";
@@ -66,11 +66,11 @@ const HiddenInput = styled.input`
 const HomeMenu = () => {
   const { dispatch } = useAppContext();
   const inputRef = useRef(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleNewFile = (list) => {
     dispatch({ type: actionTypes.setMovesArray, payload: [...list] });
-    history.push("/analiza");
+    navigate("/analiza");
   };
 
   return (
@@ -83,7 +83,7 @@ const HomeMenu = () => {
       <Options href="#" onClick={() => inputRef.current.click()}>
         Analizuj partię
       </Options>
-      <Options onClick={() => history.push("/zadania")}>
+      <Options onClick={() => navigate("/zadania")}>
         Rozwiązuj zadania
       </Options>
     </StyledWrapper>
