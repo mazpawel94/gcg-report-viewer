@@ -2,11 +2,11 @@ import React from "react";
 import { Rect, Text, Star } from "react-konva";
 import PropTypes from "prop-types";
 
-import { FIELDS_PARAMS } from "../globalVariables";
+import { FIELDS_PARAMS, size } from "../globalVariables";
 
-const size = 570 / 15;
-
-const BoardField = ({ x, y, type }) => {
+const emptyFn = () => {};
+const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
+  const handleClick = () => callback(x, y);
   return (
     <>
       <Rect
@@ -17,15 +17,16 @@ const BoardField = ({ x, y, type }) => {
         fill="#08763b"
         stroke="#badce9"
         data-testid="board-field"
+        onClick={handleClick}
       />
-      {type ? (
+      {bonusType ? (
         <>
           <Rect
             x={x * size + size / 2}
             y={y * size - size / 4 + 1}
             width={size}
             height={size}
-            fill={FIELDS_PARAMS[type].color}
+            fill={FIELDS_PARAMS[bonusType].color}
             rotation={45}
             data-testid="rotated-rect"
           />
@@ -34,22 +35,24 @@ const BoardField = ({ x, y, type }) => {
             y={y * size}
             width={size}
             height={size}
-            fill={FIELDS_PARAMS[type].color}
+            fill={FIELDS_PARAMS[bonusType].color}
             stroke="#badce9"
+            onClick={handleClick}
           />
           <Text
             x={x * size}
             y={y * size + 8}
             width={size}
             height={size}
-            text={FIELDS_PARAMS[type].text}
+            text={FIELDS_PARAMS[bonusType].text}
             align="center"
             fontSize={7}
             verticalAlign="center"
             fontFamily="Calibri"
             padding={1}
+            onClick={handleClick}
           />
-          {type === "middle" && (
+          {bonusType === "middle" && (
             <Star
               x={x * size + size / 2}
               y={y * size + size / 2}
@@ -59,6 +62,7 @@ const BoardField = ({ x, y, type }) => {
               fill="#DC9C10"
               opacity={1}
               data-testid="star"
+              onClick={handleClick}
             />
           )}
         </>
@@ -70,7 +74,7 @@ const BoardField = ({ x, y, type }) => {
 BoardField.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
-  type: PropTypes.string,
+  bonusType: PropTypes.string,
 };
 
 export default BoardField;

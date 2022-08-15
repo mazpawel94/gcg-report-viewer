@@ -5,8 +5,7 @@ import {
   betweenBracketsValidator,
   setPosition,
 } from "../../services/gameService";
-
-const size = 570 / 15;
+import { size } from "../globalVariables";
 
 const Word = ({ isNewMove, letters, coordinates }) => {
   const { x, y, verticle } = setPosition(coordinates);

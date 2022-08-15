@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Rect, Text } from "react-konva";
 
-import { POINTS } from "../globalVariables";
+import { POINTS, size } from "../globalVariables";
 
-const size = 570 / 15;
 const COLORS = {
   basic: "#f8e8c7",
   newMove: "#1ae825",
