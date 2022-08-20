@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 
 import Tile from "../molecules/Tile";
@@ -9,9 +9,9 @@ const StyledWrapper = styled.div`
   justify-content: center;
 `;
 
-const Tiles = ({ letters }) =>
+const Tiles = ({ letters, clickHandler }) =>
   letters.map(({ letter, played }, i) => (
-    <Tile key={i} letter={letter} played={played} />
+    <Tile key={i} letter={letter} played={played} clickHandler={clickHandler} />
   ));
 
 const Rack = () => {
@@ -24,14 +24,15 @@ const Rack = () => {
   );
 };
 
-export const RackForInput = ({ inputValue }) => {
+export const RackForInput = ({ inputValue, handleClickOnTile }) => {
   const letters = inputValue
     .toUpperCase()
     .split("")
     .map((el) => ({ letter: el, played: false }));
+
   return (
     <StyledWrapper>
-      <Tiles letters={letters} />
+      <Tiles letters={letters} clickHandler={handleClickOnTile} />
     </StyledWrapper>
   );
 };

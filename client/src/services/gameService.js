@@ -31,6 +31,11 @@ export const setPosition = (coordinates) => {
     };
 };
 
+export const convertToBoardCoordinates = ({ x, y, vertical }) =>
+  vertical
+    ? `${String.fromCharCode(x + 65)}${y + 1}`
+    : `${y + 1}${String.fromCharCode(x + 65)}`;
+
 export const isMoveWithWord = (move) =>
   !exceptCoordinates.some((el) => el === move.coordinates);
 

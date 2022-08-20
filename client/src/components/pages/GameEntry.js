@@ -1,9 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import KonvaArrow from "../atoms/KonvaArrow";
 import KonvaBoard from "../organisms/KonvaBoard";
 import { RackForInput } from "../organisms/Rack";
+import Word from "../organisms/Word";
+import useGameEntry from "./hooks/useGameEntry";
 
 const InputArea = styled.div`
   width: 550px;
@@ -26,33 +28,24 @@ const BoardWrapper = styled.div`
   margin: auto;
 `;
 const GameEntry = () => {
-  const [inputValue, setInputValue] = useState("elo");
-  const [startPosition, setStartPosition] = useState({
-    x: 5,
-    y: 5,
-    vertical: false,
-  });
-  const handleOnChange = ({ target }) => {
-    if (target.value.length > 7) return;
-    setInputValue(target.value);
-  };
-
-  const handleBoardClick = useCallback((x, y) => {
-    setStartPosition((prev) =>
-      prev.x === x && prev.y === y
-        ? { x, y, vertical: !prev.vertical }
-        : { x, y, vertical: false }
-    );
-  }, []);
-
-  const handleArrowClick = useCallback(() =>
-    setStartPosition((prev) => ({ ...prev, vertical: !prev.vertical }))
-  );
+  const {
+    inputValue,
+    startPosition,
+    wordPosition,
+    currentWord,
+    handlePutNewLetter,
+    handleBoardClick,
+    handleOnChange,
+    handleArrowClick,
+  } = useGameEntry();
   return (
     <>
       <InputArea>
         <HiddenInput value={inputValue} onChange={handleOnChange} />
-        <RackForInput inputValue={inputValue} />
+        <RackForInput
+          inputValue={inputValue}
+          handleClickOnTile={handlePutNewLetter}
+        />
       </InputArea>
       <BoardWrapper>
         <KonvaBoard handleBoardClick={handleBoardClick}>
@@ -62,6 +55,7 @@ const GameEntry = () => {
             vertical={startPosition.vertical}
             callback={handleArrowClick}
           />
+          <Word letters={currentWord} coordinates={wordPosition} />
         </KonvaBoard>
       </BoardWrapper>
     </>
