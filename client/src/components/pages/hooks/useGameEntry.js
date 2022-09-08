@@ -1,17 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { convertToBoardCoordinates } from "../../../services/gameService";
+import {
+  convertToBoardCoordinates,
+  replaceLowerCaseToBlank,
+} from "../../../services/gameService";
 
 const useGameEntry = () => {
-  const [inputValue, setInputValue] = useState("elo");
+  const [inputValue, setInputValue] = useState("");
   const [startPosition, setStartPosition] = useState({
     x: 5,
     y: 5,
     vertical: true,
   });
   const [currentWord, setCurrentWord] = useState("");
+
   const handleOnChange = ({ target }) => {
     if (target.value.length > 7) return;
-    setInputValue(target.value);
+    setInputValue(target.value.toUpperCase());
   };
 
   const handleBoardClick = useCallback((x, y) => {
@@ -26,10 +30,28 @@ const useGameEntry = () => {
     setStartPosition((prev) => ({ ...prev, vertical: !prev.vertical }))
   );
 
-  const handlePutNewLetter = useCallback((letter) => {
-    setCurrentWord((prev) => `${prev}${letter}`);
-    setInputValue((prev) => prev.replace(letter.toLowerCase(), ""));
-  }, []);
+  const handlePutNewLetter = useCallback(
+    (letter) => {
+      if (!inputValue.includes(letter) && !inputValue.includes("?")) return;
+      const isBlank = !inputValue.includes(letter);
+      setCurrentWord(
+        (prev) => `${prev}${isBlank ? letter.toLowerCase() : letter}`
+      );
+      setInputValue((prev) =>
+        isBlank ? prev.replace("?", "") : prev.replace(letter, "")
+      );
+    },
+    [inputValue]
+  );
+
+  const resetCurrentWord = useCallback(
+    (e) => {
+      e?.preventDefault();
+      setCurrentWord("");
+      setInputValue((prev) => `${prev}${replaceLowerCaseToBlank(currentWord)}`);
+    },
+    [currentWord]
+  );
 
   const handleKeyDown = (e) => {
     const charCode = e.keyCode;
@@ -41,7 +63,7 @@ const useGameEntry = () => {
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [inputValue]);
 
   return {
     inputValue,
@@ -52,6 +74,7 @@ const useGameEntry = () => {
     handlePutNewLetter,
     handleOnChange,
     handleArrowClick,
+    resetCurrentWord,
   };
 };
 

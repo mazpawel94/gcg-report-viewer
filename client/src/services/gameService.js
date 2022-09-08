@@ -31,6 +31,9 @@ export const setPosition = (coordinates) => {
     };
 };
 
+export const replaceLowerCaseToBlank = (word) =>
+  word.replace(/[a-z,ą,ę,ć,ś,ł, ń, ó, ż,ź]/g, "?");
+  
 export const convertToBoardCoordinates = ({ x, y, vertical }) =>
   vertical
     ? `${String.fromCharCode(x + 65)}${y + 1}`

@@ -37,10 +37,11 @@ const GameEntry = () => {
     handleBoardClick,
     handleOnChange,
     handleArrowClick,
+    resetCurrentWord,
   } = useGameEntry();
   return (
     <>
-      <InputArea>
+      <InputArea onContextMenu={resetCurrentWord}>
         <HiddenInput value={inputValue} onChange={handleOnChange} />
         <RackForInput
           inputValue={inputValue}
