@@ -1,32 +1,17 @@
 import React, { useCallback, useState } from "react";
-import styled, { css } from "styled-components";
-import { Button } from "semantic-ui-react";
+import styled from "styled-components";
 
 import Deletion from "../molecules/Deletion";
+import Button from "../atoms/Button";
 import FullResult from "../organisms/FullResult/FullResult";
 import useExportAsImage from "../../hooks/useExportAsImage";
 import ModalWithDiagramId from "../molecules/ModalWithDiagramId";
 import NewDiagramForm from "./NewDiagramForm";
+
 const StyledWrapper = styled.div`
   display: flex;
   width: 660px;
   justify-content: space-between;
-`;
-
-const StyledButton = styled(Button)`
-  background: #f9e254 !important;
-  color: #03252b !important;
-  padding: 12px !important;
-  &:hover {
-    background-color: #779827 !important;
-    color: #f9e254 !important;
-  }
-  ${({ clicked }) =>
-    clicked &&
-    css`
-      background-color: #779827 !important;
-      color: #f9e254 !important;
-    `}
 `;
 
 const ToolButtons = ({ stageRef }) => {
@@ -46,15 +31,15 @@ const ToolButtons = ({ stageRef }) => {
 
   return (
     <StyledWrapper data-testid="buttons-wrapper">
-      <StyledButton onClick={toggleDeletion} clicked={deletionIsVisible}>
+      <Button onClick={toggleDeletion} clicked={deletionIsVisible}>
         Wykreślanka
-      </StyledButton>
-      <StyledButton onClick={toggleFullResult} clicked={fullResultIsVisible}>
+      </Button>
+      <Button onClick={toggleFullResult} clicked={fullResultIsVisible}>
         Pełny zapis
-      </StyledButton>
-      <StyledButton onClick={getImageBefore}>Zapisz obraz (przed)</StyledButton>
-      <StyledButton onClick={getImageAfter}>Zapisz obraz (po)</StyledButton>
-      <StyledButton onClick={toggleForm}>Dodaj jako zadanie</StyledButton>
+      </Button>
+      <Button onClick={getImageBefore}>Zapisz obraz (przed)</Button>
+      <Button onClick={getImageAfter}>Zapisz obraz (po)</Button>
+      <Button onClick={toggleForm}>Dodaj jako zadanie</Button>
       {deletionIsVisible ? <Deletion /> : null}
       {fullResultIsVisible ? <FullResult /> : null}
       {formIsVisible ? <NewDiagramForm close={closeForm} /> : null}
