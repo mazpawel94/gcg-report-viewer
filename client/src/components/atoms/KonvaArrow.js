@@ -14,6 +14,7 @@ const KonvaArrow = ({ x, y, vertical = true, callback }) => {
       fill="yellow"
       opacity={0.8}
       onClick={callback}
+      onTap={callback}
     />
   );
 };

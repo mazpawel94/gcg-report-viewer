@@ -18,6 +18,7 @@ const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
         stroke="#badce9"
         data-testid="board-field"
         onClick={handleClick}
+        onTap={handleClick}
       />
       {bonusType ? (
         <>
@@ -38,6 +39,7 @@ const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
             fill={FIELDS_PARAMS[bonusType].color}
             stroke="#badce9"
             onClick={handleClick}
+            onTap={handleClick}
           />
           <Text
             x={x * size}
@@ -51,6 +53,7 @@ const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
             fontFamily="Calibri"
             padding={1}
             onClick={handleClick}
+            onTap={handleClick}
           />
           {bonusType === "middle" && (
             <Star
