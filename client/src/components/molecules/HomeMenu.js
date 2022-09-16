@@ -83,7 +83,7 @@ const HomeMenu = () => {
       <Options href="#" onClick={() => inputRef.current.click()}>
         Analizuj partię
       </Options>
-      <Options onClick={() => navigate("/zadania")}>
+      <Options onClick={() => navigate("/dodaj-zapis")}>
         Rozwiązuj zadania
       </Options>
     </StyledWrapper>
