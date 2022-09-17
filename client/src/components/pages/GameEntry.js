@@ -35,6 +35,13 @@ const PointsInput = styled.input`
   margin-left: 10px;
   text-align: center;
   font-size: 22px;
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 const HiddenInput = styled.input`
@@ -53,6 +60,7 @@ const BoardWrapper = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 `;
 
 const GameEntry = () => {
@@ -87,10 +95,19 @@ const GameEntry = () => {
           />
         </InputArea>
         <PointsInput
+          type="number"
           value={points}
           onChange={({ target }) => setPoints(target.value)}
         />
       </InputsWrapper>
+      <ButtonsWrapper>
+        <Button onClick={addMove}>dodaj</Button>
+        <Button onClick={resetCurrentWord}>cofnij</Button>
+        <Button onClick={handleExchange}>wymiana</Button>
+        <Button>strata</Button>
+        <Button>pas</Button>
+        <Button onClick={downloadGame}>pobierz</Button>
+      </ButtonsWrapper>
       <BoardWrapper>
         <KonvaBoard handleBoardClick={handleBoardClick}>
           <KonvaArrow
@@ -107,14 +124,6 @@ const GameEntry = () => {
             ))}
         </KonvaBoard>
       </BoardWrapper>
-      <ButtonsWrapper>
-        <Button onClick={addMove}>dodaj</Button>
-        <Button onClick={resetCurrentWord}>cofnij</Button>
-        <Button onClick={handleExchange}>wymiana</Button>
-        <Button>strata</Button>
-        <Button>pas</Button>
-        <Button onClick={downloadGame}>pobierz</Button>
-      </ButtonsWrapper>
     </>
   );
 };

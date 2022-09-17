@@ -69,16 +69,21 @@ const useGameEntry = () => {
 
   const addMove = useCallback(() => {
     if (!points) return;
+    const prevDots = generateDots(startPosition, 1, true);
     const convertedWord = currentWord.replace(/[\(,\)]/g, "");
+    const finalPosition = {
+      ...startPosition,
+      ...findPosition(startPosition, -prevDots.length),
+    };
     const playerName = players.find((player) => player.current).name;
     setMoves((prev) => [
       ...prev,
       {
         player: playerName,
         letters: `${inputValue}${convertBoardWordToRack(convertedWord)}`,
-        word: currentWord,
+        word: `${prevDots ? `(${prevDots})` : ""}${currentWord}`,
         points: parseInt(points),
-        coordinates: convertToBoardCoordinates(startPosition),
+        coordinates: convertToBoardCoordinates(finalPosition),
         sumPoints: prev
           .filter((el) => el.player === playerName)
           .reduce((acc, curr) => acc + curr.points, parseInt(points)),
@@ -89,7 +94,7 @@ const useGameEntry = () => {
     setPoints("");
     changeCurrentPlayer();
   }, [points, inputValue, currentWord, startPosition]);
-  
+
   const handleExchange = () => {
     //do uzupełnienia, napisane na szybko, żeby sprawdzić całość w boju
     setMoves((prev) => [
@@ -126,29 +131,44 @@ const useGameEntry = () => {
     []
   );
 
+  const generateDots = (startPosition, distance, back = false) => {
+    let dots = "";
+    const dir = back ? -1 : 1;
+    let nextCoordinate = findPosition(startPosition, distance * dir);
+    while (
+      occupiedFields.some(
+        (field) => field.x === nextCoordinate.x && field.y === nextCoordinate.y
+      )
+    ) {
+      dots = `${dots}.`;
+      nextCoordinate = findPosition(
+        startPosition,
+        (distance + dots.length) * dir
+      );
+    }
+    return dots;
+  };
+
   const handlePutNewLetter = useCallback(
     (letter) => {
       if (!inputValue.includes(letter) && !inputValue.includes("?")) return;
       const isBlank = !inputValue.includes(letter);
       setCurrentWord((prev) => {
-        let dots = "";
-        let coordinate = findPosition(startPosition, prev.length);
-        while (
-          occupiedFields.some(
-            (field) => field.x === coordinate.x && field.y === coordinate.y
-          )
-        ) {
-          dots = `${dots}.`;
-          coordinate = findPosition(startPosition, prev.length + dots.length);
-        }
-        if (dots) dots = `(${dots})`;
-        return `${prev}${dots}${isBlank ? letter.toLowerCase() : letter}`;
+        const newLetter = isBlank ? letter.toLowerCase() : letter;
+        const dots = generateDots(startPosition, prev.length + 1);
+        return `${prev}${newLetter}${dots ? `(${dots})` : ""}`;
       });
       setInputValue((prev) =>
         isBlank ? prev.replace("?", "") : prev.replace(letter, "")
       );
     },
-    [inputValue, startPosition.x, startPosition.y, occupiedFields]
+    [
+      inputValue,
+      startPosition.x,
+      startPosition.y,
+      startPosition.vertical,
+      occupiedFields,
+    ]
   );
 
   const setName = ({ target }) => {
