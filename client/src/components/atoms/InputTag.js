@@ -1,7 +1,7 @@
-import React from "react";
-import { WithContext as ReactTags } from "react-tag-input";
+import React from 'react';
+import { WithContext as ReactTags } from 'react-tag-input';
 
-import "../../css/react-tag.scss";
+import '../../css/react-tag.scss';
 
 const InputTag = ({ tags, setTags }) => {
   const handleDelete = (i) => setTags(tags.filter((t, index) => index !== i));

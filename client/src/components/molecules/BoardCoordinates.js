@@ -45,12 +45,12 @@ const BoardCoordinates = () => {
         ))}
       </UpCoordinates>
       <LeftCoordinates>
-        {"ABCDEFGHIJKLMNO".split("").map((el) => (
+        {'ABCDEFGHIJKLMNO'.split('').map((el) => (
           <CoordinateY key={el}>{el}</CoordinateY>
         ))}
       </LeftCoordinates>
     </>
   );
-}
+};
 
 export default BoardCoordinates;

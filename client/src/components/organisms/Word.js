@@ -1,19 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import BoardTile from "../atoms/BoardTile";
-import {
-  betweenBracketsValidator,
-  setPosition,
-} from "../../services/gameService";
-import { size } from "../globalVariables";
+import BoardTile from '../atoms/BoardTile';
+import { betweenBracketsValidator, setPosition } from '../../services/gameService';
+import { size } from '../globalVariables';
 
 const Word = ({ isNewMove, letters, coordinates }) => {
   const { x, y, verticle } = setPosition(coordinates);
   const betweenBracketsArray = betweenBracketsValidator(letters);
 
   const lettersDivs = letters
-    .split("")
-    .filter((letter) => !["(", ")"].includes(letter))
+    .split('')
+    .filter((letter) => !['(', ')'].includes(letter))
     .map((letter, index) => (
       <BoardTile
         key={index}

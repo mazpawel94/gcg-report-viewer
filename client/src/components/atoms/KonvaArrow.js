@@ -1,7 +1,7 @@
-import React from "react";
-import { Arrow } from "react-konva";
+import React from 'react';
+import { Arrow } from 'react-konva';
 
-import { size } from "../globalVariables";
+import { size } from '../globalVariables';
 
 const KonvaArrow = ({ x, y, vertical = true, callback }) => {
   return (

@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
-import { Form } from "semantic-ui-react";
-import styled from "styled-components";
+import React, { useRef, useState } from 'react';
+import { Form } from 'semantic-ui-react';
+import styled from 'styled-components';
 
-import useAddDiagramToBase from "../../hooks/useAddDiagramToBase";
-import InputTag from "../atoms/InputTag";
+import useAddDiagramToBase from '../../hooks/useAddDiagramToBase';
+import InputTag from '../atoms/InputTag';
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -40,7 +40,7 @@ const RadioWrapper = styled(Form.Group)`
 const NewDiagramForm = ({ close }) => {
   const [tags, setTags] = useState([]);
   const [diagramIsPublic, setDiagramIsPublic] = useState(false);
-  const [diagramId, setDiagramId] = useState("");
+  const [diagramId, setDiagramId] = useState('');
   const { addDiagramCallback } = useAddDiagramToBase();
 
   const handleChange = (e, { value }) => setDiagramIsPublic(value);
@@ -48,8 +48,7 @@ const NewDiagramForm = ({ close }) => {
     addDiagramCallback(diagramIsPublic, tags);
     close();
   };
-  const addDiagram = () =>
-    addDiagramCallback().then((res) => setDiagramId(res));
+  const addDiagram = () => addDiagramCallback().then((res) => setDiagramId(res));
 
   return (
     <StyledWrapper>

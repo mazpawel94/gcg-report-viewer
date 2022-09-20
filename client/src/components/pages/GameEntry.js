@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "../atoms/Button";
+import React from 'react';
+import styled from 'styled-components';
+import Button from '../atoms/Button';
 
-import KonvaArrow from "../atoms/KonvaArrow";
-import KonvaBoard from "../organisms/KonvaBoard";
-import { RackForInput } from "../organisms/Rack";
-import Word from "../organisms/Word";
-import useGameEntry from "./hooks/useGameEntry";
+import KonvaArrow from '../atoms/KonvaArrow';
+import KonvaBoard from '../organisms/KonvaBoard';
+import { RackForInput } from '../organisms/Rack';
+import Word from '../organisms/Word';
+import useGameEntry from './hooks/useGameEntry';
 
 const InputArea = styled.div`
   width: 550px;
@@ -89,16 +89,9 @@ const GameEntry = () => {
       <InputsWrapper>
         <InputArea onContextMenu={resetCurrentWord}>
           <HiddenInput value={inputValue} onChange={handleOnChange} />
-          <RackForInput
-            inputValue={inputValue}
-            handleClickOnTile={handlePutNewLetter}
-          />
+          <RackForInput inputValue={inputValue} handleClickOnTile={handlePutNewLetter} />
         </InputArea>
-        <PointsInput
-          type="number"
-          value={points}
-          onChange={({ target }) => setPoints(target.value)}
-        />
+        <PointsInput type="number" value={points} onChange={({ target }) => setPoints(target.value)} />
       </InputsWrapper>
       <ButtonsWrapper>
         <Button onClick={addMove}>dodaj</Button>

@@ -1,25 +1,23 @@
-import React from "react";
-import { fireEvent, render } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from 'react';
+import { fireEvent, render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-import GameNavigation from "../GameNavigation";
-import Context from "../../../context";
-import { contextValues } from "../../../dummyContextValues";
+import GameNavigation from '../GameNavigation';
+import Context from '../../../context';
+import { contextValues } from '../../../dummyContextValues';
 
 const renderGameNavigation = () => {
   const utils = render(
     <Context.Provider value={contextValues}>
       <GameNavigation />
-    </Context.Provider>
+    </Context.Provider>,
   );
-  const buttons = utils
-    .getByTestId("game-navigation")
-    .querySelectorAll("button");
+  const buttons = utils.getByTestId('game-navigation').querySelectorAll('button');
   return { ...utils, buttons };
 };
 
-describe("GameNavigation", () => {
-  it("renders with 4 buttons", () => {
+describe('GameNavigation', () => {
+  it('renders with 4 buttons', () => {
     const { buttons } = renderGameNavigation();
     expect(buttons.length).toEqual(4);
   });
@@ -48,9 +46,7 @@ describe("GameNavigation", () => {
   it("change move index to moves.length - 2 in context by click 'fast forward' button", () => {
     const { buttons } = renderGameNavigation();
     fireEvent.click(buttons[3]);
-    expect(contextValues.actualMoveIndex).toEqual(
-      contextValues.moves.length - 2
-    );
+    expect(contextValues.actualMoveIndex).toEqual(contextValues.moves.length - 2);
   });
 
   it("stop increase move index in context after clicks 'forward' button if  moveIndex === moves.length - 1", () => {
@@ -59,8 +55,6 @@ describe("GameNavigation", () => {
     fireEvent.click(buttons[2]);
     fireEvent.click(buttons[2]);
     fireEvent.click(buttons[2]);
-    expect(contextValues.actualMoveIndex).toEqual(
-      contextValues.moves.length - 1
-    );
+    expect(contextValues.actualMoveIndex).toEqual(contextValues.moves.length - 1);
   });
 });

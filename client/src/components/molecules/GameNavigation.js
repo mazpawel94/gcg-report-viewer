@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import { Button } from "semantic-ui-react";
+import React from 'react';
+import styled from 'styled-components';
+import { Button } from 'semantic-ui-react';
 
-import  { useAppContext } from "../../context";
-import useHandleKeyDown from "../../hooks/useHandleKeyDown";
-import { actionTypes } from "../../reducers/gameReducer";
+import { useAppContext } from '../../context';
+import useHandleKeyDown from '../../hooks/useHandleKeyDown';
+import { actionTypes } from '../../reducers/gameReducer';
 
 const StyledWrapper = styled.div`
   margin: auto;
@@ -23,17 +23,13 @@ const StyledButton = styled(Button)`
 `;
 
 const GameNavigation = () => {
-  const {dispatch } = useAppContext();
+  const { dispatch } = useAppContext();
   useHandleKeyDown();
 
-  const handleFastBackward = () =>
-    dispatch({ type: actionTypes.setMoveIndex, payload: 0 });
-  const handleBackward = () =>
-    dispatch({ type: actionTypes.decrementMoveIndex });
-  const handleForward = () =>
-    dispatch({ type: actionTypes.incrementMoveIndex });
-  const handleFastForward = () =>
-    dispatch({ type: actionTypes.setMoveIndex, payload: -1 });
+  const handleFastBackward = () => dispatch({ type: actionTypes.setMoveIndex, payload: 0 });
+  const handleBackward = () => dispatch({ type: actionTypes.decrementMoveIndex });
+  const handleForward = () => dispatch({ type: actionTypes.incrementMoveIndex });
+  const handleFastForward = () => dispatch({ type: actionTypes.setMoveIndex, payload: -1 });
 
   return (
     <StyledWrapper data-testid="game-navigation">

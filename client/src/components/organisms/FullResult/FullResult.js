@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Table } from "semantic-ui-react";
+import React from 'react';
+import styled from 'styled-components';
+import { Table } from 'semantic-ui-react';
 
-import Header from "./Header";
-import Rows from "./Rows";
+import Header from './Header';
+import Rows from './Rows';
 
 const StyledWrapper = styled.div`
   position: absolute;

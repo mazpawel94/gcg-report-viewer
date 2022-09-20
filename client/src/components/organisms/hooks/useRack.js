@@ -1,9 +1,9 @@
-import useGetFromCurrentState from "../../../hooks/useGetFromCurrentState";
+import useGetFromCurrentState from '../../../hooks/useGetFromCurrentState';
 
 const useRack = () => {
   const { actualOption, actualMove } = useGetFromCurrentState();
   if (!actualOption) return null;
-  const freeLetters = actualOption.freeLetters.split("");
+  const freeLetters = actualOption.freeLetters.split('');
 
   const checkAndRemoveLetter = (el) => {
     const index = freeLetters.indexOf(el);
@@ -14,9 +14,7 @@ const useRack = () => {
     return true;
   };
 
-  const letters = actualMove.letters
-    .split("")
-    .map((el) => ({ letter: el, played: checkAndRemoveLetter(el) }));
+  const letters = actualMove.letters.split('').map((el) => ({ letter: el, played: checkAndRemoveLetter(el) }));
 
   return { letters };
 };

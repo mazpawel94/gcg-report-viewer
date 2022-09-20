@@ -1,8 +1,8 @@
-import React from "react";
-import { Rect, Text, Star } from "react-konva";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Rect, Text, Star } from 'react-konva';
+import PropTypes from 'prop-types';
 
-import { FIELDS_PARAMS, size } from "../globalVariables";
+import { FIELDS_PARAMS, size } from '../globalVariables';
 
 const emptyFn = () => {};
 const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
@@ -55,7 +55,7 @@ const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
             onClick={handleClick}
             onTap={handleClick}
           />
-          {bonusType === "middle" && (
+          {bonusType === 'middle' && (
             <Star
               x={x * size + size / 2}
               y={y * size + size / 2}

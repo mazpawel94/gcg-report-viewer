@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Rect, Text } from "react-konva";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Rect, Text } from 'react-konva';
 
-import { POINTS, size } from "../globalVariables";
+import { POINTS, size } from '../globalVariables';
 
 const COLORS = {
-  basic: "#f8e8c7",
-  newMove: "#1ae825",
+  basic: '#f8e8c7',
+  newMove: '#1ae825',
 };
 const BoardTile = ({ x, y, letter, transparent, newMove }) => {
   const blank = letter === letter.toLowerCase();
@@ -28,7 +28,7 @@ const BoardTile = ({ x, y, letter, transparent, newMove }) => {
         y={y + 8}
         width={size}
         height={size}
-        fill={"#015b52"}
+        fill={'#015b52'}
         text={letter.toUpperCase()}
         align="center"
         fontSize={25}
@@ -43,7 +43,7 @@ const BoardTile = ({ x, y, letter, transparent, newMove }) => {
         y={y + size - 10}
         width={10}
         height={10}
-        fill={"#015b52"}
+        fill={'#015b52'}
         text={POINTS[letter]}
         align="center"
         fontSize={9}

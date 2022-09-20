@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { Button } from "semantic-ui-react";
+import styled, { css } from 'styled-components';
+import { Button } from 'semantic-ui-react';
 
 const StyledButton = styled(Button)`
   background: #f9e254 !important;

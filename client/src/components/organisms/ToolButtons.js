@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from "react";
-import styled from "styled-components";
+import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
 
-import Deletion from "../molecules/Deletion";
-import Button from "../atoms/Button";
-import FullResult from "../organisms/FullResult/FullResult";
-import useExportAsImage from "../../hooks/useExportAsImage";
-import ModalWithDiagramId from "../molecules/ModalWithDiagramId";
-import NewDiagramForm from "./NewDiagramForm";
+import Deletion from '../molecules/Deletion';
+import Button from '../atoms/Button';
+import FullResult from '../organisms/FullResult/FullResult';
+import useExportAsImage from '../../hooks/useExportAsImage';
+import ModalWithDiagramId from '../molecules/ModalWithDiagramId';
+import NewDiagramForm from './NewDiagramForm';
 
 const StyledWrapper = styled.div`
   display: flex;

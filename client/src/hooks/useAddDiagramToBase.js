@@ -1,5 +1,5 @@
-import { findPlayedMove, findBestMove } from "../services/gameService";
-import useGetFromCurrentState from "./useGetFromCurrentState";
+import { findPlayedMove, findBestMove } from '../services/gameService';
+import useGetFromCurrentState from './useGetFromCurrentState';
 
 const compressMovesList = (moves) =>
   moves.map((move) => ({
@@ -10,10 +10,10 @@ const compressMovesList = (moves) =>
 const useAddDiagramToBase = () => {
   const { currentMoves, actualMove } = useGetFromCurrentState();
   const addDiagramCallback = async (diagramIsPublic, tags) => {
-    const id = await fetch("/diagram", {
-      method: "POST",
+    const id = await fetch('/diagram', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         diagramIsPublic,

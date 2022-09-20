@@ -1,6 +1,6 @@
-import { Table } from "semantic-ui-react";
-import { useAppContext } from "../../../context";
-import { findPlayedMove } from "../../../services/gameService";
+import { Table } from 'semantic-ui-react';
+import { useAppContext } from '../../../context';
+import { findPlayedMove } from '../../../services/gameService';
 
 const OneMoveCells = ({ move, playerIndex }) => {
   const { actualMoveIndex } = useAppContext();
@@ -12,10 +12,10 @@ const OneMoveCells = ({ move, playerIndex }) => {
   return (
     <>
       <Table.Cell active={active} data-player={lastMove ? 0 : playerIndex}>
-        {lastMove ? "" : `+${points}`}
+        {lastMove ? '' : `+${points}`}
       </Table.Cell>
       <Table.Cell active={active} data-player={lastMove ? 0 : playerIndex}>
-        {lastMove ? "" : points + parseInt(move.pointsBefore)}
+        {lastMove ? '' : points + parseInt(move.pointsBefore)}
       </Table.Cell>
     </>
   );

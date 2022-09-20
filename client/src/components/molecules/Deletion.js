@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-import useFillDeletion from "../../hooks/useFillDeletion";
-import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
+import useFillDeletion from '../../hooks/useFillDeletion';
+import useGetFromCurrentState from '../../hooks/useGetFromCurrentState';
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -30,12 +30,11 @@ const DeletionLetter = styled.div`
   line-height: 30px;
   opacity: ${({ onBoard }) => (onBoard ? 0.4 : 1)};
 `;
-const LETTERS =
-  "AAAAAAAAAĄBBCCCĆDDDEEEEEEEĘFGGHHIIIIIIIIJJKKKLLLŁŁMMMNNNNNŃOOOOOOÓPPPRRRRSSSSŚTTTUUWWWWYYYYZZZZZŻŹ??";
+const LETTERS = 'AAAAAAAAAĄBBCCCĆDDDEEEEEEEĘFGGHHIIIIIIIIJJKKKLLLŁŁMMMNNNNNŃOOOOOOÓPPPRRRRSSSSŚTTTUUWWWWYYYYZZZZZŻŹ??';
 
 const DeletionLetters = (usedTiles) => {
   let temporaryDeletion = [...usedTiles];
-  return LETTERS.split("").map((letter, index) => {
+  return LETTERS.split('').map((letter, index) => {
     const onBoard = temporaryDeletion.includes(letter);
     if (onBoard) temporaryDeletion.splice(temporaryDeletion.indexOf(letter), 1);
     return (
@@ -53,11 +52,7 @@ const Deletion = () => {
   useEffect(() => {
     setUsedTiles([...usedLetters, ...actualMove.letters]);
   }, [usedLetters, actualMove]);
-  return (
-    <StyledWrapper data-testid="deletion">
-      {DeletionLetters(usedTiles)}
-    </StyledWrapper>
-  );
+  return <StyledWrapper data-testid="deletion">{DeletionLetters(usedTiles)}</StyledWrapper>;
 };
 
 export default Deletion;

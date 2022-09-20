@@ -1,51 +1,41 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  convertToBoardCoordinates,
-  convertBoardWordToRack,
-} from "../../../services/gameService";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { convertToBoardCoordinates, convertBoardWordToRack } from '../../../services/gameService';
+
+const removeBrackets = (word) => word.replace(/[\(,\)]/g, '');
 
 const createTxtFromMoves = (array) => {
   const name1 = array[0].player;
   const name2 = array[1].player;
   const rows = array.map(
-    (el) =>
-      `>${el.player}: ${el.letters} ${el.coordinates} ${el.word.replace(
-        /[\(,\)]/g,
-        ""
-      )} +${el.points} ${el.sumPoints} `
+    (el) => `>${el.player}: ${el.letters} ${el.coordinates} ${removeBrackets(el.word)} +${el.points} ${el.sumPoints} `,
   );
 
   const file = `#character-encoding UTF-8
 #player1 ${name1} ${name1}
 #player2 ${name2} ${name2}
-${rows.join("\r\n")}`;
+${rows.join('\r\n')}`;
   return file;
 };
 
 const findPosition = (startPos, distance) =>
-  startPos.vertical
-    ? { x: startPos.x, y: startPos.y + distance }
-    : { y: startPos.y, x: startPos.x + distance };
+  startPos.vertical ? { x: startPos.x, y: startPos.y + distance } : { y: startPos.y, x: startPos.x + distance };
 
 const useGameEntry = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [points, setPoints] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [points, setPoints] = useState('');
   const [players, setPlayers] = useState([
-    { name: "player_1", current: true, letters: "" },
-    { name: "player_2", current: false, letters: "" },
+    { name: 'player_1', current: true, letters: '' },
+    { name: 'player_2', current: false, letters: '' },
   ]);
   const [startPosition, setStartPosition] = useState({
     x: 5,
     y: 5,
     vertical: true,
   });
-  const [currentWord, setCurrentWord] = useState("");
+  const [currentWord, setCurrentWord] = useState('');
   const [moves, setMoves] = useState([]);
   const [occupiedFields, setOccupiedFields] = useState([]);
-  const currentPlayer = useMemo(
-    () => players.find((el) => el.current),
-    [players, moves.length]
-  );
+  const currentPlayer = useMemo(() => players.find((el) => el.current), [players, moves.length]);
 
   const addOcupiedFields = (startPos, wordLength) => {
     const convertedCoords = Array(wordLength)
@@ -61,8 +51,7 @@ const useGameEntry = () => {
       current: false,
       letters: inputValue,
     };
-    const newPlayerIndex =
-      playerIndex + 1 === players.length ? 0 : playerIndex + 1;
+    const newPlayerIndex = playerIndex + 1 === players.length ? 0 : playerIndex + 1;
     players[newPlayerIndex] = { ...players[newPlayerIndex], current: true };
     setInputValue(players[newPlayerIndex].letters);
   };
@@ -70,7 +59,7 @@ const useGameEntry = () => {
   const addMove = useCallback(() => {
     if (!points) return;
     const prevDots = generateDots(startPosition, 1, true);
-    const convertedWord = currentWord.replace(/[\(,\)]/g, "");
+    const convertedWord = removeBrackets(currentWord);
     const finalPosition = {
       ...startPosition,
       ...findPosition(startPosition, -prevDots.length),
@@ -81,7 +70,7 @@ const useGameEntry = () => {
       {
         player: playerName,
         letters: `${inputValue}${convertBoardWordToRack(convertedWord)}`,
-        word: `${prevDots ? `(${prevDots})` : ""}${currentWord}`,
+        word: `${prevDots ? `(${prevDots})` : ''}${currentWord}`,
         points: parseInt(points),
         coordinates: convertToBoardCoordinates(finalPosition),
         sumPoints: prev
@@ -90,8 +79,8 @@ const useGameEntry = () => {
       },
     ]);
     addOcupiedFields(startPosition, convertedWord.length);
-    setCurrentWord("");
-    setPoints("");
+    setCurrentWord('');
+    setPoints('');
     changeCurrentPlayer();
   }, [points, inputValue, currentWord, startPosition]);
 
@@ -102,12 +91,10 @@ const useGameEntry = () => {
       {
         player: currentPlayer.name,
         letters: `A`,
-        word: "-7",
+        word: '-7',
         points: 0,
-        coordinates: "",
-        sumPoints: prev
-          .filter((el) => el.player === currentPlayer.name)
-          .reduce((acc, curr) => acc + curr.points, 0),
+        coordinates: '',
+        sumPoints: prev.filter((el) => el.player === currentPlayer.name).reduce((acc, curr) => acc + curr.points, 0),
       },
     ]);
     changeCurrentPlayer();
@@ -120,63 +107,41 @@ const useGameEntry = () => {
 
   const handleBoardClick = useCallback((x, y) => {
     setStartPosition((prev) =>
-      prev.x === x && prev.y === y
-        ? { x, y, vertical: !prev.vertical }
-        : { x, y, vertical: false }
+      prev.x === x && prev.y === y ? { x, y, vertical: !prev.vertical } : { x, y, vertical: false },
     );
   }, []);
 
-  const handleArrowClick = useCallback(
-    () => setStartPosition((prev) => ({ ...prev, vertical: !prev.vertical })),
-    []
-  );
+  const handleArrowClick = useCallback(() => setStartPosition((prev) => ({ ...prev, vertical: !prev.vertical })), []);
 
   const generateDots = (startPosition, distance, back = false) => {
-    let dots = "";
+    let dots = '';
     const dir = back ? -1 : 1;
     let nextCoordinate = findPosition(startPosition, distance * dir);
-    while (
-      occupiedFields.some(
-        (field) => field.x === nextCoordinate.x && field.y === nextCoordinate.y
-      )
-    ) {
+    while (occupiedFields.some((field) => field.x === nextCoordinate.x && field.y === nextCoordinate.y)) {
       dots = `${dots}.`;
-      nextCoordinate = findPosition(
-        startPosition,
-        (distance + dots.length) * dir
-      );
+      nextCoordinate = findPosition(startPosition, (distance + dots.length) * dir);
     }
     return dots;
   };
 
   const handlePutNewLetter = useCallback(
     (letter) => {
-      if (!inputValue.includes(letter) && !inputValue.includes("?")) return;
+      if (!inputValue.includes(letter) && !inputValue.includes('?')) return;
       const isBlank = !inputValue.includes(letter);
       setCurrentWord((prev) => {
         const newLetter = isBlank ? letter.toLowerCase() : letter;
-        const dots = generateDots(startPosition, prev.length + 1);
-        return `${prev}${newLetter}${dots ? `(${dots})` : ""}`;
+        const wordLength = removeBrackets(prev).length + 1;
+        const dots = generateDots(startPosition, wordLength);
+        return `${prev}${newLetter}${dots ? `(${dots})` : ''}`;
       });
-      setInputValue((prev) =>
-        isBlank ? prev.replace("?", "") : prev.replace(letter, "")
-      );
+      setInputValue((prev) => (isBlank ? prev.replace('?', '') : prev.replace(letter, '')));
     },
-    [
-      inputValue,
-      startPosition.x,
-      startPosition.y,
-      startPosition.vertical,
-      occupiedFields,
-    ]
+    [inputValue, startPosition.x, startPosition.y, startPosition.vertical, occupiedFields],
   );
 
   const setName = ({ target }) => {
     setPlayers((prev) => {
-      const newA = [
-        ...prev.filter((el) => !el.current),
-        { ...currentPlayer, name: target.value },
-      ];
+      const newA = [...prev.filter((el) => !el.current), { ...currentPlayer, name: target.value }];
       return newA;
     });
   };
@@ -184,21 +149,18 @@ const useGameEntry = () => {
   const resetCurrentWord = useCallback(
     (e) => {
       e?.preventDefault();
-      setCurrentWord("");
+      setCurrentWord('');
       setInputValue((prev) => `${prev}${convertBoardWordToRack(currentWord)}`);
     },
-    [currentWord]
+    [currentWord],
   );
 
   const downloadGame = () => {
     const text = createTxtFromMoves(moves);
-    const element = document.createElement("a");
-    element.setAttribute(
-      "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
-    );
-    element.setAttribute("download", "game");
-    element.style.display = "none";
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', 'game');
+    element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
@@ -206,14 +168,13 @@ const useGameEntry = () => {
 
   const handleKeyDown = (e) => {
     const charCode = e.keyCode;
-    if (e.target.nodeName === "INPUT" || charCode < 64 || charCode > 123)
-      return;
+    if (e.target.nodeName === 'INPUT' || charCode < 64 || charCode > 123) return;
     handlePutNewLetter(e.key.toUpperCase());
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [inputValue, startPosition]);
 
   return {

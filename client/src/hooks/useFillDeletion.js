@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { findPlayedMove } from "../services/gameService";
-import useGetFromCurrentState from "./useGetFromCurrentState";
+import { findPlayedMove } from '../services/gameService';
+import useGetFromCurrentState from './useGetFromCurrentState';
 const useFillDeletion = () => {
   const [usedLetters, setUsedLetters] = useState([]);
   const { currentMoves, isLossMove } = useGetFromCurrentState();
@@ -9,13 +9,7 @@ const useFillDeletion = () => {
     const letters = currentMoves
       .filter((el, i) => !isLossMove(i))
       .map((move) => findPlayedMove(move))
-      .reduce(
-        (acc, { word }) => [
-          ...acc,
-          ...word.replaceAll(/\([^)]+\)/g, "").split(""),
-        ],
-        ""
-      );
+      .reduce((acc, { word }) => [...acc, ...word.replaceAll(/\([^)]+\)/g, '').split('')], '');
     setUsedLetters([...letters]);
   }, [currentMoves.length]);
 

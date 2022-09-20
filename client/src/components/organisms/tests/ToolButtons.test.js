@@ -1,10 +1,10 @@
-import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from 'react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-import ToolButtons from "../ToolButtons";
-import { contextValues } from "../../../dummyContextValues";
-import Context from "../../../context";
+import ToolButtons from '../ToolButtons';
+import { contextValues } from '../../../dummyContextValues';
+import Context from '../../../context';
 
 const renderToolButtons = () => {
   const state = {
@@ -13,31 +13,29 @@ const renderToolButtons = () => {
   const utils = render(
     <Context.Provider value={contextValues}>
       <ToolButtons saveImageBefore={(res) => (state.imageWillBeBefore = res)} />
-    </Context.Provider>
+    </Context.Provider>,
   );
-  const buttons = utils
-    .getByTestId("buttons-wrapper")
-    .querySelectorAll("button");
+  const buttons = utils.getByTestId('buttons-wrapper').querySelectorAll('button');
 
   return { ...utils, buttons, state };
 };
 
-describe("ToolButtons", () => {
-  it("renders with correct styles", () => {
+describe('ToolButtons', () => {
+  it('renders with correct styles', () => {
     const { getByTestId } = renderToolButtons();
-    expect(getByTestId("buttons-wrapper")).toHaveStyle("width: 660px");
+    expect(getByTestId('buttons-wrapper')).toHaveStyle('width: 660px');
   });
 
-  it("renders deletion after click button", () => {
+  it('renders deletion after click button', () => {
     const { getByTestId, buttons } = renderToolButtons();
     fireEvent.click(buttons[0]);
-    expect(getByTestId("deletion")).toBeInTheDocument();
+    expect(getByTestId('deletion')).toBeInTheDocument();
   });
 
-  it("renders full result after click button", () => {
+  it('renders full result after click button', () => {
     const { getByTestId, buttons } = renderToolButtons();
     fireEvent.click(buttons[1]);
-    expect(getByTestId("full-result")).toBeInTheDocument();
+    expect(getByTestId('full-result')).toBeInTheDocument();
   });
 
   it("calls callback with true after click button 'Zapisz obraz (przed) ", () => {
@@ -49,15 +47,13 @@ describe("ToolButtons", () => {
   it("opens modal with new diagram details after click button 'Dodaj jako zadanie'", async () => {
     const { getByText, buttons } = renderToolButtons();
     fireEvent.click(buttons[4]);
-    await waitFor(() =>
-      expect(getByText("Pomyślnie dodano")).toBeInTheDocument()
-    );
+    await waitFor(() => expect(getByText('Pomyślnie dodano')).toBeInTheDocument());
   });
 
   it("close modal after click button 'anuluj'", async () => {
     const { queryByText, buttons } = renderToolButtons();
     fireEvent.click(buttons[4]);
-    await waitFor(() => fireEvent.click(queryByText("anuluj")));
-    expect(queryByText("anuluj")).not.toBeInTheDocument();
+    await waitFor(() => fireEvent.click(queryByText('anuluj')));
+    expect(queryByText('anuluj')).not.toBeInTheDocument();
   });
 });

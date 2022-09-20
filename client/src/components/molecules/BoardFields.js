@@ -1,44 +1,26 @@
-import React from "react";
+import React from 'react';
 
-import BoardField from "../atoms/BoardField";
-import {
-  word2Fields,
-  word3Fields,
-  letter2Fields,
-  letter3Fields,
-} from "../globalVariables";
+import BoardField from '../atoms/BoardField';
+import { word2Fields, word3Fields, letter2Fields, letter3Fields } from '../globalVariables';
 
 const allBonusFieldsArrays = [
-  [word2Fields, "word2"],
-  [word3Fields, "word3"],
-  [letter2Fields, "letter2"],
-  [letter3Fields, "letter3"],
-  [[[7, 7]], "middle"],
+  [word2Fields, 'word2'],
+  [word3Fields, 'word3'],
+  [letter2Fields, 'letter2'],
+  [letter3Fields, 'letter3'],
+  [[[7, 7]], 'middle'],
 ];
 const emptyFn = () => {};
 
 const BonusFields = ({ coords, type, callback }) =>
-  coords.map((el) => (
-    <BoardField
-      key={el}
-      x={el[0]}
-      y={el[1]}
-      bonusType={type}
-      callback={callback}
-    />
-  ));
+  coords.map((el) => <BoardField key={el} x={el[0]} y={el[1]} bonusType={type} callback={callback} />);
 
 const Fields = (handleBoardClick) => {
   return [...Array(15).keys()]
     .map((el) =>
       [...Array(15).keys()].map((el2) => (
-        <BoardField
-          key={`${el}${el}${el2}`}
-          x={el}
-          y={el2}
-          callback={handleBoardClick}
-        />
-      ))
+        <BoardField key={`${el}${el}${el2}`} x={el} y={el2} callback={handleBoardClick} />
+      )),
     )
     .flat();
 };

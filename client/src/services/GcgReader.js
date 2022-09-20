@@ -6,22 +6,17 @@ class GcgReader {
   convertTextByRegex = (text) => text.match(allRegex);
 
   findFreeLetters = (move, letters) => {
-    const cleanMoveArray = move
-      .replace(letterOnBoard, "")
-      .replace(blank, "?")
-      .split("");
-    const lettersArray = letters.split("");
-    cleanMoveArray.forEach((letter) =>
-      lettersArray.splice(lettersArray.indexOf(letter), 1)
-    );
-    return lettersArray.join("");
+    const cleanMoveArray = move.replace(letterOnBoard, '').replace(blank, '?').split('');
+    const lettersArray = letters.split('');
+    cleanMoveArray.forEach((letter) => lettersArray.splice(lettersArray.indexOf(letter), 1));
+    return lettersArray.join('');
   };
 
   pushMoveByLineToArray = (line, movesArray) => {
     const atoms = line
-      .replace(/\*/g, " *")
+      .replace(/\*/g, ' *')
       .split(/\s+/)
-      .filter((el) => el !== "");
+      .filter((el) => el !== '');
 
     //add played move
     if (line.match(regActualPlayer)) {
@@ -43,16 +38,8 @@ class GcgReader {
         coordinates: atoms[1],
         word: atoms[2],
         movePoints: atoms[3],
-        percent:
-          atoms.length > 4
-            ? atoms[4][atoms[4].length - 1] === "%"
-              ? atoms[4]
-              : "0%"
-            : "",
-        freeLetters: this.findFreeLetters(
-          atoms[2],
-          movesArray[actualIndex].letters
-        ),
+        percent: atoms.length > 4 ? (atoms[4][atoms[4].length - 1] === '%' ? atoms[4] : '0%') : '',
+        freeLetters: this.findFreeLetters(atoms[2], movesArray[actualIndex].letters),
       });
     }
   };

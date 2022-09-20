@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import { Table } from "semantic-ui-react";
+import React from 'react';
+import styled from 'styled-components';
+import { Table } from 'semantic-ui-react';
 
-import AppContext, { useAppContext } from "../../context";
-import { actionTypes } from "../../reducers/gameReducer";
-import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
+import AppContext, { useAppContext } from '../../context';
+import { actionTypes } from '../../reducers/gameReducer';
+import useGetFromCurrentState from '../../hooks/useGetFromCurrentState';
 const StyledWrapper = styled.div`
   flex-grow: 1;
   width: 80%;
@@ -20,15 +20,9 @@ const StyledRow = styled(Table.Row)`
 
 const Option = ({ params, selected, index }) => {
   const { dispatch } = useAppContext();
-  const { evaluate, coordinates, word, movePoints, percent, freeLetters } =
-    params;
+  const { evaluate, coordinates, word, movePoints, percent, freeLetters } = params;
   return (
-    <StyledRow
-      active={selected}
-      onClick={() =>
-        dispatch({ type: actionTypes.setOptionIndex, payload: index })
-      }
-    >
+    <StyledRow active={selected} onClick={() => dispatch({ type: actionTypes.setOptionIndex, payload: index })}>
       <Table.Cell>{evaluate}</Table.Cell>
       <Table.Cell>{coordinates}</Table.Cell>
       <Table.Cell>{word}</Table.Cell>

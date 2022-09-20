@@ -1,6 +1,6 @@
-import React from "react";
-import { Table } from "semantic-ui-react";
-import { useAppContext } from "../../../context";
+import React from 'react';
+import { Table } from 'semantic-ui-react';
+import { useAppContext } from '../../../context';
 
 const Header = () => {
   const { player1, player2 } = useAppContext();

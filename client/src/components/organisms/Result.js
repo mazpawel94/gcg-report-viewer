@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 // import PropTypes from 'prop-types';
-import { Divider, Grid, Segment, Item } from "semantic-ui-react";
+import { Divider, Grid, Segment, Item } from 'semantic-ui-react';
 
-import { useAppContext } from "../../context";
+import { useAppContext } from '../../context';
 const Header = styled(Item.Header)`
   width: 200px;
 `;
@@ -20,11 +20,10 @@ const NewPoints = styled.div`
 const PlayerResult = ({ order }) => {
   const { moves, actualMoveIndex, actualOptionIndex } = useAppContext();
   const [playerPoints, setPlayerPoints] = useState(0);
-  const nick = moves[order].nick.replace("_", " ");
+  const nick = moves[order].nick.replace('_', ' ');
 
   useEffect(() => {
-    if (order === actualMoveIndex % 2)
-      setPlayerPoints(moves[actualMoveIndex].pointsBefore);
+    if (order === actualMoveIndex % 2) setPlayerPoints(moves[actualMoveIndex].pointsBefore);
     else setPlayerPoints(moves[actualMoveIndex + 1]?.pointsBefore);
   }, [actualMoveIndex, moves, order]);
 
@@ -35,13 +34,7 @@ const PlayerResult = ({ order }) => {
           <Header as="h3">{nick}</Header>
           <Points>{playerPoints}</Points>
           {order === actualMoveIndex % 2 ? (
-            <NewPoints>
-              +
-              {
-                moves[actualMoveIndex]?.choiceOptions[actualOptionIndex]
-                  ?.movePoints
-              }
-            </NewPoints>
+            <NewPoints>+{moves[actualMoveIndex]?.choiceOptions[actualOptionIndex]?.movePoints}</NewPoints>
           ) : (
             <NewPoints />
           )}

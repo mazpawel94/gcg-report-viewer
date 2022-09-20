@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import { useAppContext } from "../../../context";
-import useGetFromCurrentState from "../../../hooks/useGetFromCurrentState";
+import { useAppContext } from '../../../context';
+import useGetFromCurrentState from '../../../hooks/useGetFromCurrentState';
 
 const useBoard = (asBackground) => {
   const { moves, withoutNewMove } = useAppContext();

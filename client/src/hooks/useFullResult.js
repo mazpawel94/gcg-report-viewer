@@ -1,7 +1,7 @@
-import { useCallback } from "react";
-import { useAppContext } from "../context";
-import { actionTypes } from "../reducers/gameReducer";
-import { findPlayedMove } from "../services/gameService";
+import { useCallback } from 'react';
+import { useAppContext } from '../context';
+import { actionTypes } from '../reducers/gameReducer';
+import { findPlayedMove } from '../services/gameService';
 
 const useFullResult = () => {
   const { moves, dispatch } = useAppContext();
@@ -24,7 +24,7 @@ const useFullResult = () => {
     dispatch({
       type: actionTypes.setMoveIndex,
       payload: index + parseInt(e.target.dataset.player),
-    })
+    }),
   );
 
   return {

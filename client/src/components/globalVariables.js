@@ -37,24 +37,24 @@ export const POINTS = {
 
 export const FIELDS_PARAMS = {
   word2: {
-    color: "#e8b442",
-    text: "PODWÓJNA PREMIA SŁOWNA",
+    color: '#e8b442',
+    text: 'PODWÓJNA PREMIA SŁOWNA',
   },
   word3: {
-    color: "#c02929",
-    text: "POTRÓJNA PREMIA SŁOWNA",
+    color: '#c02929',
+    text: 'POTRÓJNA PREMIA SŁOWNA',
   },
   letter2: {
-    color: "#7590c7",
-    text: "PODWÓJNA PREMIA LITEROWA",
+    color: '#7590c7',
+    text: 'PODWÓJNA PREMIA LITEROWA',
   },
   letter3: {
-    color: "#0078c1",
-    text: "POTRÓJNA PREMIA LITEROWA",
+    color: '#0078c1',
+    text: 'POTRÓJNA PREMIA LITEROWA',
   },
   middle: {
-    color: "#e8b442",
-    text: "",
+    color: '#e8b442',
+    text: '',
   },
 };
 

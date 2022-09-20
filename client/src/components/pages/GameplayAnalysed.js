@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Board from "../organisms/Board";
-import OptionsList from "../organisms/OptionsList";
-import Rack from "../organisms/Rack";
-import GameNavigation from "../molecules/GameNavigation";
-import Result from "../organisms/Result";
-import { useAppContext } from "../../context";
+import Board from '../organisms/Board';
+import OptionsList from '../organisms/OptionsList';
+import Rack from '../organisms/Rack';
+import GameNavigation from '../molecules/GameNavigation';
+import Result from '../organisms/Result';
+import { useAppContext } from '../../context';
 
 const StyledWrapper = styled.div`
   display: flex;

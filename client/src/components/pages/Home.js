@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Board from "../organisms/Board";
-import HomeMenu from "../molecules/HomeMenu";
-import { useEffect } from "react";
-import { useAppContext } from "../../context";
-import { actionTypes } from "../../reducers/gameReducer";
+import Board from '../organisms/Board';
+import HomeMenu from '../molecules/HomeMenu';
+import { useEffect } from 'react';
+import { useAppContext } from '../../context';
+import { actionTypes } from '../../reducers/gameReducer';
 
 const StyledWrapper = styled.div`
   display: flex;

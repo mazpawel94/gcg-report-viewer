@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React, { useRef } from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-import GcgReader from "../../services/GcgReader";
-import { useAppContext } from "../../context";
-import { actionTypes } from "../../reducers/gameReducer";
+import GcgReader from '../../services/GcgReader';
+import { useAppContext } from '../../context';
+import { actionTypes } from '../../reducers/gameReducer';
 
 const StyledWrapper = styled.div`
   width: 100vw;
@@ -38,7 +38,7 @@ const Options = styled.a`
 
   &:before {
     position: absolute;
-    content: "";
+    content: '';
     width: 130px;
     height: 2px;
     background: #3c4a3e;
@@ -49,7 +49,7 @@ const Options = styled.a`
     transition: 0.4s;
   }
   &:first-of-type::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 3px;
     height: 80px;
@@ -70,22 +70,16 @@ const HomeMenu = () => {
 
   const handleNewFile = (list) => {
     dispatch({ type: actionTypes.setMovesArray, payload: [...list] });
-    navigate("/analiza");
+    navigate('/analiza');
   };
 
   return (
     <StyledWrapper data-testid="home-menu">
-      <HiddenInput
-        ref={inputRef}
-        type="file"
-        onInput={(e) => new GcgReader().readReport(e, handleNewFile)}
-      />
+      <HiddenInput ref={inputRef} type="file" onInput={(e) => new GcgReader().readReport(e, handleNewFile)} />
       <Options href="#" onClick={() => inputRef.current.click()}>
         Analizuj partię
       </Options>
-      <Options onClick={() => navigate("/dodaj-zapis")}>
-        Rozwiązuj zadania
-      </Options>
+      <Options onClick={() => navigate('/dodaj-zapis')}>Rozwiązuj zadania</Options>
     </StyledWrapper>
   );
 };

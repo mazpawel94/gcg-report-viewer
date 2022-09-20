@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useAppContext } from "../context";
-import { actionTypes } from "../reducers/gameReducer";
+import { useAppContext } from '../context';
+import { actionTypes } from '../reducers/gameReducer';
 
 const handleExport = (stageRef) => {
-  const link = document.createElement("a");
+  const link = document.createElement('a');
   link.download = `image.png`;
   link.href = stageRef.current.toDataURL();
   document.body.appendChild(link);

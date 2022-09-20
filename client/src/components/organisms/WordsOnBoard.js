@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import Word from "./Word";
-import useGetFromCurrentState from "../../hooks/useGetFromCurrentState";
-import { findPlayedMove, isExchange } from "../../services/gameService";
+import Word from './Word';
+import useGetFromCurrentState from '../../hooks/useGetFromCurrentState';
+import { findPlayedMove, isExchange } from '../../services/gameService';
 
 const WordsOnBoard = () => {
   const { currentMoves, isLossMove } = useGetFromCurrentState();

@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useAppContext } from "../context";
-import { actionTypes } from "../reducers/gameReducer";
+import { useAppContext } from '../context';
+import { actionTypes } from '../reducers/gameReducer';
 
 const useHandleKeyDown = () => {
   const { dispatch } = useAppContext();
@@ -14,9 +14,9 @@ const useHandleKeyDown = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 

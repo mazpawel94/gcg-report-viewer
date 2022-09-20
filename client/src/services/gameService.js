@@ -1,21 +1,20 @@
-const exceptCoordinates = ["*xch", "xch"];
+const exceptCoordinates = ['*xch', 'xch'];
 
-export const isExchange = (coordinates) =>
-  exceptCoordinates.some((el) => el === coordinates);
+export const isExchange = (coordinates) => exceptCoordinates.some((el) => el === coordinates);
 
 export const findPlayedMove = (move) => {
-  return move?.choiceOptions?.find((opt) => opt.coordinates.includes("*"));
+  return move?.choiceOptions?.find((opt) => opt.coordinates.includes('*'));
 };
 
 export const findBestMove = (move) => {
-  return move?.choiceOptions?.find((opt) => opt.evaluate === "best");
+  return move?.choiceOptions?.find((opt) => opt.evaluate === 'best');
 };
 
 export const setPosition = (coordinates) => {
   const coord = coordinates
-    .split("")
-    .filter((el) => el !== "*")
-    .join("");
+    .split('')
+    .filter((el) => el !== '*')
+    .join('');
   if (coord.slice(-1) !== coord.slice(-1).toLowerCase())
     //horizontal
     return {
@@ -31,35 +30,28 @@ export const setPosition = (coordinates) => {
     };
 };
 
-export const convertBoardWordToRack = (word) =>
-  word.replace(/[a-z,ą,ę,ć,ś,ł, ń, ó, ż,ź]/g, "?").replaceAll(".", "");
+export const convertBoardWordToRack = (word) => word.replace(/[a-z,ą,ę,ć,ś,ł, ń, ó, ż,ź]/g, '?').replaceAll('.', '');
 
 export const convertToBoardCoordinates = ({ x, y, vertical }) =>
-  vertical
-    ? `${String.fromCharCode(x + 65)}${y + 1}`
-    : `${y + 1}${String.fromCharCode(x + 65)}`;
+  vertical ? `${String.fromCharCode(x + 65)}${y + 1}` : `${y + 1}${String.fromCharCode(x + 65)}`;
 
-export const isMoveWithWord = (move) =>
-  !exceptCoordinates.some((el) => el === move.coordinates);
+export const isMoveWithWord = (move) => !exceptCoordinates.some((el) => el === move.coordinates);
 
 export const betweenBracketsValidator = (letters) => {
   const bracketsPairs = [];
   const findPair = (i) => {
-    const start = letters.indexOf("(", i);
-    const end = letters.indexOf(")", i + 1);
+    const start = letters.indexOf('(', i);
+    const end = letters.indexOf(')', i + 1);
     if (end !== -1) {
       bracketsPairs.push({ start, end });
       findPair(end);
     }
   };
   findPair(0);
-  const isBetween = (index) =>
-    bracketsPairs.some((pair) => pair.start < index && pair.end > index);
+  const isBetween = (index) => bracketsPairs.some((pair) => pair.start < index && pair.end > index);
   const booleanArray = letters
-    .split("")
-    .map((letter, i) =>
-      ["(", ")"].includes(letter) ? undefined : isBetween(i)
-    )
+    .split('')
+    .map((letter, i) => (['(', ')'].includes(letter) ? undefined : isBetween(i)))
     .filter((el) => el !== undefined);
   return booleanArray;
 };
