@@ -62,17 +62,10 @@ const BoardWrapper = styled.div`
 
 const ButtonsWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 15px;
-`;
-
-const ButtonsDownWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  max-width: 100vw;
 `;
 
 const GameEntry = () => {
@@ -108,8 +101,10 @@ const GameEntry = () => {
       <ButtonsWrapper>
         <Button onClick={addMove}>dodaj</Button>
         <Button onClick={handleExchange}>wymiana</Button>
-        <Button>strata</Button>
-        <Button>pas</Button>
+        {/* <Button>strata</Button>
+        <Button>pas</Button> */}
+        <Button onClick={resetCurrentWord}>cofnij</Button>
+        <Button onClick={downloadGame}>pobierz</Button>
       </ButtonsWrapper>
       <BoardWrapper>
         <KonvaBoard handleBoardClick={handleBoardClick}>
@@ -127,10 +122,6 @@ const GameEntry = () => {
             ))}
         </KonvaBoard>
       </BoardWrapper>
-      <ButtonsDownWrapper>
-        <Button onClick={resetCurrentWord}>cofnij</Button>
-        <Button onClick={downloadGame}>pobierz</Button>
-      </ButtonsDownWrapper>
     </>
   );
 };
