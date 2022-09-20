@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Rect, Text } from 'react-konva';
 
-import { POINTS, size } from '../globalVariables';
+import { POINTS } from '../globalVariables';
 
 const COLORS = {
   basic: '#f8e8c7',
   newMove: '#1ae825',
 };
-const BoardTile = ({ x, y, letter, transparent, newMove }) => {
+const BoardTile = ({ size, x, y, letter, transparent, newMove }) => {
   const blank = letter === letter.toLowerCase();
   const TileColor = newMove ? COLORS.newMove : COLORS.basic;
+  const pointTextSize = size > 37 ? 10 : size / 4;
   return (
     <>
       <Rect
@@ -31,7 +32,7 @@ const BoardTile = ({ x, y, letter, transparent, newMove }) => {
         fill={'#015b52'}
         text={letter.toUpperCase()}
         align="center"
-        fontSize={25}
+        fontSize={size - 13}
         verticalAlign="center"
         fontFamily="Arial"
         fontStyle="bold"
@@ -39,14 +40,14 @@ const BoardTile = ({ x, y, letter, transparent, newMove }) => {
         data-testid="letter"
       />
       <Text
-        x={x + size - 10}
-        y={y + size - 10}
-        width={10}
-        height={10}
+        x={x + size - 2 - pointTextSize}
+        y={y + size - 2 - pointTextSize}
+        width={pointTextSize}
+        height={pointTextSize}
         fill={'#015b52'}
         text={POINTS[letter]}
         align="center"
-        fontSize={9}
+        fontSize={size > 37 ? 9 : Math.floor(size / 4)}
         verticalAlign="center"
         fontFamily="Arial"
         fontStyle="bold"

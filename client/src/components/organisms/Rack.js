@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Tile from '../molecules/Tile';
+import useHandleResize from './hooks/useHandleResize';
 import useRack from './hooks/useRack';
 
 const StyledWrapper = styled.div`
@@ -9,8 +10,10 @@ const StyledWrapper = styled.div`
   justify-content: center;
 `;
 
-const Tiles = ({ letters, clickHandler }) =>
-  letters.map(({ letter, played }, i) => <Tile key={i} letter={letter} played={played} clickHandler={clickHandler} />);
+const Tiles = ({ letters, small, clickHandler }) =>
+  letters.map(({ letter, played }, i) => (
+    <Tile key={i} letter={letter} played={played} small={small} clickHandler={clickHandler} />
+  ));
 
 const Rack = () => {
   const { letters } = useRack();
@@ -23,6 +26,7 @@ const Rack = () => {
 };
 
 export const RackForInput = ({ inputValue, handleClickOnTile }) => {
+  const { fieldSize } = useHandleResize();
   const letters = inputValue
     .toUpperCase()
     .split('')
@@ -30,7 +34,7 @@ export const RackForInput = ({ inputValue, handleClickOnTile }) => {
 
   return (
     <StyledWrapper>
-      <Tiles letters={letters} clickHandler={handleClickOnTile} />
+      <Tiles small={fieldSize < 38} letters={letters} clickHandler={handleClickOnTile} />
     </StyledWrapper>
   );
 };

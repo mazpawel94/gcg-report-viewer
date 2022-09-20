@@ -2,9 +2,11 @@ import React from 'react';
 
 import BoardTile from '../atoms/BoardTile';
 import { betweenBracketsValidator, setPosition } from '../../services/gameService';
-import { size } from '../globalVariables';
+import { useAppContext } from '../../context';
 
 const Word = ({ isNewMove, letters, coordinates }) => {
+  const { fieldSize } = useAppContext();
+
   const { x, y, verticle } = setPosition(coordinates);
   const betweenBracketsArray = betweenBracketsValidator(letters);
 
@@ -14,11 +16,12 @@ const Word = ({ isNewMove, letters, coordinates }) => {
     .map((letter, index) => (
       <BoardTile
         key={index}
-        x={verticle ? x * size : (x + index) * size}
-        y={verticle ? (y + index) * size : y * size}
+        x={verticle ? x * fieldSize : (x + index) * fieldSize}
+        y={verticle ? (y + index) * fieldSize : y * fieldSize}
         letter={letter}
         transparent={betweenBracketsArray[index]}
         newMove={isNewMove}
+        size={fieldSize}
       />
     ));
   return <>{lettersDivs}</>;

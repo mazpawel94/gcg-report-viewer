@@ -9,8 +9,10 @@ import Word from '../organisms/Word';
 import useGameEntry from './hooks/useGameEntry';
 
 const InputArea = styled.div`
-  width: 550px;
-  height: 80px;
+  min-width: min(550px, 95%);
+  max-width: 550px;
+  min-height: 36px;
+  max-height: 80px;
   background: #0c5605;
   position: relative;
 `;
@@ -18,9 +20,9 @@ const InputArea = styled.div`
 const InputsWrapper = styled.div`
   display: flex;
   justify-content: center;
+  max-width: 95vw;
 `;
 const PlayerNameInput = styled.input`
-  width: 550px;
   margin: auto;
   display: block;
   border: none;
@@ -30,8 +32,9 @@ const PlayerNameInput = styled.input`
 `;
 
 const PointsInput = styled.input`
-  width: 80px;
-  height: 80px;
+  width: min(80px, 6vw);
+  // height: min(80px, 100%);
+  min-width: 40px;
   margin-left: 10px;
   text-align: center;
   font-size: 22px;
@@ -51,8 +54,8 @@ const HiddenInput = styled.input`
   position: absolute;
 `;
 const BoardWrapper = styled.div`
-  width: 650px;
-  height: 650px;
+  max-width: 650px;
+  max-height: 650px;
   position: relative;
   margin: auto;
 `;
@@ -61,6 +64,15 @@ const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 15px;
+`;
+
+const ButtonsDownWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const GameEntry = () => {
@@ -95,11 +107,9 @@ const GameEntry = () => {
       </InputsWrapper>
       <ButtonsWrapper>
         <Button onClick={addMove}>dodaj</Button>
-        <Button onClick={resetCurrentWord}>cofnij</Button>
         <Button onClick={handleExchange}>wymiana</Button>
         <Button>strata</Button>
         <Button>pas</Button>
-        <Button onClick={downloadGame}>pobierz</Button>
       </ButtonsWrapper>
       <BoardWrapper>
         <KonvaBoard handleBoardClick={handleBoardClick}>
@@ -117,6 +127,10 @@ const GameEntry = () => {
             ))}
         </KonvaBoard>
       </BoardWrapper>
+      <ButtonsDownWrapper>
+        <Button onClick={resetCurrentWord}>cofnij</Button>
+        <Button onClick={downloadGame}>pobierz</Button>
+      </ButtonsDownWrapper>
     </>
   );
 };

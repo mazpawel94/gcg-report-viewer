@@ -1,16 +1,18 @@
 import React from 'react';
 import { Arrow } from 'react-konva';
-
-import { size } from '../globalVariables';
+import { useAppContext } from '../../context';
 
 const KonvaArrow = ({ x, y, vertical = true, callback }) => {
+  const { fieldSize } = useAppContext();
+
+  const pointerSize = fieldSize > 37 ? 20 : fieldSize / 2;
   return (
     <Arrow
-      x={x * size + size / 2 + (vertical ? 0 : 10)}
-      y={y * size + size / 2 + (vertical ? 10 : 0)}
+      x={x * fieldSize + fieldSize / 2 + (vertical ? 0 : pointerSize / 2)}
+      y={y * fieldSize + fieldSize / 2 + (vertical ? pointerSize / 2 : 0)}
       rotation={vertical ? 90 : 0}
-      pointerLength={20}
-      pointerWidth={20}
+      pointerLength={pointerSize}
+      pointerWidth={pointerSize}
       fill="yellow"
       opacity={0.8}
       onClick={callback}

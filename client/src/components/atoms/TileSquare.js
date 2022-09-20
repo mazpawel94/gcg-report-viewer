@@ -19,6 +19,17 @@ const TileSquare = styled.div`
   position: relative;
   margin: 6px;
 
+  ${({ small }) =>
+    small &&
+    css`
+      line-height: 30px;
+      height: 30px;
+      min-width: 30px;
+      max-width: 30px;
+      font-size: 20px;
+      margin: 3px;
+    `}
+
   ${({ played }) =>
     played &&
     css`
