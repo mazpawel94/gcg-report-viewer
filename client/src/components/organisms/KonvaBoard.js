@@ -9,7 +9,7 @@ import useHandleResize from './hooks/useHandleResize';
 const emptyFn = () => {};
 
 export const GameArea = styled.div`
-  position: absolute;
+  position: relative;
   top: 30px;
   left: 40px;
   height: calc(100% - 80px);

@@ -18,6 +18,7 @@ const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
         height={fieldSize}
         fill="#08763b"
         stroke="#badce9"
+        strokeWidth={1}
         data-testid="board-field"
         onClick={handleClick}
         onTap={handleClick}
@@ -40,6 +41,7 @@ const BoardField = ({ x, y, bonusType, callback = emptyFn }) => {
             height={fieldSize}
             fill={FIELDS_PARAMS[bonusType].color}
             stroke="#badce9"
+            strokeWidth={1}
             onClick={handleClick}
             onTap={handleClick}
           />

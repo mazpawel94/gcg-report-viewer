@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import Button from '../atoms/Button';
 
@@ -7,6 +7,12 @@ import KonvaBoard from '../organisms/KonvaBoard';
 import { RackForInput } from '../organisms/Rack';
 import Word from '../organisms/Word';
 import useGameEntry from './hooks/useGameEntry';
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
 
 const InputArea = styled.div`
   min-width: min(550px, 95%);
@@ -23,12 +29,12 @@ const InputsWrapper = styled.div`
   max-width: 95vw;
 `;
 const PlayerNameInput = styled.input`
-  margin: auto;
   display: block;
   border: none;
   font-weight: bold;
   outline: none;
   font-size: 16px;
+  margin: auto;
 `;
 
 const PointsInput = styled.input`
@@ -57,7 +63,7 @@ const BoardWrapper = styled.div`
   max-width: 650px;
   max-height: 650px;
   position: relative;
-  margin: auto;
+  margin-bottom: 30px;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -67,6 +73,31 @@ const ButtonsWrapper = styled.div`
   margin-top: 15px;
   max-width: 100vw;
 `;
+
+const ImageStyledWrapper = styled.div`
+  position: relative;
+  height: auto;
+  background-image: url('${({ imgSrc }) => imgSrc}');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-grow: 1;
+  margin-top: 5px;
+`;
+
+const ImageWrapper = () => {
+  const [imgSrc, setImgSrc] = useState('');
+  const inputRef = useRef(null);
+  const handleInput = (e) => {
+    setImgSrc(URL.createObjectURL(e.target.files[0]));
+  };
+  return (
+    <ImageStyledWrapper imgSrc={imgSrc}>
+      <HiddenInput ref={inputRef} type="file" onInput={handleInput} />
+      {imgSrc ? null : <Button onClick={() => inputRef.current.click()}>zdjęcie</Button>}
+    </ImageStyledWrapper>
+  );
+};
 
 const GameEntry = () => {
   const {
@@ -89,7 +120,7 @@ const GameEntry = () => {
     downloadGame,
   } = useGameEntry();
   return (
-    <>
+    <StyledWrapper>
       <PlayerNameInput value={playerName} onChange={setName} />
       <InputsWrapper>
         <InputArea onContextMenu={resetCurrentWord}>
@@ -122,7 +153,8 @@ const GameEntry = () => {
             ))}
         </KonvaBoard>
       </BoardWrapper>
-    </>
+      <ImageWrapper />
+    </StyledWrapper>
   );
 };
 
