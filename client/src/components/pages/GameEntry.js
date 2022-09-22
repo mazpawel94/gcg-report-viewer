@@ -101,6 +101,7 @@ const ImageWrapper = () => {
 
 const GameEntry = () => {
   const {
+    pointsRef,
     inputValue,
     startPosition,
     wordPosition,
@@ -127,7 +128,7 @@ const GameEntry = () => {
           <HiddenInput value={inputValue} onChange={handleOnChange} />
           <RackForInput inputValue={inputValue} handleClickOnTile={handlePutNewLetter} />
         </InputArea>
-        <PointsInput type="number" value={points} onChange={({ target }) => setPoints(target.value)} />
+        <PointsInput ref={pointsRef} type="number" value={points} onChange={({ target }) => setPoints(target.value)} />
       </InputsWrapper>
       <ButtonsWrapper>
         <Button onClick={addMove}>dodaj</Button>

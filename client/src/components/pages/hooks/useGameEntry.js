@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { convertToBoardCoordinates, convertBoardWordToRack } from '../../../services/gameService';
 
 const removeBrackets = (word) => word.replace(/[\(,\)]/g, '');
@@ -21,6 +21,7 @@ const findPosition = (startPos, distance) =>
   startPos.vertical ? { x: startPos.x, y: startPos.y + distance } : { y: startPos.y, x: startPos.x + distance };
 
 const useGameEntry = () => {
+  const pointsRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
   const [points, setPoints] = useState('');
   const [players, setPlayers] = useState([
@@ -101,7 +102,13 @@ const useGameEntry = () => {
   };
 
   const handleOnChange = ({ target }) => {
-    if (target.value.length > 7) return;
+    const lastChar = target.value.split('').pop();
+    if (/^[0-9]$/i.test(lastChar)) {
+      setPoints(lastChar);
+      pointsRef.current?.focus();
+      return;
+    }
+    if (target.value.length > 7) return pointsRef.current?.focus();
     setInputValue(target.value.toUpperCase());
   };
 
@@ -159,7 +166,7 @@ const useGameEntry = () => {
     const text = createTxtFromMoves(moves);
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', 'game');
+    element.setAttribute('download', 'game.gcg');
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
@@ -178,6 +185,7 @@ const useGameEntry = () => {
   }, [inputValue, startPosition]);
 
   return {
+    pointsRef,
     inputValue,
     startPosition,
     wordPosition: convertToBoardCoordinates(startPosition),
