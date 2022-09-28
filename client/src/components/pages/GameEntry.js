@@ -114,6 +114,7 @@ const GameEntry = () => {
     handleOnChange,
     handleArrowClick,
     handleExchange,
+    handleLoss,
     resetCurrentWord,
     addMove,
     setName,
@@ -133,8 +134,8 @@ const GameEntry = () => {
       <ButtonsWrapper>
         <Button onClick={addMove}>dodaj</Button>
         <Button onClick={handleExchange}>wymiana</Button>
-        {/* <Button>strata</Button>
-        <Button>pas</Button> */}
+        <Button onClick={handleLoss}>strata</Button>
+        {/* <Button>pas</Button> */}
         <Button onClick={resetCurrentWord}>cofnij</Button>
         <Button onClick={downloadGame}>pobierz</Button>
       </ButtonsWrapper>
@@ -148,7 +149,7 @@ const GameEntry = () => {
           />
           <Word letters={currentWord} coordinates={wordPosition} isNewMove />
           {moves
-            .filter((el) => el.coordinates)
+            .filter((el) => el.coordinates && el.word[0] !== '!')
             .map((el, i) => (
               <Word key={i} letters={el.word} coordinates={el.coordinates} />
             ))}

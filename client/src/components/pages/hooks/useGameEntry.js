@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { convertToBoardCoordinates, convertBoardWordToRack } from '../../../services/gameService';
 
-const removeBrackets = (word) => word.replace(/[\(,\)]/g, '');
+const removeSigns = (word) => word.replace(/[\(,\),\!]/g, '');
 
 const createTxtFromMoves = (array) => {
   const name1 = array[0].player;
   const name2 = array[1].player;
   const rows = array.map(
-    (el) => `>${el.player}: ${el.letters} ${el.coordinates} ${removeBrackets(el.word)} +${el.points} ${el.sumPoints} `,
+    (el) => `>${el.player}: ${el.letters} ${el.coordinates} ${removeSigns(el.word)} +${el.points} ${el.sumPoints} `,
   );
 
   const file = `#character-encoding UTF-8
@@ -57,33 +57,36 @@ const useGameEntry = () => {
     setInputValue(players[newPlayerIndex].letters);
   };
 
-  const addMove = useCallback(() => {
-    if (!points) return;
-    const prevDots = generateDots(startPosition, 1, true);
-    const convertedWord = removeBrackets(currentWord);
-    const finalPosition = {
-      ...startPosition,
-      ...findPosition(startPosition, -prevDots.length),
-    };
-    const playerName = players.find((player) => player.current).name;
-    setMoves((prev) => [
-      ...prev,
-      {
-        player: playerName,
-        letters: `${inputValue}${convertBoardWordToRack(convertedWord)}`,
-        word: `${prevDots ? `(${prevDots})` : ''}${currentWord}`,
-        points: parseInt(points),
-        coordinates: convertToBoardCoordinates(finalPosition),
-        sumPoints: prev
-          .filter((el) => el.player === playerName)
-          .reduce((acc, curr) => acc + curr.points, parseInt(points)),
-      },
-    ]);
-    addOcupiedFields(startPosition, convertedWord.length);
-    setCurrentWord('');
-    setPoints('');
-    changeCurrentPlayer();
-  }, [points, inputValue, currentWord, startPosition]);
+  const addMove = useCallback(
+    ({ loss = false }) => {
+      if (!points) return;
+      const prevDots = generateDots(startPosition, 1, true);
+      const convertedWord = removeSigns(currentWord);
+      const finalPosition = {
+        ...startPosition,
+        ...findPosition(startPosition, -prevDots.length),
+      };
+      const playerName = players.find((player) => player.current).name;
+      setMoves((prev) => [
+        ...prev,
+        {
+          player: playerName,
+          letters: `${inputValue}${convertBoardWordToRack(convertedWord)}`,
+          word: `${loss ? '!' : ''}${prevDots ? `(${prevDots})` : ''}${currentWord}`,
+          points: parseInt(points),
+          coordinates: convertToBoardCoordinates(finalPosition),
+          sumPoints: prev
+            .filter((el) => el.player === playerName)
+            .reduce((acc, curr) => acc + curr.points, parseInt(points)),
+        },
+      ]);
+      if (!loss) addOcupiedFields(startPosition, convertedWord.length);
+      setCurrentWord('');
+      setPoints('');
+      changeCurrentPlayer();
+    },
+    [points, inputValue, currentWord, startPosition],
+  );
 
   const handleExchange = () => {
     //do uzupełnienia, napisane na szybko, żeby sprawdzić całość w boju
@@ -99,6 +102,24 @@ const useGameEntry = () => {
       },
     ]);
     changeCurrentPlayer();
+  };
+
+  const handleLoss = () => {
+    addMove({ loss: true });
+    setMoves((prev) => {
+      const lastMove = [...prev].pop();
+      return [
+        ...prev,
+        {
+          player: lastMove.player,
+          letters: lastMove.letters,
+          word: '--',
+          points: -parseInt(lastMove.points),
+          coordinates: '',
+          sumPoints: lastMove.sumPoints - parseInt(lastMove.points),
+        },
+      ];
+    });
   };
 
   const handleOnChange = ({ target }) => {
@@ -137,7 +158,7 @@ const useGameEntry = () => {
       const isBlank = !inputValue.includes(letter);
       setCurrentWord((prev) => {
         const newLetter = isBlank ? letter.toLowerCase() : letter;
-        const wordLength = removeBrackets(prev).length + 1;
+        const wordLength = removeSigns(prev).length + 1;
         const dots = generateDots(startPosition, wordLength);
         return `${prev}${newLetter}${dots ? `(${dots})` : ''}`;
       });
@@ -198,6 +219,7 @@ const useGameEntry = () => {
     handleOnChange,
     handleArrowClick,
     handleExchange,
+    handleLoss,
     resetCurrentWord,
     addMove,
     setName,
