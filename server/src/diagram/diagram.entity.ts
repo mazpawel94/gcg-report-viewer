@@ -1,13 +1,5 @@
 import { Tag } from 'src/tag/tag.entity';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  BaseEntity,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Diagram extends BaseEntity {
