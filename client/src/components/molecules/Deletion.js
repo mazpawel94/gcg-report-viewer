@@ -8,26 +8,26 @@ const StyledWrapper = styled.div`
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
   user-select: none;
   background-color: rgb(75, 75, 75);
   z-index: 2;
-  top: 40px;
-  left: 20px;
+  top: 15px;
+  left: 680px;
 `;
 
 const DeletionLetter = styled.div`
   box-sizing: border-box;
   text-align: center;
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   background-color: #f8e8c7;
   border: 1px solid rgb(218, 193, 145);
   color: #015b52;
   border-radius: 3px;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 10px;
+  line-height: 15px;
   opacity: ${({ onBoard }) => (onBoard ? 0.4 : 1)};
 `;
 const LETTERS = 'AAAAAAAAAĄBBCCCĆDDDEEEEEEEĘFGGHHIIIIIIIIJJKKKLLLŁŁMMMNNNNNŃOOOOOOÓPPPRRRRSSSSŚTTTUUWWWWYYYYZZZZZŻŹ??';

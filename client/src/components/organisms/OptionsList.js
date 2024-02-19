@@ -1,14 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Table } from 'semantic-ui-react';
+import styled from 'styled-components';
 
-import AppContext, { useAppContext } from '../../context';
-import { actionTypes } from '../../reducers/gameReducer';
+import { useAppContext } from '../../context';
 import useGetFromCurrentState from '../../hooks/useGetFromCurrentState';
+import { actionTypes } from '../../reducers/gameReducer';
+
 const StyledWrapper = styled.div`
   flex-grow: 1;
   width: 80%;
-
+  margin-top: 30px;
   .ui.basic.striped.table tbody .active {
     background-color: #d5faddad !important;
   }

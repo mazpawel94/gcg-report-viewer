@@ -7,6 +7,7 @@ import Rack from '../organisms/Rack';
 import GameNavigation from '../molecules/GameNavigation';
 import Result from '../organisms/Result';
 import { useAppContext } from '../../context';
+import Deletion from '../molecules/Deletion';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -40,6 +41,7 @@ const GameplayAnalysed = () => {
         <Board />
         <GameNavigation />
       </BoardWrapper>
+      <Deletion />
       {actualMoveIndex !== undefined ? (
         <MoveContent data-testid="move-content">
           <Result />
