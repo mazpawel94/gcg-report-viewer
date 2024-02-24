@@ -1,5 +1,13 @@
 const exceptCoordinates = ['*xch', 'xch'];
 
+const polishLetters = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ż', 'ź'];
+
+export const findBlanks = (word) =>
+  word
+    .split('')
+    .map((char) => ((char >= 'a' && char <= 'z') || polishLetters.includes(char) ? '?' : null))
+    .filter((el) => el);
+
 export const isExchange = (coordinates) => exceptCoordinates.some((el) => el === coordinates);
 
 export const findPlayedMove = (move) => {

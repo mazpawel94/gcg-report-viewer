@@ -8,6 +8,7 @@ import GameNavigation from '../molecules/GameNavigation';
 import Result from '../organisms/Result';
 import { useAppContext } from '../../context';
 import Deletion from '../molecules/Deletion';
+import Statts from '../organisms/Statts';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -49,6 +50,7 @@ const GameplayAnalysed = () => {
           <Rack />
         </MoveContent>
       ) : null}
+      <Statts />
     </StyledWrapper>
   );
 };

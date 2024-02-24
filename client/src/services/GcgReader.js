@@ -24,7 +24,7 @@ class GcgReader {
         index: movesArray.length,
         nick: atoms[1],
         letters: atoms[2],
-        pointsBefore: atoms[3],
+        pointsBefore: parseInt(atoms[3]),
         move: line,
         choiceOptions: [],
       });
@@ -37,7 +37,7 @@ class GcgReader {
         evaluate: atoms[0],
         coordinates: atoms[1],
         word: atoms[2],
-        movePoints: atoms[3],
+        movePoints: parseInt(atoms[3]),
         percent: atoms.length > 4 ? (atoms[4][atoms[4].length - 1] === '%' ? atoms[4] : '0%') : '',
         freeLetters: this.findFreeLetters(atoms[2], movesArray[actualIndex].letters),
       });

@@ -7,7 +7,8 @@ import useRack from './hooks/useRack';
 
 const StyledWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  width: 80%;
+  justify-content: flex-start;
 `;
 
 const Tiles = ({ letters, small, clickHandler }) =>

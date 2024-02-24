@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { findPlayedMove } from '../services/gameService';
+import { findBlanks, findPlayedMove } from '../services/gameService';
 import useGetFromCurrentState from './useGetFromCurrentState';
-
-const polishLetters = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ż', 'ź'];
-
-const findBlanks = (word) =>
-  word
-    .split('')
-    .map((char) => ((char >= 'a' && char <= 'z') || polishLetters.includes(char) ? '?' : null))
-    .filter((el) => el);
 
 const useFillDeletion = () => {
   const [usedLetters, setUsedLetters] = useState([]);

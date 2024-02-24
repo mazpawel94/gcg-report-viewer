@@ -13,8 +13,8 @@ const StyledWrapper = styled.div`
   user-select: none;
   background-color: rgb(75, 75, 75);
   z-index: 2;
-  top: 15px;
-  left: 680px;
+  bottom: 15px;
+  right: 30px;
 `;
 
 const DeletionLetter = styled.div`

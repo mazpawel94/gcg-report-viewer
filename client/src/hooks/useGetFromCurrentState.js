@@ -7,7 +7,7 @@ const useGetFromCurrentState = () => {
   const actualOption = moves?.[actualMoveIndex]?.choiceOptions[actualOptionIndex];
   const currentMoves = moves?.slice(0, actualMoveIndex);
   const isLossMove = (moveIndex) => moves[moveIndex].pointsBefore === moves[moveIndex + 2].pointsBefore;
-  return { actualMove, actualOption, currentMoves, isLossMove };
+  return { moves, actualMove, actualOption, currentMoves, isLossMove };
 };
 
 export default useGetFromCurrentState;
