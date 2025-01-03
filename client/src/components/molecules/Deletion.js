@@ -17,7 +17,7 @@ const StyledWrapper = styled.div`
   right: 30px;
 `;
 
-const DeletionLetter = styled.div`
+export const DeletionLetter = styled.div`
   box-sizing: border-box;
   text-align: center;
   width: 15px;

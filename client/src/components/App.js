@@ -7,6 +7,7 @@ import Home from '../components/pages/Home';
 import GameplayAnalysed from '../components/pages/GameplayAnalysed';
 import MainTemplate from '../components/templates/MainTemplate';
 import GameEntry from './pages/GameEntry';
+import GameEntry2 from './pages/gameEntry/GameEntry2';
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
             <Route path="/gcg-report-viewer/" element={<Home />} />
             <Route path="/zadania" element={<GameplayAnalysed />} />
             <Route path="/analiza" element={<GameplayAnalysed />} />
-            <Route path="/dodaj-zapis" element={<GameEntry />} />
+            <Route path="/dodaj-zapis" element={<GameEntry2 />} />
           </Routes>
         </BrowserRouter>
       </MainTemplate>

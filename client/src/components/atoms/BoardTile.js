@@ -1,14 +1,20 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Rect, Text } from 'react-konva';
 
 import { POINTS } from '../globalVariables';
+import { EBoardFieldState } from '../pages/gameEntry/hooks/useGameEntry2';
 
 const COLORS = {
   basic: '#f8e8c7',
+  [EBoardFieldState.suggestion]: '#f8e8c7',
+  [EBoardFieldState.done]: '#f8e8c7',
+  [EBoardFieldState.sketch]: '#f8e8c755',
+  [EBoardFieldState.changed]: '#777',
   newMove: '#1ae825',
 };
-const BoardTile = ({ size, x, y, letter, transparent, newMove }) => {
+const emptyFn = (args) => {};
+
+const BoardTile = ({ size, x, y, letter, state = '', transparent = false, newMove = false, handleClick = emptyFn }) => {
   const blank = letter === letter.toLowerCase();
   const TileColor = newMove ? COLORS.newMove : COLORS.basic;
   const pointTextSize = size > 37 ? 10 : size / 4;
@@ -20,10 +26,11 @@ const BoardTile = ({ size, x, y, letter, transparent, newMove }) => {
         y={y + 1}
         width={size - 2}
         height={size - 2}
-        fill={TileColor}
+        fill={state ? COLORS[state] : TileColor}
         cornerRadius={size > 37 ? 4 : 2}
         opacity={transparent ? 0 : 1}
         data-testid="tile"
+        onClick={handleClick}
       />
       <Text
         x={x}
@@ -39,6 +46,7 @@ const BoardTile = ({ size, x, y, letter, transparent, newMove }) => {
         fontStyle="bold"
         opacity={transparent ? 0 : blank ? 0.3 : 1}
         data-testid="letter"
+        onClick={handleClick}
       />
       <Text
         x={x + size - 2 - pointTextSize}
@@ -54,6 +62,7 @@ const BoardTile = ({ size, x, y, letter, transparent, newMove }) => {
         fontStyle="bold"
         opacity={transparent ? 0 : 1}
         data-testid="points"
+        onClick={handleClick}
       />
     </>
   );
