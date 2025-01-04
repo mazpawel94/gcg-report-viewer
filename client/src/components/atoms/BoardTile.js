@@ -8,15 +8,25 @@ const COLORS = {
   basic: '#f8e8c7',
   [EBoardFieldState.suggestion]: '#f8e8c7',
   [EBoardFieldState.done]: '#f8e8c7',
-  [EBoardFieldState.sketch]: '#f8e8c755',
+  [EBoardFieldState.sketch]: '#f8e8c788',
   [EBoardFieldState.changed]: '#777',
-  newMove: '#1ae825',
+  [EBoardFieldState.newMove]: '#1ae825',
 };
 const emptyFn = (args) => {};
 
-const BoardTile = ({ size, x, y, letter, state = '', transparent = false, newMove = false, handleClick = emptyFn }) => {
+const BoardTile = ({
+  size,
+  x,
+  y,
+  letter,
+  state = '',
+  transparent = false,
+  newMove = false,
+  handleClick = emptyFn,
+  handleMouseOver = emptyFn,
+}) => {
   const blank = letter === letter.toLowerCase();
-  const TileColor = newMove ? COLORS.newMove : COLORS.basic;
+  const TileColor = newMove ? COLORS[EBoardFieldState.newMove] : COLORS.basic;
   const pointTextSize = size > 37 ? 10 : size / 4;
   const letterFontSize = size > 37 ? 25 : Math.floor(size / 2);
   return (
@@ -30,7 +40,10 @@ const BoardTile = ({ size, x, y, letter, state = '', transparent = false, newMov
         cornerRadius={size > 37 ? 4 : 2}
         opacity={transparent ? 0 : 1}
         data-testid="tile"
-        onClick={handleClick}
+        onTap={handleClick}
+        onMouseDown={handleClick}
+        onMouseOver={handleMouseOver}
+        // onTouchStart={handleTouchStart}
       />
       <Text
         x={x}
@@ -46,7 +59,9 @@ const BoardTile = ({ size, x, y, letter, state = '', transparent = false, newMov
         fontStyle="bold"
         opacity={transparent ? 0 : blank ? 0.3 : 1}
         data-testid="letter"
-        onClick={handleClick}
+        onTap={handleClick}
+        onMouseDown={handleClick}
+        onMouseOver={handleMouseOver}
       />
       <Text
         x={x + size - 2 - pointTextSize}
@@ -62,7 +77,9 @@ const BoardTile = ({ size, x, y, letter, state = '', transparent = false, newMov
         fontStyle="bold"
         opacity={transparent ? 0 : 1}
         data-testid="points"
-        onClick={handleClick}
+        onTap={handleClick}
+        onMouseDown={handleClick}
+        onMouseOver={handleMouseOver}
       />
     </>
   );

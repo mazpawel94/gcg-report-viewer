@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { EBoardFieldState, IBOardField } from './useGameEntry2';
 
 interface ApiResponse {
@@ -39,8 +40,8 @@ const useRecognizeBoardState = () => {
         'Content-Type': 'multipart/form-data',
       },
     });
-    console.log({ status, board, message });
     callback(formatResponse(board));
+    return true;
   };
 
   return { postRequest };

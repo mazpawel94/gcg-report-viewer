@@ -9,7 +9,9 @@ const StyledWrapper = styled.div`
   flex-wrap: wrap;
   z-index: 100;
   left: 50%;
-  top: 100px;
+  top: 10px;
+  transform: translateX(-50%);
+  box-shadow: #0f4305 0px 10px 25px;
 `;
 
 const StyledDeletionLetter = styled(DeletionLetter)`
