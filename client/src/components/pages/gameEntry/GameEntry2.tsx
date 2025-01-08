@@ -23,13 +23,14 @@ const HiddenInput = styled.input`
   opacity: 0;
   position: absolute;
 `;
-
+const emptyFn = () => {};
 const GameEntry2 = () => {
   const { fieldSize } = useHandleResize();
   const {
     inputRef,
     boardState,
     gameStatus,
+    moveIsCorrect,
     handleInput,
     handleMouseDown,
     handleMouseUp,
@@ -78,9 +79,13 @@ const GameEntry2 = () => {
         </StyledButton>
       ) : null}
       {gameStatus === EGameStatus.filled ? (
-        <StyledButton onClick={acceptMove} style={{ margin: 'auto', marginTop: '35px' }}>
-          Zapisz ruch
-        </StyledButton>
+        moveIsCorrect ? (
+          <StyledButton onClick={acceptMove} style={{ margin: 'auto', marginTop: '35px' }}>
+            Zapisz ruch
+          </StyledButton>
+        ) : (
+          <p>niepoprawny ruch</p>
+        )
       ) : null}
     </BoardWrapper>
   );

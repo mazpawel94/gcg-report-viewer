@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import useRecognizeBoardState from './useRecognizeBoardState';
+import useCheckMoveIsCorrect from './useCheckMoveIsCorrect';
 
 export enum EBoardFieldState {
   'empty',
@@ -40,6 +41,7 @@ const useGameEntry2 = () => {
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
 
   const { postRequest } = useRecognizeBoardState();
+  const { moveIsCorrect } = useCheckMoveIsCorrect(gameStatus, boardState);
 
   const handleBoardClick = useCallback(() => inputRef.current?.click(), [inputRef]);
 
@@ -112,6 +114,7 @@ const useGameEntry2 = () => {
     inputRef,
     boardState,
     gameStatus,
+    moveIsCorrect,
     handleInput,
     handleBoardFieldClick: gameStatus === EGameStatus.suggestion ? selectChangedTile : addTileToCurrentMove,
     handleMouseOver: gameStatus === EGameStatus.filled && isMouseDown ? addTileToCurrentMove : emptyFn,
