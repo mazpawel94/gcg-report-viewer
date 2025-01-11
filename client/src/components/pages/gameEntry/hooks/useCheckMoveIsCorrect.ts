@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { EBoardFieldState, EGameStatus, IBOardField } from './useGameEntry2';
+import { EBoardFieldState, EGameStatus, IBOardField, useGameEntryContext } from '../../../../contexts/GameEntryContext';
 
 const middleField = { x: 7, y: 7 };
 
@@ -29,8 +29,9 @@ const isWithoutGap = (newTiles: IBOardField[], tilesOnBoard: IBOardField[]) => {
 
 const conditions = [isInOneLine, isAdjacentToDoneField, isWithoutGap];
 
-// później będzie brało dane z kontekstu i należało do osobnego komponentu
-const useCheckMoveIsCorrect = (gameStatus: EGameStatus, boardState: IBOardField[]) => {
+const useCheckMoveIsCorrect = () => {
+  const { gameStatus, boardState } = useGameEntryContext();
+
   const moveIsCorrect = useMemo(() => {
     if (gameStatus !== EGameStatus.filled) return false;
     const newTiles = boardState.filter((el) => el.state === EBoardFieldState.newMove);

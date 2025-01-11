@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { IBOardField } from './hooks/useGameEntry2';
 import { useMemo } from 'react';
+import { EGameStatus, useGameEntryContext } from '../../../contexts/GameEntryContext';
 
 const StyledWrapper = styled.div`
   margin-top: 30px;
@@ -29,9 +29,12 @@ const Letter = styled.div<{ isOnBoard: boolean }>`
 
 const letters = 'ĄĆĘŁŁŃÓŚŹŻ'.split('');
 
-const PolishLettersInfo = ({ boardState }: { boardState: IBOardField[] }) => {
+const PolishLettersInfo = () => {
+  const { boardState, gameStatus } = useGameEntryContext();
   const lettersOnBoard = useMemo(() => boardState.map((el) => el.letter), [boardState]);
 
+  if (gameStatus !== EGameStatus.suggestion) return null;
+  
   return (
     <StyledWrapper>
       {letters.map((letter, index) => (

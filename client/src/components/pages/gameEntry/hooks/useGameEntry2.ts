@@ -1,30 +1,14 @@
 import { useCallback, useRef, useState } from 'react';
+
 import useRecognizeBoardState from './useRecognizeBoardState';
 import useCheckMoveIsCorrect from './useCheckMoveIsCorrect';
-
-export enum EBoardFieldState {
-  'empty',
-  'suggestion',
-  'changed',
-  'sketch',
-  'newMove',
-  'done',
-}
-
-export enum EGameStatus {
-  'initial',
-  'suggestion',
-  'filled',
-  'done',
-}
-
-export interface IBOardField {
-  index: number;
-  x: number;
-  y: number;
-  letter: string | null;
-  state: EBoardFieldState;
-}
+import {
+  EBoardFieldState,
+  EGameStatus,
+  IBOardField,
+  useGameEntryActionsContext,
+  useGameEntryContext,
+} from '../../../../contexts/GameEntryContext';
 
 const initialBoardState: IBOardField[] = [...Array(15)]
   .map((_, y) =>
@@ -35,13 +19,14 @@ const initialBoardState: IBOardField[] = [...Array(15)]
 const emptyFn = () => {};
 const useGameEntry2 = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const [boardState, setBoardState] = useState<IBOardField[]>(initialBoardState);
-  const [gameStatus, setGameStatus] = useState<EGameStatus>(EGameStatus.initial);
+  const { gameStatus, boardState } = useGameEntryContext();
+  const { setBoardState, setGameStatus } = useGameEntryActionsContext();
+  // const [boardState, setBoardState] = useState<IBOardField[]>(initialBoardState);
+  // const [gameStatus, setGameStatus] = useState<EGameStatus>(EGameStatus.initial);
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
 
   const { postRequest } = useRecognizeBoardState();
-  const { moveIsCorrect } = useCheckMoveIsCorrect(gameStatus, boardState);
+  const { moveIsCorrect } = useCheckMoveIsCorrect();
 
   const handleBoardClick = useCallback(() => inputRef.current?.click(), [inputRef]);
 
@@ -73,16 +58,6 @@ const useGameEntry2 = () => {
         );
     },
     [boardState],
-  );
-
-  const changeLetter = useCallback(
-    (newLetter: string) =>
-      setBoardState((prev) =>
-        prev.map((el) =>
-          el.state === EBoardFieldState.changed ? { ...el, letter: newLetter, state: EBoardFieldState.suggestion } : el,
-        ),
-      ),
-    [],
   );
 
   const handleInput = useCallback(async (e: any) => {
@@ -121,7 +96,6 @@ const useGameEntry2 = () => {
     handleBoardClick,
     handleMouseDown,
     handleMouseUp,
-    changeLetter,
     acceptBoard,
     acceptMove,
   };

@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-import { EBoardFieldState, IBOardField } from './useGameEntry2';
+import { EBoardFieldState, IBOardField } from '../../../../contexts/GameEntryContext';
 
 interface ApiResponse {
   status: string;
@@ -23,7 +22,6 @@ const formatResponse = (board: string) => {
       }),
     );
   });
-  console.log({ boardFieldsInfo });
   return boardFieldsInfo;
 };
 

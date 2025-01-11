@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { DeletionLetter } from '../../molecules/Deletion';
+import { EBoardFieldState, useGameEntryActionsContext, useGameEntryContext } from '../../../contexts/GameEntryContext';
 
 const StyledWrapper = styled.div`
   position: absolute;
@@ -22,17 +23,25 @@ const StyledDeletionLetter = styled(DeletionLetter)`
   cursor: pointer;
 `;
 
-const LettersPanel = ({ callback }: { callback: Function }) => (
-  <StyledWrapper>
-    <div style={{ width: '35px' }} />
-    {'ĄĆĘŁŃÓŚŹŻ'.split('').map((letter) => (
-      <StyledDeletionLetter onClick={() => callback(letter)}>{letter}</StyledDeletionLetter>
-    ))}
-    <div style={{ width: '35px' }} />
-    {'ABCDEFGHIJKLMNOPRSTUWZ'.split('').map((letter) => (
-      <StyledDeletionLetter onClick={() => callback(letter)}>{letter}</StyledDeletionLetter>
-    ))}
-  </StyledWrapper>
-);
+const LettersPanel = () => {
+  const { boardState } = useGameEntryContext();
+
+  const { changeLetter } = useGameEntryActionsContext();
+
+  if (!boardState.some((el) => el.state === EBoardFieldState.changed)) return null;
+
+  return (
+    <StyledWrapper>
+      <div style={{ width: '35px' }} />
+      {'ĄĆĘŁŃÓŚŹŻ'.split('').map((letter) => (
+        <StyledDeletionLetter onClick={() => changeLetter(letter)}>{letter}</StyledDeletionLetter>
+      ))}
+      <div style={{ width: '35px' }} />
+      {'ABCDEFGHIJKLMNOPRSTUWZ'.split('').map((letter) => (
+        <StyledDeletionLetter onClick={() => changeLetter(letter)}>{letter}</StyledDeletionLetter>
+      ))}
+    </StyledWrapper>
+  );
+};
 
 export default LettersPanel;

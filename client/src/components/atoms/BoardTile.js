@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Rect, Text } from 'react-konva';
 
 import { POINTS } from '../globalVariables';
-import { EBoardFieldState } from '../pages/gameEntry/hooks/useGameEntry2';
+import { EBoardFieldState } from '../../contexts/GameEntryContext';
 
 const COLORS = {
   basic: '#f8e8c7',

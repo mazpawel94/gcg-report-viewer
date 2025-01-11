@@ -4,9 +4,10 @@ import BoardTile from '../../atoms/BoardTile';
 import StyledButton from '../../atoms/Button';
 import useHandleResize from '../../organisms/hooks/useHandleResize';
 import KonvaBoard from '../../organisms/KonvaBoard';
-import useGameEntry2, { EBoardFieldState, EGameStatus } from './hooks/useGameEntry2';
+import useGameEntry2 from './hooks/useGameEntry2';
 import LettersPanel from './LettersPanel';
 import PolishLettersInfo from './PolishLettersInfo';
+import { EBoardFieldState, EGameStatus, GameEntryContextProvider } from '../../../contexts/GameEntryContext';
 
 const BoardWrapper = styled.div<{ onMouseDown: any }>`
   max-width: 650px;
@@ -23,21 +24,19 @@ const HiddenInput = styled.input`
   opacity: 0;
   position: absolute;
 `;
-const emptyFn = () => {};
 const GameEntry2 = () => {
   const { fieldSize } = useHandleResize();
   const {
     inputRef,
-    boardState,
     gameStatus,
     moveIsCorrect,
+    boardState,
     handleInput,
     handleMouseDown,
     handleMouseUp,
     handleMouseOver,
     handleBoardClick,
     handleBoardFieldClick,
-    changeLetter,
     acceptBoard,
     acceptMove,
   } = useGameEntry2();
@@ -52,9 +51,9 @@ const GameEntry2 = () => {
         </StyledButton>
       ) : null}
 
-      {gameStatus === EGameStatus.suggestion ? <PolishLettersInfo boardState={boardState} /> : null}
+      <PolishLettersInfo />
 
-      {boardState.some((el) => el.state === EBoardFieldState.changed) ? <LettersPanel callback={changeLetter} /> : null}
+      <LettersPanel />
 
       <KonvaBoard contextValue={{}}>
         {boardState.map((field) =>
@@ -91,4 +90,9 @@ const GameEntry2 = () => {
   );
 };
 
-export default GameEntry2;
+const GameEntryWithContext = () => (
+  <GameEntryContextProvider>
+    <GameEntry2 />
+  </GameEntryContextProvider>
+);
+export default GameEntryWithContext;
