@@ -1,7 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
 import useRecognizeBoardState from './useRecognizeBoardState';
-import useCheckMoveIsCorrect from './useCheckMoveIsCorrect';
 import {
   EBoardFieldState,
   EGameStatus,
@@ -9,6 +8,7 @@ import {
   useGameEntryActionsContext,
   useGameEntryContext,
 } from '../../../../contexts/GameEntryContext';
+import useNewMoveInfo from './useNewMoveInfo';
 
 const initialBoardState: IBOardField[] = [...Array(15)]
   .map((_, y) =>
@@ -19,14 +19,14 @@ const initialBoardState: IBOardField[] = [...Array(15)]
 const emptyFn = () => {};
 const useGameEntry2 = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { gameStatus, boardState } = useGameEntryContext();
-  const { setBoardState, setGameStatus } = useGameEntryActionsContext();
-  // const [boardState, setBoardState] = useState<IBOardField[]>(initialBoardState);
-  // const [gameStatus, setGameStatus] = useState<EGameStatus>(EGameStatus.initial);
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
 
+  const { gameStatus, boardState, moveIsCorrect } = useGameEntryContext();
+
+  const { addApprovedMove, setBoardState, setGameStatus } = useGameEntryActionsContext();
+
   const { postRequest } = useRecognizeBoardState();
-  const { moveIsCorrect } = useCheckMoveIsCorrect();
+  const newMoveInfo = useNewMoveInfo();
 
   const handleBoardClick = useCallback(() => inputRef.current?.click(), [inputRef]);
 
@@ -77,7 +77,8 @@ const useGameEntry2 = () => {
     setBoardState((prev) =>
       prev.map((el) => (el.state === EBoardFieldState.newMove ? { ...el, state: EBoardFieldState.done } : el)),
     );
-  }, []);
+    addApprovedMove(newMoveInfo!);
+  }, [newMoveInfo]);
 
   const handleMouseDown = useCallback((e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;

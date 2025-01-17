@@ -33,6 +33,7 @@ export const POINTS = {
   Z: 1,
   Ź: 9,
   Ż: 5,
+  '?': 0,
 };
 
 export const FIELDS_PARAMS = {
@@ -76,6 +77,8 @@ export const word2Fields = [
   [12, 2],
   [13, 1],
 ];
+export const word2Indexes = [...word2Fields, [7, 7]].map((el) => el[0] * 15 + el[1]);
+
 export const word3Fields = [
   [0, 0],
   [0, 7],
@@ -86,6 +89,11 @@ export const word3Fields = [
   [14, 7],
   [14, 14],
 ];
+export const word3Indexes = word3Fields.map((el) => el[0] * 15 + el[1]);
+
+export const wordMultiplerByIndex = Array(15 * 15)
+  .fill(1)
+  .map((el, i) => (word2Indexes.includes(i) ? 2 : word3Indexes.includes(i) ? 3 : 1));
 
 export const letter2Fields = [
   [0, 3],
@@ -113,6 +121,7 @@ export const letter2Fields = [
   [14, 3],
   [14, 11],
 ];
+export const letter2Indexes = letter2Fields.map((el) => el[0] * 15 + el[1]);
 
 export const letter3Fields = [
   [1, 5],
@@ -128,5 +137,10 @@ export const letter3Fields = [
   [13, 5],
   [13, 9],
 ];
+export const letter3Indexes = letter3Fields.map((el) => el[0] * 15 + el[1]);
+
+export const letterMultiplerByIndex = Array(15 * 15)
+  .fill(1)
+  .map((el, i) => (letter2Indexes.includes(i) ? 2 : letter3Indexes.includes(i) ? 3 : 1));
 
 export const size = 570 / 15;

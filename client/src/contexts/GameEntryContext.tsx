@@ -1,5 +1,7 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
+import useCheckMoveIsCorrect from '../components/pages/gameEntry/hooks/useCheckMoveIsCorrect';
+
 export enum EBoardFieldState {
   'empty',
   'suggestion',
@@ -24,6 +26,14 @@ export interface IBOardField {
   state: EBoardFieldState;
 }
 
+export interface IApprovedMove {
+  index?: number;
+  points: number;
+  word: string;
+  coordinates: string;
+  letters: string;
+}
+
 const initialBoardState: IBOardField[] = [...Array(15)]
   .map((_, y) =>
     [...Array(15)].map((_, x) => ({ x, y, index: y * 15 + x, letter: null, state: EBoardFieldState.empty })),
@@ -33,20 +43,24 @@ const initialBoardState: IBOardField[] = [...Array(15)]
 interface IGameEntryContext {
   gameStatus: EGameStatus;
   boardState: IBOardField[];
+  moveIsCorrect: boolean;
 }
 
 interface IGameEntryActionsContext {
   setBoardState: React.Dispatch<React.SetStateAction<IBOardField[]>>;
   setGameStatus: React.Dispatch<React.SetStateAction<EGameStatus>>;
+  addApprovedMove: (newMove: IApprovedMove) => void;
   changeLetter: (letter: string) => void;
 }
 
 export const GameEntryContext = createContext<IGameEntryContext>({
   gameStatus: EGameStatus.initial,
   boardState: initialBoardState,
+  moveIsCorrect: false,
 });
 
 export const GameEntryActionsContext = createContext<IGameEntryActionsContext>({
+  addApprovedMove: () => {},
   setBoardState: () => {},
   setGameStatus: () => {},
   changeLetter: () => {},
@@ -59,6 +73,9 @@ export const useGameEntryActionsContext = () => useContext(GameEntryActionsConte
 export const GameEntryContextProvider = ({ children }: any) => {
   const [boardState, setBoardState] = useState<IBOardField[]>(initialBoardState);
   const [gameStatus, setGameStatus] = useState<EGameStatus>(EGameStatus.initial);
+  const [approvedMoves, setApprovedMoves] = useState<IApprovedMove[]>([]);
+
+  const { moveIsCorrect } = useCheckMoveIsCorrect(gameStatus, boardState);
 
   const changeLetter = useCallback(
     (newLetter: string) =>
@@ -70,8 +87,13 @@ export const GameEntryContextProvider = ({ children }: any) => {
     [],
   );
 
+  const addApprovedMove = useCallback((newMove: IApprovedMove) => {
+    setApprovedMoves((prev) => [...prev, { ...newMove, index: prev.length }]);
+  }, []);
+
   const actions = useMemo(
     () => ({
+      addApprovedMove,
       setBoardState,
       setGameStatus,
       changeLetter,
@@ -80,8 +102,10 @@ export const GameEntryContextProvider = ({ children }: any) => {
   );
 
   const values = {
+    approvedMoves,
     boardState,
     gameStatus,
+    moveIsCorrect,
   };
 
   return (
