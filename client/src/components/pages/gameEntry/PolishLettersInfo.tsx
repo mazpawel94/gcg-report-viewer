@@ -4,11 +4,11 @@ import { useMemo } from 'react';
 import { EGameStatus, useGameEntryContext } from '../../../contexts/GameEntryContext';
 
 const StyledWrapper = styled.div`
-  margin-top: 30px;
+  margin-top: 5px;
   width: 40px;
   display: flex;
   flex-direction: column;
-  background: green;
+  background: #08763b;
   gap: 5px;
   align-items: center;
   justify-content: center;

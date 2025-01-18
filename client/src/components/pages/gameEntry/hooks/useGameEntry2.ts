@@ -1,34 +1,22 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 
-import useRecognizeBoardState from './useRecognizeBoardState';
 import {
   EBoardFieldState,
   EGameStatus,
-  IBOardField,
   useGameEntryActionsContext,
   useGameEntryContext,
 } from '../../../../contexts/GameEntryContext';
 import useNewMoveInfo from './useNewMoveInfo';
 
-const initialBoardState: IBOardField[] = [...Array(15)]
-  .map((_, y) =>
-    [...Array(15)].map((_, x) => ({ x, y, index: y * 15 + x, letter: null, state: EBoardFieldState.empty })),
-  )
-  .flat();
-
 const emptyFn = () => {};
 const useGameEntry2 = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
 
   const { gameStatus, boardState, moveIsCorrect } = useGameEntryContext();
 
-  const { addApprovedMove, setBoardState, setGameStatus } = useGameEntryActionsContext();
+  const { setBoardState } = useGameEntryActionsContext();
 
-  const { postRequest } = useRecognizeBoardState();
   const newMoveInfo = useNewMoveInfo();
-
-  const handleBoardClick = useCallback(() => inputRef.current?.click(), [inputRef]);
 
   const selectChangedTile = useCallback((e: Event, index: number) => {
     setBoardState((prev) =>
@@ -60,45 +48,22 @@ const useGameEntry2 = () => {
     [boardState],
   );
 
-  const handleInput = useCallback(async (e: any) => {
-    const file = e.target.files[0];
-    await postRequest(file, setBoardState);
-    setGameStatus(EGameStatus.suggestion);
-  }, []);
-
-  const acceptBoard = useCallback(() => {
-    setBoardState((prev) =>
-      prev.map((el) => (el.state === EBoardFieldState.empty ? el : { ...el, state: EBoardFieldState.sketch })),
-    );
-    setGameStatus(EGameStatus.filled);
-  }, []);
-
-  const acceptMove = useCallback(() => {
-    setBoardState((prev) =>
-      prev.map((el) => (el.state === EBoardFieldState.newMove ? { ...el, state: EBoardFieldState.done } : el)),
-    );
-    addApprovedMove(newMoveInfo!);
-  }, [newMoveInfo]);
-
   const handleMouseDown = useCallback((e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;
     if (e.target.nodeName === 'CANVAS') setIsMouseDown(true);
   }, []);
+
   const handleMouseUp = useCallback(() => setIsMouseDown(false), []);
 
   return {
-    inputRef,
     boardState,
     gameStatus,
     moveIsCorrect,
-    handleInput,
+    newMoveInfo,
     handleBoardFieldClick: gameStatus === EGameStatus.suggestion ? selectChangedTile : addTileToCurrentMove,
     handleMouseOver: gameStatus === EGameStatus.filled && isMouseDown ? addTileToCurrentMove : emptyFn,
-    handleBoardClick,
     handleMouseDown,
     handleMouseUp,
-    acceptBoard,
-    acceptMove,
   };
 };
 
