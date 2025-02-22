@@ -10,6 +10,7 @@ import CurrentMoveInfo from './CurrentMoveInfo';
 import useGameEntry2 from './hooks/useGameEntry2';
 import LettersPanel from './LettersPanel';
 import PolishLettersInfo from './PolishLettersInfo';
+import CurrentMoveRack from './CurrentMoveRack';
 
 const StyledWrapper = styled.div<{ onMouseDown: any }>`
   margin: auto;
@@ -67,23 +68,22 @@ const GameEntry2 = () => {
         <LettersPanel />
 
         <KonvaBoard contextValue={{}}>
-          {boardState.map((field) =>
-            field.state === EBoardFieldState.empty ? null : (
-              <BoardTile
-                size={fieldSize}
-                key={field.index}
-                x={field.x * fieldSize}
-                y={field.y * fieldSize}
-                letter={field.letter}
-                state={`${field.state}`}
-                handleClick={(e) => handleBoardFieldClick(e, field.index)}
-                handleMouseOver={(e) => handleMouseOver(e, field.index)}
-              />
-            ),
-          )}
+          {boardState.map((field) => (
+            <BoardTile
+              size={fieldSize}
+              key={field.index}
+              x={field.x * fieldSize}
+              y={field.y * fieldSize}
+              letter={field.letter}
+              state={`${field.state}`}
+              handleClick={(e) => handleBoardFieldClick(e, field.index)}
+              handleMouseOver={(e) => handleMouseOver(e, field.index)}
+            />
+          ))}
         </KonvaBoard>
       </StyledWrapper>
       <ChangingStateButtons newMoveInfo={newMoveInfo} />
+      <CurrentMoveRack newMoveInfo={newMoveInfo} />
     </>
   );
 };

@@ -25,6 +25,10 @@ const BoardTile = ({
   handleClick = emptyFn,
   handleMouseOver = emptyFn,
 }) => {
+  if (!letter)
+    return (
+      <Rect x={x + 1} y={y + 1} width={size - 2} height={size - 2} onTap={handleClick} onMouseDown={handleClick} />
+    );
   const blank = letter === letter.toLowerCase();
   const TileColor = newMove ? COLORS[EBoardFieldState.newMove] : COLORS.basic;
   const pointTextSize = size > 37 ? 10 : size / 4;

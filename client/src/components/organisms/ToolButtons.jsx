@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import useExportAsImage from '../../hooks/useExportAsImage';
 import Button from '../atoms/Button';
-import FullResult from '../organisms/FullResult/FullResult';
+import FullResult from './FullResult/FullResult';
 import NewDiagramForm from './NewDiagramForm';
 
 const StyledWrapper = styled.div`

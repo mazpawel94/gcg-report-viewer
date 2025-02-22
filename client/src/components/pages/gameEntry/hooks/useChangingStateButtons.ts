@@ -38,7 +38,7 @@ const useChangingStateButtons = (newMoveInfo: IApprovedMove | null) => {
       prev.map((el) => (el.state === EBoardFieldState.newMove ? { ...el, state: EBoardFieldState.done } : el)),
     );
     addApprovedMove(newMoveInfo!);
-  }, [newMoveInfo]);
+  }, [newMoveInfo, addApprovedMove]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -61,7 +61,7 @@ const useChangingStateButtons = (newMoveInfo: IApprovedMove | null) => {
       );
       setDefineBlankModalIsOpen(false);
     },
-    [newMoveInfo],
+    [newMoveInfo, addApprovedMove],
   );
 
   useEffect(() => {

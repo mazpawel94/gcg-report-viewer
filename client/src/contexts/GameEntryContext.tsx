@@ -43,29 +43,33 @@ const initialBoardState: IBOardField[] = [...Array(15)]
   .flat();
 
 interface IGameEntryContext {
-  gameStatus: EGameStatus;
   boardState: IBOardField[];
+  gameStatus: EGameStatus;
+  currentRack: string;
   moveIsCorrect: boolean;
 }
 
 interface IGameEntryActionsContext {
-  setBoardState: React.Dispatch<React.SetStateAction<IBOardField[]>>;
-  setGameStatus: React.Dispatch<React.SetStateAction<EGameStatus>>;
   addApprovedMove: (newMove: IApprovedMove) => void;
   changeLetter: (letter: string) => void;
+  setBoardState: React.Dispatch<React.SetStateAction<IBOardField[]>>;
+  setCurrentRack: React.Dispatch<React.SetStateAction<string>>;
+  setGameStatus: React.Dispatch<React.SetStateAction<EGameStatus>>;
 }
 
 export const GameEntryContext = createContext<IGameEntryContext>({
-  gameStatus: EGameStatus.initial,
   boardState: initialBoardState,
+  currentRack: '',
+  gameStatus: EGameStatus.initial,
   moveIsCorrect: false,
 });
 
 export const GameEntryActionsContext = createContext<IGameEntryActionsContext>({
   addApprovedMove: () => {},
+  changeLetter: () => {},
   setBoardState: () => {},
   setGameStatus: () => {},
-  changeLetter: () => {},
+  setCurrentRack: () => {},
 });
 
 export const useGameEntryContext = () => useContext(GameEntryContext);
@@ -77,6 +81,7 @@ export const GameEntryContextProvider = ({ children }: any) => {
   const [gameStatus, setGameStatus] = useState<EGameStatus>(EGameStatus.initial);
   const [approvedMoves, setApprovedMoves] = useState<IApprovedMove[]>([]);
   const [playersName, setPlayersName] = useState<string[]>(['gracz_1', 'gracz_2']);
+  const [currentRack, setCurrentRack] = useState<string>('');
   const { moveIsCorrect } = useCheckMoveIsCorrect(gameStatus, boardState);
 
   const changeLetter = useCallback(
@@ -89,16 +94,21 @@ export const GameEntryContextProvider = ({ children }: any) => {
     [],
   );
 
-  const addApprovedMove = useCallback((newMove: IApprovedMove) => {
-    setApprovedMoves((prev) => [
-      ...prev,
-      {
-        ...newMove,
-        index: prev.length,
-        sumPoints: prev.length >= 2 ? prev[prev.length - 2].sumPoints! + newMove.points : newMove.points,
-      },
-    ]);
-  }, []);
+  const addApprovedMove = useCallback(
+    (newMove: IApprovedMove) => {
+      setApprovedMoves((prev) => [
+        ...prev,
+        {
+          ...newMove,
+          index: prev.length,
+          letters: currentRack.toUpperCase() || newMove.letters,
+          sumPoints: prev.length >= 2 ? prev[prev.length - 2].sumPoints! + newMove.points : newMove.points,
+        },
+      ]);
+      setCurrentRack('');
+    },
+    [currentRack],
+  );
 
   const txtFile = useMemo(() => {
     const rows = approvedMoves.map(
@@ -115,16 +125,18 @@ export const GameEntryContextProvider = ({ children }: any) => {
   const actions = useMemo(
     () => ({
       addApprovedMove,
-      setBoardState,
-      setGameStatus,
       changeLetter,
+      setBoardState,
+      setCurrentRack,
+      setGameStatus,
     }),
-    [],
+    [addApprovedMove],
   );
 
   const values = {
     approvedMoves,
     boardState,
+    currentRack,
     gameStatus,
     moveIsCorrect,
   };

@@ -50,7 +50,7 @@ const useGameEntry2 = () => {
 
   const handlePass = useCallback(() => {
     addApprovedMove({ letters: newMoveInfo?.letters || 'A', points: 0, word: ' ', coordinates: '-' });
-  }, [newMoveInfo]);
+  }, [newMoveInfo, addApprovedMove]);
 
   const handleMouseDown = useCallback((e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;
