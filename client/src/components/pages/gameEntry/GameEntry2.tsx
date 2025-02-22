@@ -42,6 +42,7 @@ const GameEntry2 = () => {
     handleMouseDown,
     handleMouseUp,
     handleMouseOver,
+    handlePass,
     handleBoardFieldClick,
   } = useGameEntry2();
 
@@ -53,8 +54,8 @@ const GameEntry2 = () => {
           {gameStatus === EGameStatus.filled ? (
             <>
               <StyledButton>wymiana</StyledButton>
-              <StyledButton>strata</StyledButton>
-              <StyledButton>pas</StyledButton>
+              <StyledButton onClick={handlePass}>strata</StyledButton>
+              <StyledButton onClick={handlePass}>pas</StyledButton>
             </>
           ) : null}
         </ButtonsWrapper>

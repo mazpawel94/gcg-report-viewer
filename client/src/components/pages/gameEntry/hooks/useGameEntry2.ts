@@ -14,7 +14,7 @@ const useGameEntry2 = () => {
 
   const { gameStatus, boardState, moveIsCorrect } = useGameEntryContext();
 
-  const { setBoardState } = useGameEntryActionsContext();
+  const { setBoardState, addApprovedMove } = useGameEntryActionsContext();
 
   const newMoveInfo = useNewMoveInfo();
 
@@ -48,6 +48,10 @@ const useGameEntry2 = () => {
     [boardState],
   );
 
+  const handlePass = useCallback(() => {
+    addApprovedMove({ letters: newMoveInfo?.letters || 'A', points: 0, word: ' ', coordinates: '-' });
+  }, [newMoveInfo]);
+
   const handleMouseDown = useCallback((e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;
     if (e.target.nodeName === 'CANVAS') setIsMouseDown(true);
@@ -64,6 +68,7 @@ const useGameEntry2 = () => {
     handleMouseOver: gameStatus === EGameStatus.filled && isMouseDown ? addTileToCurrentMove : emptyFn,
     handleMouseDown,
     handleMouseUp,
+    handlePass,
   };
 };
 

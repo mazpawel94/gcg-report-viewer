@@ -32,6 +32,8 @@ export interface IApprovedMove {
   word: string;
   coordinates: string;
   letters: string;
+  sumPoints?: number;
+  isLose?: boolean;
 }
 
 const initialBoardState: IBOardField[] = [...Array(15)]
@@ -74,7 +76,7 @@ export const GameEntryContextProvider = ({ children }: any) => {
   const [boardState, setBoardState] = useState<IBOardField[]>(initialBoardState);
   const [gameStatus, setGameStatus] = useState<EGameStatus>(EGameStatus.initial);
   const [approvedMoves, setApprovedMoves] = useState<IApprovedMove[]>([]);
-
+  const [playersName, setPlayersName] = useState<string[]>(['gracz_1', 'gracz_2']);
   const { moveIsCorrect } = useCheckMoveIsCorrect(gameStatus, boardState);
 
   const changeLetter = useCallback(
@@ -88,9 +90,28 @@ export const GameEntryContextProvider = ({ children }: any) => {
   );
 
   const addApprovedMove = useCallback((newMove: IApprovedMove) => {
-    setApprovedMoves((prev) => [...prev, { ...newMove, index: prev.length }]);
+    setApprovedMoves((prev) => [
+      ...prev,
+      {
+        ...newMove,
+        index: prev.length,
+        sumPoints: prev.length >= 2 ? prev[prev.length - 2].sumPoints! + newMove.points : newMove.points,
+      },
+    ]);
   }, []);
 
+  const txtFile = useMemo(() => {
+    const rows = approvedMoves.map(
+      (el, i) => `>${playersName[i % 2]}: ${el.letters} ${el.coordinates} ${el.word} ${el.points} ${el.sumPoints} `,
+    );
+    return `
+    #character-encoding UTF-8
+    #player1 ${playersName[0]} ${playersName[0]}
+    #player2 ${playersName[1]} ${playersName[1]}
+    ${rows.join('\r\n')}`;
+  }, [approvedMoves, playersName]);
+
+  console.log({ txtFile, approvedMoves });
   const actions = useMemo(
     () => ({
       addApprovedMove,

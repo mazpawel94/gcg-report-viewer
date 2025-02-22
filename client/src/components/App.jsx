@@ -3,9 +3,9 @@ import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { AppContextProvider } from '../context';
-import Home from '../components/pages/Home';
-import GameplayAnalysed from '../components/pages/GameplayAnalysed';
-import MainTemplate from '../components/templates/MainTemplate';
+import Home from './pages/Home';
+import GameplayAnalysed from './pages/GameplayAnalysed';
+import MainTemplate from './templates/MainTemplate';
 import GameEntry from './pages/GameEntry';
 import GameEntry2 from './pages/gameEntry/GameEntry2';
 

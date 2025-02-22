@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import context from '../../context';
 import { isMoveWithWord } from '../../services/gameService';
-import ToolButtons from '../organisms/ToolButtons';
+import ToolButtons from './ToolButtons';
 import useBoard from './hooks/useBoard';
 import KonvaBoard from './KonvaBoard';
 import Word from './Word';

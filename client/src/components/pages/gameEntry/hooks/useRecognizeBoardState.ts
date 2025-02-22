@@ -27,13 +27,11 @@ const formatResponse = (board: string) => {
 
 const useRecognizeBoardState = () => {
   const postRequest = async (file: File, callback: Function) => {
-    const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'; // temporary
-
     const formData = new FormData();
     formData.append('file', file);
     const {
       data: { status, board, message },
-    } = await axios.post<ApiResponse>(`${CORS_PROXY}https://scrabblecam.com/process`, formData, {
+    } = await axios.post<ApiResponse>('/process', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
