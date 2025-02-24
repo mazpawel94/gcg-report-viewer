@@ -43,6 +43,7 @@ const initialBoardState: IBOardField[] = [...Array(15)]
   .flat();
 
 interface IGameEntryContext {
+  approvedMoves: IApprovedMove[];
   boardState: IBOardField[];
   gameStatus: EGameStatus;
   currentRack: string;
@@ -58,6 +59,7 @@ interface IGameEntryActionsContext {
 }
 
 export const GameEntryContext = createContext<IGameEntryContext>({
+  approvedMoves: [],
   boardState: initialBoardState,
   currentRack: '',
   gameStatus: EGameStatus.initial,

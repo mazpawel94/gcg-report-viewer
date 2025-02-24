@@ -31,6 +31,7 @@ const useGameEntry2 = () => {
   const addTileToCurrentMove = useCallback(
     (e: Event, index: number) => {
       const tile = boardState.find((el) => el.index === index)!;
+      if (tile.state === EBoardFieldState.empty) return;
       if (tile.state === EBoardFieldState.newMove && e.type === 'mousedown')
         return setBoardState((prev) =>
           prev.map((el) => (el.index === index ? { ...el, state: EBoardFieldState.sketch } : el)),
