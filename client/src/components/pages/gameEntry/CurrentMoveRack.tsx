@@ -13,7 +13,9 @@ const CurrentMoveRack = ({ newMoveInfo }: { newMoveInfo: IApprovedMove | null })
     setCurrentRack(e.target.value);
   };
 
-  const focusOnInput = () => inputRef.current?.focus();
+  const focusOnInput = () => {
+    if (document.activeElement?.tagName !== 'INPUT') inputRef.current?.focus();
+  };
 
   useEffect(() => document.addEventListener('pointerup', focusOnInput), []);
 

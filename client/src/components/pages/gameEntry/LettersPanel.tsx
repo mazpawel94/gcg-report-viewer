@@ -4,7 +4,7 @@ import { EBoardFieldState, useGameEntryActionsContext, useGameEntryContext } fro
 import { useState } from 'react';
 import StyledButton from '../../atoms/Button';
 
-const StyledWrapper = styled.div`
+export const StyledWrapper = styled.div`
   position: absolute;
   width: 385px;
   background: #0f4305;
@@ -61,7 +61,7 @@ const LettersPanel = () => {
         <StyledDeletionLetter onClick={() => changeLetter(letter)}>{letter}</StyledDeletionLetter>
       ))}
       <div style={{ width: '35px' }} />
-      {'ABCDEFGHIJKLMNOPRSTUWZ'.split('').map((letter) => (
+      {'ABCDEFGHIJKLMNOPRSTUWYZ'.split('').map((letter) => (
         <StyledDeletionLetter onClick={() => changeLetter(letter)}>{letter}</StyledDeletionLetter>
       ))}
     </StyledWrapper>
@@ -81,7 +81,7 @@ export const LettersPanelForBlank = ({ callback, numberOfBlanks }: { callback: F
   return (
     <StyledWrapper>
       <h2>Zdefiniuj blanka</h2>
-      {'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWZŹŻ'.split('').map((letter, i) => (
+      {'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ'.split('').map((letter, i) => (
         <StyledDeletionLetter
           key={i}
           selected={letter === selectedLetter[numberOfDefinedBlanks]}

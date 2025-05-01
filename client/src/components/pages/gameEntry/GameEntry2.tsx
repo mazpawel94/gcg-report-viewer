@@ -5,9 +5,11 @@ import BoardTile from '../../atoms/BoardTile';
 import StyledButton from '../../atoms/Button';
 import useHandleResize from '../../organisms/hooks/useHandleResize';
 import KonvaBoard from '../../organisms/KonvaBoard';
+import { ResultForGameEntry } from '../../organisms/Result';
 import ChangingStateButtons from './ChangingStateButtons';
 import CurrentMoveInfo from './CurrentMoveInfo';
 import CurrentMoveRack from './CurrentMoveRack';
+import ExchangeLettersModal from './ExchangeLettersModal';
 import useGameEntry2 from './hooks/useGameEntry2';
 import LettersPanel from './LettersPanel';
 import MovesList from './MovesList';
@@ -35,7 +37,7 @@ const MovesSectionWrapper = styled.div`
   flex-grow: 2;
   width: 500px;
   min-width: 400px;
-  margin-top: 50px;
+  margin-top: 10px;
   padding-right: 60px;
   overflow-y: auto;
   max-height: 100%;
@@ -56,17 +58,32 @@ const ButtonsWrapper = styled.div`
     gap: 5px;
 }
 `;
+const Photo = styled.div<{ imgSrc: string }>`
+  position: relative;
+  height: 70vh;
+  background-image: url('${({ imgSrc }) => imgSrc}');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-grow: 1;
+  margin-top: 5px;
+`;
+
 const GameEntry2 = () => {
   const { fieldSize } = useHandleResize();
   const {
     gameStatus,
+    boardPhotoUrl,
     boardState,
     newMoveInfo,
+    handleDownload,
     handleMouseDown,
     handleMouseUp,
     handleMouseOver,
     handlePass,
+    handleExchange,
     handleBoardFieldClick,
+    undoMove,
   } = useGameEntry2();
 
   return (
@@ -77,7 +94,9 @@ const GameEntry2 = () => {
           <ButtonsWrapper>
             {gameStatus === EGameStatus.filled ? (
               <>
-                <StyledButton>wymiana</StyledButton>
+                <StyledButton onClick={handleDownload}>pobierz plik</StyledButton>
+                <StyledButton onClick={undoMove}>cofnij ruch</StyledButton>
+                <StyledButton onClick={handleExchange}>wymiana</StyledButton>
                 <StyledButton onClick={handlePass}>strata</StyledButton>
                 <StyledButton onClick={handlePass}>pas</StyledButton>
               </>
@@ -89,6 +108,7 @@ const GameEntry2 = () => {
           <PolishLettersInfo />
 
           <LettersPanel />
+          <ExchangeLettersModal />
 
           <KonvaBoard contextValue={{}}>
             {boardState.map((field) => (
@@ -109,6 +129,8 @@ const GameEntry2 = () => {
         <CurrentMoveRack newMoveInfo={newMoveInfo} />
       </BoardSectionWrapper>
       <MovesSectionWrapper>
+        <ResultForGameEntry />
+        {gameStatus === EGameStatus.suggestion ? <Photo imgSrc={boardPhotoUrl} /> : null}
         <MovesList />
       </MovesSectionWrapper>
     </StyledWrapper>

@@ -18,13 +18,13 @@ const MoveDetails = styled.div`
 `;
 
 const CurrentMoveInfo = ({ newMoveInfo }: { newMoveInfo: IApprovedMove | null }) => {
-  const { gameStatus } = useGameEntryContext();
+  const { gameStatus, playersName, approvedMoves } = useGameEntryContext();
 
   if (gameStatus !== EGameStatus.filled) return <StyledWrapper />;
 
   return (
     <StyledWrapper>
-      <h3>User 1</h3>
+      <h3>{(approvedMoves[approvedMoves.length - 1]?.index || 1) % 2 ? playersName[0] : playersName[1]}</h3>
       {newMoveInfo ? (
         <MoveDetails>
           {newMoveInfo.coordinates} | {newMoveInfo.points} pkt

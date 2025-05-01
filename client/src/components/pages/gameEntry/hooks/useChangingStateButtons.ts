@@ -14,12 +14,13 @@ const useChangingStateButtons = (newMoveInfo: IApprovedMove | null) => {
   const [defineBlankModalIsOpen, setDefineBlankModalIsOpen] = useState<boolean>(false);
   const { gameStatus, moveIsCorrect } = useGameEntryContext();
 
-  const { addApprovedMove, setBoardState, setGameStatus } = useGameEntryActionsContext();
+  const { addApprovedMove, setBoardPhotoUrl, setBoardState, setGameStatus } = useGameEntryActionsContext();
 
   const { postRequest } = useRecognizeBoardState();
 
   const handleInput = useCallback(async (e: any) => {
     const file = e.target.files[0];
+    setBoardPhotoUrl(URL.createObjectURL(e.target.files[0]));
     await postRequest(file, setBoardState);
     setGameStatus(EGameStatus.suggestion);
   }, []);
