@@ -1,8 +1,10 @@
-import styled, { css } from 'styled-components';
-import { DeletionLetter } from '../../molecules/Deletion';
-import { EBoardFieldState, useGameEntryActionsContext, useGameEntryContext } from '../../../contexts/GameEntryContext';
 import { useState } from 'react';
+import styled, { css } from 'styled-components';
+
+import { EBoardFieldState, useGameEntryActionsContext, useGameEntryContext } from '../../../contexts/GameEntryContext';
 import StyledButton from '../../atoms/Button';
+import { DeletionLetter } from '../../molecules/Deletion';
+import useMouseClickPosition from './hooks/useMouseClickPosition';
 
 export const StyledWrapper = styled.div`
   position: absolute;
@@ -52,10 +54,12 @@ const LettersPanel = () => {
 
   const { changeLetter } = useGameEntryActionsContext();
 
+  const mousePosition = useMouseClickPosition();
+
   if (!boardState.some((el) => el.state === EBoardFieldState.changed)) return null;
 
   return (
-    <StyledWrapper>
+    <StyledWrapper style={{ top: mousePosition.y + 15, left: mousePosition.x }}>
       <div style={{ width: '35px' }} />
       {'ĄĆĘŁŃÓŚŹŻ'.split('').map((letter) => (
         <StyledDeletionLetter onClick={() => changeLetter(letter)}>{letter}</StyledDeletionLetter>

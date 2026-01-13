@@ -40,13 +40,13 @@ const BoardCoordinates = () => {
   return (
     <>
       <UpCoordinates>
-        {[...Array(15).keys()].map((el) => (
-          <CoordinateX key={el}>{el + 1}</CoordinateX>
+        {'ABCDEFGHIJKLMNO'.split('').map((el) => (
+          <CoordinateX key={el}>{el}</CoordinateX>
         ))}
       </UpCoordinates>
       <LeftCoordinates>
-        {'ABCDEFGHIJKLMNO'.split('').map((el) => (
-          <CoordinateY key={el}>{el}</CoordinateY>
+        {[...Array(15).keys()].map((el) => (
+          <CoordinateY key={el}>{el + 1}</CoordinateY>
         ))}
       </LeftCoordinates>
     </>

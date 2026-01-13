@@ -76,13 +76,14 @@ const GameEntry2 = () => {
     boardPhotoUrl,
     boardState,
     newMoveInfo,
-    handleDownload,
-    handleMouseDown,
-    handleMouseUp,
-    handleMouseOver,
-    handlePass,
-    handleExchange,
     handleBoardFieldClick,
+    handleDownload,
+    handleExchange,
+    handleLoss,
+    handleMouseDown,
+    handleMouseOver,
+    handleMouseUp,
+    handlePass,
     undoMove,
   } = useGameEntry2();
 
@@ -97,7 +98,7 @@ const GameEntry2 = () => {
                 <StyledButton onClick={handleDownload}>pobierz plik</StyledButton>
                 <StyledButton onClick={undoMove}>cofnij ruch</StyledButton>
                 <StyledButton onClick={handleExchange}>wymiana</StyledButton>
-                <StyledButton onClick={handlePass}>strata</StyledButton>
+                <StyledButton onClick={handleLoss}>strata</StyledButton>
                 <StyledButton onClick={handlePass}>pas</StyledButton>
               </>
             ) : null}

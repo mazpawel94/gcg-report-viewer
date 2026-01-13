@@ -4,12 +4,13 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000, // Zachowaj port 3000, jeśli chcesz
+    port: 3000,
     proxy: {
-      '/process': {
-        target: 'https://scrabblecam.com',
+      '/api': {
+        target: 'http://localhost:3001',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/process/, '/process'), // Zachowuje ścieżkę
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''), // Usuwa '/api' z path, jeśli backend nie ma prefiksu
       },
     },
   },

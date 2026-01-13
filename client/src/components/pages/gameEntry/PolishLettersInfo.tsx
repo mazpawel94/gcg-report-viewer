@@ -1,7 +1,7 @@
+import { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { useMemo } from 'react';
-import { EGameStatus, useGameEntryContext } from '../../../contexts/GameEntryContext';
+import { EGameStatus, useGameEntryActionsContext, useGameEntryContext } from '../../../contexts/GameEntryContext';
 
 const StyledWrapper = styled.div`
   margin-top: 5px;
@@ -20,25 +20,35 @@ const StyledWrapper = styled.div`
 const Letter = styled.div<{ isOnBoard: boolean }>`
   background: ${({ isOnBoard }) => (isOnBoard ? '#f8e8c7' : 'red')};
   color: ${({ isOnBoard }) => (isOnBoard ? '#015b52' : 'white')};
+  cursor: ${({ isOnBoard }) => (isOnBoard ? 'initial' : 'pointer')};
   font-size: 15px;
   text-align: center;
   width: 25px;
   height: 25px;
   border-radius: 4px;
+  user-select: none;
 `;
 
 const letters = 'ĄĆĘŁŁŃÓŚŹŻ'.split('');
 
 const PolishLettersInfo = () => {
   const { boardState, gameStatus } = useGameEntryContext();
+  const { setSelectingPolishLetter } = useGameEntryActionsContext();
+
   const lettersOnBoard = useMemo(() => boardState.map((el) => el.letter), [boardState]);
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>, letter: string) => {
+    e.preventDefault();
+    setSelectingPolishLetter(letter);
+  };
+
   if (gameStatus !== EGameStatus.suggestion) return null;
-  
+
   return (
     <StyledWrapper>
       {letters.map((letter, index) => (
         <Letter
+          onMouseDown={(e) => handleMouseDown(e, letter)}
           isOnBoard={
             lettersOnBoard.includes(letter) &&
             (letter !== 'Ł'

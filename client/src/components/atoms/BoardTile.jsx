@@ -79,7 +79,7 @@ const BoardTile = ({
         verticalAlign="center"
         fontFamily="Arial"
         fontStyle="bold"
-        opacity={transparent ? 0 : 1}
+        opacity={transparent || blank ? 0 : 1}
         data-testid="points"
         onTap={handleClick}
         onMouseDown={handleClick}
@@ -98,3 +98,6 @@ BoardTile.propTypes = {
 };
 
 export default BoardTile;
+
+
+

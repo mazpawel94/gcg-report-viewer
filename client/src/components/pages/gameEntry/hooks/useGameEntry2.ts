@@ -12,21 +12,30 @@ const emptyFn = () => {};
 const useGameEntry2 = () => {
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
 
-  const { gameStatus, boardPhotoUrl, boardState, moveIsCorrect, txtFile } = useGameEntryContext();
+  const { gameStatus, boardPhotoUrl, boardState, moveIsCorrect, selectingPolishLetter, txtFile } =
+    useGameEntryContext();
 
-  const { setBoardState, addApprovedMove, setIsExchangeMove, handleUndoMove } = useGameEntryActionsContext();
+  const { setBoardState, addApprovedMove, setIsExchangeMove, handleUndoMove, setSelectingPolishLetter } =
+    useGameEntryActionsContext();
 
   const newMoveInfo = useNewMoveInfo();
 
-  const selectChangedTile = useCallback((e: Event, index: number) => {
-    setBoardState((prev) =>
-      prev.map((el) =>
-        el.index !== index
-          ? { ...el, state: el.state === EBoardFieldState.changed ? EBoardFieldState.suggestion : el.state }
-          : { ...el, state: EBoardFieldState.changed },
-      ),
-    );
-  }, []);
+  const selectChangedTile = useCallback(
+    (e: Event, index: number) => {
+      setBoardState((prev) =>
+        prev.map((el) =>
+          el.index !== index
+            ? { ...el, state: el.state === EBoardFieldState.changed ? EBoardFieldState.suggestion : el.state }
+            : {
+                ...el,
+                ...(selectingPolishLetter ? { letter: selectingPolishLetter } : { state: EBoardFieldState.changed }),
+              },
+        ),
+      );
+      if (selectingPolishLetter) setSelectingPolishLetter(null);
+    },
+    [selectingPolishLetter],
+  );
 
   const addTileToCurrentMove = useCallback(
     (e: Event, index: number) => {
@@ -48,11 +57,17 @@ const useGameEntry2 = () => {
     },
     [boardState],
   );
+  
+  const handleExchange = useCallback(() => setIsExchangeMove(true), []);
 
   const handlePass = useCallback(() => {
     addApprovedMove({ letters: newMoveInfo?.letters || 'A', points: 0, word: ' ', coordinates: '-' });
   }, [newMoveInfo, addApprovedMove]);
-  const handleExchange = useCallback(() => setIsExchangeMove(true), []);
+
+
+  const handleLoss= useCallback(() => {
+    addApprovedMove({ letters: newMoveInfo?.letters || 'A', points: 0, word: ' ', coordinates: '--' });
+  }, [newMoveInfo, addApprovedMove]);
 
   const handleMouseDown = useCallback((e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;
@@ -77,13 +92,14 @@ const useGameEntry2 = () => {
     gameStatus,
     moveIsCorrect,
     newMoveInfo,
-    handleDownload,
     handleBoardFieldClick: gameStatus === EGameStatus.suggestion ? selectChangedTile : addTileToCurrentMove,
-    handleMouseOver: gameStatus === EGameStatus.filled && isMouseDown ? addTileToCurrentMove : emptyFn,
+    handleDownload,
+    handleExchange,
+    handleLoss,
     handleMouseDown,
+    handleMouseOver: gameStatus === EGameStatus.filled && isMouseDown ? addTileToCurrentMove : emptyFn,
     handleMouseUp,
     handlePass,
-    handleExchange,
     undoMove: handleUndoMove,
   };
 };

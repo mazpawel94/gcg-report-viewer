@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import useCheckMoveIsCorrect from '../components/pages/gameEntry/hooks/useCheckMoveIsCorrect';
+import { useAnalyzeQueue } from '../hooks/useAnalyzeQueue';
 
 export enum EBoardFieldState {
   'empty',
@@ -46,9 +47,9 @@ const findRackLetters = (lastPlayerMove: IApprovedMove) => {
     .replaceAll(/[a-ząćęłńóśźż]/g, '?')
     .split('');
   const currentTiles = playedTiles.reduce((acc, curr) => acc.replace(curr, ''), lastPlayerMove.letters);
-  console.log({ lastPlayerMove, playedTiles, currentTiles });
   return currentTiles;
 };
+
 const initialBoardState: IBOardField[] = [...Array(15)]
   .map((_, y) =>
     [...Array(15)].map((_, x) => ({ x, y, index: y * 15 + x, letter: null, state: EBoardFieldState.empty })),
@@ -64,6 +65,7 @@ interface IGameEntryContext {
   isExchangeMove: boolean;
   moveIsCorrect: boolean;
   playersName: string[];
+  selectingPolishLetter: string | null;
   txtFile: string;
 }
 
@@ -78,6 +80,7 @@ interface IGameEntryActionsContext {
   setGameStatus: React.Dispatch<React.SetStateAction<EGameStatus>>;
   setIsExchangeMove: React.Dispatch<React.SetStateAction<boolean>>;
   setPlayersName: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectingPolishLetter: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const GameEntryContext = createContext<IGameEntryContext>({
@@ -89,6 +92,7 @@ export const GameEntryContext = createContext<IGameEntryContext>({
   isExchangeMove: false,
   moveIsCorrect: false,
   playersName: ['gracz_1', 'gracz_2'],
+  selectingPolishLetter: null,
   txtFile: '',
 });
 
@@ -103,6 +107,7 @@ export const GameEntryActionsContext = createContext<IGameEntryActionsContext>({
   setGameStatus: () => {},
   setIsExchangeMove: () => {},
   setPlayersName: () => {},
+  setSelectingPolishLetter: () => {},
 });
 
 export const useGameEntryContext = () => useContext(GameEntryContext);
@@ -118,7 +123,10 @@ export const GameEntryContextProvider = ({ children }: any) => {
   const [playersName, setPlayersName] = useState<string[]>(['gracz_1', 'gracz_2']);
   const [isExchangeMove, setIsExchangeMove] = useState<boolean>(false);
   const [currentRack, setCurrentRack] = useState<string>('');
+  const [selectingPolishLetter, setSelectingPolishLetter] = useState<string | null>(null);
+
   const { moveIsCorrect } = useCheckMoveIsCorrect(gameStatus, boardState);
+  const { addToQueue } = useAnalyzeQueue(boardState, playersName);
 
   const changeLetter = useCallback(
     (newLetter: string) =>
@@ -133,6 +141,7 @@ export const GameEntryContextProvider = ({ children }: any) => {
   const addApprovedMove = useCallback(
     (newMove: IApprovedMove) => {
       setBoardStateSnapshots((prev) => [...prev, { index: approvedMoves.length, boardState }]);
+      addToQueue({ ...newMove, index: approvedMoves.length, letters: currentRack.toUpperCase() || newMove.letters });
       setApprovedMoves((prev) => [
         ...prev,
         {
@@ -144,7 +153,7 @@ export const GameEntryContextProvider = ({ children }: any) => {
       ]);
       setCurrentRack(approvedMoves.length > 0 ? findRackLetters(approvedMoves[approvedMoves.length - 1]) : '');
     },
-    [boardState, approvedMoves, currentRack],
+    [boardState, approvedMoves, currentRack, addToQueue],
   );
 
   const handleUndoMove = useCallback(() => {
@@ -157,13 +166,17 @@ export const GameEntryContextProvider = ({ children }: any) => {
 
   const addExchangeMove = useCallback(
     (exchangedLetters: string | number) => {
+      const exchanged = (exchangedLetters as string).toUpperCase();
+      const letters = currentRack.length ? currentRack.toUpperCase() : exchanged;
+      addToQueue({ coordinates: 'exchange', index: approvedMoves.length, letters, points: 0, word: exchanged });
+
       setApprovedMoves((prev) => [
         ...prev,
         {
-          word: `-${(exchangedLetters as string).toUpperCase()}`,
+          word: `-${exchanged}`,
           coordinates: ' ',
           index: prev.length,
-          letters: currentRack.length ? currentRack.toUpperCase() : (exchangedLetters as string).toUpperCase(),
+          letters: currentRack.length ? currentRack.toUpperCase() : exchanged,
           points: 0,
           sumPoints: prev.length >= 2 ? prev[prev.length - 2].sumPoints! : 0,
         },
@@ -175,16 +188,17 @@ export const GameEntryContextProvider = ({ children }: any) => {
   );
 
   const txtFile = useMemo(() => {
-    const rows = approvedMoves.map(
-      (el, i) => `>${playersName[i % 2]}: ${el.letters} ${el.coordinates} ${el.word} ${el.points} ${el.sumPoints} `,
-    );
+    const rows = approvedMoves
+      .flatMap((el) => (el.coordinates === '--' ? [el, el] : el)) // duplikuje ruchy straty, zgodnie z formatem gcg
+      .map(
+        (el, i) => `>${playersName[i % 2]}: ${el.letters} ${el.coordinates} ${el.word} ${el.points} ${el.sumPoints} `,
+      );
     return `#character-encoding UTF-8
 #player1 ${playersName[0]} ${playersName[0]}
 #player2 ${playersName[1]} ${playersName[1]}
 ${rows.join('\r\n')}`;
   }, [approvedMoves, playersName]);
 
-  console.log({ txtFile, approvedMoves });
   const actions = useMemo(
     () => ({
       addApprovedMove,
@@ -197,6 +211,7 @@ ${rows.join('\r\n')}`;
       setGameStatus,
       setIsExchangeMove,
       setPlayersName,
+      setSelectingPolishLetter,
     }),
     [addApprovedMove],
   );
@@ -210,6 +225,7 @@ ${rows.join('\r\n')}`;
     isExchangeMove,
     moveIsCorrect,
     playersName,
+    selectingPolishLetter,
     txtFile,
   };
 
