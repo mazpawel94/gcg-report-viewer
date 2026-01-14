@@ -11,7 +11,7 @@ const compressMovesList = (moves) =>
 const useAddDiagramToBase = () => {
   const { currentMoves, actualMove } = useGetFromCurrentState();
   const addDiagramCallback = async (diagramIsPublic, tags) => {
-    const id = await fetch(`${backendUrl}/api/diagram`, {
+    const id = await fetch(`${backendUrl}/diagram`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

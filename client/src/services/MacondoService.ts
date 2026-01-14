@@ -6,7 +6,7 @@ class MacondoService {
     console.log({rack, playedMove, withFullAnalysis});
     const res = await axios({
       method: 'post',
-      url: withFullAnalysis ? `${backendUrl}/api/analyze` : `${backendUrl}/api/analyze/simple`,
+      url: withFullAnalysis ? `${backendUrl}/analyze` : `${backendUrl}/analyze/simple`,
       data: { rack, playedMove },
     });
     return res;
