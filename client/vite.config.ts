@@ -7,7 +7,8 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: "https://gcg-report-viewer.onrender.com",
+        // target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''), // Usuwa '/api' z path, jeśli backend nie ma prefiksu
