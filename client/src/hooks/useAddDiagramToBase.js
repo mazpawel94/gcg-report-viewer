@@ -1,3 +1,4 @@
+import { backendUrl } from '../components/App';
 import { findPlayedMove, findBestMove } from '../services/gameService';
 import useGetFromCurrentState from './useGetFromCurrentState';
 
@@ -10,7 +11,7 @@ const compressMovesList = (moves) =>
 const useAddDiagramToBase = () => {
   const { currentMoves, actualMove } = useGetFromCurrentState();
   const addDiagramCallback = async (diagramIsPublic, tags) => {
-    const id = await fetch('/api/diagram', {
+    const id = await fetch(`${backendUrl}/api/diagram`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

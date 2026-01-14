@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { EBoardFieldState, IBOardField } from '../../../../contexts/GameEntryContext';
+import { backendUrl } from '../../../App';
 
 interface ApiResponse {
   status: string;
@@ -31,7 +32,7 @@ const useRecognizeBoardState = () => {
     formData.append('file', file);
     const {
       data: { status, board, message },
-    } = await axios.post<ApiResponse>('/api/scrabblecam/process', formData, {
+    } = await axios.post<ApiResponse>(`${backendUrl}/api/scrabblecam/process`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

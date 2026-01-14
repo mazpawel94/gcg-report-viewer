@@ -9,6 +9,8 @@ import MainTemplate from './templates/MainTemplate';
 import GameEntry from './pages/GameEntry';
 import GameEntry2 from './pages/gameEntry/GameEntry2';
 
+export const backendUrl = "https://gcg-report-viewer.onrender.com";
+
 const App = () => {
   return (
     <AppContextProvider>
