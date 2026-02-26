@@ -45,6 +45,7 @@ export class MacondoService implements OnModuleInit {
       env: env,
     });
     macondo.onData((data) => {
+       console.log(`Macondo onData: ${data}`);
       this.currentOutputBuffer += data;
 
       if (this.isProcessingCommand && this.commandQueue.length > 0) {
