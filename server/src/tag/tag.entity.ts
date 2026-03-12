@@ -1,13 +1,5 @@
 import { Diagram } from 'src/diagram/diagram.entity';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  BaseEntity,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BaseEntity, ManyToMany } from 'typeorm';
 
 @Entity()
 export class Tag extends BaseEntity {
@@ -21,6 +13,5 @@ export class Tag extends BaseEntity {
   createdAt: Date;
 
   @ManyToMany((type) => Diagram, (entity) => entity.tags)
-  @JoinTable()
   diagrams: Diagram[];
 }

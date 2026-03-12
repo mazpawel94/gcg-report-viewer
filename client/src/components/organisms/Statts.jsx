@@ -47,8 +47,8 @@ const Statts = () => {
   console.log(`belgijka: ${(result.sumPoints / result.maxPoints) * 100}%`);
   console.log(`belgijka rozsądna: ${(result.sumPoints / result.normalizeMaxPoints) * 100}%`);
   console.log(`blanki: ${result.numberOfBlanks}`);
-  console.log(`ilość zagranych płytek: ${result.numberOfPlayedTiles}`);
-  console.log(`ilość siódemek: ${result.playedBingos}`);
+  console.log(`liczba zagranych płytek: ${result.numberOfPlayedTiles}`);
+  console.log(`liczba siódemek: ${result.playedBingos}`);
   console.log(`% siódemek: ${(result.playedBingos / result.availableBingos) * 100}%`);
 
   return null;

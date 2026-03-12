@@ -24,10 +24,13 @@ export class Diagram extends BaseEntity {
   })
   solution: string;
 
+  @Column({ type: 'int', default: 0 })
+  level: number;
+
   @CreateDateColumn({ nullable: true })
   createdAt: Date;
 
   @ManyToMany((type) => Tag, (entity) => entity.diagrams)
-  @JoinTable()
+  @JoinTable({ name: 'diagram_tag' })
   tags: Tag[];
 }

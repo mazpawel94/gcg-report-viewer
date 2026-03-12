@@ -74,6 +74,7 @@ interface IGameEntryActionsContext {
   addExchangeMove: (letters: string | number) => void;
   changeLetter: (letter: string) => void;
   handleUndoMove: () => void;
+  setApprovedMoves: React.Dispatch<React.SetStateAction<IApprovedMove[]>>;
   setBoardPhotoUrl: React.Dispatch<React.SetStateAction<string>>;
   setBoardState: React.Dispatch<React.SetStateAction<IBOardField[]>>;
   setCurrentRack: React.Dispatch<React.SetStateAction<string>>;
@@ -101,6 +102,7 @@ export const GameEntryActionsContext = createContext<IGameEntryActionsContext>({
   addExchangeMove: () => {},
   changeLetter: () => {},
   handleUndoMove: () => {},
+  setApprovedMoves: () => {},
   setBoardPhotoUrl: () => {},
   setBoardState: () => {},
   setCurrentRack: () => {},
@@ -189,10 +191,10 @@ export const GameEntryContextProvider = ({ children }: any) => {
 
   const txtFile = useMemo(() => {
     const rows = approvedMoves
-      .flatMap((el) => (el.coordinates === '--' ? [el, el] : el)) // duplikuje ruchy straty, zgodnie z formatem gcg
       .map(
         (el, i) => `>${playersName[i % 2]}: ${el.letters} ${el.coordinates} ${el.word} ${el.points} ${el.sumPoints} `,
-      );
+      )
+      .flatMap((el) => (el.includes('--') ? [el, el] : el)); // duplikuje ruchy straty, zgodnie z formatem gcg;
     return `#character-encoding UTF-8
 #player1 ${playersName[0]} ${playersName[0]}
 #player2 ${playersName[1]} ${playersName[1]}
@@ -205,6 +207,7 @@ ${rows.join('\r\n')}`;
       addExchangeMove,
       changeLetter,
       handleUndoMove,
+      setApprovedMoves,
       setBoardPhotoUrl,
       setBoardState,
       setCurrentRack,
