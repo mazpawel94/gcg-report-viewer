@@ -1,5 +1,5 @@
-import { Diagram } from 'src/diagram/diagram.entity';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BaseEntity, ManyToMany } from 'typeorm';
+import { Diagram } from '../diagram/diagram.entity';
 
 @Entity()
 export class Tag extends BaseEntity {

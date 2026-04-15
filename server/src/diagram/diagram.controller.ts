@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import DiagramInterface from 'src/interfaces/diagram.interface';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { DiagramService } from './diagram.service';
 import { CreateDiagramDto } from './dto/create-diagram.dto';
+import DiagramInterface from '../interfaces/diagram.interface';
+import { GetDiagramsQueryDto } from './dto/get-diagrams.dto';
 
 @Controller('diagram')
 export class DiagramController {
@@ -11,7 +12,7 @@ export class DiagramController {
     return this.diagramService.createDiagram(newDiagram);
   }
   @Get()
-  async getDiagrams(): Promise<DiagramInterface[]> {
-    return this.diagramService.getDiagrams();
+  async getDiagrams(@Query() query: GetDiagramsQueryDto): Promise<DiagramInterface[]> {
+    return this.diagramService.getDiagrams(query.created_after);
   }
 }

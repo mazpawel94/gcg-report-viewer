@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import DiagramInterface from 'src/interfaces/diagram.interface';
-import { Tag } from 'src/tag/tag.entity';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Diagram } from './diagram.entity';
 import { CreateDiagramDto } from './dto/create-diagram.dto';
+import { Tag } from '../tag/tag.entity';
+import DiagramInterface from '../interfaces/diagram.interface';
 
 @Injectable()
 export class DiagramService {
@@ -35,7 +35,12 @@ export class DiagramService {
     return diagram.id;
   }
 
-  async getDiagrams(): Promise<DiagramInterface[]> {
-    return Diagram.find({});
+  async getDiagrams(createdAfter?: string): Promise<DiagramInterface[]> {
+    const filter: any = {};
+    if (createdAfter) {
+      const date = new Date(createdAfter);
+      filter.createdAt = { $gt: date };
+    }
+    return Diagram.find(filter);
   }
 }

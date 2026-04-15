@@ -1,0 +1,1021 @@
+[
+    {
+        "move": {
+            "coordinates": "exchange",
+            "index": 0,
+            "letters": "AAAA",
+            "points": 0,
+            "word": ""
+        },
+        "status": "done",
+        "moveIndex": 0,
+        "result": {
+            "bestMoves": [
+                "gen 20",
+                "Move                Leave  Score Equity",
+                "1:  8G AA              AA         4   6.20",
+                "2:  8H AA              AA         4   6.20",
+                "3: (exch AAA)          A          0   4.20",
+                "4: (exch AA)           AA         0   2.90",
+                "5: (exch AAAA)                    0   0.00",
+                "6: (exch A)            AAA        0  -5.60",
+                "Move                Leave  Score Equity",
+                "1:  8G AA              AA         4   6.20",
+                "2:  8H AA              AA         4   6.20",
+                "3: (exch AAA)          A          0   4.20",
+                "4: (exch AA)           AA         0   2.90",
+                "5: (exch AAAA)                    0   0.00",
+                "6: (exch A)            AAA        0  -5.60"
+            ],
+            "rawOutput": " gen 20\r\n     Move                Leave  Score Equity\r\n  1:  8G AA              AA         4   6.20\r\n  2:  8H AA              AA         4   6.20\r\n  3: (exch AAA)          A          0   4.20\r\n  4: (exch AA)           AA         0   2.90\r\n  5: (exch AAAA)                    0   0.00\r\n  6: (exch A)            AAA        0  -5.60\r\n\n\u001b[91mmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  8G AA              AA         4   6.20\r\n  2:  8H AA              AA         4   6.20\r\n  3: (exch AAA)          A          0   4.20\r\n  4: (exch AA)           AA         0   2.90\r\n  5: (exch AAAA)                    0   0.00\r\n  6: (exch A)            AAA        0  -5.60\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": " gen 20\n     Move                Leave  Score Equity\n  1:  8G AA              AA         4   6.20\n  2:  8H AA              AA         4   6.20\n  3: (exch AAA)          A          0   4.20\n  4: (exch AA)           AA         0   2.90\n  5: (exch AAAA)                    0   0.00\n  6: (exch A)            AAA        0  -5.60\n\nmacondo> gen 20\n     Move                Leave  Score Equity\n  1:  8G AA              AA         4   6.20\n  2:  8H AA              AA         4   6.20\n  3: (exch AAA)          A          0   4.20\n  4: (exch AA)           AA         0   2.90\n  5: (exch AAAA)                    0   0.00\n  6: (exch A)            AAA        0  -5.60\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 34,
+            "word": "KOGOŚ",
+            "coordinates": "8H",
+            "letters": "KOGOŚHB",
+            "index": 1
+        },
+        "status": "done",
+        "moveIndex": 1,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "8H KOGOŚ           BH            34       51.39±1.60      -18.32±3.74",
+                "8H OBKOŚ           GH            34       50.32±1.63      -20.63±3.77",
+                "8D KOGOŚ           BH            28       48.50±1.61      -25.14±3.82",
+                "(exch BGHOŚ)        KO            0        47.81±1.62      -26.81±3.95",
+                "8F KOGOŚ           BH            24       47.69±1.54      -26.50±3.60",
+                "8G KOGOŚ           BH            24       47.66±1.61      -26.80±3.80",
+                "8D OBKOŚ           GH            26       47.47±1.58      -27.27±3.71",
+                "8E KOGOŚ           BH            24       47.15±1.64      -28.07±3.91",
+                "8F OBKOŚ           GH            24       47.02±1.63      -28.38±3.91",
+                "8D KOŚBO           GH            28       46.49±1.64      -29.44±3.87",
+                "8F KOŚBO           GH            24       46.27±1.59      -30.13±3.72",
+                "8F KOŚB            GHO           22       46.24±1.57      -30.07±3.77",
+                "8E OBKOŚ           GH            24       46.19±1.63      -30.42±3.91",
+                "8H KOŚBO           GH            26       46.05±1.60      -30.82±3.77",
+                "8G KOŚB            GHO           22       45.83±1.63      -31.38±3.97",
+                "8G OBKOŚ           GH            24       45.80±1.57      -31.21±3.69",
+                "8E KOŚBO           GH            24       45.62±1.63      -32.00±3.93",
+                "8E KOŚB            GHO           22       45.51±1.63      -31.80±3.89",
+                "8G KOŚBO           GH            24       45.19±1.61      -32.85±3.78",
+                "8H KOŚB            GHO           22       44.35±1.62      -34.95±3.86",
+                "Iterations: 1059 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n 8H KOGOŚ           BH            34       51.39±1.60      -18.32±3.74\u001b[5C\r\n 8H OBKOŚ           GH            34       50.32±1.63      -20.63±3.77\u001b[5C\r\n 8D KOGOŚ           BH            28       48.50±1.61      -25.14±3.82\u001b[5C\r\n(exch BGHOŚ)        KO            0        47.81±1.62      -26.81±3.95\u001b[5C\r\n 8F KOGOŚ           BH            24       47.69±1.54      -26.50±3.60\u001b[5C\r\n 8G KOGOŚ           BH            24       47.66±1.61      -26.80±3.80\u001b[5C\r\n 8D OBKOŚ           GH            26       47.47±1.58      -27.27±3.71\u001b[5C\r\n 8E KOGOŚ           BH            24       47.15±1.64      -28.07±3.91\u001b[5C\r\n 8F OBKOŚ           GH            24       47.02±1.63      -28.38±3.91\u001b[5C\r\n 8D KOŚBO           GH            28       46.49±1.64      -29.44±3.87\u001b[5C\r\n 8F KOŚBO           GH            24       46.27±1.59      -30.13±3.72\u001b[5C\r\n 8F KOŚB            GHO           22       46.24±1.57      -30.07±3.77\u001b[5C\r\n 8E OBKOŚ           GH            24       46.19±1.63      -30.42±3.91\u001b[5C\r\n 8H KOŚBO           GH            26       46.05±1.60      -30.82±3.77\u001b[5C\r\n 8G KOŚB            GHO           22       45.83±1.63      -31.38±3.97\u001b[5C\r\n 8G OBKOŚ           GH            24       45.80±1.57      -31.21±3.69\u001b[5C\r\n 8E KOŚBO           GH            24       45.62±1.63      -32.00±3.93\u001b[5C\r\n 8E KOŚB            GHO           22       45.51±1.63      -31.80±3.89\u001b[5C\r\n 8G KOŚBO           GH            24       45.19±1.61      -32.85±3.78\u001b[5C\r\n 8H KOŚB            GHO           22       44.35±1.62      -34.95±3.86\u001b[5C\u001b[25l\r\nIterations: 1059 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[30;77H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n 8H KOGOŚ           BH            34       51.39±1.60      -18.32±3.74\n 8H OBKOŚ           GH            34       50.32±1.63      -20.63±3.77\n 8D KOGOŚ           BH            28       48.50±1.61      -25.14±3.82\n(exch BGHOŚ)        KO            0        47.81±1.62      -26.81±3.95\n 8F KOGOŚ           BH            24       47.69±1.54      -26.50±3.60\n 8G KOGOŚ           BH            24       47.66±1.61      -26.80±3.80\n 8D OBKOŚ           GH            26       47.47±1.58      -27.27±3.71\n 8E KOGOŚ           BH            24       47.15±1.64      -28.07±3.91\n 8F OBKOŚ           GH            24       47.02±1.63      -28.38±3.91\n 8D KOŚBO           GH            28       46.49±1.64      -29.44±3.87\n 8F KOŚBO           GH            24       46.27±1.59      -30.13±3.72\n 8F KOŚB            GHO           22       46.24±1.57      -30.07±3.77\n 8E OBKOŚ           GH            24       46.19±1.63      -30.42±3.91\n 8H KOŚBO           GH            26       46.05±1.60      -30.82±3.77\n 8G KOŚB            GHO           22       45.83±1.63      -31.38±3.97\n 8G OBKOŚ           GH            24       45.80±1.57      -31.21±3.69\n 8E KOŚBO           GH            24       45.62±1.63      -32.00±3.93\n 8E KOŚB            GHO           22       45.51±1.63      -31.80±3.89\n 8G KOŚBO           GH            24       45.19±1.61      -32.85±3.78\n 8H KOŚB            GHO           22       44.35±1.62      -34.95±3.86\nIterations: 1059 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 64,
+            "word": "SIAR.OWĄ",
+            "coordinates": "H4",
+            "letters": "SIAROWĄ",
+            "index": 2
+        },
+        "status": "done",
+        "moveIndex": 2,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "H4 SIAR(K)OWĄ                    64       53.33±1.88      20.31±4.31",
+                "J8 (G)RĄ           AIOSW         19       43.31±1.75      -3.51±4.15",
+                "J6 SĄ(G)           AIORW         11       42.30±1.68      -5.23±3.89",
+                "J7 I(G)RĄ          AOSW          20       42.25±1.65      -5.19±3.80",
+                "L6 RĄ(Ś)           AIOSW         11       41.63±1.74      -7.32±4.12",
+                "K8 (O)SIĄ          AORW          16       41.55±1.73      -7.03±4.01",
+                "J5 SIĄ(G)          AORW          12       40.46±1.76      -10.30±4.20",
+                "J6 SĄ(G)I          AORW          12       39.78±1.70      -11.06±3.95",
+                "K4 RĄSI(O)         AOW           18       39.74±1.74      -10.88±4.11",
+                "J6 OR(G)IĄ         ASW           23       39.73±1.73      -11.33±4.08",
+                "K7 S(O)WIĄ         AOR           18       39.47±1.67      -11.41±4.00",
+                "K8 (O)SĄ           AIORW         7        39.20±1.68      -12.86±3.98",
+                "K4 RIAS(O)WĄ       O             22       38.27±1.74      -14.83±4.20",
+                "K8 (O)SIOWĄ        AR            20       38.22±1.68      -14.98±4.00",
+                "K5 OSI(O)WĄ        AR            20       38.01±1.68      -14.99±3.95",
+                "7K ROSĄ            AIW           17       37.33±1.68      -16.75±3.96",
+                "I8 (O)SĄ           AIORW         8        37.29±1.66      -17.24±3.95",
+                "K5 RAS(O)WĄ        IO            20       37.01±1.70      -17.68±4.05",
+                "I7 R(O)SĄ          AIOW          10       36.52±1.70      -19.38±4.13",
+                "H8 (K)RASĄ         IOW           15       35.41±1.68      -22.10±4.14",
+                "Iterations: 954 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n H4 SIAR(K)OWĄ                    64       53.33±1.88      20.31±4.31\u001b[6C\r\n J8 (G)RĄ           AIOSW         19       43.31±1.75      -3.51±4.15\u001b[6C\r\n J6 SĄ(G)           AIORW         11       42.30±1.68      -5.23±3.89\u001b[6C\r\n J7 I(G)RĄ          AOSW          20       42.25±1.65      -5.19±3.80\u001b[6C\r\n L6 RĄ(Ś)           AIOSW         11       41.63±1.74      -7.32±4.12\u001b[6C\r\n K8 (O)SIĄ          AORW          16       41.55±1.73      -7.03±4.01\u001b[6C\r\n J5 SIĄ(G)          AORW          12       40.46±1.76      -10.30±4.20\u001b[5C\r\n J6 SĄ(G)I          AORW          12       39.78±1.70      -11.06±3.95\u001b[5C\r\n K4 RĄSI(O)         AOW           18       39.74±1.74      -10.88±4.11\u001b[5C\r\n J6 OR(G)IĄ         ASW           23       39.73±1.73      -11.33±4.08\u001b[5C\r\n K7 S(O)WIĄ         AOR           18       39.47±1.67      -11.41±4.00\u001b[5C\r\n K8 (O)SĄ           AIORW         7        39.20±1.68      -12.86±3.98\u001b[5C\r\n K4 RIAS(O)WĄ       O             22       38.27±1.74      -14.83±4.20\u001b[5C\r\n K8 (O)SIOWĄ        AR            20       38.22±1.68      -14.98±4.00\u001b[5C\r\n K5 OSI(O)WĄ        AR            20       38.01±1.68      -14.99±3.95\u001b[5C\r\n 7K ROSĄ            AIW           17       37.33±1.68      -16.75±3.96\u001b[5C\r\n I8 (O)SĄ           AIORW         8        37.29±1.66      -17.24±3.95\u001b[5C\r\n K5 RAS(O)WĄ        IO            20       37.01±1.70      -17.68±4.05\u001b[5C\r\n I7 R(O)SĄ          AIOW          10       36.52±1.70      -19.38±4.13\u001b[5C\r\n H8 (K)RASĄ         IOW           15       35.41±1.68      -22.10±4.14\u001b[5C\u001b[25l\r\nIterations: 954 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n H4 SIAR(K)OWĄ                    64       53.33±1.88      20.31±4.31\n J8 (G)RĄ           AIOSW         19       43.31±1.75      -3.51±4.15\n J6 SĄ(G)           AIORW         11       42.30±1.68      -5.23±3.89\n J7 I(G)RĄ          AOSW          20       42.25±1.65      -5.19±3.80\n L6 RĄ(Ś)           AIOSW         11       41.63±1.74      -7.32±4.12\n K8 (O)SIĄ          AORW          16       41.55±1.73      -7.03±4.01\n J5 SIĄ(G)          AORW          12       40.46±1.76      -10.30±4.20\n J6 SĄ(G)I          AORW          12       39.78±1.70      -11.06±3.95\n K4 RĄSI(O)         AOW           18       39.74±1.74      -10.88±4.11\n J6 OR(G)IĄ         ASW           23       39.73±1.73      -11.33±4.08\n K7 S(O)WIĄ         AOR           18       39.47±1.67      -11.41±4.00\n K8 (O)SĄ           AIORW         7        39.20±1.68      -12.86±3.98\n K4 RIAS(O)WĄ       O             22       38.27±1.74      -14.83±4.20\n K8 (O)SIOWĄ        AR            20       38.22±1.68      -14.98±4.00\n K5 OSI(O)WĄ        AR            20       38.01±1.68      -14.99±3.95\n 7K ROSĄ            AIW           17       37.33±1.68      -16.75±3.96\n I8 (O)SĄ           AIORW         8        37.29±1.66      -17.24±3.95\n K5 RAS(O)WĄ        IO            20       37.01±1.70      -17.68±4.05\n I7 R(O)SĄ          AIOW          10       36.52±1.70      -19.38±4.13\n H8 (K)RASĄ         IOW           15       35.41±1.68      -22.10±4.14\nIterations: 954 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 24,
+            "word": "Z.BEK",
+            "coordinates": "11G",
+            "letters": "HBAZEKA",
+            "index": 3
+        },
+        "status": "done",
+        "moveIndex": 3,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "H1 BEZ(SIARKOWĄ)   AAHK          54       48.21±2.35      4.80±5.25",
+                "11E HAK(Ą)          ABEZ          22       43.12±2.20      -6.94±4.90",
+                "K5 HAK(O)          ABEZ          14       41.42±2.13      -10.50±4.84",
+                "K7 B(O)KEHA        AZ            22       39.15±2.28      -16.13±5.31",
+                "7F HE(R)B          AAKZ          19       39.06±2.35      -17.37±5.44",
+                "5E HAK(I)          ABEZ          14       38.95±2.14      -16.00±4.96",
+                "11G Z(Ą)BKA         AEH           24       36.94±2.09      -20.93±4.84",
+                "K7 B(O)KEH         AAZ           20       36.54±2.20      -22.21±5.08",
+                "11G Z(Ą)BEK         AAH           24       35.92±2.16      -23.68±5.09",
+                "7K HE              AABKZ         14       35.88±2.09      -23.77±5.00",
+                "G9 HE              AABKZ         16       35.62±2.12      -24.43±5.10",
+                "7L EH              AABKZ         13       35.25±2.13      -25.55±5.11",
+                "11D KAZB(Ą)         AEH           24       35.01±2.08      -25.91±4.94",
+                "11D KABZ(Ą)         AEH           24       34.85±2.08      -25.99±4.86",
+                "4H (S)HAKE         ABZ           16       34.76±2.07      -26.35±5.07",
+                "11E BAZ(Ą)          AEHK          20       34.19±2.09      -28.06±5.05",
+                "4D HABA(S)         EKZ           18       33.59±2.18      -29.33±5.16",
+                "11E BEZ(Ą)          AAHK          20       33.30±2.12      -30.12±5.32",
+                "11E BEK(Ą)          AAHZ          22       33.10±2.08      -30.64±5.05",
+                "G3 HAK             ABEZ          14       32.63±1.99      -31.47±4.82",
+                "Iterations: 664 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91m\rmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n H1 BEZ(SIARKOWĄ)   AAHK          54       48.21±2.35      4.80±5.25\u001b[7C\r\n11E HAK(Ą)          ABEZ          22       43.12±2.20      -6.94±4.90\u001b[6C\r\n K5 HAK(O)          ABEZ          14       41.42±2.13      -10.50±4.84\u001b[5C\r\n K7 B(O)KEHA        AZ            22       39.15±2.28      -16.13±5.31\u001b[5C\r\n 7F HE(R)B          AAKZ          19       39.06±2.35      -17.37±5.44\u001b[5C\r\n 5E HAK(I)          ABEZ          14       38.95±2.14      -16.00±4.96\u001b[5C\r\n11G Z(Ą)BKA         AEH           24       36.94±2.09      -20.93±4.84\u001b[5C\r\n K7 B(O)KEH         AAZ           20       36.54±2.20      -22.21±5.08\u001b[5C\r\n11G Z(Ą)BEK         AAH           24       35.92±2.16      -23.68±5.09\u001b[5C\r\n 7K HE              AABKZ         14       35.88±2.09      -23.77±5.00\u001b[5C\r\n G9 HE              AABKZ         16       35.62±2.12      -24.43±5.10\u001b[5C\r\n 7L EH              AABKZ         13       35.25±2.13      -25.55±5.11\u001b[5C\r\n11D KAZB(Ą)         AEH           24       35.01±2.08      -25.91±4.94\u001b[5C\r\n11D KABZ(Ą)         AEH           24       34.85±2.08      -25.99±4.86\u001b[5C\r\n 4H (S)HAKE         ABZ           16       34.76±2.07      -26.35±5.07\u001b[5C\r\n11E BAZ(Ą)          AEHK          20       34.19±2.09      -28.06±5.05\u001b[5C\r\n 4D HABA(S)         EKZ           18       33.59±2.18      -29.33±5.16\u001b[5C\r\n11E BEZ(Ą)          AAHK          20       33.30±2.12      -30.12±5.32\u001b[5C\r\n11E BEK(Ą)          AAHZ          22       33.10±2.08      -30.64±5.05\u001b[5C\r\n G3 HAK             ABEZ          14       32.63±1.99      -31.47±4.82\u001b[5C\u001b[25l\r\nIterations: 664 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n H1 BEZ(SIARKOWĄ)   AAHK          54       48.21±2.35      4.80±5.25\n11E HAK(Ą)          ABEZ          22       43.12±2.20      -6.94±4.90\n K5 HAK(O)          ABEZ          14       41.42±2.13      -10.50±4.84\n K7 B(O)KEHA        AZ            22       39.15±2.28      -16.13±5.31\n 7F HE(R)B          AAKZ          19       39.06±2.35      -17.37±5.44\n 5E HAK(I)          ABEZ          14       38.95±2.14      -16.00±4.96\n11G Z(Ą)BKA         AEH           24       36.94±2.09      -20.93±4.84\n K7 B(O)KEH         AAZ           20       36.54±2.20      -22.21±5.08\n11G Z(Ą)BEK         AAH           24       35.92±2.16      -23.68±5.09\n 7K HE              AABKZ         14       35.88±2.09      -23.77±5.00\n G9 HE              AABKZ         16       35.62±2.12      -24.43±5.10\n 7L EH              AABKZ         13       35.25±2.13      -25.55±5.11\n11D KAZB(Ą)         AEH           24       35.01±2.08      -25.91±4.94\n11D KABZ(Ą)         AEH           24       34.85±2.08      -25.99±4.86\n 4H (S)HAKE         ABZ           16       34.76±2.07      -26.35±5.07\n11E BAZ(Ą)          AEHK          20       34.19±2.09      -28.06±5.05\n 4D HABA(S)         EKZ           18       33.59±2.18      -29.33±5.16\n11E BEZ(Ą)          AAHK          20       33.30±2.12      -30.12±5.32\n11E BEK(Ą)          AAHZ          22       33.10±2.08      -30.64±5.05\n G3 HAK             ABEZ          14       32.63±1.99      -31.47±4.82\nIterations: 664 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 20,
+            "word": "KRADŁ.",
+            "coordinates": "K3",
+            "letters": "KRADŁ",
+            "index": 4
+        },
+        "status": "done",
+        "moveIndex": 4,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1:  6F KR.DŁ           A         19  23.20",
+                "2: 12J ŁAD             KR        19  21.54",
+                "3:  6G D.RŁ            AK        13  20.53",
+                "4:  4H .KRADŁ                    20  20.00",
+                "5:  6F KR.DŁA                    20  20.00",
+                "6:  K3 KRADŁ.                    20  20.00",
+                "7:  9G R.D             AKŁ       12  18.37",
+                "8:  5G K.DAŁ           R         18  18.32",
+                "9:  4H .KŁAD           R         18  18.32",
+                "10:  K4 RADŁ.           K         16  17.84",
+                "11:  K4 DARŁ.           K         16  17.84",
+                "12:  6F KŁ.D            AR        12  17.80",
+                "13:  K5 DAŁ.            KR        14  16.54",
+                "14:  K5 ŁAD.            KR        14  16.54",
+                "15:  7G D.R             AKŁ       10  16.37",
+                "16: J10 D.RKAŁ                    16  16.00",
+                "17:  6F ŁK.             ADR       12  15.91",
+                "18:  6G Ł.D             AKR        6  15.88",
+                "19:  6G D.Ł             AKR        6  15.88",
+                "20:  6G D.RŁA           K         14  15.84"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  6F KR.DŁ           A         19  23.20\r\n  2: 12J ŁAD             KR        19  21.54\r\n  3:  6G D.RŁ            AK        13  20.53\r\n  4:  4H .KRADŁ                    20  20.00\r\n  5:  6F KR.DŁA                    20  20.00\r\n  6:  K3 KRADŁ.                    20  20.00\r\n  7:  9G R.D             AKŁ       12  18.37\r\n  8:  5G K.DAŁ           R         18  18.32\r\n  9:  4H .KŁAD           R         18  18.32\r\n 10:  K4 RADŁ.           K         16  17.84\r\n 11:  K4 DARŁ.           K         16  17.84\r\n 12:  6F KŁ.D            AR        12  17.80\r\n 13:  K5 DAŁ.            KR        14  16.54\r\n 14:  K5 ŁAD.            KR        14  16.54\r\n 15:  7G D.R             AKŁ       10  16.37\r\n 16: J10 D.RKAŁ                    16  16.00\r\n 17:  6F ŁK.             ADR       12  15.91\r\n 18:  6G Ł.D             AKR        6  15.88\r\n 19:  6G D.Ł             AKR        6  15.88\r\n 20:  6G D.RŁA           K         14  15.84\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1:  6F KR.DŁ           A         19  23.20\n  2: 12J ŁAD             KR        19  21.54\n  3:  6G D.RŁ            AK        13  20.53\n  4:  4H .KRADŁ                    20  20.00\n  5:  6F KR.DŁA                    20  20.00\n  6:  K3 KRADŁ.                    20  20.00\n  7:  9G R.D             AKŁ       12  18.37\n  8:  5G K.DAŁ           R         18  18.32\n  9:  4H .KŁAD           R         18  18.32\n 10:  K4 RADŁ.           K         16  17.84\n 11:  K4 DARŁ.           K         16  17.84\n 12:  6F KŁ.D            AR        12  17.80\n 13:  K5 DAŁ.            KR        14  16.54\n 14:  K5 ŁAD.            KR        14  16.54\n 15:  7G D.R             AKŁ       10  16.37\n 16: J10 D.RKAŁ                    16  16.00\n 17:  6F ŁK.             ADR       12  15.91\n 18:  6G Ł.D             AKR        6  15.88\n 19:  6G D.Ł             AKR        6  15.88\n 20:  6G D.RŁA           K         14  15.84\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 16,
+            "word": "B.AH",
+            "coordinates": "4J",
+            "letters": "HAABETZ",
+            "index": 5
+        },
+        "status": "done",
+        "moveIndex": 5,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "H1 BEZ(SIARKOWĄ)   AAHT          54       52.25±2.31      10.18±4.85",
+                "3K (K)HAT          ABEZ          16       41.78±2.18      -12.81±4.60",
+                "9G H(O)T           AABEZ         16       41.54±2.14      -13.21±4.55",
+                "4K (R)ATHA         BEZ           18       40.86±2.30      -16.63±5.24",
+                "7F HA(R)T          ABEZ          15       40.56±2.25      -15.41±4.80",
+                "4K (R)ATH          ABEZ          14       40.52±2.15      -15.51±4.54",
+                "G3 BAHTA           EZ            26       40.03±2.07      -15.28±4.29",
+                "G3 BAHT            AEZ           21       39.53±2.20      -17.05±4.66",
+                "5E HAB(I)T         AEZ           20       37.14±2.17      -22.61±4.84",
+                "3I TA(K)AHE        BZ            24       36.72±2.14      -23.22±4.64",
+                "7F HE(R)B          AATZ          19       36.64±2.18      -23.26±4.76",
+                "12C BAHTA           EZ            22       36.52±2.22      -23.23±4.93",
+                "4H (S)ZT(R)AB      AEH           18       35.61±2.09      -25.13±4.54",
+                "6D BAHT(A)         AEZ           16       35.34±2.28      -26.94±5.11",
+                "4J T(R)ZEBA        AH            20       35.15±2.17      -27.46±5.28",
+                "4J B(R)AH          AETZ          16       35.12±2.19      -27.48±4.99",
+                "4J B(R)AHA         ETZ           18       34.45±2.05      -28.15±4.57",
+                "G1 BAHT            AEZ           15       34.12±2.18      -30.33±5.22",
+                "J10 H(E)BE          AATZ          14       33.78±2.20      -30.32±5.02",
+                "4D HABA(S)         ETZ           18       32.74±2.03      -31.85±4.59",
+                "Iterations: 676 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h",
+                "Play                Leave         Score    Win%            Equity",
+                "H1 BEZ(SIARKOWĄ)   AAHT          54       52.25±2.31      10.18±4.85",
+                "3K (K)HAT          ABEZ          16       41.78±2.18      -12.81±4.60",
+                "9G H(O)T           AABEZ         16       41.54±2.14      -13.21±4.55",
+                "4K (R)ATHA         BEZ           18       40.86±2.30      -16.63±5.24",
+                "4K (R)ATH          ABEZ          14       40.60±2.15      -15.35±4.53",
+                "7F HA(R)T          ABEZ          15       40.57±2.24      -15.40±4.79",
+                "G3 BAHTA           EZ            26       40.03±2.07      -15.28±4.29",
+                "G3 BAHT            AEZ           21       39.53±2.20      -17.05±4.66",
+                "5E HAB(I)T         AEZ           20       37.14±2.17      -22.61±4.84",
+                "3I TA(K)AHE        BZ            24       36.72±2.14      -23.22±4.64",
+                "7F HE(R)B          AATZ          19       36.64±2.18      -23.26±4.76",
+                "12C BAHTA           EZ            22       36.52±2.22      -23.23±4.93",
+                "4H (S)ZT(R)AB      AEH           18       35.61±2.09      -25.13±4.54",
+                "6D BAHT(A)         AEZ           16       35.34±2.28      -26.94±5.11",
+                "4J T(R)ZEBA        AH            20       35.14±2.17      -27.47±5.27",
+                "4J B(R)AH          AETZ          16       35.12±2.19      -27.48±4.99",
+                "4J B(R)AHA         ETZ           18       34.40±2.05      -28.27±4.57",
+                "G1 BAHT            AEZ           15       34.12±2.18      -30.33±5.22",
+                "J10 H(E)BE          AATZ          14       33.78±2.20      -30.32±5.02",
+                "4D HABA(S)         ETZ           18       32.74±2.03      -31.85±4.59",
+                "Iterations: 676 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[K\u001b[91m\rmacondo>\u001b[m sim stop\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n H1 BEZ(SIARKOWĄ)   AAHT          54       52.25±2.31      10.18±4.85\u001b[6C\r\n 3K (K)HAT          ABEZ          16       41.78±2.18      -12.81±4.60\u001b[5C\r\n 9G H(O)T           AABEZ         16       41.54±2.14      -13.21±4.55\u001b[5C\r\n 4K (R)ATHA         BEZ           18       40.86±2.30      -16.63±5.24\u001b[5C\r\n 7F HA(R)T          ABEZ          15       40.56±2.25      -15.41±4.80\u001b[5C\r\n 4K (R)ATH          ABEZ          14       40.52±2.15      -15.51±4.54\u001b[5C\r\n G3 BAHTA           EZ            26       40.03±2.07      -15.28±4.29\u001b[5C\r\n G3 BAHT            AEZ           21       39.53±2.20      -17.05±4.66\u001b[5C\r\n 5E HAB(I)T         AEZ           20       37.14±2.17      -22.61±4.84\u001b[5C\r\n 3I TA(K)AHE        BZ            24       36.72±2.14      -23.22±4.64\u001b[5C\r\n 7F HE(R)B          AATZ          19       36.64±2.18      -23.26±4.76\u001b[5C\r\n12C BAHTA           EZ            22       36.52±2.22      -23.23±4.93\u001b[5C\r\n 4H (S)ZT(R)AB      AEH           18       35.61±2.09      -25.13±4.54\u001b[5C\r\n 6D BAHT(A)         AEZ           16       35.34±2.28      -26.94±5.11\u001b[5C\r\n 4J T(R)ZEBA        AH            20       35.15±2.17      -27.46±5.28\u001b[5C\r\n 4J B(R)AH          AETZ          16       35.12±2.19      -27.48±4.99\u001b[5C\r\n 4J B(R)AHA         ETZ           18       34.45±2.05      -28.15±4.57\u001b[5C\r\n G1 BAHT            AEZ           15       34.12±2.18      -30.33±5.22\u001b[5C\r\nJ10 H(E)BE          AATZ          14       33.78±2.20      -30.32±5.02\u001b[5C\r\n 4D HABA(S)         ETZ           18       32.74±2.03      -31.85±4.59\u001b[5C\u001b[25l\r\nIterations: 676 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n H1 BEZ(SIARKOWĄ)   AAHT          54       52.25±2.31      10.18±4.85\u001b[6C\r\n 3K (K)HAT          ABEZ          16       41.78±2.18      -12.81±4.60\u001b[5C\r\n 9G H(O)T           AABEZ         16       41.54±2.14      -13.21±4.55\u001b[5C\r\n 4K (R)ATHA         BEZ           18       40.86±2.30      -16.63±5.24\u001b[5C\r\n 4K (R)ATH          ABEZ          14       40.60±2.15      -15.35±4.53\u001b[5C\r\n 7F HA(R)T          ABEZ          15       40.57±2.24      -15.40±4.79\u001b[5C\r\n G3 BAHTA           EZ            26       40.03±2.07      -15.28±4.29\u001b[5C\r\n G3 BAHT            AEZ           21       39.53±2.20      -17.05±4.66\u001b[5C\r\n 5E HAB(I)T         AEZ           20       37.14±2.17      -22.61±4.84\u001b[5C\r\n 3I TA(K)AHE        BZ            24       36.72±2.14      -23.22±4.64\u001b[5C\r\n 7F HE(R)B          AATZ          19       36.64±2.18      -23.26±4.76\u001b[5C\r\n12C BAHTA           EZ            22       36.52±2.22      -23.23±4.93\u001b[5C\r\n 4H (S)ZT(R)AB      AEH           18       35.61±2.09      -25.13±4.54\u001b[5C\r\n 6D BAHT(A)         AEZ           16       35.34±2.28      -26.94±5.11\u001b[5C\r\n 4J T(R)ZEBA        AH            20       35.14±2.17      -27.47±5.27\u001b[5C\r\n 4J B(R)AH          AETZ          16       35.12±2.19      -27.48±4.99\u001b[5C\r\n 4J B(R)AHA         ETZ           18       34.40±2.05      -28.27±4.57\u001b[5C\r\n G1 BAHT            AEZ           15       34.12±2.18      -30.33±5.22\u001b[5C\r\nJ10 H(E)BE          AATZ          14       33.78±2.20      -30.32±5.02\u001b[5C\r\n 4D HABA(S)         ETZ           18       32.74±2.03      -31.85±4.59\u001b[5C\u001b[25l\r\nIterations: 676 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim stop\nPlay                Leave         Score    Win%            Equity\n H1 BEZ(SIARKOWĄ)   AAHT          54       52.25±2.31      10.18±4.85\n 3K (K)HAT          ABEZ          16       41.78±2.18      -12.81±4.60\n 9G H(O)T           AABEZ         16       41.54±2.14      -13.21±4.55\n 4K (R)ATHA         BEZ           18       40.86±2.30      -16.63±5.24\n 7F HA(R)T          ABEZ          15       40.56±2.25      -15.41±4.80\n 4K (R)ATH          ABEZ          14       40.52±2.15      -15.51±4.54\n G3 BAHTA           EZ            26       40.03±2.07      -15.28±4.29\n G3 BAHT            AEZ           21       39.53±2.20      -17.05±4.66\n 5E HAB(I)T         AEZ           20       37.14±2.17      -22.61±4.84\n 3I TA(K)AHE        BZ            24       36.72±2.14      -23.22±4.64\n 7F HE(R)B          AATZ          19       36.64±2.18      -23.26±4.76\n12C BAHTA           EZ            22       36.52±2.22      -23.23±4.93\n 4H (S)ZT(R)AB      AEH           18       35.61±2.09      -25.13±4.54\n 6D BAHT(A)         AEZ           16       35.34±2.28      -26.94±5.11\n 4J T(R)ZEBA        AH            20       35.15±2.17      -27.46±5.28\n 4J B(R)AH          AETZ          16       35.12±2.19      -27.48±4.99\n 4J B(R)AHA         ETZ           18       34.45±2.05      -28.15±4.57\n G1 BAHT            AEZ           15       34.12±2.18      -30.33±5.22\nJ10 H(E)BE          AATZ          14       33.78±2.20      -30.32±5.02\n 4D HABA(S)         ETZ           18       32.74±2.03      -31.85±4.59\nIterations: 676 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo> sim show\nPlay                Leave         Score    Win%            Equity\n H1 BEZ(SIARKOWĄ)   AAHT          54       52.25±2.31      10.18±4.85\n 3K (K)HAT          ABEZ          16       41.78±2.18      -12.81±4.60\n 9G H(O)T           AABEZ         16       41.54±2.14      -13.21±4.55\n 4K (R)ATHA         BEZ           18       40.86±2.30      -16.63±5.24\n 4K (R)ATH          ABEZ          14       40.60±2.15      -15.35±4.53\n 7F HA(R)T          ABEZ          15       40.57±2.24      -15.40±4.79\n G3 BAHTA           EZ            26       40.03±2.07      -15.28±4.29\n G3 BAHT            AEZ           21       39.53±2.20      -17.05±4.66\n 5E HAB(I)T         AEZ           20       37.14±2.17      -22.61±4.84\n 3I TA(K)AHE        BZ            24       36.72±2.14      -23.22±4.64\n 7F HE(R)B          AATZ          19       36.64±2.18      -23.26±4.76\n12C BAHTA           EZ            22       36.52±2.22      -23.23±4.93\n 4H (S)ZT(R)AB      AEH           18       35.61±2.09      -25.13±4.54\n 6D BAHT(A)         AEZ           16       35.34±2.28      -26.94±5.11\n 4J T(R)ZEBA        AH            20       35.14±2.17      -27.47±5.27\n 4J B(R)AH          AETZ          16       35.12±2.19      -27.48±4.99\n 4J B(R)AHA         ETZ           18       34.40±2.05      -28.27±4.57\n G1 BAHT            AEZ           15       34.12±2.18      -30.33±5.22\nJ10 H(E)BE          AATZ          14       33.78±2.20      -30.32±5.02\n 4D HABA(S)         ETZ           18       32.74±2.03      -31.85±4.59\nIterations: 676 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 21,
+            "word": "WNET",
+            "coordinates": "2K",
+            "letters": "WNET",
+            "index": 6
+        },
+        "status": "done",
+        "moveIndex": 6,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1:  2K WNET                      21  21.00",
+                "2:  2K WENT                      21  21.00",
+                "3:  2J TWE             N         19  19.60",
+                "4:  2K WET             N         15  15.60",
+                "5:  2K WTE             N         15  15.60",
+                "6:  K2 W......         ENT       11  14.81",
+                "7:  3M ENT             W         16  14.72",
+                "8:  2J EW              NT        15  13.31",
+                "9:  9G N.T             EW        12  13.15",
+                "10:  G3 WENT                      13  13.00",
+                "11:  2K WEN             T         14  12.45",
+                "12:  6F TW.             EN         8  12.37",
+                "13:  9H .T              ENW       10  12.32",
+                "14:  3M ET              NW        14  12.07",
+                "15:  2K WE              NT        13  11.31",
+                "16:  9G T.N             EW        10  11.15",
+                "17:  G9 TE.             NW        13  11.07",
+                "18: J10 W.T             EN         6  10.37",
+                "19:  3M EW              NT        12  10.31",
+                "20:  9G W.N             ET         8   9.79"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  2K WNET                      21  21.00\r\n  2:  2K WENT                      21  21.00\r\n  3:  2J TWE             N         19  19.60\r\n  4:  2K WET             N         15  15.60\r\n  5:  2K WTE             N         15  15.60\r\n  6:  K2 W......         ENT       11  14.81\r\n  7:  3M ENT             W         16  14.72\r\n  8:  2J EW              NT        15  13.31\r\n  9:  9G N.T             EW        12  13.15\r\n 10:  G3 WENT                      13  13.00\r\n 11:  2K WEN             T         14  12.45\r\n 12:  6F TW.             EN         8  12.37\r\n 13:  9H .T              ENW       10  12.32\r\n 14:  3M ET              NW        14  12.07\r\n 15:  2K WE              NT        13  11.31\r\n 16:  9G T.N             EW        10  11.15\r\n 17:  G9 TE.             NW        13  11.07\r\n 18: J10 W.T             EN         6  10.37\r\n 19:  3M EW              NT        12  10.31\r\n 20:  9G W.N             ET         8   9.79\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1:  2K WNET                      21  21.00\n  2:  2K WENT                      21  21.00\n  3:  2J TWE             N         19  19.60\n  4:  2K WET             N         15  15.60\n  5:  2K WTE             N         15  15.60\n  6:  K2 W......         ENT       11  14.81\n  7:  3M ENT             W         16  14.72\n  8:  2J EW              NT        15  13.31\n  9:  9G N.T             EW        12  13.15\n 10:  G3 WENT                      13  13.00\n 11:  2K WEN             T         14  12.45\n 12:  6F TW.             EN         8  12.37\n 13:  9H .T              ENW       10  12.32\n 14:  3M ET              NW        14  12.07\n 15:  2K WE              NT        13  11.31\n 16:  9G T.N             EW        10  11.15\n 17:  G9 TE.             NW        13  11.07\n 18: J10 W.T             EN         6  10.37\n 19:  3M EW              NT        12  10.31\n 20:  9G W.N             ET         8   9.79\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 70,
+            "word": "STALsZE",
+            "coordinates": "12A",
+            "letters": "AETZSL?",
+            "index": 7
+        },
+        "status": "done",
+        "moveIndex": 7,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "12I ELASTaZ                       78       62.20±2.18      34.35±4.55",
+                "12I ELaSTAZ                       77       61.58±2.21      33.21±4.61",
+                "G1 SZTApLE                       70       60.33±2.10      29.72±4.33",
+                "12A TuSZELA                       72       59.98±2.22      29.94±4.56",
+                "12A TEkSZLA                       72       59.37±2.19      28.41±4.41",
+                "12A STALsZE                       70       58.62±2.26      27.22±4.69",
+                "12A SZTEtLA                       70       58.62±2.18      26.46±4.51",
+                "12A SZtETLA                       70       58.62±2.20      26.34±4.50",
+                "12A STrZELA                       70       58.60±2.27      26.94±4.72",
+                "12A STrZALE                       70       58.57±2.35      27.05±4.96",
+                "12A ZESTaLA                       70       58.22±2.28      26.28±4.68",
+                "12A SZTApLE                       70       58.17±2.19      25.83±4.51",
+                "5B ZESTAL(I)ł                    68       58.00±2.15      25.58±4.21",
+                "5B ZESTAL(I)ć                    68       58.00±2.14      25.54±4.20",
+                "12A sTALSZE                       68       57.58±2.25      24.95±4.55",
+                "12A ZESTALa                       69       57.55±2.30      24.69±4.71",
+                "5A bESZTAL(I)                    68       56.83±2.28      23.71±4.54",
+                "5A SZEpTAL(I)                    68       56.05±2.28      21.23±4.56",
+                "5A kASZTEL(I)                    68       56.05±2.28      21.37±4.64",
+                "5A STArZEL(I)                    68       55.62±2.30      21.19±4.66",
+                "Iterations: 823 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n12I ELASTaZ                       78       62.20±2.18      34.35±4.55\u001b[6C\r\n12I ELaSTAZ                       77       61.58±2.21      33.21±4.61\u001b[6C\r\n G1 SZTApLE                       70       60.33±2.10      29.72±4.33\u001b[6C\r\n12A TuSZELA                       72       59.98±2.22      29.94±4.56\u001b[6C\r\n12A TEkSZLA                       72       59.37±2.19      28.41±4.41\u001b[6C\r\n12A STALsZE                       70       58.62±2.26      27.22±4.69\u001b[6C\r\n12A SZTEtLA                       70       58.62±2.18      26.46±4.51\u001b[6C\r\n12A SZtETLA                       70       58.62±2.20      26.34±4.50\u001b[6C\r\n12A STrZELA                       70       58.60±2.27      26.94±4.72\u001b[6C\r\n12A STrZALE                       70       58.57±2.35      27.05±4.96\u001b[6C\r\n12A ZESTaLA                       70       58.22±2.28      26.28±4.68\u001b[6C\r\n12A SZTApLE                       70       58.17±2.19      25.83±4.51\u001b[6C\r\n 5B ZESTAL(I)ł                    68       58.00±2.15      25.58±4.21\u001b[6C\r\n 5B ZESTAL(I)ć                    68       58.00±2.14      25.54±4.20\u001b[6C\r\n12A sTALSZE                       68       57.58±2.25      24.95±4.55\u001b[6C\r\n12A ZESTALa                       69       57.55±2.30      24.69±4.71\u001b[6C\r\n 5A bESZTAL(I)                    68       56.83±2.28      23.71±4.54\u001b[6C\r\n 5A SZEpTAL(I)                    68       56.05±2.28      21.23±4.56\u001b[6C\r\n 5A kASZTEL(I)                    68       56.05±2.28      21.37±4.64\u001b[6C\r\n 5A STArZEL(I)                    68       55.62±2.30      21.19±4.66\u001b[6C\u001b[25l\r\nIterations: 823 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n12I ELASTaZ                       78       62.20±2.18      34.35±4.55\n12I ELaSTAZ                       77       61.58±2.21      33.21±4.61\n G1 SZTApLE                       70       60.33±2.10      29.72±4.33\n12A TuSZELA                       72       59.98±2.22      29.94±4.56\n12A TEkSZLA                       72       59.37±2.19      28.41±4.41\n12A STALsZE                       70       58.62±2.26      27.22±4.69\n12A SZTEtLA                       70       58.62±2.18      26.46±4.51\n12A SZtETLA                       70       58.62±2.20      26.34±4.50\n12A STrZELA                       70       58.60±2.27      26.94±4.72\n12A STrZALE                       70       58.57±2.35      27.05±4.96\n12A ZESTaLA                       70       58.22±2.28      26.28±4.68\n12A SZTApLE                       70       58.17±2.19      25.83±4.51\n 5B ZESTAL(I)ł                    68       58.00±2.15      25.58±4.21\n 5B ZESTAL(I)ć                    68       58.00±2.14      25.54±4.20\n12A sTALSZE                       68       57.58±2.25      24.95±4.55\n12A ZESTALa                       69       57.55±2.30      24.69±4.71\n 5A bESZTAL(I)                    68       56.83±2.28      23.71±4.54\n 5A SZEpTAL(I)                    68       56.05±2.28      21.23±4.56\n 5A kASZTEL(I)                    68       56.05±2.28      21.37±4.64\n 5A STArZEL(I)                    68       55.62±2.30      21.19±4.66\nIterations: 823 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 28,
+            "word": "CÓR.MI",
+            "coordinates": "C9",
+            "letters": "CÓRMI",
+            "index": 8
+        },
+        "status": "done",
+        "moveIndex": 8,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1:  C9 CÓR.MI                    28  28.00",
+                "2:  6E CÓR.            IM        19  26.33",
+                "3:  N4 MÓC             IR        23  26.14",
+                "4:  N4 MÓR             CI        20  24.37",
+                "5: F12 .MÓR            CI        19  23.37",
+                "6: F12 .MÓC            IR        20  23.14",
+                "7:  G3 MÓC             IR        20  23.14",
+                "8:  9E CÓR.M           I         19  22.05",
+                "9:  6J Ó.              CIMR      17  20.54",
+                "10:  7F CÓ.             IMR       13  20.16",
+                "11: B12 .RÓI            CM        18  18.41",
+                "12:  C9 CÓR.            IM        11  18.33",
+                "13:  5M MÓR             CI        13  17.37",
+                "14:  9E CÓR.            IM        10  17.33",
+                "15:  5M MÓC             IR        14  17.14",
+                "16:  7F MÓ.             CIR       13  16.17",
+                "17: I11 .ÓR             CIM       10  16.11",
+                "18: E11 Ó.MI            CR        16  14.91",
+                "19:  9J IM              CÓR       20  14.80",
+                "20: D10 RÓ.             CIM        8  14.11"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  C9 CÓR.MI                    28  28.00\r\n  2:  6E CÓR.            IM        19  26.33\r\n  3:  N4 MÓC             IR        23  26.14\r\n  4:  N4 MÓR             CI        20  24.37\r\n  5: F12 .MÓR            CI        19  23.37\r\n  6: F12 .MÓC            IR        20  23.14\r\n  7:  G3 MÓC             IR        20  23.14\r\n  8:  9E CÓR.M           I         19  22.05\r\n  9:  6J Ó.              CIMR      17  20.54\r\n 10:  7F CÓ.             IMR       13  20.16\r\n 11: B12 .RÓI            CM        18  18.41\r\n 12:  C9 CÓR.            IM        11  18.33\r\n 13:  5M MÓR             CI        13  17.37\r\n 14:  9E CÓR.            IM        10  17.33\r\n 15:  5M MÓC             IR        14  17.14\r\n 16:  7F MÓ.             CIR       13  16.17\r\n 17: I11 .ÓR             CIM       10  16.11\r\n 18: E11 Ó.MI            CR        16  14.91\r\n 19:  9J IM              CÓR       20  14.80\r\n 20: D10 RÓ.             CIM        8  14.11\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1:  C9 CÓR.MI                    28  28.00\n  2:  6E CÓR.            IM        19  26.33\n  3:  N4 MÓC             IR        23  26.14\n  4:  N4 MÓR             CI        20  24.37\n  5: F12 .MÓR            CI        19  23.37\n  6: F12 .MÓC            IR        20  23.14\n  7:  G3 MÓC             IR        20  23.14\n  8:  9E CÓR.M           I         19  22.05\n  9:  6J Ó.              CIMR      17  20.54\n 10:  7F CÓ.             IMR       13  20.16\n 11: B12 .RÓI            CM        18  18.41\n 12:  C9 CÓR.            IM        11  18.33\n 13:  5M MÓR             CI        13  17.37\n 14:  9E CÓR.            IM        10  17.33\n 15:  5M MÓC             IR        14  17.14\n 16:  7F MÓ.             CIR       13  16.17\n 17: I11 .ÓR             CIM       10  16.11\n 18: E11 Ó.MI            CR        16  14.91\n 19:  9J IM              CÓR       20  14.80\n 20: D10 RÓ.             CIM        8  14.11\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 12,
+            "word": ".ZIW",
+            "coordinates": "A12",
+            "letters": "WPISZAM",
+            "index": 9
+        },
+        "status": "done",
+        "moveIndex": 9,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "9F SZ(O)PIM        AW            33       65.86±2.10      -2.66±3.99",
+                "B12 (T)IPS          AMWZ          21       60.77±2.11      -11.86±3.90",
+                "9F SZ(O)PI         AMW           18       59.69±2.20      -14.09±4.09",
+                "14B P(I)SZ          AIMW          10       58.89±2.13      -14.88±3.99",
+                "D7 WPIS            AMZ           16       58.66±2.25      -15.71±4.26",
+                "10A SP(Ó)W          AIMZ          13       58.52±2.11      -16.31±3.75",
+                "9F SZ(O)P          AIMW          13       58.19±2.20      -16.22±4.26",
+                "9G M(O)P           AISWZ         14       57.98±2.26      -16.33±4.31",
+                "14A WP(I)SZ         AIM           12       57.95±2.33      -16.73±4.29",
+                "10A PS(Ó)W          AIMZ          11       57.89±2.20      -16.80±4.04",
+                "A8 SZPA(S)         IMW           18       57.76±2.14      -18.11±3.67",
+                "D8 PIW             AMSZ          15       57.56±2.23      -17.54±4.15",
+                "9C (C)ZIPS(O)M     AW            18       57.49±2.20      -18.29±3.94",
+                "14B P(I)W           AIMSZ         8        56.38±2.14      -19.84±3.76",
+                "14A WP(I)S          AIMZ          10       55.41±2.30      -21.78±4.11",
+                "10B W(Ó)Z           AIMPS         9        54.77±2.05      -22.84±3.58",
+                "10A ZM(Ó)W          AIPS          13       54.75±2.16      -23.03±3.73",
+                "14A WP(I)SAMI       Z             26       54.71±2.34      -23.04±4.14",
+                "9F ZW(O)M          AIPS          13       54.58±2.27      -23.58±4.06",
+                "14A ZW(I)SAM        IP            22       54.18±2.14      -24.16±3.69",
+                "Iterations: 851 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n 9F SZ(O)PIM        AW            33       65.86±2.10      -2.66±3.99\u001b[6C\r\nB12 (T)IPS          AMWZ          21       60.77±2.11      -11.86±3.90\u001b[5C\r\n 9F SZ(O)PI         AMW           18       59.69±2.20      -14.09±4.09\u001b[5C\r\n14B P(I)SZ          AIMW          10       58.89±2.13      -14.88±3.99\u001b[5C\r\n D7 WPIS            AMZ           16       58.66±2.25      -15.71±4.26\u001b[5C\r\n10A SP(Ó)W          AIMZ          13       58.52±2.11      -16.31±3.75\u001b[5C\r\n 9F SZ(O)P          AIMW          13       58.19±2.20      -16.22±4.26\u001b[5C\r\n 9G M(O)P           AISWZ         14       57.98±2.26      -16.33±4.31\u001b[5C\r\n14A WP(I)SZ         AIM           12       57.95±2.33      -16.73±4.29\u001b[5C\r\n10A PS(Ó)W          AIMZ          11       57.89±2.20      -16.80±4.04\u001b[5C\r\n A8 SZPA(S)         IMW           18       57.76±2.14      -18.11±3.67\u001b[5C\r\n D8 PIW             AMSZ          15       57.56±2.23      -17.54±4.15\u001b[5C\r\n 9C (C)ZIPS(O)M     AW            18       57.49±2.20      -18.29±3.94\u001b[5C\r\n14B P(I)W           AIMSZ         8        56.38±2.14      -19.84±3.76\u001b[5C\r\n14A WP(I)S          AIMZ          10       55.41±2.30      -21.78±4.11\u001b[5C\r\n10B W(Ó)Z           AIMPS         9        54.77±2.05      -22.84±3.58\u001b[5C\r\n10A ZM(Ó)W          AIPS          13       54.75±2.16      -23.03±3.73\u001b[5C\r\n14A WP(I)SAMI       Z             26       54.71±2.34      -23.04±4.14\u001b[5C\r\n 9F ZW(O)M          AIPS          13       54.58±2.27      -23.58±4.06\u001b[5C\r\n14A ZW(I)SAM        IP            22       54.18±2.14      -24.16±3.69\u001b[5C\u001b[25l\r\nIterations: 851 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n 9F SZ(O)PIM        AW            33       65.86±2.10      -2.66±3.99\nB12 (T)IPS          AMWZ          21       60.77±2.11      -11.86±3.90\n 9F SZ(O)PI         AMW           18       59.69±2.20      -14.09±4.09\n14B P(I)SZ          AIMW          10       58.89±2.13      -14.88±3.99\n D7 WPIS            AMZ           16       58.66±2.25      -15.71±4.26\n10A SP(Ó)W          AIMZ          13       58.52±2.11      -16.31±3.75\n 9F SZ(O)P          AIMW          13       58.19±2.20      -16.22±4.26\n 9G M(O)P           AISWZ         14       57.98±2.26      -16.33±4.31\n14A WP(I)SZ         AIM           12       57.95±2.33      -16.73±4.29\n10A PS(Ó)W          AIMZ          11       57.89±2.20      -16.80±4.04\n A8 SZPA(S)         IMW           18       57.76±2.14      -18.11±3.67\n D8 PIW             AMSZ          15       57.56±2.23      -17.54±4.15\n 9C (C)ZIPS(O)M     AW            18       57.49±2.20      -18.29±3.94\n14B P(I)W           AIMSZ         8        56.38±2.14      -19.84±3.76\n14A WP(I)S          AIMZ          10       55.41±2.30      -21.78±4.11\n10B W(Ó)Z           AIMPS         9        54.77±2.05      -22.84±3.58\n10A ZM(Ó)W          AIPS          13       54.75±2.16      -23.03±3.73\n14A WP(I)SAMI       Z             26       54.71±2.34      -23.04±4.14\n 9F ZW(O)M          AIPS          13       54.58±2.27      -23.58±4.06\n14A ZW(I)SAM        IP            22       54.18±2.14      -24.16±3.69\nIterations: 851 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 38,
+            "word": "DŁ.Ń",
+            "coordinates": "9F",
+            "letters": "DŁŃ",
+            "index": 10
+        },
+        "status": "done",
+        "moveIndex": 10,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1:  9F DŁ.Ń                      38  38.00",
+                "2:  9G D.Ń             Ł         34  31.59",
+                "3:  9H .Ń              DŁ        30  24.63",
+                "4: G11 ..Ń             DŁ        16  10.63",
+                "5: 10B D.Ł             Ń         14   8.95",
+                "6:  6G Ł.Ń             D         11   8.04",
+                "7:  6G D.Ń             Ł         10   7.59",
+                "8: J11 .Ń              DŁ         8   2.63",
+                "9:  9H .D              ŁŃ        10   1.56",
+                "10:  6G Ł.D             Ń          6   0.95",
+                "11:  6G D.Ł             Ń          6   0.95",
+                "12: G11 ..Ł             DŃ         8   0.76",
+                "13: (exch DŁŃ)                     0   0.00",
+                "14: J10 D.              ŁŃ         7  -1.44",
+                "15: 10C .D              ŁŃ         7  -1.44",
+                "16: (exch DŃ)           Ł          0  -2.41",
+                "17:  5K .D              ŁŃ         6  -2.44",
+                "18: (exch ŁŃ)           D          0  -2.96",
+                "19:  5H .Ł              DŃ         4  -3.24",
+                "20: J11 .Ł              DŃ         4  -3.24"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  9F DŁ.Ń                      38  38.00\r\n  2:  9G D.Ń             Ł         34  31.59\r\n  3:  9H .Ń              DŁ        30  24.63\r\n  4: G11 ..Ń             DŁ        16  10.63\r\n  5: 10B D.Ł             Ń         14   8.95\r\n  6:  6G Ł.Ń             D         11   8.04\r\n  7:  6G D.Ń             Ł         10   7.59\r\n  8: J11 .Ń              DŁ         8   2.63\r\n  9:  9H .D              ŁŃ        10   1.56\r\n 10:  6G Ł.D             Ń          6   0.95\r\n 11:  6G D.Ł             Ń          6   0.95\r\n 12: G11 ..Ł             DŃ         8   0.76\r\n 13: (exch DŁŃ)                     0   0.00\r\n 14: J10 D.              ŁŃ         7  -1.44\r\n 15: 10C .D              ŁŃ         7  -1.44\r\n 16: (exch DŃ)           Ł          0  -2.41\r\n 17:  5K .D              ŁŃ         6  -2.44\r\n 18: (exch ŁŃ)           D          0  -2.96\r\n 19:  5H .Ł              DŃ         4  -3.24\r\n 20: J11 .Ł              DŃ         4  -3.24\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1:  9F DŁ.Ń                      38  38.00\n  2:  9G D.Ń             Ł         34  31.59\n  3:  9H .Ń              DŁ        30  24.63\n  4: G11 ..Ń             DŁ        16  10.63\n  5: 10B D.Ł             Ń         14   8.95\n  6:  6G Ł.Ń             D         11   8.04\n  7:  6G D.Ń             Ł         10   7.59\n  8: J11 .Ń              DŁ         8   2.63\n  9:  9H .D              ŁŃ        10   1.56\n 10:  6G Ł.D             Ń          6   0.95\n 11:  6G D.Ł             Ń          6   0.95\n 12: G11 ..Ł             DŃ         8   0.76\n 13: (exch DŁŃ)                     0   0.00\n 14: J10 D.              ŁŃ         7  -1.44\n 15: 10C .D              ŁŃ         7  -1.44\n 16: (exch DŃ)           Ł          0  -2.41\n 17:  5K .D              ŁŃ         6  -2.44\n 18: (exch ŁŃ)           D          0  -2.96\n 19:  5H .Ł              DŃ         4  -3.24\n 20: J11 .Ł              DŃ         4  -3.24\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 7,
+            "word": "II",
+            "coordinates": "12K",
+            "letters": "PSAMIII",
+            "index": 11
+        },
+        "status": "done",
+        "moveIndex": 11,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "D3 PISIAMI                       75       75.32±1.92      40.45±3.87",
+                "6J I(D)            AIIMPS        5        47.74±2.36      -10.57±4.02",
+                "13C (M)I            AIIMPS        6        47.64±2.36      -10.73±4.01",
+                "5G P(I)SI(A)MI     AI            20       46.62±2.30      -11.02±3.69",
+                "D6 PISI            AIM           9        44.39±2.30      -15.01±3.77",
+                "E10 PI(s)I          AIMS          8        43.71±2.36      -16.20±3.95",
+                "J10 S(E)PII         AIM           10       43.69±2.26      -15.81±3.78",
+                "12K II              AIMPS         7        43.62±2.34      -16.93±3.99",
+                "D7 PII             AIMS          8        43.60±2.35      -16.57±4.05",
+                "L1 I(N)I(A)        AIMPS         8        43.32±2.33      -17.37±3.89",
+                "L1 P(N)I(A)        AIIMS         10       42.72±2.29      -17.57±3.89",
+                "12J MISI            AIP           16       42.60±2.34      -17.27±3.84",
+                "1M PAI             IIMS          18       42.55±2.32      -18.02±3.84",
+                "8D PII             AIMS          9        42.49±2.29      -17.68±3.84",
+                "12I AMII            IPS           20       42.39±2.31      -18.24±3.81",
+                "6K (D)IPIS         AIM           9        42.33±2.35      -18.31±3.89",
+                "5K (A)MII          AIPS          12       42.01±2.35      -18.73±4.02",
+                "6D PISI(A)         AIM           8        41.74±2.27      -19.34±3.84",
+                "N4 MISI            AIP           17       41.68±2.35      -19.22±3.97",
+                "12J SIMI            AIP           15       41.44±2.33      -19.61±3.93",
+                "Iterations: 820 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91m\rmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n D3 PISIAMI                       75       75.32±1.92      40.45±3.87\u001b[6C\r\n 6J I(D)            AIIMPS        5        47.74±2.36      -10.57±4.02\u001b[5C\r\n13C (M)I            AIIMPS        6        47.64±2.36      -10.73±4.01\u001b[5C\r\n 5G P(I)SI(A)MI     AI            20       46.62±2.30      -11.02±3.69\u001b[5C\r\n D6 PISI            AIM           9        44.39±2.30      -15.01±3.77\u001b[5C\r\nE10 PI(s)I          AIMS          8        43.71±2.36      -16.20±3.95\u001b[5C\r\nJ10 S(E)PII         AIM           10       43.69±2.26      -15.81±3.78\u001b[5C\r\n12K II              AIMPS         7        43.62±2.34      -16.93±3.99\u001b[5C\r\n D7 PII             AIMS          8        43.60±2.35      -16.57±4.05\u001b[5C\r\n L1 I(N)I(A)        AIMPS         8        43.32±2.33      -17.37±3.89\u001b[5C\r\n L1 P(N)I(A)        AIIMS         10       42.72±2.29      -17.57±3.89\u001b[5C\r\n12J MISI            AIP           16       42.60±2.34      -17.27±3.84\u001b[5C\r\n 1M PAI             IIMS          18       42.55±2.32      -18.02±3.84\u001b[5C\r\n 8D PII             AIMS          9        42.49±2.29      -17.68±3.84\u001b[5C\r\n12I AMII            IPS           20       42.39±2.31      -18.24±3.81\u001b[5C\r\n 6K (D)IPIS         AIM           9        42.33±2.35      -18.31±3.89\u001b[5C\r\n 5K (A)MII          AIPS          12       42.01±2.35      -18.73±4.02\u001b[5C\r\n 6D PISI(A)         AIM           8        41.74±2.27      -19.34±3.84\u001b[5C\r\n N4 MISI            AIP           17       41.68±2.35      -19.22±3.97\u001b[5C\r\n12J SIMI            AIP           15       41.44±2.33      -19.61±3.93\u001b[5C\u001b[25l\r\nIterations: 820 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n D3 PISIAMI                       75       75.32±1.92      40.45±3.87\n 6J I(D)            AIIMPS        5        47.74±2.36      -10.57±4.02\n13C (M)I            AIIMPS        6        47.64±2.36      -10.73±4.01\n 5G P(I)SI(A)MI     AI            20       46.62±2.30      -11.02±3.69\n D6 PISI            AIM           9        44.39±2.30      -15.01±3.77\nE10 PI(s)I          AIMS          8        43.71±2.36      -16.20±3.95\nJ10 S(E)PII         AIM           10       43.69±2.26      -15.81±3.78\n12K II              AIMPS         7        43.62±2.34      -16.93±3.99\n D7 PII             AIMS          8        43.60±2.35      -16.57±4.05\n L1 I(N)I(A)        AIMPS         8        43.32±2.33      -17.37±3.89\n L1 P(N)I(A)        AIIMS         10       42.72±2.29      -17.57±3.89\n12J MISI            AIP           16       42.60±2.34      -17.27±3.84\n 1M PAI             IIMS          18       42.55±2.32      -18.02±3.84\n 8D PII             AIMS          9        42.49±2.29      -17.68±3.84\n12I AMII            IPS           20       42.39±2.31      -18.24±3.81\n 6K (D)IPIS         AIM           9        42.33±2.35      -18.31±3.89\n 5K (A)MII          AIPS          12       42.01±2.35      -18.73±4.02\n 6D PISI(A)         AIM           8        41.74±2.27      -19.34±3.84\n N4 MISI            AIP           17       41.68±2.35      -19.22±3.97\n12J SIMI            AIP           15       41.44±2.33      -19.61±3.93\nIterations: 820 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 33,
+            "word": "JUT",
+            "coordinates": "1M",
+            "letters": "JUT",
+            "index": 12
+        },
+        "status": "done",
+        "moveIndex": 12,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1:  1M JUT                       33  33.00",
+                "2:  1M TUJ                       32  32.00",
+                "3:  7F JU.T                      26  26.00",
+                "4: 13G TUJ                       19  19.00",
+                "5: 11C .UT             J         21  17.17",
+                "6:  1N UT              J         20  16.17",
+                "7: 13I TUJ                       16  16.00",
+                "8: 13I JUT                       16  16.00",
+                "9:  6E TUJ.                      15  15.00",
+                "10:  6F UT.J                      15  15.00",
+                "11:  6E JUT.                      15  15.00",
+                "12:  G2 JUT                       14  14.00",
+                "13: J10 J.              TU        10  13.81",
+                "14:  5K .J              TU         8  11.81",
+                "15:  5K .TU             J         15  11.17",
+                "16: K11 ..TUJ                     11  11.00",
+                "17:  7E JUT.                      11  11.00",
+                "18: J10 T.              JU         7  10.53",
+                "19: E10 JU.             T         12  10.45",
+                "20: K11 ..J             TU         6   9.81"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  1M JUT                       33  33.00\r\n  2:  1M TUJ                       32  32.00\r\n  3:  7F JU.T                      26  26.00\r\n  4: 13G TUJ                       19  19.00\r\n  5: 11C .UT             J         21  17.17\r\n  6:  1N UT              J         20  16.17\r\n  7: 13I TUJ                       16  16.00\r\n  8: 13I JUT                       16  16.00\r\n  9:  6E TUJ.                      15  15.00\r\n 10:  6F UT.J                      15  15.00\r\n 11:  6E JUT.                      15  15.00\r\n 12:  G2 JUT                       14  14.00\r\n 13: J10 J.              TU        10  13.81\r\n 14:  5K .J              TU         8  11.81\r\n 15:  5K .TU             J         15  11.17\r\n 16: K11 ..TUJ                     11  11.00\r\n 17:  7E JUT.                      11  11.00\r\n 18: J10 T.              JU         7  10.53\r\n 19: E10 JU.             T         12  10.45\r\n 20: K11 ..J             TU         6   9.81\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1:  1M JUT                       33  33.00\n  2:  1M TUJ                       32  32.00\n  3:  7F JU.T                      26  26.00\n  4: 13G TUJ                       19  19.00\n  5: 11C .UT             J         21  17.17\n  6:  1N UT              J         20  16.17\n  7: 13I TUJ                       16  16.00\n  8: 13I JUT                       16  16.00\n  9:  6E TUJ.                      15  15.00\n 10:  6F UT.J                      15  15.00\n 11:  6E JUT.                      15  15.00\n 12:  G2 JUT                       14  14.00\n 13: J10 J.              TU        10  13.81\n 14:  5K .J              TU         8  11.81\n 15:  5K .TU             J         15  11.17\n 16: K11 ..TUJ                     11  11.00\n 17:  7E JUT.                      11  11.00\n 18: J10 T.              JU         7  10.53\n 19: E10 JU.             T         12  10.45\n 20: K11 ..J             TU         6   9.81\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 16,
+            "word": "OPIS",
+            "coordinates": "D7",
+            "letters": "PSAMIYO",
+            "index": 13
+        },
+        "status": "done",
+        "moveIndex": 13,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "D3 OSYPAMI                       77       62.63±2.41      42.15±3.90",
+                "N4 OSYPAMI                       75       58.08±2.54      34.89±3.98",
+                "F9 (D)Y            AIMOPS        8        39.37±2.20      3.49±3.63",
+                "4J (BRAH)Y         AIMOPS        10       38.02±2.21      0.88±3.73",
+                "I11 (B)Y            AIMOPS        5        37.12±2.10      -0.21±3.50",
+                "N1 (UT)Y           AIMOPS        7        36.28±2.17      -2.25±3.74",
+                "10J MOPSY           AI            27       34.26±2.23      -3.99±3.62",
+                "10J PSY             AIMO          20       33.40±2.20      -6.48±3.79",
+                "4J (BRAH)O         AIMPSY        9        32.89±2.17      -7.09±3.79",
+                "N4 OSPY            AIM           19       32.29±2.27      -9.05±4.03",
+                "N4 OPY             AIMS          18       32.00±2.14      -9.80±3.84",
+                "N4 OSYP            AIM           19       31.93±2.29      -9.51±4.13",
+                "7E SIO(R)PA(Ł)     MY            29       31.85±2.15      -8.29±3.64",
+                "13I SAPMY           IO            26       31.35±2.20      -8.93±3.67",
+                "10C (Ó)SMY          AIOP          22       30.92±2.13      -11.18±3.85",
+                "13I SYPIA           MO            23       30.74±2.21      -10.48±3.81",
+                "10E MY              AIOPS         16       30.73±2.23      -11.39±4.05",
+                "10J PO              AIMSY         18       30.61±2.05      -11.66±3.64",
+                "L4 (A)SY           AIMOP         10       29.71±2.16      -15.18±4.14",
+                "13I SYPIAM          O             27       29.28±2.24      -13.95±3.95",
+                "Iterations: 832 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91m\rmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n D3 OSYPAMI                       77       62.63±2.41      42.15±3.90\u001b[6C\r\n N4 OSYPAMI                       75       58.08±2.54      34.89±3.98\u001b[6C\r\n F9 (D)Y            AIMOPS        8        39.37±2.20      3.49±3.63\u001b[7C\r\n 4J (BRAH)Y         AIMOPS        10       38.02±2.21      0.88±3.73\u001b[7C\r\nI11 (B)Y            AIMOPS        5        37.12±2.10      -0.21±3.50\u001b[6C\r\n N1 (UT)Y           AIMOPS        7        36.28±2.17      -2.25±3.74\u001b[6C\r\n10J MOPSY           AI            27       34.26±2.23      -3.99±3.62\u001b[6C\r\n10J PSY             AIMO          20       33.40±2.20      -6.48±3.79\u001b[6C\r\n 4J (BRAH)O         AIMPSY        9        32.89±2.17      -7.09±3.79\u001b[6C\r\n N4 OSPY            AIM           19       32.29±2.27      -9.05±4.03\u001b[6C\r\n N4 OPY             AIMS          18       32.00±2.14      -9.80±3.84\u001b[6C\r\n N4 OSYP            AIM           19       31.93±2.29      -9.51±4.13\u001b[6C\r\n 7E SIO(R)PA(Ł)     MY            29       31.85±2.15      -8.29±3.64\u001b[6C\r\n13I SAPMY           IO            26       31.35±2.20      -8.93±3.67\u001b[6C\r\n10C (Ó)SMY          AIOP          22       30.92±2.13      -11.18±3.85\u001b[5C\r\n13I SYPIA           MO            23       30.74±2.21      -10.48±3.81\u001b[5C\r\n10E MY              AIOPS         16       30.73±2.23      -11.39±4.05\u001b[5C\r\n10J PO              AIMSY         18       30.61±2.05      -11.66±3.64\u001b[5C\r\n L4 (A)SY           AIMOP         10       29.71±2.16      -15.18±4.14\u001b[5C\r\n13I SYPIAM          O             27       29.28±2.24      -13.95±3.95\u001b[5C\u001b[25l\r\nIterations: 832 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n D3 OSYPAMI                       77       62.63±2.41      42.15±3.90\n N4 OSYPAMI                       75       58.08±2.54      34.89±3.98\n F9 (D)Y            AIMOPS        8        39.37±2.20      3.49±3.63\n 4J (BRAH)Y         AIMOPS        10       38.02±2.21      0.88±3.73\nI11 (B)Y            AIMOPS        5        37.12±2.10      -0.21±3.50\n N1 (UT)Y           AIMOPS        7        36.28±2.17      -2.25±3.74\n10J MOPSY           AI            27       34.26±2.23      -3.99±3.62\n10J PSY             AIMO          20       33.40±2.20      -6.48±3.79\n 4J (BRAH)O         AIMPSY        9        32.89±2.17      -7.09±3.79\n N4 OSPY            AIM           19       32.29±2.27      -9.05±4.03\n N4 OPY             AIMS          18       32.00±2.14      -9.80±3.84\n N4 OSYP            AIM           19       31.93±2.29      -9.51±4.13\n 7E SIO(R)PA(Ł)     MY            29       31.85±2.15      -8.29±3.64\n13I SAPMY           IO            26       31.35±2.20      -8.93±3.67\n10C (Ó)SMY          AIOP          22       30.92±2.13      -11.18±3.85\n13I SYPIA           MO            23       30.74±2.21      -10.48±3.81\n10E MY              AIOPS         16       30.73±2.23      -11.39±4.05\n10J PO              AIMSY         18       30.61±2.05      -11.66±3.64\n L4 (A)SY           AIMOP         10       29.71±2.16      -15.18±4.14\n13I SYPIAM          O             27       29.28±2.24      -13.95±3.95\nIterations: 832 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 31,
+            "word": "FILIP",
+            "coordinates": "C3",
+            "letters": "FILIP",
+            "index": 14
+        },
+        "status": "done",
+        "moveIndex": 14,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1: 13I FILIP                     39  39.00",
+                "2:  C3 FILIP                     31  31.00",
+                "3: 13J FLIP            I         27  30.05",
+                "4:  6D PIF             IL        25  29.24",
+                "5: 13K PIF             IL        23  27.24",
+                "6:  E4 FLIP            I         23  26.05",
+                "7:  5E FIL.P           I         22  25.05",
+                "8:  E3 FILIP                     25  25.00",
+                "9:  6A FLIP            I         21  24.05",
+                "10:  6F FI.L            IP        19  21.19",
+                "11:  5E FIL.            IP        18  20.19",
+                "12: 13I FIL             IP        18  20.19",
+                "13: 13H FLIP            I         17  20.05",
+                "14:  C4 FLIP            I         17  20.05",
+                "15: 13I FILI            P         21  19.01",
+                "16: J10 F.              IILP      16  18.85",
+                "17:  5E FIL.I           P         20  18.01",
+                "18:  5D FILI.           P         20  18.01",
+                "19:  5G F.LI.           IP        14  16.19",
+                "20:  7C F.LI            IP        14  16.19"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1: 13I FILIP                     39  39.00\r\n  2:  C3 FILIP                     31  31.00\r\n  3: 13J FLIP            I         27  30.05\r\n  4:  6D PIF             IL        25  29.24\r\n  5: 13K PIF             IL        23  27.24\r\n  6:  E4 FLIP            I         23  26.05\r\n  7:  5E FIL.P           I         22  25.05\r\n  8:  E3 FILIP                     25  25.00\r\n  9:  6A FLIP            I         21  24.05\r\n 10:  6F FI.L            IP        19  21.19\r\n 11:  5E FIL.            IP        18  20.19\r\n 12: 13I FIL             IP        18  20.19\r\n 13: 13H FLIP            I         17  20.05\r\n 14:  C4 FLIP            I         17  20.05\r\n 15: 13I FILI            P         21  19.01\r\n 16: J10 F.              IILP      16  18.85\r\n 17:  5E FIL.I           P         20  18.01\r\n 18:  5D FILI.           P         20  18.01\r\n 19:  5G F.LI.           IP        14  16.19\r\n 20:  7C F.LI            IP        14  16.19\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1: 13I FILIP                     39  39.00\n  2:  C3 FILIP                     31  31.00\n  3: 13J FLIP            I         27  30.05\n  4:  6D PIF             IL        25  29.24\n  5: 13K PIF             IL        23  27.24\n  6:  E4 FLIP            I         23  26.05\n  7:  5E FIL.P           I         22  25.05\n  8:  E3 FILIP                     25  25.00\n  9:  6A FLIP            I         21  24.05\n 10:  6F FI.L            IP        19  21.19\n 11:  5E FIL.            IP        18  20.19\n 12: 13I FIL             IP        18  20.19\n 13: 13H FLIP            I         17  20.05\n 14:  C4 FLIP            I         17  20.05\n 15: 13I FILI            P         21  19.01\n 16: J10 F.              IILP      16  18.85\n 17:  5E FIL.I           P         20  18.01\n 18:  5D FILI.           P         20  18.01\n 19:  5G F.LI.           IP        14  16.19\n 20:  7C F.LI            IP        14  16.19\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 28,
+            "word": "CZAD",
+            "coordinates": "D1",
+            "letters": "AMYDACZ",
+            "index": 15
+        },
+        "status": "done",
+        "moveIndex": 15,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "D1 CZAD            AMY           28       23.60±2.23      -5.08±4.16",
+                "D2 ZAD             ACMY          20       22.63±2.03      -5.80±3.66",
+                "7F YA(R)D          ACMZ          21       20.79±1.91      -9.75±3.53",
+                "4A DZ(I)CY         AAM           20       20.05±2.07      -12.78±4.18",
+                "13G ZADYM           AC            20       19.52±1.80      -9.66±3.25",
+                "D1 ZDAM            ACY           26       19.32±2.04      -13.00±4.10",
+                "10C (ÓS)MY          AACDZ         22       19.25±1.84      -13.67±3.79",
+                "D2 ZADA            CMY           25       19.21±1.73      -10.11±3.20",
+                "D3 AD              ACMYZ         18       18.94±1.76      -13.03±3.36",
+                "E4 CZAD            AMY           17       18.50±1.73      -12.75±3.36",
+                "D4 DA              ACMYZ         15       17.92±1.72      -16.71±3.45",
+                "D2 DAM             ACYZ          22       17.77±1.86      -18.38±3.80",
+                "D2 MADA            CYZ           27       17.09±1.68      -16.36±3.31",
+                "D2 DAMA            CYZ           27       16.34±1.72      -19.11±3.57",
+                "D2 MAD             ACYZ          22       16.23±1.44      -16.89±3.03",
+                "N4 MADY            ACZ           21       15.93±1.61      -17.83±3.36",
+                "N4 MAD             ACYZ          19       15.45±1.85      -25.14±4.04",
+                "E7 DA              ACMYZ         11       14.90±1.61      -23.98±3.61",
+                "D12 (L)AD           ACMYZ         11       14.90±1.71      -25.62±3.79",
+                "N4 AD              ACMYZ         12       14.76±1.63      -25.67±3.72",
+                "Iterations: 930 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n D1 CZAD            AMY           28       23.60±2.23      -5.08±4.16\u001b[6C\r\n D2 ZAD             ACMY          20       22.63±2.03      -5.80±3.66\u001b[6C\r\n 7F YA(R)D          ACMZ          21       20.79±1.91      -9.75±3.53\u001b[6C\r\n 4A DZ(I)CY         AAM           20       20.05±2.07      -12.78±4.18\u001b[5C\r\n13G ZADYM           AC            20       19.52±1.80      -9.66±3.25\u001b[6C\r\n D1 ZDAM            ACY           26       19.32±2.04      -13.00±4.10\u001b[5C\r\n10C (ÓS)MY          AACDZ         22       19.25±1.84      -13.67±3.79\u001b[5C\r\n D2 ZADA            CMY           25       19.21±1.73      -10.11±3.20\u001b[5C\r\n D3 AD              ACMYZ         18       18.94±1.76      -13.03±3.36\u001b[5C\r\n E4 CZAD            AMY           17       18.50±1.73      -12.75±3.36\u001b[5C\r\n D4 DA              ACMYZ         15       17.92±1.72      -16.71±3.45\u001b[5C\r\n D2 DAM             ACYZ          22       17.77±1.86      -18.38±3.80\u001b[5C\r\n D2 MADA            CYZ           27       17.09±1.68      -16.36±3.31\u001b[5C\r\n D2 DAMA            CYZ           27       16.34±1.72      -19.11±3.57\u001b[5C\r\n D2 MAD             ACYZ          22       16.23±1.44      -16.89±3.03\u001b[5C\r\n N4 MADY            ACZ           21       15.93±1.61      -17.83±3.36\u001b[5C\r\n N4 MAD             ACYZ          19       15.45±1.85      -25.14±4.04\u001b[5C\r\n E7 DA              ACMYZ         11       14.90±1.61      -23.98±3.61\u001b[5C\r\nD12 (L)AD           ACMYZ         11       14.90±1.71      -25.62±3.79\u001b[5C\r\n N4 AD              ACMYZ         12       14.76±1.63      -25.67±3.72\u001b[5C\u001b[25l\r\nIterations: 930 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[30;76H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n D1 CZAD            AMY           28       23.60±2.23      -5.08±4.16\n D2 ZAD             ACMY          20       22.63±2.03      -5.80±3.66\n 7F YA(R)D          ACMZ          21       20.79±1.91      -9.75±3.53\n 4A DZ(I)CY         AAM           20       20.05±2.07      -12.78±4.18\n13G ZADYM           AC            20       19.52±1.80      -9.66±3.25\n D1 ZDAM            ACY           26       19.32±2.04      -13.00±4.10\n10C (ÓS)MY          AACDZ         22       19.25±1.84      -13.67±3.79\n D2 ZADA            CMY           25       19.21±1.73      -10.11±3.20\n D3 AD              ACMYZ         18       18.94±1.76      -13.03±3.36\n E4 CZAD            AMY           17       18.50±1.73      -12.75±3.36\n D4 DA              ACMYZ         15       17.92±1.72      -16.71±3.45\n D2 DAM             ACYZ          22       17.77±1.86      -18.38±3.80\n D2 MADA            CYZ           27       17.09±1.68      -16.36±3.31\n D2 DAMA            CYZ           27       16.34±1.72      -19.11±3.57\n D2 MAD             ACYZ          22       16.23±1.44      -16.89±3.03\n N4 MADY            ACZ           21       15.93±1.61      -17.83±3.36\n N4 MAD             ACYZ          19       15.45±1.85      -25.14±4.04\n E7 DA              ACMYZ         11       14.90±1.61      -23.98±3.61\nD12 (L)AD           ACMYZ         11       14.90±1.71      -25.62±3.79\n N4 AD              ACMYZ         12       14.76±1.63      -25.67±3.72\nIterations: 930 (intervals are 99% confidence, ❌ marks plays cut off early)     \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 26,
+            "word": "ŻĘC.",
+            "coordinates": "5E",
+            "letters": "ŻĘC",
+            "index": 16
+        },
+        "status": "done",
+        "moveIndex": 16,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1:  5E ŻĘC.                      26  26.00",
+                "2: J10 Ż.              CĘ        16  16.52",
+                "3:  9A ŻĘ..            C         13  13.04",
+                "4:  5K .Ż              CĘ        12  12.52",
+                "5: I11 .ĘC             Ż         12   9.05",
+                "6:  4J ....Ę           CŻ        13   8.20",
+                "7:  6B C.              ĘŻ         7   7.37",
+                "8: J10 C.              ĘŻ         7   7.37",
+                "9:  5G C.Ż             Ę          8   7.25",
+                "10:  7C ..CĘ            Ż         10   7.05",
+                "11:  6H .Ż              CĘ         6   6.52",
+                "12: L12 .Ż              CĘ         6   6.52",
+                "13:  5H .Ż              CĘ         6   6.52",
+                "14: 14C .Ż              CĘ         6   6.52",
+                "15: K11 ..C             ĘŻ         5   5.37",
+                "16:  N1 ..Ę             CŻ        10   5.20",
+                "17:  5G C.Ę             Ż          8   5.05",
+                "18:  5G C.              ĘŻ         3   3.37",
+                "19:  M4 .Ę              CŻ         8   3.20",
+                "20:  4C ..Ę             CŻ         8   3.20"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  5E ŻĘC.                      26  26.00\r\n  2: J10 Ż.              CĘ        16  16.52\r\n  3:  9A ŻĘ..            C         13  13.04\r\n  4:  5K .Ż              CĘ        12  12.52\r\n  5: I11 .ĘC             Ż         12   9.05\r\n  6:  4J ....Ę           CŻ        13   8.20\r\n  7:  6B C.              ĘŻ         7   7.37\r\n  8: J10 C.              ĘŻ         7   7.37\r\n  9:  5G C.Ż             Ę          8   7.25\r\n 10:  7C ..CĘ            Ż         10   7.05\r\n 11:  6H .Ż              CĘ         6   6.52\r\n 12: L12 .Ż              CĘ         6   6.52\r\n 13:  5H .Ż              CĘ         6   6.52\r\n 14: 14C .Ż              CĘ         6   6.52\r\n 15: K11 ..C             ĘŻ         5   5.37\r\n 16:  N1 ..Ę             CŻ        10   5.20\r\n 17:  5G C.Ę             Ż          8   5.05\r\n 18:  5G C.              ĘŻ         3   3.37\r\n 19:  M4 .Ę              CŻ         8   3.20\r\n 20:  4C ..Ę             CŻ         8   3.20\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1:  5E ŻĘC.                      26  26.00\n  2: J10 Ż.              CĘ        16  16.52\n  3:  9A ŻĘ..            C         13  13.04\n  4:  5K .Ż              CĘ        12  12.52\n  5: I11 .ĘC             Ż         12   9.05\n  6:  4J ....Ę           CŻ        13   8.20\n  7:  6B C.              ĘŻ         7   7.37\n  8: J10 C.              ĘŻ         7   7.37\n  9:  5G C.Ż             Ę          8   7.25\n 10:  7C ..CĘ            Ż         10   7.05\n 11:  6H .Ż              CĘ         6   6.52\n 12: L12 .Ż              CĘ         6   6.52\n 13:  5H .Ż              CĘ         6   6.52\n 14: 14C .Ż              CĘ         6   6.52\n 15: K11 ..C             ĘŻ         5   5.37\n 16:  N1 ..Ę             CŻ        10   5.20\n 17:  5G C.Ę             Ż          8   5.05\n 18:  5G C.              ĘŻ         3   3.37\n 19:  M4 .Ę              CŻ         8   3.20\n 20:  4C ..Ę             CŻ         8   3.20\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 36,
+            "word": "P.HAMY",
+            "coordinates": "1C",
+            "letters": "MYAHYPA",
+            "index": 17
+        },
+        "status": "done",
+        "moveIndex": 17,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "1D (C)HAMY         APY           30       26.13±2.51      3.46±3.47",
+                "1D (C)HAPMY        AY            36       23.06±2.39      -0.31±3.48",
+                "1C P(C)HAMY        AY            36       22.48±2.34      -3.28±3.49",
+                "1C A(C)HAMY        PY            33       21.10±2.31      -4.53±3.52",
+                "N4 MAPY            AHY           21       18.21±2.30      -11.94±4.45",
+                "1D (C)APMY         AHY           27       17.91±1.99      -10.22±3.24",
+                "1D (C)AMPY         AHY           27       17.64±1.96      -10.25±3.21",
+                "N4 YHY             AAMP          21       16.82±2.10      -16.99±4.05",
+                "G3 PA(C)HA         MYY           21       15.78±2.13      -19.38±4.24",
+                "G1 YAMA(C)H        PY            19       15.26±2.11      -18.78±3.82",
+                "G3 PA(C)H          AMYY          16       15.24±2.04      -22.30±4.29",
+                "1B PA(C)HY         AMY           10       15.15±1.94      -17.33±3.47",
+                "J10 H(E)PMY         AAY           24       15.14±2.03      -19.79±3.99",
+                "1B HY(C)A          AMPY          8        14.90±1.90      -19.93±3.44",
+                "1B PY(C)HY         AAM           11       14.67±2.14      -25.88±4.28",
+                "1C A(C)HY          AMPY          8        14.17±1.89      -22.48±3.54",
+                "1D (C)HAMA         PYY           27       13.83±1.78      -18.05±3.29",
+                "N4 YHM             AAPY          21       13.74±1.99      -26.06±4.24",
+                "1B HY(C)AMY        AP            12       13.08±1.79      -20.62±3.53",
+                "1B PY(C)HA         AMY           10       10.51±2.23      -82.26±6.47",
+                "Iterations: 1059 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n 1D (C)HAMY         APY           30       26.13±2.51      3.46±3.47\u001b[7C\r\n 1D (C)HAPMY        AY            36       23.06±2.39      -0.31±3.48\u001b[6C\r\n 1C P(C)HAMY        AY            36       22.48±2.34      -3.28±3.49\u001b[6C\r\n 1C A(C)HAMY        PY            33       21.10±2.31      -4.53±3.52\u001b[6C\r\n N4 MAPY            AHY           21       18.21±2.30      -11.94±4.45\u001b[5C\r\n 1D (C)APMY         AHY           27       17.91±1.99      -10.22±3.24\u001b[5C\r\n 1D (C)AMPY         AHY           27       17.64±1.96      -10.25±3.21\u001b[5C\r\n N4 YHY             AAMP          21       16.82±2.10      -16.99±4.05\u001b[5C\r\n G3 PA(C)HA         MYY           21       15.78±2.13      -19.38±4.24\u001b[5C\r\n G1 YAMA(C)H        PY            19       15.26±2.11      -18.78±3.82\u001b[5C\r\n G3 PA(C)H          AMYY          16       15.24±2.04      -22.30±4.29\u001b[5C\r\n 1B PA(C)HY         AMY           10       15.15±1.94      -17.33±3.47\u001b[5C\r\nJ10 H(E)PMY         AAY           24       15.14±2.03      -19.79±3.99\u001b[5C\r\n 1B HY(C)A          AMPY          8        14.90±1.90      -19.93±3.44\u001b[5C\r\n 1B PY(C)HY         AAM           11       14.67±2.14      -25.88±4.28\u001b[5C\r\n 1C A(C)HY          AMPY          8        14.17±1.89      -22.48±3.54\u001b[5C\r\n 1D (C)HAMA         PYY           27       13.83±1.78      -18.05±3.29\u001b[5C\r\n N4 YHM             AAPY          21       13.74±1.99      -26.06±4.24\u001b[5C\r\n 1B HY(C)AMY        AP            12       13.08±1.79      -20.62±3.53\u001b[5C\r\n 1B PY(C)HA         AMY           10       10.51±2.23      -82.26±6.47\u001b[5C\u001b[25l\r\nIterations: 1059 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[30;77H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n 1D (C)HAMY         APY           30       26.13±2.51      3.46±3.47\n 1D (C)HAPMY        AY            36       23.06±2.39      -0.31±3.48\n 1C P(C)HAMY        AY            36       22.48±2.34      -3.28±3.49\n 1C A(C)HAMY        PY            33       21.10±2.31      -4.53±3.52\n N4 MAPY            AHY           21       18.21±2.30      -11.94±4.45\n 1D (C)APMY         AHY           27       17.91±1.99      -10.22±3.24\n 1D (C)AMPY         AHY           27       17.64±1.96      -10.25±3.21\n N4 YHY             AAMP          21       16.82±2.10      -16.99±4.05\n G3 PA(C)HA         MYY           21       15.78±2.13      -19.38±4.24\n G1 YAMA(C)H        PY            19       15.26±2.11      -18.78±3.82\n G3 PA(C)H          AMYY          16       15.24±2.04      -22.30±4.29\n 1B PA(C)HY         AMY           10       15.15±1.94      -17.33±3.47\nJ10 H(E)PMY         AAY           24       15.14±2.03      -19.79±3.99\n 1B HY(C)A          AMPY          8        14.90±1.90      -19.93±3.44\n 1B PY(C)HY         AAM           11       14.67±2.14      -25.88±4.28\n 1C A(C)HY          AMPY          8        14.17±1.89      -22.48±3.54\n 1D (C)HAMA         PYY           27       13.83±1.78      -18.05±3.29\n N4 YHM             AAPY          21       13.74±1.99      -26.06±4.24\n 1B HY(C)AMY        AP            12       13.08±1.79      -20.62±3.53\n 1B PY(C)HA         AMY           10       10.51±2.23      -82.26±6.47\nIterations: 1059 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 45,
+            "word": "WY......",
+            "coordinates": "1A",
+            "letters": "WY",
+            "index": 18
+        },
+        "status": "done",
+        "moveIndex": 18,
+        "result": {
+            "bestMoves": [
+                "Move                Leave  Score Equity",
+                "1:  1A WY......                  45  45.00",
+                "2:  4J ....Y           W         10   8.72",
+                "3: 13L WY                         8   8.00",
+                "4: F12 .WY                        8   8.00",
+                "5: 13G WY                         8   8.00",
+                "6: D14 WY                         7   7.00",
+                "7:  F9 .Y              W          8   6.72",
+                "8: G11 ..WY                       6   6.00",
+                "9:  7F WY.                        6   6.00",
+                "10:  N1 ..Y             W          7   5.72",
+                "11: 14C .WY                        4   4.00",
+                "12: L12 .WY                        4   4.00",
+                "13: I11 .Y              W          5   3.72",
+                "14: J10 W.              Y          4   3.43",
+                "15:  4B W..             Y          4   3.43",
+                "16: G11 ..W             Y          4   3.43",
+                "17:  6K .Y              W          4   2.72",
+                "18:  H1 .Y              W          4   2.72",
+                "19:  G1 .Y              W          4   2.72",
+                "20: 15A .Y              W          3   1.72"
+            ],
+            "rawOutput": "\u001b[91m\rmacondo>\u001b[m gen 20\u001b[K\r\n     Move                Leave  Score Equity\r\n  1:  1A WY......                  45  45.00\r\n  2:  4J ....Y           W         10   8.72\r\n  3: 13L WY                         8   8.00\r\n  4: F12 .WY                        8   8.00\r\n  5: 13G WY                         8   8.00\r\n  6: D14 WY                         7   7.00\r\n  7:  F9 .Y              W          8   6.72\r\n  8: G11 ..WY                       6   6.00\r\n  9:  7F WY.                        6   6.00\r\n 10:  N1 ..Y             W          7   5.72\r\n 11: 14C .WY                        4   4.00\r\n 12: L12 .WY                        4   4.00\r\n 13: I11 .Y              W          5   3.72\r\n 14: J10 W.              Y          4   3.43\r\n 15:  4B W..             Y          4   3.43\r\n 16: G11 ..W             Y          4   3.43\r\n 17:  6K .Y              W          4   2.72\r\n 18:  H1 .Y              W          4   2.72\r\n 19:  G1 .Y              W          4   2.72\r\n 20: 15A .Y              W          3   1.72\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> gen 20\n     Move                Leave  Score Equity\n  1:  1A WY......                  45  45.00\n  2:  4J ....Y           W         10   8.72\n  3: 13L WY                         8   8.00\n  4: F12 .WY                        8   8.00\n  5: 13G WY                         8   8.00\n  6: D14 WY                         7   7.00\n  7:  F9 .Y              W          8   6.72\n  8: G11 ..WY                       6   6.00\n  9:  7F WY.                        6   6.00\n 10:  N1 ..Y             W          7   5.72\n 11: 14C .WY                        4   4.00\n 12: L12 .WY                        4   4.00\n 13: I11 .Y              W          5   3.72\n 14: J10 W.              Y          4   3.43\n 15:  4B W..             Y          4   3.43\n 16: G11 ..W             Y          4   3.43\n 17:  6K .Y              W          4   2.72\n 18:  H1 .Y              W          4   2.72\n 19:  G1 .Y              W          4   2.72\n 20: 15A .Y              W          3   1.72\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 26,
+            "word": ".ZU",
+            "coordinates": "J4",
+            "letters": "YANENUZ",
+            "index": 19
+        },
+        "status": "done",
+        "moveIndex": 19,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "13J ZENU            ANY           18       16.40±2.74      -5.02±4.24",
+                "E3 NU(Ż)E          ANYZ          23       16.32±2.71      -7.11±4.25",
+                "E3 NY(Ż)E          ANUZ          21       14.78±2.56      -7.96±4.20",
+                "13J ZENY            ANU           16       14.29±2.57      -6.67±4.03",
+                "J4 (B)ZU           AENNY         26       13.11±2.39      -16.43±4.24",
+                "E3 NU(Ż)Y          AENZ          24       12.96±2.44      -15.74±4.26",
+                "13G ZENY            ANU           11       12.73±2.43      -12.00±4.08",
+                "E11 U(s)ZNY         AEN           14       12.48±2.48      -17.40±4.47",
+                "6J U(D)ANY         ENZ           19       11.82±2.38      -16.81±4.38",
+                "E3 NY(Ż)           AENUZ         20       11.54±2.20      -19.93±4.11",
+                "N4 AZYN            ENU           18       11.48±2.35      -13.10±4.11",
+                "E3 NU(Ż)           AENYZ         22       11.39±2.22      -19.93±4.14",
+                "E3 NY(Ż)A          ENUZ          21       11.38±2.31      -15.16±4.05",
+                "3C (FA)ENY         ANUZ          12       11.31±2.28      -16.51±4.22",
+                "D12 (L)UNY          AENZ          17       10.59±2.20      -20.21±4.24",
+                "3C (FA)NZY         AENU          12       10.39±2.23      -22.57±4.20",
+                "F1 (A)ZYN(Ę)       AENU          12       10.23±2.21      -21.39±4.06",
+                "6J Z(D)UNY         AEN           15       10.18±2.18      -17.78±4.08",
+                "3C (FA)UNY         AENZ          14       9.46±2.08       -24.83±4.30",
+                "F7 NU(D)Y          AENZ          12       8.55±2.02       -25.10±4.18",
+                "Iterations: 1073 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n13J ZENU            ANY           18       16.40±2.74      -5.02±4.24\u001b[6C\r\n E3 NU(Ż)E          ANYZ          23       16.32±2.71      -7.11±4.25\u001b[6C\r\n E3 NY(Ż)E          ANUZ          21       14.78±2.56      -7.96±4.20\u001b[6C\r\n13J ZENY            ANU           16       14.29±2.57      -6.67±4.03\u001b[6C\r\n J4 (B)ZU           AENNY         26       13.11±2.39      -16.43±4.24\u001b[5C\r\n E3 NU(Ż)Y          AENZ          24       12.96±2.44      -15.74±4.26\u001b[5C\r\n13G ZENY            ANU           11       12.73±2.43      -12.00±4.08\u001b[5C\r\nE11 U(s)ZNY         AEN           14       12.48±2.48      -17.40±4.47\u001b[5C\r\n 6J U(D)ANY         ENZ           19       11.82±2.38      -16.81±4.38\u001b[5C\r\n E3 NY(Ż)           AENUZ         20       11.54±2.20      -19.93±4.11\u001b[5C\r\n N4 AZYN            ENU           18       11.48±2.35      -13.10±4.11\u001b[5C\r\n E3 NU(Ż)           AENYZ         22       11.39±2.22      -19.93±4.14\u001b[5C\r\n E3 NY(Ż)A          ENUZ          21       11.38±2.31      -15.16±4.05\u001b[5C\r\n 3C (FA)ENY         ANUZ          12       11.31±2.28      -16.51±4.22\u001b[5C\r\nD12 (L)UNY          AENZ          17       10.59±2.20      -20.21±4.24\u001b[5C\r\n 3C (FA)NZY         AENU          12       10.39±2.23      -22.57±4.20\u001b[5C\r\n F1 (A)ZYN(Ę)       AENU          12       10.23±2.21      -21.39±4.06\u001b[5C\r\n 6J Z(D)UNY         AEN           15       10.18±2.18      -17.78±4.08\u001b[5C\r\n 3C (FA)UNY         AENZ          14       9.46±2.08       -24.83±4.30\u001b[5C\r\n F7 NU(D)Y          AENZ          12       8.55±2.02       -25.10±4.18\u001b[5C\u001b[25l\r\nIterations: 1073 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[30;77H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n13J ZENU            ANY           18       16.40±2.74      -5.02±4.24\n E3 NU(Ż)E          ANYZ          23       16.32±2.71      -7.11±4.25\n E3 NY(Ż)E          ANUZ          21       14.78±2.56      -7.96±4.20\n13J ZENY            ANU           16       14.29±2.57      -6.67±4.03\n J4 (B)ZU           AENNY         26       13.11±2.39      -16.43±4.24\n E3 NU(Ż)Y          AENZ          24       12.96±2.44      -15.74±4.26\n13G ZENY            ANU           11       12.73±2.43      -12.00±4.08\nE11 U(s)ZNY         AEN           14       12.48±2.48      -17.40±4.47\n 6J U(D)ANY         ENZ           19       11.82±2.38      -16.81±4.38\n E3 NY(Ż)           AENUZ         20       11.54±2.20      -19.93±4.11\n N4 AZYN            ENU           18       11.48±2.35      -13.10±4.11\n E3 NU(Ż)           AENYZ         22       11.39±2.22      -19.93±4.14\n E3 NY(Ż)A          ENUZ          21       11.38±2.31      -15.16±4.05\n 3C (FA)ENY         ANUZ          12       11.31±2.28      -16.51±4.22\nD12 (L)UNY          AENZ          17       10.59±2.20      -20.21±4.24\n 3C (FA)NZY         AENU          12       10.39±2.23      -22.57±4.20\n F1 (A)ZYN(Ę)       AENU          12       10.23±2.21      -21.39±4.06\n 6J Z(D)UNY         AEN           15       10.18±2.18      -17.78±4.08\n 3C (FA)UNY         AENZ          14       9.46±2.08       -24.83±4.30\n F7 NU(D)Y          AENZ          12       8.55±2.02       -25.10±4.18\nIterations: 1073 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 23,
+            "word": "JE",
+            "coordinates": "2F",
+            "letters": "JE",
+            "index": 20
+        },
+        "status": "done",
+        "moveIndex": 20,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "2F JE                            23       42.23±2.25      -58.56±2.23",
+                "E1 (H)EJ                         18       38.96±2.21      -63.65±2.28",
+                "5J (ZA)JE                        14       37.26±2.10      -65.39±2.19",
+                "3B E(FA)           J             7        34.22±1.96      -70.98±2.17",
+                "3C (FA)JE                        10       33.99±2.13      -69.92±2.27",
+                "7C (PO)JE                        7        32.66±2.04      -71.27±2.25",
+                "J10 J(E)            E             10       32.62±1.89      -73.77±2.23",
+                "3C (FA)J           E             9        32.05±1.91      -74.06±2.25",
+                "G1 (M)EJ                         9        31.79±2.05      -72.53±2.24",
+                "F1 (A)J            E             10       31.60±1.93      -75.13±2.28",
+                "5M EJ                            8        31.25±1.99      -73.46±2.21",
+                "A10 JE(SZIW)                      8        31.10±2.01      -73.32±2.22",
+                "K11 (KI)JE                        7        29.60±2.02      -75.91±2.31",
+                "13J JE                            8        29.38±2.02      -75.33±2.30",
+                "7F JE(R)                         6        29.37±1.94      -76.61±2.30",
+                "I11 (B)EJ                         10       28.53±2.03      -76.11±2.33",
+                "M4 (H)EJ                         7        27.68±2.00      -77.12±2.25",
+                "F12 (Z)JE                         7        27.58±1.97      -78.06±2.28",
+                "13J EJ                            10       26.93±2.05      -76.85±2.29",
+                "K11 (KI)J           E             6        24.27±1.79      -84.15±2.30",
+                "Iterations: 1458 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n 2F JE                            23       42.23±2.25      -58.56±2.23\u001b[5C\r\n E1 (H)EJ                         18       38.96±2.21      -63.65±2.28\u001b[5C\r\n 5J (ZA)JE                        14       37.26±2.10      -65.39±2.19\u001b[5C\r\n 3B E(FA)           J             7        34.22±1.96      -70.98±2.17\u001b[5C\r\n 3C (FA)JE                        10       33.99±2.13      -69.92±2.27\u001b[5C\r\n 7C (PO)JE                        7        32.66±2.04      -71.27±2.25\u001b[5C\r\nJ10 J(E)            E             10       32.62±1.89      -73.77±2.23\u001b[5C\r\n 3C (FA)J           E             9        32.05±1.91      -74.06±2.25\u001b[5C\r\n G1 (M)EJ                         9        31.79±2.05      -72.53±2.24\u001b[5C\r\n F1 (A)J            E             10       31.60±1.93      -75.13±2.28\u001b[5C\r\n 5M EJ                            8        31.25±1.99      -73.46±2.21\u001b[5C\r\nA10 JE(SZIW)                      8        31.10±2.01      -73.32±2.22\u001b[5C\r\nK11 (KI)JE                        7        29.60±2.02      -75.91±2.31\u001b[5C\r\n13J JE                            8        29.38±2.02      -75.33±2.30\u001b[5C\r\n 7F JE(R)                         6        29.37±1.94      -76.61±2.30\u001b[5C\r\nI11 (B)EJ                         10       28.53±2.03      -76.11±2.33\u001b[5C\r\n M4 (H)EJ                         7        27.68±2.00      -77.12±2.25\u001b[5C\r\nF12 (Z)JE                         7        27.58±1.97      -78.06±2.28\u001b[5C\r\n13J EJ                            10       26.93±2.05      -76.85±2.29\u001b[5C\r\nK11 (KI)J           E             6        24.27±1.79      -84.15±2.30\u001b[5C\u001b[25l\r\nIterations: 1458 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[30;77H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n 2F JE                            23       42.23±2.25      -58.56±2.23\n E1 (H)EJ                         18       38.96±2.21      -63.65±2.28\n 5J (ZA)JE                        14       37.26±2.10      -65.39±2.19\n 3B E(FA)           J             7        34.22±1.96      -70.98±2.17\n 3C (FA)JE                        10       33.99±2.13      -69.92±2.27\n 7C (PO)JE                        7        32.66±2.04      -71.27±2.25\nJ10 J(E)            E             10       32.62±1.89      -73.77±2.23\n 3C (FA)J           E             9        32.05±1.91      -74.06±2.25\n G1 (M)EJ                         9        31.79±2.05      -72.53±2.24\n F1 (A)J            E             10       31.60±1.93      -75.13±2.28\n 5M EJ                            8        31.25±1.99      -73.46±2.21\nA10 JE(SZIW)                      8        31.10±2.01      -73.32±2.22\nK11 (KI)JE                        7        29.60±2.02      -75.91±2.31\n13J JE                            8        29.38±2.02      -75.33±2.30\n 7F JE(R)                         6        29.37±1.94      -76.61±2.30\nI11 (B)EJ                         10       28.53±2.03      -76.11±2.33\n M4 (H)EJ                         7        27.68±2.00      -77.12±2.25\nF12 (Z)JE                         7        27.58±1.97      -78.06±2.28\n13J EJ                            10       26.93±2.05      -76.85±2.29\nK11 (KI)J           E             6        24.27±1.79      -84.15±2.30\nIterations: 1458 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 24,
+            "word": "N.Ć",
+            "coordinates": "F4",
+            "letters": "YANENGĆ",
+            "index": 21
+        },
+        "status": "done",
+        "moveIndex": 21,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "F4 N(Ę)Ć           AEGNY         24       18.94±2.70      -6.38±3.95",
+                "A1 (W)EGNAĆ        NY            14       12.34±2.27      -16.63±3.51",
+                "A1 (W)YGNAĆ        EN            15       10.81±2.15      -18.59±3.46",
+                "13G NAĆ             EGNY          19       9.94±2.05       -21.76±3.67",
+                "13L NAĆ             EGNY          18       9.58±2.01       -22.28±3.65",
+                "E5 (Ż)YĆ           AEGNN         22       9.12±1.96       -21.79±3.75",
+                "13I NAĆ             EGNY          18       8.49±1.89       -24.47±3.54",
+                "I11 (B)YĆ           AEGNN         17       7.37±1.77       -27.45±3.52",
+                "13H GNAĆ            ENY           21       7.23±1.77       -21.93±3.36",
+                "E3 NY(Ż)           AĆEGN         20       6.44±1.67       -28.03±3.36",
+                "E3 NY(Ż)E          AĆGN          21       5.56±1.55       -24.49±3.16",
+                "13G NYG             AĆEN          14       5.52±1.58       -34.14±3.37",
+                "A1 (W)YĆ           AEGNN         9        5.03±1.48       -34.48±3.81",
+                "13I GAĆ             ENNY          22       4.92±1.47       -32.99±3.41",
+                "E12 (s)YĆ           AEGNN         8        4.59±1.42       -39.47±3.89",
+                "13J GENY            AĆN           20       3.94±1.32       -22.86±3.18",
+                "13L NYG             AĆEN          14       3.72±1.31       -45.00±3.17",
+                "B4 GEN             AĆNY          20       3.48±1.25       -24.99±2.94",
+                "N4 YANG            ĆEN           19       3.22±1.21       -30.57±2.95",
+                "E3 NY(Ż)A          ĆEGN          21       3.09±1.16       -35.42±3.19",
+                "Iterations: 1379 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n F4 N(Ę)Ć           AEGNY         24       18.94±2.70      -6.38±3.95\u001b[6C\r\n A1 (W)EGNAĆ        NY            14       12.34±2.27      -16.63±3.51\u001b[5C\r\n A1 (W)YGNAĆ        EN            15       10.81±2.15      -18.59±3.46\u001b[5C\r\n13G NAĆ             EGNY          19       9.94±2.05       -21.76±3.67\u001b[5C\r\n13L NAĆ             EGNY          18       9.58±2.01       -22.28±3.65\u001b[5C\r\n E5 (Ż)YĆ           AEGNN         22       9.12±1.96       -21.79±3.75\u001b[5C\r\n13I NAĆ             EGNY          18       8.49±1.89       -24.47±3.54\u001b[5C\r\nI11 (B)YĆ           AEGNN         17       7.37±1.77       -27.45±3.52\u001b[5C\r\n13H GNAĆ            ENY           21       7.23±1.77       -21.93±3.36\u001b[5C\r\n E3 NY(Ż)           AĆEGN         20       6.44±1.67       -28.03±3.36\u001b[5C\r\n E3 NY(Ż)E          AĆGN          21       5.56±1.55       -24.49±3.16\u001b[5C\r\n13G NYG             AĆEN          14       5.52±1.58       -34.14±3.37\u001b[5C\r\n A1 (W)YĆ           AEGNN         9        5.03±1.48       -34.48±3.81\u001b[5C\r\n13I GAĆ             ENNY          22       4.92±1.47       -32.99±3.41\u001b[5C\r\nE12 (s)YĆ           AEGNN         8        4.59±1.42       -39.47±3.89\u001b[5C\r\n13J GENY            AĆN           20       3.94±1.32       -22.86±3.18\u001b[5C\r\n13L NYG             AĆEN          14       3.72±1.31       -45.00±3.17\u001b[5C\r\n B4 GEN             AĆNY          20       3.48±1.25       -24.99±2.94\u001b[5C\r\n N4 YANG            ĆEN           19       3.22±1.21       -30.57±2.95\u001b[5C\r\n E3 NY(Ż)A          ĆEGN          21       3.09±1.16       -35.42±3.19\u001b[5C\u001b[25l\r\nIterations: 1379 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[30;77H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n F4 N(Ę)Ć           AEGNY         24       18.94±2.70      -6.38±3.95\n A1 (W)EGNAĆ        NY            14       12.34±2.27      -16.63±3.51\n A1 (W)YGNAĆ        EN            15       10.81±2.15      -18.59±3.46\n13G NAĆ             EGNY          19       9.94±2.05       -21.76±3.67\n13L NAĆ             EGNY          18       9.58±2.01       -22.28±3.65\n E5 (Ż)YĆ           AEGNN         22       9.12±1.96       -21.79±3.75\n13I NAĆ             EGNY          18       8.49±1.89       -24.47±3.54\nI11 (B)YĆ           AEGNN         17       7.37±1.77       -27.45±3.52\n13H GNAĆ            ENY           21       7.23±1.77       -21.93±3.36\n E3 NY(Ż)           AĆEGN         20       6.44±1.67       -28.03±3.36\n E3 NY(Ż)E          AĆGN          21       5.56±1.55       -24.49±3.16\n13G NYG             AĆEN          14       5.52±1.58       -34.14±3.37\n A1 (W)YĆ           AEGNN         9        5.03±1.48       -34.48±3.81\n13I GAĆ             ENNY          22       4.92±1.47       -32.99±3.41\nE12 (s)YĆ           AEGNN         8        4.59±1.42       -39.47±3.89\n13J GENY            AĆN           20       3.94±1.32       -22.86±3.18\n13L NYG             AĆEN          14       3.72±1.31       -45.00±3.17\n B4 GEN             AĆNY          20       3.48±1.25       -24.99±2.94\n N4 YANG            ĆEN           19       3.22±1.21       -30.57±2.95\n E3 NY(Ż)A          ĆEGN          21       3.09±1.16       -35.42±3.19\nIterations: 1379 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 80,
+            "word": ".YMOżONE",
+            "coordinates": "A1",
+            "letters": "YMO?ONE",
+            "index": 22
+        },
+        "status": "done",
+        "moveIndex": 22,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "A1 (W)YMOżONE                    80       100.00±0.00     59.76±1.30",
+                "10J MOONY           ?E            26       99.31±0.47      35.21±2.00",
+                "13I OMENY           ?O            22       98.70±0.64      48.28±2.09",
+                "N4 OMENY           ?O            18       98.61±0.66      34.28±2.12",
+                "10J MONY            ?EO           21       98.40±0.70      31.17±2.17",
+                "N4 OMY             ?ENO          18       98.38±0.69      35.46±2.44",
+                "N4 MONY            ?EO           18       98.04±0.75      27.99±2.47",
+                "10J EONY            ?MO           15       97.57±0.87      40.63±2.33",
+                "N4 OO              ?EMNY         11       97.26±0.93      54.40±2.26",
+                "7K (Ł)OMY          ?ENO          16       97.01±0.95      33.04±2.47",
+                "10J EON             ?MOY          13       96.68±1.01      50.77±2.44",
+                "N4 ONYM            ?EO           19       96.60±1.03      32.48±2.48",
+                "F8 O(D)Y           ?EMNO         9        96.52±1.03      43.69±2.17",
+                "N4 ONE             ?MOY          14       95.88±1.12      54.38±2.64",
+                "N4 ONO             ?EMY          14       95.85±1.13      45.50±2.59",
+                "10C (ÓS)MY          ?ENOO         22       95.76±1.12      30.63±2.60",
+                "N4 OMYlONE                       73       94.63±1.28      45.57±1.86",
+                "13K EMO             ?NOY          15       94.01±1.33      38.86±2.73",
+                "6J (UD)ONY         ?EMO          13       93.41±1.39      25.08±2.48",
+                "N1 (UT)OM          ?ENOY         18       92.97±1.44      36.88±2.75",
+                "Iterations: 2047 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n A1 (W)YMOżONE                    80       100.00±0.00     59.76±1.30\u001b[6C\r\n10J MOONY           ?E            26       99.31±0.47      35.21±2.00\u001b[6C\r\n13I OMENY           ?O            22       98.70±0.64      48.28±2.09\u001b[6C\r\n N4 OMENY           ?O            18       98.61±0.66      34.28±2.12\u001b[6C\r\n10J MONY            ?EO           21       98.40±0.70      31.17±2.17\u001b[6C\r\n N4 OMY             ?ENO          18       98.38±0.69      35.46±2.44\u001b[6C\r\n N4 MONY            ?EO           18       98.04±0.75      27.99±2.47\u001b[6C\r\n10J EONY            ?MO           15       97.57±0.87      40.63±2.33\u001b[6C\r\n N4 OO              ?EMNY         11       97.26±0.93      54.40±2.26\u001b[6C\r\n 7K (Ł)OMY          ?ENO          16       97.01±0.95      33.04±2.47\u001b[6C\r\n10J EON             ?MOY          13       96.68±1.01      50.77±2.44\u001b[6C\r\n N4 ONYM            ?EO           19       96.60±1.03      32.48±2.48\u001b[6C\r\n F8 O(D)Y           ?EMNO         9        96.52±1.03      43.69±2.17\u001b[6C\r\n N4 ONE             ?MOY          14       95.88±1.12      54.38±2.64\u001b[6C\r\n N4 ONO             ?EMY          14       95.85±1.13      45.50±2.59\u001b[6C\r\n10C (ÓS)MY          ?ENOO         22       95.76±1.12      30.63±2.60\u001b[6C\r\n N4 OMYlONE                       73       94.63±1.28      45.57±1.86\u001b[6C\r\n13K EMO             ?NOY          15       94.01±1.33      38.86±2.73\u001b[6C\r\n 6J (UD)ONY         ?EMO          13       93.41±1.39      25.08±2.48\u001b[6C\r\n N1 (UT)OM          ?ENOY         18       92.97±1.44      36.88±2.75\u001b[6C\u001b[25l\r\nIterations: 2047 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[30;77H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n A1 (W)YMOżONE                    80       100.00±0.00     59.76±1.30\n10J MOONY           ?E            26       99.31±0.47      35.21±2.00\n13I OMENY           ?O            22       98.70±0.64      48.28±2.09\n N4 OMENY           ?O            18       98.61±0.66      34.28±2.12\n10J MONY            ?EO           21       98.40±0.70      31.17±2.17\n N4 OMY             ?ENO          18       98.38±0.69      35.46±2.44\n N4 MONY            ?EO           18       98.04±0.75      27.99±2.47\n10J EONY            ?MO           15       97.57±0.87      40.63±2.33\n N4 OO              ?EMNY         11       97.26±0.93      54.40±2.26\n 7K (Ł)OMY          ?ENO          16       97.01±0.95      33.04±2.47\n10J EON             ?MOY          13       96.68±1.01      50.77±2.44\n N4 ONYM            ?EO           19       96.60±1.03      32.48±2.48\n F8 O(D)Y           ?EMNO         9        96.52±1.03      43.69±2.17\n N4 ONE             ?MOY          14       95.88±1.12      54.38±2.64\n N4 ONO             ?EMY          14       95.85±1.13      45.50±2.59\n10C (ÓS)MY          ?ENOO         22       95.76±1.12      30.63±2.60\n N4 OMYlONE                       73       94.63±1.28      45.57±1.86\n13K EMO             ?NOY          15       94.01±1.33      38.86±2.73\n 6J (UD)ONY         ?EMO          13       93.41±1.39      25.08±2.48\n N1 (UT)OM          ?ENOY         18       92.97±1.44      36.88±2.75\nIterations: 2047 (intervals are 99% confidence, ❌ marks plays cut off early)    \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 20,
+            "word": "RANNY",
+            "coordinates": "13I",
+            "letters": "YAENGRN",
+            "index": 23
+        },
+        "status": "done",
+        "moveIndex": 23,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "13I GRENY           AN            28       0.00±0.00       31.00±0.00",
+                "13I RANNY           EG            20       0.00±0.00       28.00±0.00",
+                "13I GARNY           EN            28       0.00±0.00       25.00±0.00",
+                "13I RYNNA           EG            20       0.00±0.00       22.00±0.00",
+                "13J GENY            ANR           20       0.00±0.00       22.00±0.00",
+                "13J RENG            ANY           18       0.00±0.00       16.00±0.00",
+                "13I ARENG           NY            22       0.00±0.00       14.00±0.00",
+                "13J RENGA           NY            20       0.00±0.00       13.00±0.00",
+                "13I GRENA           NY            26       0.00±0.00       12.00±0.00",
+                "13L NYGA            ENR           16       0.00±0.00       9.00±0.00",
+                "13G RYGA            ENN           15       0.00±0.00       5.00±0.00",
+                "13G NYGA            ENR           15       0.00±0.00       3.00±0.00",
+                "13F ARENG           NY            15       0.00±0.00       2.00±0.00",
+                "13I ARENY           GN            20       0.00±0.00       0.00±0.00",
+                "N4 YANG            ENR           19       0.00±0.00       -5.00±0.00",
+                "N4 ARENG           NY            18       0.00±0.00       -7.00±0.00",
+                "N4 ARENY           GN            17       0.00±0.00       -11.00±0.00",
+                "B6 GAR             ENNY          29       0.00±0.00       -14.00±0.00",
+                "B5 AG              ENNRY         24       0.00±0.00       -19.00±0.00",
+                "7G E(R)G           ANNRY         23       0.00±0.00       -21.00±0.00",
+                "Iterations: 15954 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n13I GRENY           AN            28       0.00±0.00       31.00±0.00\u001b[6C\r\n13I RANNY           EG            20       0.00±0.00       28.00±0.00\u001b[6C\r\n13I GARNY           EN            28       0.00±0.00       25.00±0.00\u001b[6C\r\n13I RYNNA           EG            20       0.00±0.00       22.00±0.00\u001b[6C\r\n13J GENY            ANR           20       0.00±0.00       22.00±0.00\u001b[6C\r\n13J RENG            ANY           18       0.00±0.00       16.00±0.00\u001b[6C\r\n13I ARENG           NY            22       0.00±0.00       14.00±0.00\u001b[6C\r\n13J RENGA           NY            20       0.00±0.00       13.00±0.00\u001b[6C\r\n13I GRENA           NY            26       0.00±0.00       12.00±0.00\u001b[6C\r\n13L NYGA            ENR           16       0.00±0.00       9.00±0.00\u001b[7C\r\n13G RYGA            ENN           15       0.00±0.00       5.00±0.00\u001b[7C\r\n13G NYGA            ENR           15       0.00±0.00       3.00±0.00\u001b[7C\r\n13F ARENG           NY            15       0.00±0.00       2.00±0.00\u001b[7C\r\n13I ARENY           GN            20       0.00±0.00       0.00±0.00\u001b[7C\r\n N4 YANG            ENR           19       0.00±0.00       -5.00±0.00\u001b[6C\r\n N4 ARENG           NY            18       0.00±0.00       -7.00±0.00\u001b[6C\r\n N4 ARENY           GN            17       0.00±0.00       -11.00±0.00\u001b[5C\r\n B6 GAR             ENNY          29       0.00±0.00       -14.00±0.00\u001b[5C\r\n B5 AG              ENNRY         24       0.00±0.00       -19.00±0.00\u001b[5C\r\n 7G E(R)G           ANNRY         23       0.00±0.00       -21.00±0.00\u001b[5C\u001b[25l\r\nIterations: 15954 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[30;78H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n13I GRENY           AN            28       0.00±0.00       31.00±0.00\n13I RANNY           EG            20       0.00±0.00       28.00±0.00\n13I GARNY           EN            28       0.00±0.00       25.00±0.00\n13I RYNNA           EG            20       0.00±0.00       22.00±0.00\n13J GENY            ANR           20       0.00±0.00       22.00±0.00\n13J RENG            ANY           18       0.00±0.00       16.00±0.00\n13I ARENG           NY            22       0.00±0.00       14.00±0.00\n13J RENGA           NY            20       0.00±0.00       13.00±0.00\n13I GRENA           NY            26       0.00±0.00       12.00±0.00\n13L NYGA            ENR           16       0.00±0.00       9.00±0.00\n13G RYGA            ENN           15       0.00±0.00       5.00±0.00\n13G NYGA            ENR           15       0.00±0.00       3.00±0.00\n13F ARENG           NY            15       0.00±0.00       2.00±0.00\n13I ARENY           GN            20       0.00±0.00       0.00±0.00\n N4 YANG            ENR           19       0.00±0.00       -5.00±0.00\n N4 ARENG           NY            18       0.00±0.00       -7.00±0.00\n N4 ARENY           GN            17       0.00±0.00       -11.00±0.00\n B6 GAR             ENNY          29       0.00±0.00       -14.00±0.00\n B5 AG              ENNRY         24       0.00±0.00       -19.00±0.00\n 7G E(R)G           ANNRY         23       0.00±0.00       -21.00±0.00\nIterations: 15954 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 14,
+            "word": "ŹLE",
+            "coordinates": "14G",
+            "letters": "ŹLEASA",
+            "index": 24
+        },
+        "status": "done",
+        "moveIndex": 24,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "5J (ZA)LEŹ         AAS           21       100.00±0.00     -8.00±0.00",
+                "F12 (Z)LEŹ          AAS           15       100.00±0.00     -14.00±0.00",
+                "14G ŹLE             AAS           14       100.00±0.00     -15.00±0.00",
+                "I13 (R)AŹ           AELS          11       100.00±0.00     -22.00±0.00",
+                "B6 SAL             AEŹ           19       100.00±0.00     -26.00±0.00",
+                "E1 (H)AL           AESŹ          20       100.00±0.00     -27.00±0.00",
+                "14J LA              AESŹ          19       100.00±0.00     -28.00±0.00",
+                "B5 ESA             ALŹ           18       100.00±0.00     -29.00±0.00",
+                "B5 ASA             ELŹ           18       100.00±0.00     -29.00±0.00",
+                "5J (ZA)SALA        EŹ            13       100.00±0.00     -30.00±0.00",
+                "N4 ALE             ASŹ           15       100.00±0.00     -30.00±0.00",
+                "N4 ALA             ESŹ           15       100.00±0.00     -30.00±0.00",
+                "10K SALA            EŹ            12       100.00±0.00     -31.00±0.00",
+                "10K SALE            AŹ            12       100.00±0.00     -31.00±0.00",
+                "14I EL              AASŹ          16       100.00±0.00     -31.00±0.00",
+                "E1 (H)AS           AELŹ          18       100.00±0.00     -31.00±0.00",
+                "14I ESA             ALŹ           16       100.00±0.00     -31.00±0.00",
+                "D12 (L)ALA          ESŹ           13       100.00±0.00     -32.00±0.00",
+                "D12 (L)ALE          ASŹ           13       100.00±0.00     -32.00±0.00",
+                "14H LES             AAŹ           12       100.00±0.00     -33.00±0.00",
+                "Iterations: 52677 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n 5J (ZA)LEŹ         AAS           21       100.00±0.00     -8.00±0.00\u001b[6C\r\nF12 (Z)LEŹ          AAS           15       100.00±0.00     -14.00±0.00\u001b[5C\r\n14G ŹLE             AAS           14       100.00±0.00     -15.00±0.00\u001b[5C\r\nI13 (R)AŹ           AELS          11       100.00±0.00     -22.00±0.00\u001b[5C\r\n B6 SAL             AEŹ           19       100.00±0.00     -26.00±0.00\u001b[5C\r\n E1 (H)AL           AESŹ          20       100.00±0.00     -27.00±0.00\u001b[5C\r\n14J LA              AESŹ          19       100.00±0.00     -28.00±0.00\u001b[5C\r\n B5 ESA             ALŹ           18       100.00±0.00     -29.00±0.00\u001b[5C\r\n B5 ASA             ELŹ           18       100.00±0.00     -29.00±0.00\u001b[5C\r\n 5J (ZA)SALA        EŹ            13       100.00±0.00     -30.00±0.00\u001b[5C\r\n N4 ALE             ASŹ           15       100.00±0.00     -30.00±0.00\u001b[5C\r\n N4 ALA             ESŹ           15       100.00±0.00     -30.00±0.00\u001b[5C\r\n10K SALA            EŹ            12       100.00±0.00     -31.00±0.00\u001b[5C\r\n10K SALE            AŹ            12       100.00±0.00     -31.00±0.00\u001b[5C\r\n14I EL              AASŹ          16       100.00±0.00     -31.00±0.00\u001b[5C\r\n E1 (H)AS           AELŹ          18       100.00±0.00     -31.00±0.00\u001b[5C\r\n14I ESA             ALŹ           16       100.00±0.00     -31.00±0.00\u001b[5C\r\nD12 (L)ALA          ESŹ           13       100.00±0.00     -32.00±0.00\u001b[5C\r\nD12 (L)ALE          ASŹ           13       100.00±0.00     -32.00±0.00\u001b[5C\r\n14H LES             AAŹ           12       100.00±0.00     -33.00±0.00\u001b[5C\u001b[25l\r\nIterations: 52677 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[30;78H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n 5J (ZA)LEŹ         AAS           21       100.00±0.00     -8.00±0.00\nF12 (Z)LEŹ          AAS           15       100.00±0.00     -14.00±0.00\n14G ŹLE             AAS           14       100.00±0.00     -15.00±0.00\nI13 (R)AŹ           AELS          11       100.00±0.00     -22.00±0.00\n B6 SAL             AEŹ           19       100.00±0.00     -26.00±0.00\n E1 (H)AL           AESŹ          20       100.00±0.00     -27.00±0.00\n14J LA              AESŹ          19       100.00±0.00     -28.00±0.00\n B5 ESA             ALŹ           18       100.00±0.00     -29.00±0.00\n B5 ASA             ELŹ           18       100.00±0.00     -29.00±0.00\n 5J (ZA)SALA        EŹ            13       100.00±0.00     -30.00±0.00\n N4 ALE             ASŹ           15       100.00±0.00     -30.00±0.00\n N4 ALA             ESŹ           15       100.00±0.00     -30.00±0.00\n10K SALA            EŹ            12       100.00±0.00     -31.00±0.00\n10K SALE            AŹ            12       100.00±0.00     -31.00±0.00\n14I EL              AASŹ          16       100.00±0.00     -31.00±0.00\n E1 (H)AS           AELŹ          18       100.00±0.00     -31.00±0.00\n14I ESA             ALŹ           16       100.00±0.00     -31.00±0.00\nD12 (L)ALA          ESŹ           13       100.00±0.00     -32.00±0.00\nD12 (L)ALE          ASŹ           13       100.00±0.00     -32.00±0.00\n14H LES             AAŹ           12       100.00±0.00     -33.00±0.00\nIterations: 52677 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[?25h\n\nmacondo>"
+        }
+    },
+    {
+        "move": {
+            "points": 23,
+            "word": "E.G",
+            "coordinates": "7G",
+            "letters": "EG",
+            "index": 25
+        },
+        "status": "done",
+        "moveIndex": 25,
+        "result": {
+            "bestMoves": [
+                "Play                Leave         Score    Win%            Equity",
+                "7G E(R)G                         23       0.00±0.00       29.00±0.00",
+                "14F G(ŹLE)          E             21       0.00±0.00       1.00±0.00",
+                "6A (O)G(I)         E             11       0.00±0.00       -5.00±0.00",
+                "3C (FA)G           E             9        0.00±0.00       -11.00±0.00",
+                "K11 (KIN)G          E             7        0.00±0.00       -13.00±0.00",
+                "5A (ż)E(L)         G             3        0.00±0.00       -17.00±0.00",
+                "8A (E)E            G             2        0.00±0.00       -18.00±0.00",
+                "F9 (D)E            G             5        0.00±0.00       -19.00±0.00",
+                "G1 (ME)E           G             5        0.00±0.00       -19.00±0.00",
+                "11B E(R)            G             5        0.00±0.00       -19.00±0.00",
+                "M4 (H)E            G             4        0.00±0.00       -20.00±0.00",
+                "J10 E(E)            G             4        0.00±0.00       -20.00±0.00",
+                "8D (P)E            G             3        0.00±0.00       -21.00±0.00",
+                "7G E(R)            G             3        0.00±0.00       -21.00±0.00",
+                "15A (W)E            G             2        0.00±0.00       -22.00±0.00",
+                "E11 E(s)            G             2        0.00±0.00       -22.00±0.00",
+                "F12 (Z)E            G             2        0.00±0.00       -22.00±0.00",
+                "E12 (s)E            G             1        0.00±0.00       -23.00±0.00",
+                "Iterations: 56744 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[?25h"
+            ],
+            "rawOutput": "\u001b[K\u001b[91mmacondo>\u001b[m sim show\u001b[K\r\nPlay                Leave         Score    Win%            Equity\u001b[10C\r\n 7G E(R)G                         23       0.00±0.00       29.00±0.00\u001b[6C\r\n14F G(ŹLE)          E             21       0.00±0.00       1.00±0.00\u001b[7C\r\n 6A (O)G(I)         E             11       0.00±0.00       -5.00±0.00\u001b[6C\r\n 3C (FA)G           E             9        0.00±0.00       -11.00±0.00\u001b[5C\r\nK11 (KIN)G          E             7        0.00±0.00       -13.00±0.00\u001b[5C\r\n 5A (ż)E(L)         G             3        0.00±0.00       -17.00±0.00\u001b[5C\r\n 8A (E)E            G             2        0.00±0.00       -18.00±0.00\u001b[5C\r\n F9 (D)E            G             5        0.00±0.00       -19.00±0.00\u001b[5C\r\n G1 (ME)E           G             5        0.00±0.00       -19.00±0.00\u001b[5C\r\n11B E(R)            G             5        0.00±0.00       -19.00±0.00\u001b[5C\r\n M4 (H)E            G             4        0.00±0.00       -20.00±0.00\u001b[5C\r\nJ10 E(E)            G             4        0.00±0.00       -20.00±0.00\u001b[5C\r\n 8D (P)E            G             3        0.00±0.00       -21.00±0.00\u001b[5C\r\n 7G E(R)            G             3        0.00±0.00       -21.00±0.00\u001b[5C\r\n15A (W)E            G             2        0.00±0.00       -22.00±0.00\u001b[5C\r\nE11 E(s)            G             2        0.00±0.00       -22.00±0.00\u001b[5C\r\nF12 (Z)E            G             2        0.00±0.00       -22.00±0.00\u001b[5C\r\nE12 (s)E            G             1        0.00±0.00       -23.00±0.00\u001b[5C\u001b[25l\r\nIterations: 56744 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[30;78H\u001b[?25h\r\n\n\u001b[91mmacondo>\u001b[m\u001b[K\u001b[1C",
+            "cleanedOutput": "macondo> sim show\nPlay                Leave         Score    Win%            Equity\n 7G E(R)G                         23       0.00±0.00       29.00±0.00\n14F G(ŹLE)          E             21       0.00±0.00       1.00±0.00\n 6A (O)G(I)         E             11       0.00±0.00       -5.00±0.00\n 3C (FA)G           E             9        0.00±0.00       -11.00±0.00\nK11 (KIN)G          E             7        0.00±0.00       -13.00±0.00\n 5A (ż)E(L)         G             3        0.00±0.00       -17.00±0.00\n 8A (E)E            G             2        0.00±0.00       -18.00±0.00\n F9 (D)E            G             5        0.00±0.00       -19.00±0.00\n G1 (ME)E           G             5        0.00±0.00       -19.00±0.00\n11B E(R)            G             5        0.00±0.00       -19.00±0.00\n M4 (H)E            G             4        0.00±0.00       -20.00±0.00\nJ10 E(E)            G             4        0.00±0.00       -20.00±0.00\n 8D (P)E            G             3        0.00±0.00       -21.00±0.00\n 7G E(R)            G             3        0.00±0.00       -21.00±0.00\n15A (W)E            G             2        0.00±0.00       -22.00±0.00\nE11 E(s)            G             2        0.00±0.00       -22.00±0.00\nF12 (Z)E            G             2        0.00±0.00       -22.00±0.00\nE12 (s)E            G             1        0.00±0.00       -23.00±0.00\nIterations: 56744 (intervals are 99% confidence, ❌ marks plays cut off early)   \u001b[?25h\n\nmacondo>"
+        }
+    }
+]

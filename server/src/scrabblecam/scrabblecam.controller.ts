@@ -1,7 +1,7 @@
 import { Controller, HttpException, HttpStatus, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import axios from 'axios';
-import * as FormData from 'form-data';
+import FormData from 'form-data';
 import { Agent } from 'https';
 
 @Controller('scrabblecam')
@@ -31,7 +31,7 @@ export class ScrabblecamController {
       });
 
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error processing image:', error.message);
       throw new HttpException(
         error.response?.data || 'Failed to process image',

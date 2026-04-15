@@ -7,9 +7,19 @@ import { DiagramModule } from './diagram/diagram.module';
 import { MacondoModule } from './macondo/macondo.module';
 import { ScrabblecamModule } from './scrabblecam/scrabblecam.module';
 import { TagModule } from './tag/tag.module';
+import { UserModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), DiagramModule, TagModule, MacondoModule, ScrabblecamModule],
+  imports: [
+    TypeOrmModule.forRoot(config),
+    DiagramModule,
+    TagModule,
+    MacondoModule,
+    ScrabblecamModule,
+    UserModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
