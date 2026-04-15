@@ -3,6 +3,7 @@ import { Diagram } from './diagram.entity';
 import { CreateDiagramDto } from './dto/create-diagram.dto';
 import { Tag } from '../tag/tag.entity';
 import DiagramInterface from '../interfaces/diagram.interface';
+import { MoreThan } from 'typeorm';
 
 @Injectable()
 export class DiagramService {
@@ -36,11 +37,8 @@ export class DiagramService {
   }
 
   async getDiagrams(createdAfter?: string): Promise<DiagramInterface[]> {
-    const filter: any = {};
-    if (createdAfter) {
-      const date = new Date(createdAfter);
-      filter.createdAt = { $gt: date };
-    }
-    return Diagram.find(filter);
+    const where: any = {};
+    if (createdAfter) where.createdAt = MoreThan(new Date(createdAfter));
+    return await Diagram.find({ where });
   }
 }
