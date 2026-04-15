@@ -36,7 +36,9 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "typeorm": "^0.3.28"
+    "typeorm": "^0.3.28",
+    "google-auth-library": "^10.6.2",
+    "passport-jwt": "^4.0.1"
   },
   "devDependencies": {
     "@nestjs/schematics": "^11.0.0",
