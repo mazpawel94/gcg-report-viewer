@@ -1,5 +1,15 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Tag } from '../tag/tag.entity';
+import { UserDiagram } from '../user-diagram/user-diagram.entity';
 
 @Entity()
 export class Diagram extends BaseEntity {
@@ -29,6 +39,9 @@ export class Diagram extends BaseEntity {
 
   @CreateDateColumn({ nullable: true })
   createdAt: Date;
+
+  @OneToMany(() => UserDiagram, (userDiagram) => userDiagram.diagram)
+  userDiagrams: UserDiagram[];
 
   @ManyToMany((type) => Tag, (entity) => entity.diagrams)
   @JoinTable({ name: 'diagram_tag' })

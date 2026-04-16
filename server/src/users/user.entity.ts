@@ -1,4 +1,13 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { UserDiagram } from '../user-diagram/user-diagram.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -19,6 +28,9 @@ export class User extends BaseEntity {
 
   @Column({ name: 'is_anonymous', default: true })
   isAnonymous: boolean;
+
+  @OneToMany(() => UserDiagram, (userDiagram) => userDiagram.user)
+  userDiagrams: UserDiagram[];
 
   @CreateDateColumn()
   createdAt: Date;
