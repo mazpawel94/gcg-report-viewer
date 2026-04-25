@@ -39,6 +39,15 @@ export class DiagramService {
   async getDiagrams(createdAfter?: string): Promise<DiagramInterface[]> {
     const where: any = {};
     if (createdAfter) where.createdAt = MoreThan(new Date(createdAfter));
-    return await Diagram.find({ where });
+
+    const diagrams = await Diagram.find({
+      where,
+      relations: ['tags'],
+    });
+
+    return diagrams.map((diagram) => ({
+      ...diagram,
+      tags: diagram.tags?.map((tag) => tag.name) ?? [],
+    }));
   }
 }
