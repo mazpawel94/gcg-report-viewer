@@ -5,4 +5,6 @@ export class UserStatsDto {
   solvedWithoutMistakes: number;
   longestNoHintsStreak: number;
   longestNoMistakesStreak: number;
+  currentNoHintsStreak: number;
+  currentNoMistakesStreak: number;
 }

@@ -34,6 +34,8 @@ export class UserDiagramService {
     const longestNoHintsStreak = this.calcStreak(records, (r) => r.correctlySolved && r.usedHints === 0);
     const longestNoMistakesStreak = this.calcStreak(records, (r) => r.correctlySolved && r.attempts === 0);
 
+    const currentNoHintsStreak = this.calcCurrentStreak(records, (r) => r.correctlySolved && r.usedHints === 0);
+    const currentNoMistakesStreak = this.calcCurrentStreak(records, (r) => r.correctlySolved && r.attempts === 0);
     return {
       totalSolved,
       correctlySolved,
@@ -41,6 +43,8 @@ export class UserDiagramService {
       solvedWithoutMistakes,
       longestNoHintsStreak,
       longestNoMistakesStreak,
+      currentNoHintsStreak,
+      currentNoMistakesStreak,
     };
   }
 
@@ -60,6 +64,20 @@ export class UserDiagramService {
     return longest;
   }
 
+  private calcCurrentStreak(records: UserDiagram[], predicate: (r: UserDiagram) => boolean): number {
+    let current = 0;
+
+    for (let i = records.length - 1; i >= 0; i--) {
+      if (predicate(records[i])) {
+        current++;
+      } else {
+        break;
+      }
+    }
+
+    return current;
+  }
+
   private emptyStats() {
     return {
       totalSolved: 0,
@@ -68,6 +86,8 @@ export class UserDiagramService {
       solvedWithoutMistakes: 0,
       longestNoHintsStreak: 0,
       longestNoMistakesStreak: 0,
+      currentNoHintsStreak: 0,
+      currentNoMistakesStreak: 0,
     };
   }
 }
