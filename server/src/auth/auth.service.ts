@@ -6,6 +6,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { User } from '../users/user.entity';
 import { AnonymousDto } from './dto/anonymous.dto';
 import { GoogleDto } from './dto/google.dto';
+import { GoogleCodeDto } from './dto/google-code.dto';
 
 @Injectable()
 export class AuthService {
@@ -49,6 +50,26 @@ export class AuthService {
   // ─────────────────────────────────────────────
   // GOOGLE
   // ─────────────────────────────────────────────
+
+  async handleGoogleCode(dto: GoogleCodeDto, currentUser: User): Promise<{ accessToken: string }> {
+    const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        code: dto.code,
+        client_id: process.env.GOOGLE_CLIENT_ID!,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET!,
+        redirect_uri: dto.redirectUri,
+        grant_type: 'authorization_code',
+        ...(dto.codeVerifier ? { code_verifier: dto.codeVerifier } : {}),
+      }).toString(),
+    });
+
+    const tokenData = await tokenRes.json();
+    if (!tokenData.id_token) throw new UnauthorizedException('No id_token from Google');
+
+    return this.handleGoogle({ idToken: tokenData.id_token }, currentUser);
+  }
 
   async handleGoogle(dto: GoogleDto, currentUser: User): Promise<{ accessToken: string }> {
     const googlePayload = await this.verifyGoogleToken(dto.idToken);
