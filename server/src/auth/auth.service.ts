@@ -59,12 +59,10 @@ export class AuthService {
         code: dto.code,
         client_id: process.env.GOOGLE_CLIENT_ID!,
         client_secret: process.env.GOOGLE_CLIENT_SECRET!,
-        redirect_uri: dto.redirectUri,
         grant_type: 'authorization_code',
         ...(dto.codeVerifier ? { code_verifier: dto.codeVerifier } : {}),
       }).toString(),
     });
-
     const tokenData = await tokenRes.json();
     if (!tokenData.id_token) throw new UnauthorizedException('No id_token from Google');
 
