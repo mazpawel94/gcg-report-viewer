@@ -1,6 +1,6 @@
 export class CreateUserDiagramDto {
   userId: string;
-  diagramId: number;
+  diagramId: string;
   attempts: number;
   usedHints: number;
   correctlySolved: boolean;

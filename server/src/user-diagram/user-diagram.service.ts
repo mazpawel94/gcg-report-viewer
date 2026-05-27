@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserDiagram } from './user-diagram.entity';
 import { CreateUserDiagramDto } from './dto/create-user-diagram.dto';
+import { UpdateIsLikedDto } from './dto/update-is-liked.dto';
 
 @Injectable()
 export class UserDiagramService {
@@ -12,6 +13,18 @@ export class UserDiagramService {
     userDiagram.usedHints = newUserDiagram.usedHints;
     userDiagram.correctlySolved = newUserDiagram.correctlySolved;
     return await userDiagram.save();
+  }
+
+  async updateIsLiked(dto: UpdateIsLikedDto): Promise<UserDiagram> {
+    const diagram = await UserDiagram.findOne({
+      where: {
+        userId: dto.userId,
+        diagramId: dto.diagramId,
+      },
+    });
+
+    diagram.isLiked = dto.isLiked;
+    return diagram.save();
   }
 
   async getUserStats(userId: string) {

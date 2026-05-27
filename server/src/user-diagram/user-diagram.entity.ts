@@ -27,7 +27,7 @@ export class UserDiagram extends BaseEntity {
   @JoinColumn({ name: 'diagramId' })
   diagram: Diagram;
   @Column()
-  diagramId: number;
+  diagramId: string;
 
   @Column({ type: 'int', default: 0 })
   attempts: number;
@@ -37,6 +37,9 @@ export class UserDiagram extends BaseEntity {
 
   @Column({ type: 'boolean' })
   correctlySolved: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  isLiked: boolean;
 
   @CreateDateColumn({ type: 'timestamp' }) // automatycznie ustawia datę utworzenia
   createdAt: Date;
