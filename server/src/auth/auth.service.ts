@@ -154,23 +154,23 @@ export class AuthService {
     // Znajdź zduplikowane zadania (po taskId) między kontami
     const duplicates = (await manager.query(
       `
-    SELECT
-      a.diagram_id,
-      a.id          AS anon_id,
-      g.id          AS google_id,
-      a.created_at  AS anon_created_at,
-      g.created_at  AS google_created_at,
-      a.is_liked    AS anon_is_liked,
-      g.is_liked    AS google_is_liked
-    FROM user_diagram a
-    JOIN user_diagram g
-      ON a.diagram_id = g.diagram_id
-     AND a.user_id = $1
-     AND g.user_id = $2
+      SELECT
+        a."diagramId",
+        a.id            AS anon_id,
+        g.id            AS google_id,
+        a."createdAt"   AS anon_created_at,
+        g."createdAt"   AS google_created_at,
+        a."isLiked"     AS anon_is_liked,
+        g."isLiked"     AS google_is_liked
+      FROM user_diagram a
+      JOIN user_diagram g
+        ON a."diagramId" = g."diagramId"
+      AND a."userId" = $1
+      AND g."userId" = $2
     `,
       [anonymousUserId, googleUserId],
     )) as {
-      diagram_id: string;
+      diagramId: string;
       anon_id: string;
       google_id: string;
       anon_created_at: Date;
