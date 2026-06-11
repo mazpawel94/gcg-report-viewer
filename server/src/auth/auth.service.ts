@@ -132,10 +132,10 @@ export class AuthService {
       await this.resolveUserDiagramConflicts(manager, anonymousUser.id, googleUser.id);
       await manager.update(UserDiagram, { userId: anonymousUser.id }, { userId: googleUser.id });
       // Przypisz deviceToken do konta Google (dla tego urządzenia)
-      if (anonymousUser.deviceToken) {
-        googleUser.deviceToken = anonymousUser.deviceToken;
-        await manager.save(User, googleUser);
-      }
+      // if (anonymousUser.deviceToken) {
+      //   googleUser.deviceToken = anonymousUser.deviceToken;
+      //   await manager.save(User, googleUser);
+      // }
       // Usuń konto anonymous
       await manager.delete(User, { id: anonymousUser.id });
     });
