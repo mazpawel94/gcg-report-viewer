@@ -1,12 +1,13 @@
-import { Injectable, ConflictException, UnauthorizedException, Logger } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { OAuth2Client } from 'google-auth-library';
+import { DataSource, Repository } from 'typeorm';
+import { UserDiagram } from '../user-diagram/user-diagram.entity';
 import { User } from '../users/user.entity';
 import { AnonymousDto } from './dto/anonymous.dto';
-import { GoogleDto } from './dto/google.dto';
 import { GoogleCodeDto } from './dto/google-code.dto';
+import { GoogleDto } from './dto/google.dto';
 
 @Injectable()
 export class AuthService {
@@ -16,8 +17,8 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
-
     private readonly jwtService: JwtService,
+    private readonly dataSource: DataSource,
   ) {
     this.googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
   }
@@ -84,10 +85,10 @@ export class AuthService {
     }
 
     // Przypadek 2: Konto Google istnieje w bazie → merge i zwróć konto Google
-    // if (existingGoogleUser) {
-    //   const mergedUser = await this.mergeAccounts(currentUser, existingGoogleUser);
-    //   return { accessToken: this.signToken(mergedUser) };
-    // }
+    if (existingGoogleUser) {
+      const mergedUser = await this.mergeAccounts(currentUser, existingGoogleUser);
+      return { accessToken: this.signToken(mergedUser) };
+    }
 
     // Przypadek 3: Nowe konto Google → upgrade obecnego konta anonymous
     const upgradedUser = await this.upgradeToGoogle(currentUser, {
@@ -123,6 +124,75 @@ export class AuthService {
     return saved;
   }
 
+  private async mergeAccounts(anonymousUser: User, googleUser: User): Promise<User> {
+    // Nie merge'uj jeżeli to to samo konto
+    if (anonymousUser.id === googleUser.id) return googleUser;
+    // Transakcja: przenieś TaskResults, usuń anonymous
+    await this.dataSource.transaction(async (manager) => {
+      await this.resolveUserDiagramConflicts(manager, anonymousUser.id, googleUser.id);
+      await manager.update(UserDiagram, { userId: anonymousUser.id }, { userId: googleUser.id });
+      // Przypisz deviceToken do konta Google (dla tego urządzenia)
+      if (anonymousUser.deviceToken) {
+        googleUser.deviceToken = anonymousUser.deviceToken;
+        await manager.save(User, googleUser);
+      }
+      // Usuń konto anonymous
+      await manager.delete(User, { id: anonymousUser.id });
+    });
+
+    return this.userRepo.findOneOrFail({ where: { id: googleUser.id } });
+  }
+  // ─────────────────────────────────────────────
+  // KONFLIKT: to samo zadanie rozwiązane na obu kontach
+  // Strategia: zachowaj starsze
+  // ─────────────────────────────────────────────
+  private async resolveUserDiagramConflicts(
+    manager: any,
+    anonymousUserId: string,
+    googleUserId: string,
+  ): Promise<void> {
+    // Znajdź zduplikowane zadania (po taskId) między kontami
+    const duplicates = (await manager.query(
+      `
+    SELECT
+      a.diagram_id,
+      a.id          AS anon_id,
+      g.id          AS google_id,
+      a.created_at  AS anon_created_at,
+      g.created_at  AS google_created_at,
+      a.is_liked    AS anon_is_liked,
+      g.is_liked    AS google_is_liked
+    FROM user_diagram a
+    JOIN user_diagram g
+      ON a.diagram_id = g.diagram_id
+     AND a.user_id = $1
+     AND g.user_id = $2
+    `,
+      [anonymousUserId, googleUserId],
+    )) as {
+      diagram_id: string;
+      anon_id: string;
+      google_id: string;
+      anon_created_at: Date;
+      google_created_at: Date;
+      anon_is_liked: boolean;
+      google_is_liked: boolean;
+    }[];
+
+    for (const dup of duplicates) {
+      const anonIsOlder = new Date(dup.anon_created_at) < new Date(dup.google_created_at);
+      const isLiked = dup.anon_is_liked || dup.google_is_liked;
+      if (anonIsOlder) {
+        // Starszy jest rekord anonymous - przepnij go na konto Google, usuń rekord Google
+        await manager.update(UserDiagram, { id: dup.anon_id }, { userId: googleUserId, isLiked });
+        await manager.delete(UserDiagram, { id: dup.google_id });
+      } else {
+        // Starszy jest rekord Google (lub równy) - zostaje bez zmian, usuń rekord anonymous
+        if (isLiked) await manager.update(UserDiagram, { id: dup.google_id }, { isLiked: true });
+        await manager.delete(UserDiagram, { id: dup.anon_id });
+      }
+    }
+  }
   // ─────────────────────────────────────────────
   // HELPERS
   // ─────────────────────────────────────────────
