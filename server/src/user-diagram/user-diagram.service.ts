@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserDiagram } from './user-diagram.entity';
 import { CreateUserDiagramDto } from './dto/create-user-diagram.dto';
 import { UpdateIsLikedDto } from './dto/update-is-liked.dto';
+import { SyncResponseDto } from './dto/sync-response.dto';
 
 @Injectable()
 export class UserDiagramService {
@@ -25,6 +26,19 @@ export class UserDiagramService {
 
     diagram.isLiked = dto.isLiked;
     return diagram.save();
+  }
+
+  async getSyncData(userId: string): Promise<SyncResponseDto> {
+    const userDiagrams = await UserDiagram.find({
+      where: { userId },
+      relations: ['diagram'],
+    });
+
+    const attemptedDiagramIds = userDiagrams.filter((ud) => !ud.isLiked).map((ud) => ud.diagramId);
+
+    const likedDiagrams = userDiagrams.filter((ud) => ud.isLiked).map((ud) => ud.diagram);
+
+    return { attemptedDiagramIds, likedDiagrams };
   }
 
   async getUserStats(userId: string) {
