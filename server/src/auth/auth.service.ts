@@ -1,13 +1,16 @@
+import { request as gaxiosRequest } from 'gaxios';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OAuth2Client } from 'google-auth-library';
 import { DataSource, Repository } from 'typeorm';
+
 import { UserDiagram } from '../user-diagram/user-diagram.entity';
 import { User } from '../users/user.entity';
 import { AnonymousDto } from './dto/anonymous.dto';
 import { GoogleCodeDto } from './dto/google-code.dto';
 import { GoogleDto } from './dto/google.dto';
+import { GaxiosOptions } from 'gaxios';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +23,18 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly dataSource: DataSource,
   ) {
-    this.googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    this.googleClient = new OAuth2Client({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      transporter: {
+        request: <T = any>(opts: GaxiosOptions) => {
+          opts.headers = {
+            ...opts.headers,
+            'User-Agent': 'Huemal/1.0.5',
+          };
+          return gaxiosRequest<T>(opts);
+        },
+      } as any,
+    });
   }
 
   // ─────────────────────────────────────────────
@@ -204,20 +218,18 @@ export class AuthService {
     });
   }
 
-private async verifyGoogleToken(idToken: string) {
-  try {
-    const res = await fetch(
-      `https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`
-    );
-    const payload = await res.json();
-    if (payload.error) throw new Error(payload.error_description);
-    if (payload.aud !== process.env.GOOGLE_CLIENT_ID) {
-      throw new Error('Invalid audience');
+  private async verifyGoogleToken(idToken: string) {
+    try {
+      const ticket = await this.googleClient.verifyIdToken({
+        idToken,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      const payload = ticket.getPayload();
+      if (!payload) throw new Error('Empty payload');
+      return payload;
+    } catch (err: any) {
+      this.logger.warn(`Invalid Google token: ${err.message}`);
+      throw new UnauthorizedException('Invalid Google ID token');
     }
-    return payload;
-  } catch (err: any) {
-    this.logger.warn(`Invalid Google token: ${err.message}`);
-    throw new UnauthorizedException('Invalid Google ID token');
   }
-}
 }
