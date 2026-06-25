@@ -22,12 +22,6 @@ export class AuthService {
     private readonly dataSource: DataSource,
   ) {
     this.googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-    const originalRequest = this.googleClient.request.bind(this.googleClient);
-    (this.googleClient as any).request = (opts: any) => {
-      opts.headers = opts.headers || {};
-      opts.headers['User-Agent'] = 'Huemal/1.0.5';
-      return originalRequest(opts);
-    };
   }
 
   // ─────────────────────────────────────────────
@@ -213,12 +207,12 @@ export class AuthService {
 
   private async verifyGoogleToken(idToken: string) {
     try {
-      const ticket = await this.googleClient.verifyIdToken({
-        idToken,
-        audience: process.env.GOOGLE_CLIENT_ID,
-      });
-      const payload = ticket.getPayload();
-      if (!payload) throw new Error('Empty payload');
+      const res = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`);
+      const payload = await res.json();
+      if (payload.error) throw new Error(payload.error_description);
+      if (payload.aud !== process.env.GOOGLE_CLIENT_ID) {
+        throw new Error('Invalid audience');
+      }
       return payload;
     } catch (err: any) {
       this.logger.warn(`Invalid Google token: ${err.message}`);
