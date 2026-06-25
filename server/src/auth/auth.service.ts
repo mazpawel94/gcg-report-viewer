@@ -204,18 +204,20 @@ export class AuthService {
     });
   }
 
-  private async verifyGoogleToken(idToken: string) {
-    try {
-      const ticket = await this.googleClient.verifyIdToken({
-        idToken,
-        audience: process.env.GOOGLE_CLIENT_ID,
-      });
-      const payload = ticket.getPayload();
-      if (!payload) throw new Error('Empty payload');
-      return payload;
-    } catch (err: any) {
-      this.logger.warn(`Invalid Google token: ${err.message}`);
-      throw new UnauthorizedException('Invalid Google ID token');
+private async verifyGoogleToken(idToken: string) {
+  try {
+    const res = await fetch(
+      `https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`
+    );
+    const payload = await res.json();
+    if (payload.error) throw new Error(payload.error_description);
+    if (payload.aud !== process.env.GOOGLE_CLIENT_ID) {
+      throw new Error('Invalid audience');
     }
+    return payload;
+  } catch (err: any) {
+    this.logger.warn(`Invalid Google token: ${err.message}`);
+    throw new UnauthorizedException('Invalid Google ID token');
   }
+}
 }
