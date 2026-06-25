@@ -1,4 +1,3 @@
-import { request as gaxiosRequest } from 'gaxios';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -10,7 +9,6 @@ import { User } from '../users/user.entity';
 import { AnonymousDto } from './dto/anonymous.dto';
 import { GoogleCodeDto } from './dto/google-code.dto';
 import { GoogleDto } from './dto/google.dto';
-import { GaxiosOptions } from 'gaxios';
 
 @Injectable()
 export class AuthService {
@@ -23,18 +21,13 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly dataSource: DataSource,
   ) {
-    this.googleClient = new OAuth2Client({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      transporter: {
-        request: <T = any>(opts: GaxiosOptions) => {
-          opts.headers = {
-            ...opts.headers,
-            'User-Agent': 'Huemal/1.0.5',
-          };
-          return gaxiosRequest<T>(opts);
-        },
-      } as any,
-    });
+    this.googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    const originalRequest = this.googleClient.request.bind(this.googleClient);
+    (this.googleClient as any).request = (opts: any) => {
+      opts.headers = opts.headers || {};
+      opts.headers['User-Agent'] = 'Huemal/1.0.5';
+      return originalRequest(opts);
+    };
   }
 
   // ─────────────────────────────────────────────
