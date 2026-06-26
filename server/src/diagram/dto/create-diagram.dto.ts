@@ -5,6 +5,7 @@ export class CreateDiagramDto {
   letters: string;
   solution: string;
   diagramIsPublic: boolean;
+  lexicon?: string;
   tags: {
     id: string;
     text: string;

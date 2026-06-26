@@ -14,6 +14,7 @@ export class DiagramService {
     diagram.letters = newDiagram.letters;
     diagram.solution = newDiagram.solution;
     diagram.isPublic = newDiagram.diagramIsPublic;
+    diagram.lexicon = newDiagram.lexicon || 'osps52';
 
     diagram.level = newDiagram.level ?? 0;
 
