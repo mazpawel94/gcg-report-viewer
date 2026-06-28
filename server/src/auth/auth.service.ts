@@ -54,6 +54,7 @@ export class AuthService {
   // ─────────────────────────────────────────────
 
   async handleGoogleCode(dto: GoogleCodeDto, currentUser: User): Promise<{ accessToken: string }> {
+    console.log('handleGoogleCode');
     const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -65,15 +66,19 @@ export class AuthService {
         ...(dto.codeVerifier ? { code_verifier: dto.codeVerifier } : {}),
       }).toString(),
     });
+    console.log(process.env.GOOGLE_CLIENT_ID, dto.code);
+    console.log('tokenRes: ', tokenRes);
     const tokenData = await tokenRes.json();
+    console.log('tokenData: ', tokenData);
     if (!tokenData.id_token) throw new UnauthorizedException('No id_token from Google');
 
     return this.handleGoogle({ idToken: tokenData.id_token }, currentUser);
   }
 
   async handleGoogle(dto: GoogleDto, currentUser: User): Promise<{ accessToken: string }> {
+    console.log('handleGoogle');
     const googlePayload = await this.verifyGoogleToken(dto.idToken);
-
+    console.log('googlePayload: ', googlePayload);
     const { sub: googleId, email, name, picture } = googlePayload;
 
     const existingGoogleUser = await this.userRepo.findOne({
@@ -199,6 +204,7 @@ export class AuthService {
   // ─────────────────────────────────────────────
 
   private signToken(user: User): string {
+    console.log('wywołane signToken');
     return this.jwtService.sign({
       sub: user.id,
       isAnonymous: user.isAnonymous,

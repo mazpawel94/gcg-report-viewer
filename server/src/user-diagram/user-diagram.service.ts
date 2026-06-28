@@ -7,6 +7,8 @@ import { SyncResponseDto } from './dto/sync-response.dto';
 @Injectable()
 export class UserDiagramService {
   async createUserDiagram(newUserDiagram: CreateUserDiagramDto): Promise<UserDiagram> {
+    console.log("odbieram createUserDiagram... ");
+    console.log(newUserDiagram.diagramId, newUserDiagram.userId, newUserDiagram.usedHints);
     const userDiagram = UserDiagram.create();
     userDiagram.userId = newUserDiagram.userId;
     userDiagram.diagramId = newUserDiagram.diagramId;
@@ -29,11 +31,12 @@ export class UserDiagramService {
   }
 
   async getSyncData(userId: string): Promise<SyncResponseDto> {
+    console.log("...... getSyncData ......");
     const userDiagrams = await UserDiagram.find({
       where: { userId },
       relations: ['diagram'],
     });
-
+console.log(userId, '-> ', userDiagrams.length);
     const attemptedDiagramIds = userDiagrams.filter((ud) => !ud.isLiked).map((ud) => ud.diagramId);
 
     const likedDiagrams = userDiagrams.filter((ud) => ud.isLiked).map((ud) => ud.diagram);
