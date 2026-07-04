@@ -15,8 +15,12 @@ export class UserDiagramController {
   constructor(private readonly userDiagramService: UserDiagramService) {}
 
   @Post()
-  async createUserDiagram(@Body() newUserDiagram: CreateUserDiagramDto): Promise<UserDiagram> {
-    return this.userDiagramService.createUserDiagram(newUserDiagram);
+  @UseGuards(AuthGuard('jwt'))
+  async createUserDiagram(
+    @Body() newUserDiagram: CreateUserDiagramDto,
+    @CurrentUser() user: User,
+  ): Promise<UserDiagram> {
+    return this.userDiagramService.createUserDiagram(newUserDiagram, user.id);
   }
 
   @Patch('like')
@@ -29,7 +33,7 @@ export class UserDiagramController {
   async sync(@CurrentUser() user: User): Promise<SyncResponseDto> {
     return this.userDiagramService.getSyncData(user.id);
   }
-  
+
   @Get(':userId/stats')
   async getUserStats(@Param('userId') userId: string): Promise<UserStatsDto> {
     return this.userDiagramService.getUserStats(userId);
