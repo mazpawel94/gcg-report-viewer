@@ -12,7 +12,7 @@ const MOBILE_PADDING = 16; // margines po bokach na telefonie
  */
 const useHandleResize = () => {
   const isMobile = useIsMobile();
-  const [fieldSize, setFieldSize] = useState<number>(MAX_FIELD_SIZE);
+  const [fieldSize, setFieldSize] = useState(MAX_FIELD_SIZE);
   useEffect(() => {
     const compute = () => {
       const vw = window.innerWidth;
