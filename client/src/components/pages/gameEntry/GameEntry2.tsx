@@ -28,9 +28,9 @@ const StyledWrapper = styled.div<{ $isMobile: boolean }>`
   min-height: 100vh;
   align-items: flex-start;
   justify-content: space-around;
-  gap: ${({ $isMobile }) => ($isMobile ? "12px" : "60px")};
-  flex-direction: ${({ $isMobile }) => ($isMobile ? "column" : "row")};
-  padding: ${({ $isMobile }) => ($isMobile ? "8px" : "0")};
+  gap: ${({ $isMobile }) => ($isMobile ? '12px' : '60px')};
+  flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
+  padding: ${({ $isMobile }) => ($isMobile ? '8px' : '0')};
   box-sizing: border-box;
 `;
 
@@ -47,7 +47,7 @@ const StyledWrapper = styled.div<{ $isMobile: boolean }>`
 //   flex-grow: 3;
 // `;
 const BoardSectionWrapper = styled.div<{ $isMobile: boolean }>`
-  flex: ${({ $isMobile }) => ($isMobile ? "1 1 auto" : "3 1 0")};
+  flex: ${({ $isMobile }) => ($isMobile ? '1 1 auto' : '3 1 0')};
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -116,7 +116,7 @@ const GameEntry2 = () => {
 
   return (
     <StyledWrapper $isMobile={isMobile}>
-      <BoardSectionWrapper  $isMobile={isMobile}>
+      <BoardSectionWrapper $isMobile={isMobile}>
         <TopPanel>
           <CurrentMoveInfo newMoveInfo={newMoveInfo} />
           <ButtonsWrapper>
@@ -154,13 +154,15 @@ const GameEntry2 = () => {
           </KonvaBoard>
         </KonvaBoardWrapper>
         <ChangingStateButtons newMoveInfo={newMoveInfo} />
-       {/* {!isMobile &&  <CurrentMoveRack newMoveInfo={newMoveInfo} />} */}
+        {/* {!isMobile &&  <CurrentMoveRack newMoveInfo={newMoveInfo} />} */}
       </BoardSectionWrapper>
-     {/* {!isMobile && <MovesSectionWrapper>} */}
-        <ResultForGameEntry />
-        {gameStatus === EGameStatus.suggestion ? <Photo imgSrc={boardPhotoUrl} /> : null}
-        <MovesList />
-      </MovesSectionWrapper>
+      {!isMobile && (
+        <MovesSectionWrapper>
+          <ResultForGameEntry />
+          {gameStatus === EGameStatus.suggestion ? <Photo imgSrc={boardPhotoUrl} /> : null}
+          <MovesList />
+        </MovesSectionWrapper>
+      )}
     </StyledWrapper>
   );
 };
