@@ -154,9 +154,9 @@ const GameEntry2 = () => {
           </KonvaBoard>
         </KonvaBoardWrapper>
         <ChangingStateButtons newMoveInfo={newMoveInfo} />
-       {!isMobile &&  <CurrentMoveRack newMoveInfo={newMoveInfo} />}
+       {/* {!isMobile &&  <CurrentMoveRack newMoveInfo={newMoveInfo} />} */}
       </BoardSectionWrapper>
-     {!isMobile && <MovesSectionWrapper>}
+     {/* {!isMobile && <MovesSectionWrapper>} */}
         <ResultForGameEntry />
         {gameStatus === EGameStatus.suggestion ? <Photo imgSrc={boardPhotoUrl} /> : null}
         <MovesList />
