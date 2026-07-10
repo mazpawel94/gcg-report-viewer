@@ -7,35 +7,37 @@ import BoardFields from '../molecules/BoardFields';
 import useHandleResize from './hooks/useHandleResize';
 import BoardCoordinates from '../molecules/BoardCoordinates';
 
-const emptyFn = () => {};
+const emptyFn = () => { };
 
-const StyledWrapper = styled.div`
-  margin-top: 5px;
-  margin-bottom: 5px;
-  min-width: 650px;
-  height: 650px;
-  width: 650px;
+const StyledWrapper = styled.div < {
+  $boardSize: number;
+  $plainView: boolean;
+} > `
+  position: relative;
+  width: ${({ $boardSize }) => $boardSize}px;
+  height: ${({ $boardSize }) => $boardSize}px;
+  margin: 20px auto;
   box-sizing: content-box;
   background-color: #08763b;
   border: 3px solid rgb(34, 51, 51);
-  transform: translateX(65%) perspective(1000px) rotateX(70deg) rotateZ(-45deg);
+  transform: ${({ $plainView }) =>
+    $plainView
+      ? "none"
+      : "perspective(1200px) rotateX(55deg) rotateZ(-40deg)"};
   transform-style: preserve-3d;
-  transition: 1s linear;
-  -webkit-transition: 1s linear;
-
-  ${({ plainView }) =>
-    plainView &&
-    css`
-      transform: rotateX(720deg);
-    `}
+  transition: transform 0.6s ease;
 `;
 
 export const GameArea = styled.div`
-  position: relative;
+  /* position: relative;
   top: 30px;
   left: 40px;
   height: calc(100% - 80px);
-  width: calc(100% - 80px);
+  width: calc(100% - 80px); */
+
+  position: relative;
+  width: 100%;
+  height: 100%;
 
   canvas {
     background: red;
@@ -87,8 +89,10 @@ export const GameArea = styled.div`
 const KonvaBoard = ({ stageRef = {}, plainView = true, contextValue, children, handleBoardClick = emptyFn }) => {
   const { fieldSize } = useHandleResize();
 
+  const boardSize = fieldSize * 15;
+
   return (
-    <StyledWrapper plainView={plainView} data-testid="board">
+    <StyledWrapper $plainView={plainView} $boardSize={boardSize} data-testid="board">
       <BoardCoordinates />
       <GameArea simpleView={fieldSize < 38}>
         <Stage width={fieldSize * 15} height={fieldSize * 15} ref={stageRef}>
