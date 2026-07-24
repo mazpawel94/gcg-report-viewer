@@ -14,7 +14,6 @@ import useGameEntry2 from './hooks/useGameEntry2';
 import LettersPanel from './LettersPanel';
 import MovesList from './MovesList';
 import PolishLettersInfo from './PolishLettersInfo';
-import { useIsMobile } from '../../../hooks/useIsMobile';
 
 const KonvaBoardWrapper = styled.div<{ onMouseDown: any }>`
   margin: auto;
@@ -22,38 +21,18 @@ const KonvaBoardWrapper = styled.div<{ onMouseDown: any }>`
   justify-content: center;
 `;
 
-const StyledWrapper = styled.div<{ $isMobile: boolean }>`
+const StyledWrapper = styled.div`
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  align-items: flex-start;
+  height: 100vh;
+  align-items: stretch;
   justify-content: space-around;
-  gap: ${({ $isMobile }) => ($isMobile ? '12px' : '60px')};
-  flex-direction: ${({ $isMobile }) => ($isMobile ? 'column' : 'row')};
-  padding: ${({ $isMobile }) => ($isMobile ? '8px' : '0')};
-  box-sizing: border-box;
+  gap: 100px;
 `;
 
-// const StyledWrapper = styled.div`
-//   display: flex;
-//   width: 100%;
-//   height: 100vh;
-//   align-items: stretch;
-//   justify-content: space-around;
-//   gap: 100px;
-// `;
-
-// const BoardSectionWrapper = styled.div`
-//   flex-grow: 3;
-// `;
-const BoardSectionWrapper = styled.div<{ $isMobile: boolean }>`
-  flex: ${({ $isMobile }) => ($isMobile ? '1 1 auto' : '3 1 0')};
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const BoardSectionWrapper = styled.div`
+  flex-grow: 3;
 `;
-
 const MovesSectionWrapper = styled.div`
   flex-grow: 2;
   width: 500px;
@@ -63,27 +42,22 @@ const MovesSectionWrapper = styled.div`
   overflow-y: auto;
   max-height: 100%;
 `;
-export const TopPanel = styled.div`
+const TopPanel = styled.div`
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  max-width: 655px;
-  margin: 0 auto;
+  justify-content: center;
   height: 50px;
-  padding: 0 8px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
+  align-items: end;
+  width: 655px;
+  margin: auto;
+  justify-content: space-between;
 `;
 
-export const ButtonsWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 5px;
-  flex-wrap: wrap;
+const ButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
 `;
-
 const Photo = styled.div<{ imgSrc: string }>`
   position: relative;
   height: 70vh;
@@ -97,7 +71,6 @@ const Photo = styled.div<{ imgSrc: string }>`
 
 const GameEntry2 = () => {
   const { fieldSize } = useHandleResize();
-  const isMobile = useIsMobile();
   const {
     gameStatus,
     boardPhotoUrl,
@@ -115,8 +88,8 @@ const GameEntry2 = () => {
   } = useGameEntry2();
 
   return (
-    <StyledWrapper $isMobile={isMobile}>
-      <BoardSectionWrapper $isMobile={isMobile}>
+    <StyledWrapper>
+      <BoardSectionWrapper>
         <TopPanel>
           <CurrentMoveInfo newMoveInfo={newMoveInfo} />
           <ButtonsWrapper>
@@ -154,15 +127,13 @@ const GameEntry2 = () => {
           </KonvaBoard>
         </KonvaBoardWrapper>
         <ChangingStateButtons newMoveInfo={newMoveInfo} />
-        {/* {!isMobile &&  <CurrentMoveRack newMoveInfo={newMoveInfo} />} */}
+        <CurrentMoveRack newMoveInfo={newMoveInfo} />
       </BoardSectionWrapper>
-      {!isMobile && (
-        <MovesSectionWrapper>
-          <ResultForGameEntry />
-          {gameStatus === EGameStatus.suggestion ? <Photo imgSrc={boardPhotoUrl} /> : null}
-          <MovesList />
-        </MovesSectionWrapper>
-      )}
+      <MovesSectionWrapper>
+        <ResultForGameEntry />
+        {gameStatus === EGameStatus.suggestion ? <Photo imgSrc={boardPhotoUrl} /> : null}
+        <MovesList />
+      </MovesSectionWrapper>
     </StyledWrapper>
   );
 };
