@@ -192,7 +192,8 @@ export const GameEntryContextProvider = ({ children }: any) => {
   const txtFile = useMemo(() => {
     const rows = approvedMoves
       .map(
-        (el, i) => `>${playersName[i % 2]}: ${el.letters} ${el.coordinates} ${el.word} ${el.points} ${el.sumPoints} `,
+        (el, i) =>
+          `>${playersName[i % 2]}: ${el.letters} ${el.coordinates} ${el.word} ${el.points >= 0 ? '+' : ''}${el.points} ${el.sumPoints} `,
       )
       .flatMap((el) => (el.includes('--') ? [el, el] : el)); // duplikuje ruchy straty, zgodnie z formatem gcg;
     return `#character-encoding UTF-8
