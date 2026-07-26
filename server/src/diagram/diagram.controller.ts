@@ -23,8 +23,8 @@ export class DiagramController {
     return this.diagramService.getPrivateDiagrams(user);
   }
   @Get()
-  // @UseInterceptors(CacheInterceptor)
-  // @CacheTTL(30 * 24 * 60 * 60 * 1000)
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(30 * 24 * 60 * 60 * 1000)
   async getDiagrams(@Query() query: GetDiagramsQueryDto): Promise<DiagramInterface[]> {
     return this.diagramService.getDiagrams(query.created_after);
   }
