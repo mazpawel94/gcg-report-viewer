@@ -1,6 +1,5 @@
-import { Body, Controller, Get, Post, Query, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
-import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 
 import { DiagramService } from './diagram.service';
 import { CreateDiagramDto } from './dto/create-diagram.dto';
@@ -23,8 +22,6 @@ export class DiagramController {
     return this.diagramService.getPrivateDiagrams(user);
   }
   @Get()
-  @UseInterceptors(CacheInterceptor)
-  @CacheTTL(30 * 24 * 60 * 60 * 1000)
   async getDiagrams(@Query() query: GetDiagramsQueryDto): Promise<DiagramInterface[]> {
     return this.diagramService.getDiagrams(query.created_after);
   }

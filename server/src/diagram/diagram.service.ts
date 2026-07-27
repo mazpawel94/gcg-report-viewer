@@ -1,13 +1,19 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 import { Diagram } from './diagram.entity';
 import { CreateDiagramDto } from './dto/create-diagram.dto';
 import { Tag } from '../tag/tag.entity';
 import DiagramInterface from '../interfaces/diagram.interface';
-import { FindOptionsWhere, MoreThan, MoreThanOrEqual } from 'typeorm';
+import { FindOptionsWhere, MoreThanOrEqual } from 'typeorm';
 import { User } from '../users/user.entity';
+
+const PUBLIC_DIAGRAMS_CACHE_KEY = 'public-diagrams';
 
 @Injectable()
 export class DiagramService {
+  constructor(@Inject(CACHE_MANAGER) private readonly cacheManager: Cache) {}
+
   async createDiagram(newDiagram: CreateDiagramDto): Promise<number> {
     const diagram = new Diagram();
     diagram.words = newDiagram.words;
@@ -34,6 +40,7 @@ export class DiagramService {
     }
 
     await diagram.save();
+    await this.cacheManager.del(PUBLIC_DIAGRAMS_CACHE_KEY);
 
     return diagram.id;
   }
@@ -51,20 +58,28 @@ export class DiagramService {
   }
 
   async getDiagrams(createdAfter?: string): Promise<DiagramInterface[]> {
+    const diagrams = await this.getPublicDiagrams();
+    const filtered = createdAfter
+      ? diagrams.filter((diagram) => diagram.createdAt > new Date(createdAfter))
+      : diagrams;
+
+    return filtered.map((diagram) => ({
+      ...diagram,
+      tags: diagram.tags?.map((tag) => tag.name) ?? [],
+    }));
+  }
+
+  private async getPublicDiagrams(): Promise<Diagram[]> {
+    const cached = await this.cacheManager.get<Diagram[]>(PUBLIC_DIAGRAMS_CACHE_KEY);
+    if (cached) return cached;
+
     const where: FindOptionsWhere<Diagram> = {
       isPublic: true,
       level: MoreThanOrEqual(1),
     };
-    if (createdAfter) where.createdAt = MoreThan(new Date(createdAfter));
+    const diagrams = await Diagram.find({ where, relations: ['tags'] });
+    await this.cacheManager.set(PUBLIC_DIAGRAMS_CACHE_KEY, diagrams);
 
-    const diagrams = await Diagram.find({
-      where,
-      relations: ['tags'],
-    });
-
-    return diagrams.map((diagram) => ({
-      ...diagram,
-      tags: diagram.tags?.map((tag) => tag.name) ?? [],
-    }));
+    return diagrams;
   }
 }
