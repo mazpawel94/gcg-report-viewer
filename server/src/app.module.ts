@@ -8,6 +8,7 @@ import { DiagramModule } from './diagram/diagram.module';
 import { MacondoModule } from './macondo/macondo.module';
 import { ScrabblecamModule } from './scrabblecam/scrabblecam.module';
 import { TagModule } from './tag/tag.module';
+import { TournamentsModule } from './tournaments/tournaments.module';
 import { UserDiagramModule } from './user-diagram/user-diagram.module';
 import { UserModule } from './users/users.module';
 
@@ -21,6 +22,7 @@ import { UserModule } from './users/users.module';
     UserModule,
     UserDiagramModule,
     AuthModule,
+    TournamentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

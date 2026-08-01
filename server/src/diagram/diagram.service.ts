@@ -40,7 +40,7 @@ export class DiagramService {
     }
 
     await diagram.save();
-    await this.cacheManager.del(PUBLIC_DIAGRAMS_CACHE_KEY);
+    await this.appendToPublicDiagramsCache(diagram);
 
     return diagram.id;
   }
@@ -81,5 +81,14 @@ export class DiagramService {
     await this.cacheManager.set(PUBLIC_DIAGRAMS_CACHE_KEY, diagrams);
 
     return diagrams;
+  }
+
+  private async appendToPublicDiagramsCache(diagram: Diagram): Promise<void> {
+    if (!diagram.isPublic || diagram.level < 1) return;
+
+    const cached = await this.cacheManager.get<Diagram[]>(PUBLIC_DIAGRAMS_CACHE_KEY);
+    if (!cached) return;
+
+    await this.cacheManager.set(PUBLIC_DIAGRAMS_CACHE_KEY, [...cached, diagram]);
   }
 }
