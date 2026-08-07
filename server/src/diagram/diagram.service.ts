@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { Diagram } from './diagram.entity';
@@ -9,6 +9,8 @@ import { FindOptionsWhere, MoreThanOrEqual } from 'typeorm';
 import { User } from '../users/user.entity';
 
 const PUBLIC_DIAGRAMS_CACHE_KEY = 'public-diagrams';
+const CHALLENGE_TAG_NAME = 'challenge';
+const DATE_TAG_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 @Injectable()
 export class DiagramService {
@@ -64,6 +66,25 @@ export class DiagramService {
       : diagrams;
 
     return filtered.map((diagram) => ({
+      ...diagram,
+      tags: diagram.tags?.map((tag) => tag.name) ?? [],
+    }));
+  }
+
+  async getChallengeDiagramsByDate(date: string): Promise<DiagramInterface[]> {
+    if (!DATE_TAG_PATTERN.test(date)) {
+      throw new BadRequestException('date must be in YYYY-MM-DD format');
+    }
+
+    const diagrams = await Diagram.createQueryBuilder('diagram')
+      .innerJoin('diagram.tags', 'challengeTag', 'challengeTag.name = :challengeName', {
+        challengeName: CHALLENGE_TAG_NAME,
+      })
+      .innerJoin('diagram.tags', 'dateTag', 'dateTag.name = :date', { date })
+      .leftJoinAndSelect('diagram.tags', 'tags')
+      .getMany();
+
+    return diagrams.map((diagram) => ({
       ...diagram,
       tags: diagram.tags?.map((tag) => tag.name) ?? [],
     }));

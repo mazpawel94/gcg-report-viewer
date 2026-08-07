@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
 
 import { DiagramService } from './diagram.service';
@@ -24,5 +24,10 @@ export class DiagramController {
   @Get()
   async getDiagrams(@Query() query: GetDiagramsQueryDto): Promise<DiagramInterface[]> {
     return this.diagramService.getDiagrams(query.created_after);
+  }
+
+  @Get('/challenge/:date')
+  async getChallengeDiagrams(@Param('date') date: string): Promise<DiagramInterface[]> {
+    return this.diagramService.getChallengeDiagramsByDate(date);
   }
 }
