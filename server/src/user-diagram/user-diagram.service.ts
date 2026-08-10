@@ -1,8 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UserDiagram } from './user-diagram.entity';
 import { CreateUserDiagramDto } from './dto/create-user-diagram.dto';
 import { UpdateIsLikedDto } from './dto/update-is-liked.dto';
 import { SyncResponseDto } from './dto/sync-response.dto';
+import { ChallengeResultDto } from './dto/challenge-result.dto';
+
+const DATE_TAG_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 @Injectable()
 export class UserDiagramService {
@@ -76,6 +79,52 @@ export class UserDiagramService {
       currentNoHintsStreak,
       currentNoMistakesStreak,
     };
+  }
+
+  async getChallengeResults(date: string): Promise<ChallengeResultDto[]> {
+    if (!DATE_TAG_PATTERN.test(date)) {
+      throw new BadRequestException('date must be in YYYY-MM-DD format');
+    }
+
+    const records = await UserDiagram.createQueryBuilder('userDiagram')
+      .innerJoin('userDiagram.diagram', 'diagram')
+      .innerJoin('diagram.tags', 'tag', 'tag.name = :date', { date })
+      .leftJoinAndSelect('userDiagram.user', 'user')
+      .getMany();
+
+    const byUser = new Map<
+      string,
+      { name: string | null; correctlySolved: number; hints: number; attempts: number; earliest: Date; latest: Date }
+    >();
+
+    for (const record of records) {
+      let agg = byUser.get(record.userId);
+      if (!agg) {
+        agg = {
+          name: record.user?.displayName ?? null,
+          correctlySolved: 0,
+          hints: 0,
+          attempts: 0,
+          earliest: record.createdAt,
+          latest: record.createdAt,
+        };
+        byUser.set(record.userId, agg);
+      }
+
+      agg.correctlySolved += record.correctlySolved ? 1 : 0;
+      agg.hints += record.usedHints;
+      agg.attempts += record.attempts;
+      if (record.createdAt < agg.earliest) agg.earliest = record.createdAt;
+      if (record.createdAt > agg.latest) agg.latest = record.createdAt;
+    }
+
+    return Array.from(byUser.values()).map((agg) => ({
+      name: agg.name,
+      correctlySolved: agg.correctlySolved,
+      hints: agg.hints,
+      attempts: agg.attempts,
+      time: agg.latest.getTime() - agg.earliest.getTime(),
+    }));
   }
 
   private calcStreak(records: UserDiagram[], predicate: (r: UserDiagram) => boolean): number {

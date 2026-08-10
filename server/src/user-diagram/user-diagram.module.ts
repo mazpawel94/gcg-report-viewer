@@ -3,12 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Diagram } from '../diagram/diagram.entity';
 import { User } from '../users/user.entity';
+import { ChallengeResultsController } from './challenge-results.controller';
 import { UserDiagramController } from './user-diagram.controller';
 import { UserDiagramService } from './user-diagram.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Diagram, User])],
-  controllers: [UserDiagramController],
+  controllers: [UserDiagramController, ChallengeResultsController],
   providers: [UserDiagramService],
 })
 export class UserDiagramModule {}
