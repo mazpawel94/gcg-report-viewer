@@ -101,7 +101,7 @@ export class UserDiagramService {
       let agg = byUser.get(record.userId);
       if (!agg) {
         agg = {
-          name: record.user?.displayName ?? null,
+          name: record.user?.nick ?? null,
           correctlySolved: 0,
           hints: 0,
           attempts: 0,
