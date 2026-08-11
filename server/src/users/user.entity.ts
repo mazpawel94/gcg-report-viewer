@@ -29,6 +29,9 @@ export class User extends BaseEntity {
   @Column({ name: 'is_anonymous', default: true })
   isAnonymous: boolean;
 
+  @Column({ nullable: true })
+  nick: string | null;
+
   @OneToMany(() => UserDiagram, (userDiagram) => userDiagram.user)
   userDiagrams: UserDiagram[];
 
