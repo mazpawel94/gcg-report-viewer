@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, Min } from 'class-validator';
+import { IsInt, IsOptional, IsUUID, Min } from 'class-validator';
 
 export class CreateDiagramDto {
   words: string;
@@ -15,4 +15,8 @@ export class CreateDiagramDto {
   @IsInt()
   @Min(0)
   level?: number;
+
+  @IsOptional()
+  @IsUUID()
+  authorId?: string | null;
 }

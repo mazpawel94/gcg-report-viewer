@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { Diagram } from './diagram.entity';
@@ -25,6 +25,14 @@ export class DiagramService {
     diagram.lexicon = newDiagram.lexicon || 'osps52';
 
     diagram.level = newDiagram.level ?? 0;
+
+    if (newDiagram.authorId) {
+      const author = await User.findOneBy({ id: newDiagram.authorId });
+      if (!author) {
+        throw new NotFoundException('authorId does not match an existing user');
+      }
+      diagram.authorId = author.id;
+    }
 
     if (newDiagram.tags?.length) {
       const tags = await Promise.all(
