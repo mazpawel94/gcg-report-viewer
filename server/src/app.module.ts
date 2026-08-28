@@ -11,6 +11,7 @@ import { TagModule } from './tag/tag.module';
 import { TournamentsModule } from './tournaments/tournaments.module';
 import { UserDiagramModule } from './user-diagram/user-diagram.module';
 import { UserModule } from './users/users.module';
+import { WooglesModule } from './woogles/woogles.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UserModule } from './users/users.module';
     UserDiagramModule,
     AuthModule,
     TournamentsModule,
+    WooglesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
