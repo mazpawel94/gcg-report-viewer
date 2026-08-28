@@ -1,8 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import axios from 'axios';
 
-const GCG_URL = 'https://woogles.io/api/game_service.GameMetadataService/GetGCG';
-
+const GCG_URL = 'https://woogles.io/api/analysis_service.AnalysisService/GetAnalysisResult';
 @Injectable()
 export class WooglesService {
   async getGame(gameId: string): Promise<{ turns: unknown[] }> {
