@@ -43,16 +43,18 @@ class GcgReader {
       });
     }
   };
-  readReport = (e, callback) => {
+  convertFromText = (text) => {
     const movesArray = [];
+    const lines = this.convertTextByRegex(text);
+    lines.forEach((line) => this.pushMoveByLineToArray(line, movesArray));
+    return movesArray;
+  };
+
+  readReport = (e, callback) => {
     const game = e.target.files[0];
     if (!game) return 0;
     const reader = new FileReader();
-    reader.onload = (e) => {
-      const lines = this.convertTextByRegex(e.target.result);
-      lines.forEach((line) => this.pushMoveByLineToArray(line, movesArray));
-      callback(movesArray);
-    };
+    reader.onload = (e) => callback(this.convertFromText(e.target.result));
     reader.readAsText(game);
   };
 }

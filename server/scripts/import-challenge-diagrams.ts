@@ -13,7 +13,7 @@ import { Tag } from '../src/tag/tag.entity';
 const DEFAULT_JSON_PATH = 'C:/Users/Pawel/Downloads/wyniki-wszystkie.json';
 const TOTAL_ITEMS = 100;
 const GROUP_COUNT = 10;
-const START_DATE = '2026-08-11';
+const START_DATE = '2026-09-20';
 const CHALLENGE_TAG_NAME = 'challenge';
 const LEXICON = 'osps52';
 
@@ -95,7 +95,7 @@ async function main() {
 
   const dataSource = new DataSource({
     type: 'postgres',
-    url: process.env.DB_GCG_URL,
+    url: process.env.DB_GCG_IMPORT_URL || process.env.DB_GCG_URL,
     ssl: { rejectUnauthorized: false },
     entities: [path.join(__dirname, '../src/**/*.entity.ts')],
     synchronize: false,

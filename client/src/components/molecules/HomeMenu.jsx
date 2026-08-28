@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-import GcgReader from '../../services/GcgReader';
+import ReportReader from '../../services/ReportReader';
 import { useAppContext } from '../../context';
 import { actionTypes } from '../../reducers/gameReducer';
 
@@ -75,7 +75,7 @@ const HomeMenu = () => {
 
   return (
     <StyledWrapper data-testid="home-menu">
-      <HiddenInput ref={inputRef} type="file" onInput={(e) => new GcgReader().readReport(e, handleNewFile)} />
+      <HiddenInput ref={inputRef} type="file" onInput={(e) => new ReportReader().readReport(e, handleNewFile)} />
       <Options href="#" onClick={() => inputRef.current.click()}>
         Analizuj partię
       </Options>

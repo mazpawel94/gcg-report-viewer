@@ -1,0 +1,16 @@
+python -c "
+import json
+
+with open('wyniki-wszystkie.json', encoding='utf-8') as f:
+    data = json.load(f)
+
+data = data[100:]
+
+with open('wyniki-wszystkie.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+print(f'Usunięto pierwsze 100 elementów, zostało {len(data)}.')
+"
+
+
+npm run import:challenge-diagrams -- --commit
