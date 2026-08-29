@@ -1,11 +1,14 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { MoreThan } from 'typeorm';
 import { UserDiagram } from './user-diagram.entity';
 import { CreateUserDiagramDto } from './dto/create-user-diagram.dto';
 import { UpdateIsLikedDto } from './dto/update-is-liked.dto';
 import { SyncResponseDto } from './dto/sync-response.dto';
 import { ChallengeResultDto } from './dto/challenge-result.dto';
+import { UserDiagramHistoryDto } from './dto/user-diagram-history.dto';
 
 const DATE_TAG_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const HISTORY_PAGE_SIZE = 20;
 
 @Injectable()
 export class UserDiagramService {
@@ -45,6 +48,37 @@ export class UserDiagramService {
     const likedDiagrams = userDiagrams.filter((ud) => ud.isLiked).map((ud) => ud.diagram);
 
     return { attemptedDiagramIds, likedDiagrams };
+  }
+
+  async getUserDiagramHistory(
+    userId: string,
+    options: { page?: number; onlyIncorrect?: boolean; onlyWithHints?: boolean },
+  ): Promise<UserDiagramHistoryDto> {
+    const page = options.page && options.page > 0 ? Math.floor(options.page) : 1;
+
+    const where: Record<string, unknown> = { userId };
+    if (options.onlyIncorrect) {
+      where.correctlySolved = false;
+    }
+    if (options.onlyWithHints) {
+      where.usedHints = MoreThan(0);
+    }
+
+    const [items, totalItems] = await UserDiagram.findAndCount({
+      where,
+      relations: ['diagram'],
+      order: { createdAt: 'DESC' },
+      skip: (page - 1) * HISTORY_PAGE_SIZE,
+      take: HISTORY_PAGE_SIZE,
+    });
+
+    return {
+      items,
+      page,
+      pageSize: HISTORY_PAGE_SIZE,
+      totalItems,
+      totalPages: Math.ceil(totalItems / HISTORY_PAGE_SIZE),
+    };
   }
 
   async getUserStats(userId: string) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 
 import { CreateUserDiagramDto } from './dto/create-user-diagram.dto';
 import { UpdateIsLikedDto } from './dto/update-is-liked.dto';
@@ -9,6 +9,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { User } from '../users/user.entity';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { SyncResponseDto } from './dto/sync-response.dto';
+import { GetUserDiagramHistoryQueryDto } from './dto/get-user-diagram-history-query.dto';
+import { UserDiagramHistoryDto } from './dto/user-diagram-history.dto';
 
 @Controller('user-diagram')
 export class UserDiagramController {
@@ -32,6 +34,19 @@ export class UserDiagramController {
   @UseGuards(AuthGuard('jwt'))
   async sync(@CurrentUser() user: User): Promise<SyncResponseDto> {
     return this.userDiagramService.getSyncData(user.id);
+  }
+
+  @Get('history')
+  @UseGuards(AuthGuard('jwt'))
+  async getHistory(
+    @CurrentUser() user: User,
+    @Query() query: GetUserDiagramHistoryQueryDto,
+  ): Promise<UserDiagramHistoryDto> {
+    return this.userDiagramService.getUserDiagramHistory(user.id, {
+      page: query.page ? parseInt(query.page, 10) : undefined,
+      onlyIncorrect: query.onlyIncorrect === 'true',
+      onlyWithHints: query.onlyWithHints === 'true',
+    });
   }
 
   @Get(':userId/stats')
