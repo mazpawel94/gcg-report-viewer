@@ -27,7 +27,13 @@ export interface MistakePuzzle {
   metadata: {
     playerName: string;
     gameId: string;
+    gameDate: string;
   };
+}
+
+interface GameRef {
+  gameId: string;
+  createdAt: string;
 }
 
 interface GetMistakesOptions {
@@ -55,15 +61,15 @@ export class WooglesService {
     const opponent = options.opponent;
     const minGap = options.minGap ?? DEFAULT_MIN_GAP;
 
-    const gameIds = await this.fetchRecentGameIds(username, numGames, lexicon, opponent);
+    const gameRefs = await this.fetchRecentGameIds(username, numGames, lexicon, opponent);
 
     const puzzles: MistakePuzzle[] = [];
-    for (let i = 0; i < gameIds.length; i += FETCH_CONCURRENCY) {
-      const batch = gameIds.slice(i, i + FETCH_CONCURRENCY);
-      const analyses = await Promise.all(batch.map((gameId) => this.fetchAnalysis(gameId)));
+    for (let i = 0; i < gameRefs.length; i += FETCH_CONCURRENCY) {
+      const batch = gameRefs.slice(i, i + FETCH_CONCURRENCY);
+      const analyses = await Promise.all(batch.map((ref) => this.fetchAnalysis(ref)));
       for (const entry of analyses) {
         if (!entry) continue;
-        puzzles.push(...this.extractPuzzlesFromGame(entry.analysis, entry.gameId, minGap));
+        puzzles.push(...this.extractPuzzlesFromGame(entry.analysis, entry.gameId, entry.createdAt, minGap));
       }
     }
 
@@ -75,20 +81,20 @@ export class WooglesService {
     numGames: number,
     lexicon?: string,
     opponent?: string,
-  ): Promise<string[]> {
+  ): Promise<GameRef[]> {
     const { data } = await axios.post(RECENT_GAMES_URL, { username, numGames });
     const games: any[] = data?.game_info ?? [];
 
     return games
       .filter((game) => !lexicon || game.game_request?.lexicon === lexicon)
       .filter((game) => !opponent || (game.players ?? []).some((p: any) => p.nickname === opponent))
-      .map((game) => game.game_id);
+      .map((game) => ({ gameId: game.game_id, createdAt: game.created_at }));
   }
 
-  private async fetchAnalysis(gameId: string): Promise<{ gameId: string; analysis: any } | null> {
+  private async fetchAnalysis(ref: GameRef): Promise<{ gameId: string; createdAt: string; analysis: any } | null> {
     try {
-      const { data } = await axios.post(GCG_URL, { gameId });
-      return { gameId, analysis: data };
+      const { data } = await axios.post(GCG_URL, { gameId: ref.gameId });
+      return { gameId: ref.gameId, createdAt: ref.createdAt, analysis: data };
     } catch {
       return null;
     }
@@ -115,7 +121,7 @@ export class WooglesService {
     return { index, coordinates, points, word, freeLetters: '', evaluate: points };
   }
 
-  private extractPuzzlesFromGame(analysis: any, gameId: string, minGap: number): MistakePuzzle[] {
+  private extractPuzzlesFromGame(analysis: any, gameId: string, gameDate: string, minGap: number): MistakePuzzle[] {
     const puzzles: MistakePuzzle[] = [];
     const history: WordEntry[] = [];
     let nextIndex = 1;
@@ -132,7 +138,7 @@ export class WooglesService {
               letters: turn.rack ?? '',
               words: history.map((w) => ({ ...w })),
               solution,
-              metadata: { playerName: turn.player_name, gameId },
+              metadata: { playerName: turn.player_name, gameId, gameDate },
             });
           }
         }
