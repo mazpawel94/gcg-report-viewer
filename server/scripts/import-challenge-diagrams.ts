@@ -13,7 +13,7 @@ import { Tag } from '../src/tag/tag.entity';
 const DEFAULT_JSON_PATH = 'C:/Users/Pawel/Downloads/wyniki-wszystkie.json';
 const TOTAL_ITEMS = 100;
 const GROUP_COUNT = 10;
-const START_DATE = '2026-09-20';
+const START_DATE = '2026-10-20';
 const CHALLENGE_TAG_NAME = 'challenge';
 const LEXICON = 'osps52';
 
