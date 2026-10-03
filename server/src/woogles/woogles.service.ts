@@ -3,13 +3,16 @@ import axios from 'axios';
 
 const GCG_URL = 'https://woogles.io/api/analysis_service.AnalysisService/GetAnalysisResult';
 const RECENT_GAMES_URL = 'https://woogles.io/api/game_service.GameMetadataService/GetRecentGames';
+const EDITOR_GAMES_URL = 'https://woogles.io/api/omgwords_service.GameEventService/GetGamesForEditor';
+const AUTOCOMPLETE_URL = 'https://woogles.io/api/user_service.AutocompleteService/GetCompletion';
 
 const COORD_RE = /^(?:\d{1,2}[A-Za-z]|[A-Za-z]\d{1,2})$/;
 const MISTAKE_SIZES = new Set(['MEDIUM', 'LARGE']);
 const DEFAULT_LEXICON = 'OSPS52';
-const DEFAULT_NUM_GAMES = 50;
+const DEFAULT_NUM_GAMES = 60;
 const DEFAULT_MIN_GAP = 10;
 const FETCH_CONCURRENCY = 5;
+const EDITOR_GAMES_MAX_LIMIT = 50;
 
 interface WordEntry {
   index: number;
@@ -61,7 +64,19 @@ export class WooglesService {
     const opponent = options.opponent;
     const minGap = options.minGap ?? DEFAULT_MIN_GAP;
 
-    const gameRefs = await this.fetchRecentGameIds(username, numGames, lexicon, opponent);
+    const [recentGameRefs, editorGameRefs] = await Promise.all([
+      this.fetchRecentGameIds(username, numGames, lexicon, opponent),
+      this.fetchEditorGameIds(username, numGames, lexicon, opponent),
+    ]);
+
+    const seen = new Set<string>();
+    const gameRefs: GameRef[] = [];
+    for (const ref of [...recentGameRefs, ...editorGameRefs]) {
+      if (seen.has(ref.gameId)) continue;
+      seen.add(ref.gameId);
+      gameRefs.push(ref);
+    }
+    gameRefs.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     const puzzles: MistakePuzzle[] = [];
     for (let i = 0; i < gameRefs.length; i += FETCH_CONCURRENCY) {
@@ -89,6 +104,39 @@ export class WooglesService {
       .filter((game) => !lexicon || game.game_request?.lexicon === lexicon)
       .filter((game) => !opponent || (game.players ?? []).some((p: any) => p.nickname === opponent))
       .map((game) => ({ gameId: game.game_id, createdAt: game.created_at }));
+  }
+
+  private async resolveUserId(username: string): Promise<string | null> {
+    try {
+      const { data } = await axios.post(AUTOCOMPLETE_URL, { prefix: username });
+      const users: any[] = data?.users ?? [];
+      const match = users.find((u) => u.username?.toLowerCase() === username.toLowerCase());
+      return match?.uuid ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  private async fetchEditorGameIds(
+    username: string,
+    limit: number,
+    lexicon?: string,
+    opponent?: string,
+  ): Promise<GameRef[]> {
+    const userId = await this.resolveUserId(username);
+    if (!userId) return [];
+
+    try {
+      const { data } = await axios.post(EDITOR_GAMES_URL, { userId, limit: Math.min(limit, EDITOR_GAMES_MAX_LIMIT) });
+      const games: any[] = data?.games ?? [];
+
+      return games
+        .filter((game) => !lexicon || game.lexicon === lexicon)
+        .filter((game) => !opponent || (game.players_info ?? []).some((p: any) => p.nickname === opponent))
+        .map((game) => ({ gameId: game.game_id, createdAt: game.created_at }));
+    } catch {
+      return [];
+    }
   }
 
   private async fetchAnalysis(ref: GameRef): Promise<{ gameId: string; createdAt: string; analysis: any } | null> {
